@@ -5,7 +5,8 @@ target 'iWykop' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for iWykop
+  pod "Resolver"
+  pod "Alamofire"
 
   target 'iWykopTests' do
     inherit! :search_paths
