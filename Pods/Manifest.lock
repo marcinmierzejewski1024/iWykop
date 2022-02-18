@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (5.5.0)
+  - DBDebugToolkit (0.7.0)
   - Resolver (1.5.0)
 
 DEPENDENCIES:
   - Alamofire
+  - DBDebugToolkit
   - Resolver
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - DBDebugToolkit
     - Resolver
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  DBDebugToolkit: ae299ea98eeef649c05ea3229f952fef817e7604
   Resolver: 68984624572763018fd8ec7b8e3e8df0e3b6bba5
 
-PODFILE CHECKSUM: 343d0c4cdc4ab38e4ce12ee3536dd901e8702cca
+PODFILE CHECKSUM: 14b0feb196809f2f015ff62b174c1e7499fd8071
 
 COCOAPODS: 1.11.2

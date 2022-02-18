@@ -9,15 +9,17 @@ import Foundation
 
 struct ApiRequestBody {
     var body : [String:String];
-//    var headers : [String:String]; ??
-
+    //TODO:jak nie urosnie to moze zrobic typealias tez
 }
 
+typealias ApiRequestHeaders = [String:String]
+
+
 enum ApiRequest {
-    case Get(url:String)
-    case Post(url:String, body: ApiRequestBody)
-    case Patch(url:String, body: ApiRequestBody)
-    case Delete(url:String, body: ApiRequestBody)
+    case Get(url:String, headers: ApiRequestHeaders?)
+    case Post(url:String, body: ApiRequestBody, headers: ApiRequestHeaders?)
+    case Patch(url:String, body: ApiRequestBody, headers: ApiRequestHeaders?)
+    case Delete(url:String, body: ApiRequestBody, headers: ApiRequestHeaders?)
 }
 
 protocol ApiClient {

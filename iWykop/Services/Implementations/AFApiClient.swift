@@ -12,34 +12,43 @@ class AFNetworkApiClient : ApiClient {
     func httpRequest(_ request: ApiRequest, completion: @escaping (Data?, Error?) -> Void) {
         
         var requestUrl = "";
-        var requestBody : ApiRequestBody?;
+        var requestBody :ApiRequestBody?;
         var method = HTTPMethod.get;
+        var requestHeaders :HTTPHeaders?;
         
         switch (request){
+
             
-        case .Get(url: let url):
+        case .Get(url: let url, headers: let headers):
+            method = .get;
             requestUrl = url;
+            requestHeaders = self.headersFrom(headers)
             
-        case .Post(url: let url, body: let body):
-            requestUrl = url;
-            requestBody = body;
+        case .Post(url: let url, body: let body, headers: let headers):
             method = .post;
-            
-        case .Patch(url: let url, body: let body):
             requestUrl = url;
+            requestHeaders = self.headersFrom(headers)
             requestBody = body;
+
+        case .Patch(url: let url, body: let body, headers: let headers):
             method = .patch;
-            
-        case .Delete(url: let url, body: let body):
             requestUrl = url;
+            requestHeaders = self.headersFrom(headers)
             requestBody = body;
+
+
+        case .Delete(url: let url, body: let body, headers: let headers):
             method = .delete;
-            
+            requestUrl = url;
+            requestHeaders = self.headersFrom(headers)
+            requestBody = body;
+
+
         }
         
-        let headers = self.headersFrom(request);
         
-        AF.request(requestUrl, method: method, parameters: requestBody?.body, headers: headers).response(completionHandler: { response in
+        
+        AF.request(requestUrl, method: method, parameters: requestBody?.body, headers: requestHeaders).response(completionHandler: { response in
             
             switch response.result {
                 
@@ -56,9 +65,20 @@ class AFNetworkApiClient : ApiClient {
     }
     
     
-    func headersFrom(_ apiRequest: ApiRequest) -> HTTPHeaders? {
-        //TODO: impl
-        return nil;
+    func headersFrom(_ inh: [String:String]?) -> HTTPHeaders? {
+        
+
+        let headers = inh?.compactMap({ (key: String, value: String) in
+            return HTTPHeader(name: key, value: value);
+
+        })
+        
+        return HTTPHeaders(headers ?? []);
     }
     
+    
 }
+
+
+
+

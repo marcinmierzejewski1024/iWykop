@@ -7,6 +7,7 @@ target 'iWykop' do
 
   pod "Resolver"
   pod "Alamofire"
+  pod "DBDebugToolkit"
 
   target 'iWykopTests' do
     inherit! :search_paths
