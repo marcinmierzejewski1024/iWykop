@@ -12,7 +12,7 @@ struct EntriesView: View {
     
     @ViewBuilder
     var body: some View {
-        let title = "Entries";
+        let title = "Mikroblog";
         
         NavigationView {
             List() {

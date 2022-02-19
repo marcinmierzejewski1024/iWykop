@@ -40,7 +40,12 @@ class MockEntriesViewModel : EntriesViewModel
 {
     override init() {
         super.init();
-        let author = User(login: "smaleckg", color: 1, sex: .male, avatar: "https://www.wykop.pl/cdn/c3397992/smaleckg_JGAFgGehNY,q48.jpg")
-        self.entries = [Entry(id: "2342", date: Date(), body: "Tresc wpisu lorem ipsum", author: author, blocked: nil, favorite: nil, vote_count: 2, comments_count: 14),Entry(id: "243342", date: Date(), body: "2222 Tresc wpisu lorem ipsum", author: author, blocked: nil, favorite: nil, vote_count: 5, comments_count: 1)];
+        
+        let author = Author(avatar: "", login: "smaleckg", sex: .male, background: "", signupAt: "", color: 1);
+        let entry = Entry(id:123, body: "wpis", favorite: false, userVote: 3, blocked: false, author: author, original: "", embed: nil, url: "www.wykop.pl", date: "11.12.2012", voteCount: 124, commentsCount: 44, status: .visible, app: "lurker")
+        let entry2 = Entry(id:1243, body: "wpis drugi 123123", favorite: false, userVote: 3, blocked: false, author: author, original: "", embed: nil, url: "www.wykop.pl", date: "11.12.2012", voteCount: 124, commentsCount: 44, status: .visible, app: "lurker v2")
+
+        self.entries = [entry,entry2];
+        
     }
 }

@@ -1,0 +1,6 @@
+sources:
+    - ../Models
+templates:
+    - Templates
+output: Generated
+
