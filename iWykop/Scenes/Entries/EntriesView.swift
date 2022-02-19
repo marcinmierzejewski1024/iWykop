@@ -47,8 +47,9 @@ struct EntryViewCell: View {
             Spacer()
             VStack(alignment: .trailing) {
                 EntryViewCellHeader(entry: entry)
-                Text(entry.body)
-                
+
+                HTMLStringView(htmlContent: entry.body).frame(minWidth: 200.0, idealWidth: nil, maxWidth: 280, minHeight: 200, idealHeight: nil, maxHeight: 1000, alignment: .center)
+
                 
             }.frame( alignment: .trailing)
             
@@ -65,8 +66,8 @@ struct EntryViewCellHeader : View
     
     var body: some View {
         HStack{
-//            Text("comments: \(entry.comments_count)").bold()
-
+            Text("comments: \(entry.commentsCount)")
+            Spacer()
             Text(entry.author.login).bold()
             
         }.padding(0)
