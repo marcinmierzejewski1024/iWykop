@@ -27,11 +27,11 @@ struct EntriesView: View {
             
                 .navigationTitle(title)
                 .toolbar {
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        Button("Add") {
-//                            viewModel.addButtonClicked()
-//                        }
-//                    }
+                    //                    ToolbarItem(placement: .navigationBarTrailing) {
+                    //                        Button("Add") {
+                    //                            viewModel.addButtonClicked()
+                    //                        }
+                    //                    }
                 }
             
         }
@@ -47,10 +47,7 @@ struct EntryViewCell: View {
             Spacer()
             VStack(alignment: .trailing) {
                 EntryViewCellHeader(entry: entry)
-
-                HTMLStringView(htmlContent: entry.body).frame(minWidth: 200.0, idealWidth: nil, maxWidth: 280, minHeight: 200, idealHeight: nil, maxHeight: 1000, alignment: .center)
-
-                
+                EntryBodyPreview(entry: entry)
             }.frame( alignment: .trailing)
             
         }.padding(0)
@@ -77,9 +74,53 @@ struct EntryViewCellHeader : View
     }
     
 }
+
+
+struct EntryBodyPreview : View
+{
+    var entry: Entry;
+
     
-    struct EntriesView_Previews: PreviewProvider {
-        static var previews: some View {
-            EntriesView(viewModel: MockEntriesViewModel())
-        }
+    var body: some View {
+        VStack{
+            Text(entry.original ?? "")
+            if(entry.embed != nil) {
+                EmbedBodyPreview(embed: entry.embed!);
+            }
+            
+        }.padding(0)
+        
     }
+}
+
+
+struct EmbedBodyPreview : View {
+    
+    var embed: Embed;
+
+    var body: some View {
+        HStack{
+            AsyncImage(
+                url: URL(string:embed.url),
+                content: { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(minWidth : 70,maxWidth: 280,
+                               minHeight: 70, maxHeight: 380)
+                },
+                placeholder: {
+                    ProgressView()
+                }
+            )
+            
+        }.padding(0)
+        
+    }
+
+}
+
+struct EntriesView_Previews: PreviewProvider {
+    static var previews: some View {
+        EntriesView(viewModel: MockEntriesViewModel())
+    }
+}

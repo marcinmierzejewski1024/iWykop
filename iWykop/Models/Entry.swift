@@ -17,12 +17,12 @@ protocol AutoEquatable {
 
 struct Entry: AutoCodable, AutoEquatable {
     let id: Int
-    let body: String
+    let body: String?
     let favorite: Bool
     let userVote: Int
     let blocked: Bool
     let author: Author
-    let original: String
+    let original: String?
     let embed: Embed?
     let url: String
     let date: String

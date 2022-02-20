@@ -25,7 +25,7 @@ struct iWykopApp: App {
         
         WindowGroup {
             EntriesView(viewModel: viewModel).task {
-                viewModel.getEntries();
+                await viewModel.getEntries();
             }
         }
     }

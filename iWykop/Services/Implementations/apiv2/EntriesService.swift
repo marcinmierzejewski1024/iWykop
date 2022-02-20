@@ -32,7 +32,7 @@ class EntriesService : ApiV2Service {
         let data = try await self.apiClient.httpRequestAsync(request)
         
         let resultString = String(data: data, encoding: .utf8);
-        print(resultString);
+//        print(resultString);
         
         let decoder = JSONDecoder()
 

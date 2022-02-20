@@ -51,12 +51,12 @@ internal func == (lhs: Embed, rhs: Embed) -> Bool {
 extension Entry: Equatable {}
 internal func == (lhs: Entry, rhs: Entry) -> Bool {
     guard lhs.id == rhs.id else { return false }
-    guard lhs.body == rhs.body else { return false }
+    guard compareOptionals(lhs: lhs.body, rhs: rhs.body, compare: ==) else { return false }
     guard lhs.favorite == rhs.favorite else { return false }
     guard lhs.userVote == rhs.userVote else { return false }
     guard lhs.blocked == rhs.blocked else { return false }
     guard lhs.author == rhs.author else { return false }
-    guard lhs.original == rhs.original else { return false }
+    guard compareOptionals(lhs: lhs.original, rhs: rhs.original, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.embed, rhs: rhs.embed, compare: ==) else { return false }
     guard lhs.url == rhs.url else { return false }
     guard lhs.date == rhs.date else { return false }

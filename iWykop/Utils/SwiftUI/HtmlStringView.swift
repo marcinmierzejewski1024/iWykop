@@ -13,13 +13,17 @@ import WebKit
 import SwiftUI
 
 struct HTMLStringView: UIViewRepresentable {
-    let htmlContent: String
+    let htmlContent: NSAttributedString
 
-    func makeUIView(context: Context) -> WKWebView {
-        return WKWebView()
+    func makeUIView(context: Context) -> UILabel {
+        return UILabel()
     }
 
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.loadHTMLString(htmlContent, baseURL: nil)
+    func updateUIView(_ uiView: UILabel, context: Context) {
+        uiView.numberOfLines = 44;
+        uiView.attributedText = htmlContent//.htmlToAttributedString;
+        uiView.sizeToFit();
     }
 }
+
+
