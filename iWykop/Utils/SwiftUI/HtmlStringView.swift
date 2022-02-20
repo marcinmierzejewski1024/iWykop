@@ -40,17 +40,16 @@ struct FullScreenModalView: View {
 }
 
 
-struct HTMLStringView: UIViewRepresentable {
-    let htmlContent: NSAttributedString
+struct UIWKWebview: UIViewRepresentable {
+    let url: String
     
-    func makeUIView(context: Context) -> UILabel {
-        return UILabel()
+    func makeUIView(context: Context) -> WKWebView {
+        return WKWebView()
     }
     
-    func updateUIView(_ uiView: UILabel, context: Context) {
-        uiView.numberOfLines = 44;
-        uiView.attributedText = htmlContent//.htmlToAttributedString;
-        uiView.sizeToFit();
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.scrollView.isScrollEnabled = false;
+        uiView.load(URLRequest(url: URL(string: url)!))
     }
 }
 

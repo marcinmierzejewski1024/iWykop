@@ -13,11 +13,24 @@ struct EntriesView: View {
     @ViewBuilder
     var body: some View {
         
-        if(viewModel.currentEntry != nil) {
-            EntryDetailsView(entry: viewModel.currentEntry!)
-        } else {
-            EntriesListView(viewModel: self.viewModel)
-
+        let title = "Mikroblog";
+        
+        NavigationView {
+            
+            if(viewModel.currentEntry != nil) {
+                EntryDetailsView(entry: viewModel.currentEntry!)
+            } else {
+                EntriesListView(viewModel: self.viewModel)
+                
+            }
+        }
+        .navigationTitle(title)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button("Back") {
+                    viewModel.selectEntry(nil);
+                }
+            }
         }
     }
     
@@ -25,40 +38,30 @@ struct EntriesView: View {
     struct EntriesListView: View {
         
         @ObservedObject var viewModel : EntriesViewModel;
-
+        
         
         @ViewBuilder
         var body: some View {
             
-            let title = "Mikroblog";
-
-            NavigationView {
-                List() {
-                    ForEach(viewModel.entries, id: \.id) { item in
-                        EntryViewCell(entry: item).onTapGesture {
-                            viewModel.selectEntry(item)
-                        }.onAppear {
-                            if item == self.viewModel.entries.last {
-                                Task {
-                                    await self.viewModel.getNextEntries()
-                                }
+            List() {
+                ForEach(viewModel.entries, id: \.id) { item in
+                    EntryViewCell(entry: item).onTapGesture {
+                        viewModel.selectEntry(item)
+                    }.onAppear {
+                        if item == self.viewModel.entries.last {
+                            Task {
+                                await self.viewModel.getNextEntries()
                             }
                         }
                     }
-                }.padding(0)
-                
-                
-                    .navigationTitle(title)
-                    .toolbar {
-                        //                    ToolbarItem(placement: .navigationBarTrailing) {
-                        //                        Button("Add") {
-                        //                            viewModel.addButtonClicked()
-                        //                        }
-                        //                    }
-                    }
-            }
+                }
+            }.padding(0)
+            
+            
+            
         }
     }
+    
 }
 
 struct EntryViewCell: View {
@@ -108,7 +111,7 @@ struct EntryBodyPreview : View
         VStack{
             Text(entry.original ?? "")
             if(entry.embed != nil && entry.embed?.plus18 == false) {
-                EmbedBodyPreview(embed: entry.embed!)
+                EmbedBodyPreviewWithModal(embed: entry.embed!)
             }
             
         }.padding(0)
@@ -117,49 +120,46 @@ struct EntryBodyPreview : View
 }
 
 
-struct EmbedBodyPreview : View {
+struct EmbedBodyPreviewWithModal : View {
     
     var embed: Embed?;
     @State private var isPresented = false
-    
+    @State private var offset = CGSize.zero
+
     
     
     var body: some View {
         HStack{
-            AsyncImage(
-                url: URL(string:embed!.url),
-                content: { image in
-                    image.resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(minWidth : 70,maxWidth: 280,
-                               minHeight: 70, maxHeight: 380)
-                },
-                placeholder: {
-                    ProgressView()
-                }
-            ).onTapGesture{
-                self.isPresented.toggle()
-            }
-            .fullScreenCover(isPresented: $isPresented, content: {
+            if let embed = embed {
                 
-                AsyncImage(
-                    url: URL(string:embed!.url),
-                    content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(minWidth : 70,maxWidth: 480,
-                                   minHeight: 70, maxHeight: 480)
-                    },
-                    placeholder: {
-                        ProgressView()
-                    }
-                ).onTapGesture {
+                EmbedBodyPreview(embed: embed).onTapGesture {
                     self.isPresented.toggle()
-                    
                 }
-                
-            })
-            
+                .fullScreenCover(isPresented: $isPresented, content: {
+                    EmbedBodyPreview(embed: embed).offset(x: offset.width * 0.7, y: offset.height * 0.7)
+
+                        .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global).onChanged({ value in
+
+                            offset = value.translation
+
+
+                        }).onEnded { value in
+                            let horizontalAmount = value.translation.width as CGFloat
+                            let verticalAmount = value.translation.height as CGFloat
+                            
+                            if abs(horizontalAmount) > 80 || abs(verticalAmount) > 80 {
+                                withAnimation {
+                                    isPresented.toggle();
+                                }
+                            }
+
+                            withAnimation {
+                                offset = CGSize.zero;
+                            }
+                        })
+                    
+                })
+            }
             
         }.padding(0)
         
@@ -167,8 +167,38 @@ struct EmbedBodyPreview : View {
     
 }
 
-struct EntriesView_Previews: PreviewProvider {
-    static var previews: some View {
-        EntriesView(viewModel: MockEntriesViewModel())
+
+struct EmbedBodyPreview : View {
+    var embed: Embed;
+    
+    var body: some View {
+        HStack{
+            if(embed.type == .image) {
+                AsyncImage(
+                    url: URL(string:embed.url),
+                    content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(minWidth : 270,maxWidth: 280,
+                                   minHeight: 270, maxHeight: 380)
+                    },
+                    placeholder: {
+                        ProgressView()
+                    }
+                )
+                
+            }
+            if(embed.type == .video){
+                UIWKWebview(url: embed.url)
+            }
+            
+        }
+        
     }
 }
+
+//struct EntriesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EntriesView(viewModel: MockEntriesViewModel())
+//    }
+//}

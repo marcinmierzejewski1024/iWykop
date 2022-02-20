@@ -11,7 +11,7 @@ struct EntryDetailsView: View {
     var entry:Entry
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             EntryCommentsView(entry: entry)
             
         }
@@ -24,14 +24,17 @@ struct EntryCommentsView: View {
     
     var body: some View {
         List() {
-            EntryViewCellHeader(entry: entry)
-            EntryBodyPreview(entry: entry)
-
-            Text("Comments:").font(.title2)
+            VStack (alignment: .leading){
+                EntryViewCellHeader(entry: entry)
+                EntryBodyPreview(entry: entry).padding()
+                Text("Comments:").font(.title).padding()
+            }
             ForEach(entry.comments ?? [], id: \.id) { item in
-                Text(item.original ?? "")
-                Text(item.author.login).bold()
-                
+                VStack(alignment: .leading) {
+                    Text(item.author.login).bold().padding()
+                    Text(item.original ?? "")
+                    EmbedBodyPreviewWithModal(embed: item.embed)
+                }.padding(10)
             }
             
         }
