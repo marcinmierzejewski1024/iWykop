@@ -7,7 +7,7 @@
 //
 
 
-struct Embed: AutoCodable, AutoEquatable {
+struct Embed: AutoCodable, AutoEquatable, AutoHashable {
     let source: String
     let plus18: Bool
     let preview: String

@@ -15,7 +15,12 @@ protocol AutoEquatable {
     
 }
 
-struct Entry: AutoCodable, AutoEquatable {
+
+protocol AutoHashable {
+    
+}
+
+struct Entry: AutoCodable, AutoEquatable, AutoHashable {
     let id: Int
     let body: String?
     let favorite: Bool

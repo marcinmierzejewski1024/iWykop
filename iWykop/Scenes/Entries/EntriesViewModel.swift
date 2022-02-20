@@ -7,32 +7,33 @@
 
 import Foundation
 import Resolver
+import OrderedCollections
 
 class EntriesViewModel : Resolving, ObservableObject
 {
     lazy var entriesService: EntriesService = resolver.resolve()
-    @Published var entries :[Entry]?;
+    @Published var entries = OrderedSet<Entry>();
+    private var lastDownloadedPage = 1;
 
     @Published var currentEntry :Entry?;
 
     
-    func getEntries() async {
+    func getNextEntries() async {
+        await self.getEntries(page: self.lastDownloadedPage + 1);
+    }
+    
+    func getEntries(page : Int = 1) async {
             do {
-            let newEntries = try await entriesService.getEntries();
+                let newEntries = try await entriesService.getEntries(page: page);
             
                 DispatchQueue.main.async {
-                    for entry in newEntries {
-                        if let orginal = entry.original {
-                            print(orginal);
-                        }
-                    }
-                    self.entries = newEntries;
                     
+                    self.entries.append(contentsOf: newEntries);
+                    self.lastDownloadedPage = page;
                     
                 }
                 
             } catch {
-//                entries
             }
     }
     

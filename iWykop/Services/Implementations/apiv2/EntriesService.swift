@@ -10,7 +10,15 @@ import Foundation
 
 class EntriesService : ApiV2Service {
     
-
+    enum EntriesPeriod : Int {
+        case from6 = 6
+        case from12 = 12
+        case from24 = 24
+    }
+    
+    private var requestedPeriod = EntriesPeriod.from6;
+    private var requestedPage = 0;
+    
     override func getPath() -> String {
         "Entries/Hot/"
     }
@@ -19,19 +27,20 @@ class EntriesService : ApiV2Service {
         var superParams = super.urlParams()!;
         
         superParams["data"] = "full";
-        superParams["page"] = "1";
-        superParams["period"] = "6";
+        superParams["page"] = "\(requestedPage)";
+        superParams["period"] = "\(requestedPeriod.rawValue)";
         
         return superParams;
     }
     
-    func getEntries() async throws -> [Entry] {
+    func getEntries(page:Int) async throws -> [Entry] {
 
+        self.requestedPage = page;
         let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         
-        let resultString = String(data: data, encoding: .utf8);
+//        let resultString = String(data: data, encoding: .utf8);
 //        print(resultString);
         
         let decoder = JSONDecoder()

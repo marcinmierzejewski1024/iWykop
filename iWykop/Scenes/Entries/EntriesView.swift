@@ -17,22 +17,28 @@ struct EntriesView: View {
         NavigationView {
             List() {
                 
-                ForEach(viewModel.entries ?? [], id: \.id) { item in
+                ForEach(viewModel.entries, id: \.id) { item in
                     EntryViewCell(entry: item).onTapGesture {
-                        viewModel.selectEntry(item);
+                        viewModel.selectEntry(item)
+                    }.onAppear {
+                        if item == self.viewModel.entries.last {
+                            Task {
+                                await self.viewModel.getNextEntries()
+                            }
+                        }
                     }
                 }
             }.padding(0)
             
             
-                .navigationTitle(title)
-                .toolbar {
-                    //                    ToolbarItem(placement: .navigationBarTrailing) {
-                    //                        Button("Add") {
-                    //                            viewModel.addButtonClicked()
-                    //                        }
-                    //                    }
-                }
+            .navigationTitle(title)
+            .toolbar {
+                //                    ToolbarItem(placement: .navigationBarTrailing) {
+                //                        Button("Add") {
+                //                            viewModel.addButtonClicked()
+                //                        }
+                //                    }
+            }
             
         }
     }
@@ -79,7 +85,7 @@ struct EntryViewCellHeader : View
 struct EntryBodyPreview : View
 {
     var entry: Entry;
-
+    
     
     var body: some View {
         VStack{
@@ -98,7 +104,7 @@ struct EmbedBodyPreview : View {
     
     var embed: Embed?;
     @State private var isPresented = false
-
+    
     
     
     var body: some View {
@@ -124,24 +130,24 @@ struct EmbedBodyPreview : View {
                     content: { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(minWidth : 70,maxWidth: 280,
-                                   minHeight: 70, maxHeight: 380)
+                            .frame(minWidth : 70,maxWidth: 480,
+                                   minHeight: 70, maxHeight: 480)
                     },
                     placeholder: {
                         ProgressView()
                     }
                 ).onTapGesture {
                     self.isPresented.toggle()
-
+                    
                 }
                 
             })
-
+            
             
         }.padding(0)
         
     }
-
+    
 }
 
 struct EntriesView_Previews: PreviewProvider {

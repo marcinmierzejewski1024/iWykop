@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct Author: AutoCodable, AutoEquatable {
+struct Author: AutoCodable, AutoEquatable, AutoHashable {
     let avatar: String
     let login: String
     let sex: AuthorSex?
