@@ -20,6 +20,10 @@ extension Resolver : ResolverRegistering {
             return EntriesService()
         }.scope(.graph)
 
+        register(EntryService.self) { resolver, args in
+            return EntryService()
+        }.scope(.graph)
+
         
     }
 }

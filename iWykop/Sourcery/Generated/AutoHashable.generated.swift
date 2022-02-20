@@ -15,6 +15,23 @@ extension Author: Hashable {
         color.hash(into: &hasher)
     }
 }
+// MARK: - Comment AutoHashable
+extension Comment: Hashable {
+    internal func hash(into hasher: inout Hasher) {
+        author.hash(into: &hasher)
+        status.hash(into: &hasher)
+        id.hash(into: &hasher)
+        voteCount.hash(into: &hasher)
+        favorite.hash(into: &hasher)
+        date.hash(into: &hasher)
+        blocked.hash(into: &hasher)
+        embed.hash(into: &hasher)
+        userVote.hash(into: &hasher)
+        entryID.hash(into: &hasher)
+        body.hash(into: &hasher)
+        original.hash(into: &hasher)
+    }
+}
 // MARK: - Embed AutoHashable
 extension Embed: Hashable {
     internal func hash(into hasher: inout Hasher) {
@@ -45,6 +62,7 @@ extension Entry: Hashable {
         commentsCount.hash(into: &hasher)
         status.hash(into: &hasher)
         app.hash(into: &hasher)
+        comments.hash(into: &hasher)
     }
 }
 

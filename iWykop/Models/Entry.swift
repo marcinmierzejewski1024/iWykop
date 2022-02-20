@@ -34,6 +34,8 @@ struct Entry: AutoCodable, AutoEquatable, AutoHashable {
     let voteCount, commentsCount: Int
     let status: Status
     let app: String?
+    let comments: [Comment]?
+
 
     enum CodingKeys: String, CodingKey {
         case id, body, favorite
@@ -42,6 +44,7 @@ struct Entry: AutoCodable, AutoEquatable, AutoHashable {
         case voteCount = "vote_count"
         case commentsCount = "comments_count"
         case status, app
+        case comments
     }
 }
 
@@ -49,6 +52,9 @@ struct Entry: AutoCodable, AutoEquatable, AutoHashable {
 
 enum Status: String, AutoCodable {
     case visible = "visible"
+    case `public` = "public"
+    case deleted = "deleted"
+
 }
 
 struct Pagination: AutoCodable {

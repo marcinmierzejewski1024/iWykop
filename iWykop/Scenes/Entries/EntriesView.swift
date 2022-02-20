@@ -12,34 +12,51 @@ struct EntriesView: View {
     
     @ViewBuilder
     var body: some View {
-        let title = "Mikroblog";
         
-        NavigationView {
-            List() {
-                
-                ForEach(viewModel.entries, id: \.id) { item in
-                    EntryViewCell(entry: item).onTapGesture {
-                        viewModel.selectEntry(item)
-                    }.onAppear {
-                        if item == self.viewModel.entries.last {
-                            Task {
-                                await self.viewModel.getNextEntries()
+        if(viewModel.currentEntry != nil) {
+            EntryDetailsView(entry: viewModel.currentEntry!)
+        } else {
+            EntriesListView(viewModel: self.viewModel)
+
+        }
+    }
+    
+    
+    struct EntriesListView: View {
+        
+        @ObservedObject var viewModel : EntriesViewModel;
+
+        
+        @ViewBuilder
+        var body: some View {
+            
+            let title = "Mikroblog";
+
+            NavigationView {
+                List() {
+                    ForEach(viewModel.entries, id: \.id) { item in
+                        EntryViewCell(entry: item).onTapGesture {
+                            viewModel.selectEntry(item)
+                        }.onAppear {
+                            if item == self.viewModel.entries.last {
+                                Task {
+                                    await self.viewModel.getNextEntries()
+                                }
                             }
                         }
                     }
-                }
-            }.padding(0)
-            
-            
-            .navigationTitle(title)
-            .toolbar {
-                //                    ToolbarItem(placement: .navigationBarTrailing) {
-                //                        Button("Add") {
-                //                            viewModel.addButtonClicked()
-                //                        }
-                //                    }
+                }.padding(0)
+                
+                
+                    .navigationTitle(title)
+                    .toolbar {
+                        //                    ToolbarItem(placement: .navigationBarTrailing) {
+                        //                        Button("Add") {
+                        //                            viewModel.addButtonClicked()
+                        //                        }
+                        //                    }
+                    }
             }
-            
         }
     }
 }
@@ -90,7 +107,7 @@ struct EntryBodyPreview : View
     var body: some View {
         VStack{
             Text(entry.original ?? "")
-            if(entry.embed != nil) {
+            if(entry.embed != nil && entry.embed?.plus18 == false) {
                 EmbedBodyPreview(embed: entry.embed!)
             }
             

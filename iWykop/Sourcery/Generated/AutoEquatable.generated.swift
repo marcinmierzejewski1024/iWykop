@@ -34,6 +34,23 @@ internal func == (lhs: Author, rhs: Author) -> Bool {
     guard lhs.color == rhs.color else { return false }
     return true
 }
+// MARK: - Comment AutoEquatable
+extension Comment: Equatable {}
+internal func == (lhs: Comment, rhs: Comment) -> Bool {
+    guard lhs.author == rhs.author else { return false }
+    guard lhs.status == rhs.status else { return false }
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.voteCount == rhs.voteCount else { return false }
+    guard lhs.favorite == rhs.favorite else { return false }
+    guard lhs.date == rhs.date else { return false }
+    guard lhs.blocked == rhs.blocked else { return false }
+    guard compareOptionals(lhs: lhs.embed, rhs: rhs.embed, compare: ==) else { return false }
+    guard lhs.userVote == rhs.userVote else { return false }
+    guard lhs.entryID == rhs.entryID else { return false }
+    guard compareOptionals(lhs: lhs.body, rhs: rhs.body, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.original, rhs: rhs.original, compare: ==) else { return false }
+    return true
+}
 // MARK: - Embed AutoEquatable
 extension Embed: Equatable {}
 internal func == (lhs: Embed, rhs: Embed) -> Bool {
@@ -64,6 +81,7 @@ internal func == (lhs: Entry, rhs: Entry) -> Bool {
     guard lhs.commentsCount == rhs.commentsCount else { return false }
     guard lhs.status == rhs.status else { return false }
     guard compareOptionals(lhs: lhs.app, rhs: rhs.app, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.comments, rhs: rhs.comments, compare: ==) else { return false }
     return true
 }
 

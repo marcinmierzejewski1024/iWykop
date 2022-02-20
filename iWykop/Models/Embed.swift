@@ -12,8 +12,14 @@ struct Embed: AutoCodable, AutoEquatable, AutoHashable {
     let plus18: Bool
     let preview: String
     let animated: Bool
-    let type: String
+    let type: TypeEnum
     let ratio: Double
     let url: String
     let size: String?
+}
+
+
+enum TypeEnum: String, Codable {
+    case image = "image"
+    case video = "video"
 }
