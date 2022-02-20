@@ -12,21 +12,17 @@ class EntriesViewModel : Resolving, ObservableObject
 {
     lazy var entriesService: EntriesService = resolver.resolve()
     @Published var entries :[Entry]?;
-//    var entriesBody = [Int:NSAttributedString]();
 
     @Published var currentEntry :Entry?;
 
     
     func getEntries() async {
-//        Task {
             do {
             let newEntries = try await entriesService.getEntries();
             
                 DispatchQueue.main.async {
                     for entry in newEntries {
                         if let orginal = entry.original {
-//                            self.entriesBody[entry.id] = body.htmlToAttributedString;
-                            
                             print(orginal);
                         }
                     }
@@ -38,7 +34,6 @@ class EntriesViewModel : Resolving, ObservableObject
             } catch {
 //                entries
             }
-//        }
     }
     
     func selectEntry(_ entry:Entry) {

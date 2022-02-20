@@ -85,7 +85,7 @@ struct EntryBodyPreview : View
         VStack{
             Text(entry.original ?? "")
             if(entry.embed != nil) {
-                EmbedBodyPreview(embed: entry.embed!);
+                EmbedBodyPreview(embed: entry.embed!)
             }
             
         }.padding(0)
@@ -96,12 +96,15 @@ struct EntryBodyPreview : View
 
 struct EmbedBodyPreview : View {
     
-    var embed: Embed;
+    var embed: Embed?;
+    @State private var isPresented = false
 
+    
+    
     var body: some View {
         HStack{
             AsyncImage(
-                url: URL(string:embed.url),
+                url: URL(string:embed!.url),
                 content: { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fit)
@@ -111,7 +114,29 @@ struct EmbedBodyPreview : View {
                 placeholder: {
                     ProgressView()
                 }
-            )
+            ).onTapGesture{
+                self.isPresented.toggle()
+            }
+            .fullScreenCover(isPresented: $isPresented, content: {
+                
+                AsyncImage(
+                    url: URL(string:embed!.url),
+                    content: { image in
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(minWidth : 70,maxWidth: 280,
+                                   minHeight: 70, maxHeight: 380)
+                    },
+                    placeholder: {
+                        ProgressView()
+                    }
+                ).onTapGesture {
+                    self.isPresented.toggle()
+
+                }
+                
+            })
+
             
         }.padding(0)
         

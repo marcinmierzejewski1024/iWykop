@@ -27,6 +27,8 @@ struct iWykopApp: App {
             EntriesView(viewModel: viewModel).task {
                 await viewModel.getEntries();
             }
+            
+//            ContentView()
         }
     }
 }
