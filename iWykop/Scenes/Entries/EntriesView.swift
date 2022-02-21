@@ -18,7 +18,7 @@ struct EntriesView: View {
         NavigationView {
             
             if(viewModel.currentEntry != nil) {
-                EntryDetailsView(entry: viewModel.currentEntry!)
+                EntryDetailsView(viewModel: self.viewModel)
             } else {
                 EntriesListView(viewModel: self.viewModel)
                 
@@ -55,7 +55,12 @@ struct EntriesView: View {
                         }
                     }
                 }
-            }.padding(0)
+            }.padding(0).refreshable {
+                Task {
+
+                    await self.viewModel.refreshEntries()
+                }
+            }
             
             
             

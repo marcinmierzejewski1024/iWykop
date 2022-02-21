@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct EntryDetailsView: View {
-    var entry:Entry
-    
+    @ObservedObject var viewModel : EntriesViewModel;
+
     var body: some View {
         VStack(alignment: .leading) {
-            EntryCommentsView(entry: entry)
+            EntryCommentsView(entry: viewModel.currentEntry!)
             
+        }.refreshable {
+            task {
+                await viewModel.refreshEntry()
+            }
         }
     }
 }

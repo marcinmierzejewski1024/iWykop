@@ -17,6 +17,7 @@ class EntriesViewModel : Resolving, ObservableObject
     @Published var entries = OrderedSet<Entry>();
     private var lastDownloadedPage = 1;
     
+    
     @Published var currentEntry :Entry?;
     
     
@@ -24,6 +25,39 @@ class EntriesViewModel : Resolving, ObservableObject
         await self.getEntries(page: self.lastDownloadedPage + 1);
     }
     
+    func refreshEntries() async {
+        
+        do {
+            let newEntries = try await entriesService.getEntries(page: 1);
+            
+            DispatchQueue.main.async {
+                self.entries.removeAll()
+                self.entries.append(contentsOf: newEntries);
+                self.lastDownloadedPage = 1;
+            }
+            
+            
+        } catch {
+        }
+    }
+
+    
+    
+    func refreshEntry() async {
+        
+        do {
+            if let id = currentEntry?.id {
+                let newEntry = try await entryService.getEntry(id: id);
+                
+                DispatchQueue.main.async {
+                    self.currentEntry = newEntry;
+                }
+            }
+            
+        } catch {
+        }
+    }
+
     func getEntries(page : Int = 1) async {
         do {
             let newEntries = try await entriesService.getEntries(page: page);
