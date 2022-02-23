@@ -12,7 +12,9 @@ struct EntryDetailsView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            EntryCommentsView(entry: viewModel.currentEntry!)
+            if let entry = viewModel.currentEntry {
+                EntryCommentsView(entry: entry)
+            }
             
         }.refreshable {
             task {

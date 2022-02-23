@@ -14,24 +14,27 @@ struct EntriesView: View {
     var body: some View {
         
         let title = "Mikroblog";
+        let entryTitle = "Entry"
         
         NavigationView {
             
             if(viewModel.currentEntry != nil) {
-                EntryDetailsView(viewModel: self.viewModel)
+                EntryDetailsView(viewModel: self.viewModel).navigationTitle(entryTitle).toolbar {
+                    ToolbarItem(placement: .navigation) {
+                        Button("Back") { //TODO:use NavigationLinks 
+                            withAnimation {
+                                viewModel.selectEntry(nil);
+
+                            }
+                        }
+                    }
+                }
             } else {
-                EntriesListView(viewModel: self.viewModel)
+                EntriesListView(viewModel: self.viewModel).navigationBarTitle(title)
                 
             }
         }
-        .navigationTitle(title)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("Back") {
-                    viewModel.selectEntry(nil);
-                }
-            }
-        }
+
     }
     
     
@@ -141,7 +144,7 @@ struct EmbedBodyPreviewWithModal : View {
                     self.isPresented.toggle()
                 }
                 .fullScreenCover(isPresented: $isPresented, content: {
-                    EmbedBodyPreview(embed: embed).offset(x: offset.width * 0.7, y: offset.height * 0.7)
+                    EmbedBodyPreview(embed: embed).offset(x: offset.width * 0.2, y: offset.height * 0.7)
 
                         .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global).onChanged({ value in
 
