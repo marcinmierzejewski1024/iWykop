@@ -18,7 +18,8 @@ class EntriesViewModel : Resolving, ObservableObject
     private var lastDownloadedPage = 1;
     
     
-    @Published var currentEntry :Entry?;
+    @Published var currentEntry :Entry?
+    @Published var entryActive = false;
     
     
     func getNextEntries() async {
@@ -40,7 +41,7 @@ class EntriesViewModel : Resolving, ObservableObject
         } catch {
         }
     }
-
+    
     
     
     func refreshEntry() async {
@@ -57,7 +58,7 @@ class EntriesViewModel : Resolving, ObservableObject
         } catch {
         }
     }
-
+    
     func getEntries(page : Int = 1) async {
         do {
             let newEntries = try await entriesService.getEntries(page: page);

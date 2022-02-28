@@ -14,27 +14,22 @@ struct EntriesView: View {
     var body: some View {
         
         let title = "Mikroblog";
-        let entryTitle = "Entry"
+        let entryTitle = "Wpis"
         
         NavigationView {
             
-            if(viewModel.currentEntry != nil) {
-                EntryDetailsView(viewModel: self.viewModel).navigationTitle(entryTitle).toolbar {
-                    ToolbarItem(placement: .navigation) {
-                        Button("Back") { //TODO:use NavigationLinks 
-                            withAnimation {
-                                viewModel.selectEntry(nil);
-
-                            }
-                        }
-                    }
-                }
-            } else {
+            
+            
+            
+            NavigationLink(destination:
+                            EntryDetailsView(viewModel: self.viewModel).navigationTitle(entryTitle) , isActive: $viewModel.entryActive) {
                 EntriesListView(viewModel: self.viewModel).navigationBarTitle(title)
-                
-            }
-        }
 
+            }
+            
+            
+        }
+        
     }
     
     
@@ -50,6 +45,7 @@ struct EntriesView: View {
                 ForEach(viewModel.entries, id: \.id) { item in
                     EntryViewCell(entry: item).onTapGesture {
                         viewModel.selectEntry(item)
+                        viewModel.entryActive = true;
                     }.onAppear {
                         if item == self.viewModel.entries.last {
                             Task {
@@ -60,7 +56,7 @@ struct EntriesView: View {
                 }
             }.padding(0).refreshable {
                 Task {
-
+                    
                     await self.viewModel.refreshEntries()
                 }
             }
@@ -133,7 +129,7 @@ struct EmbedBodyPreviewWithModal : View {
     var embed: Embed?;
     @State private var isPresented = false
     @State private var offset = CGSize.zero
-
+    
     
     
     var body: some View {
@@ -145,12 +141,12 @@ struct EmbedBodyPreviewWithModal : View {
                 }
                 .fullScreenCover(isPresented: $isPresented, content: {
                     EmbedBodyPreview(embed: embed).offset(x: offset.width * 0.2, y: offset.height * 0.7)
-
+                    
                         .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global).onChanged({ value in
-
+                            
                             offset = value.translation
-
-
+                            
+                            
                         }).onEnded { value in
                             let horizontalAmount = value.translation.width as CGFloat
                             let verticalAmount = value.translation.height as CGFloat
@@ -160,7 +156,7 @@ struct EmbedBodyPreviewWithModal : View {
                                     isPresented.toggle();
                                 }
                             }
-
+                            
                             withAnimation {
                                 offset = CGSize.zero;
                             }
