@@ -14,18 +14,16 @@ struct EntriesView: View {
     var body: some View {
         
         let title = "Mikroblog";
-        let entryTitle = "Wpis"
         
         NavigationView {
             
             
             
             
-            NavigationLink(destination:
-                            EntryDetailsView(viewModel: self.viewModel).navigationTitle(entryTitle) , isActive: $viewModel.entryActive) {
-                EntriesListView(viewModel: self.viewModel).navigationBarTitle(title)
-
-            }
+            
+            EntriesListView(viewModel: self.viewModel).navigationBarTitle(title)
+            
+            
             
             
         }
@@ -41,18 +39,27 @@ struct EntriesView: View {
         @ViewBuilder
         var body: some View {
             
+            let entryTitle = "Wpis"
+
             List() {
                 ForEach(viewModel.entries, id: \.id) { item in
-                    EntryViewCell(entry: item).onTapGesture {
-                        viewModel.selectEntry(item)
-                        viewModel.entryActive = true;
-                    }.onAppear {
-                        if item == self.viewModel.entries.last {
-                            Task {
-                                await self.viewModel.getNextEntries()
+                    
+                    
+                    NavigationLink(destination:
+                                    EntryDetailsView(viewModel: self.viewModel).navigationTitle(entryTitle) , isActive: $viewModel.entryActive) {
+                        EntryViewCell(entry: item).onTapGesture {
+                            viewModel.selectEntry(item)
+                            viewModel.entryActive = true;
+                        }.onAppear {
+                            if item == self.viewModel.entries.last {
+                                Task {
+                                    await self.viewModel.getNextEntries()
+                                }
                             }
                         }
                     }
+                    
+                    
                 }
             }.padding(0).refreshable {
                 Task {
@@ -160,7 +167,7 @@ struct EmbedBodyPreviewWithModal : View {
                             withAnimation {
                                 offset = CGSize.zero;
                             }
-                        })
+                        }).frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea().background(BackgroundBlurView())
                     
                 })
             }
@@ -183,8 +190,8 @@ struct EmbedBodyPreview : View {
                     content: { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(minWidth : 270,maxWidth: 280,
-                                   minHeight: 270, maxHeight: 380)
+                            .frame(minWidth : 270,maxWidth: 1080,
+                                   minHeight: 270, maxHeight: 1800)
                     },
                     placeholder: {
                         ProgressView()
@@ -199,6 +206,20 @@ struct EmbedBodyPreview : View {
         }
         
     }
+}
+
+
+
+struct BackgroundBlurView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
 //struct EntriesView_Previews: PreviewProvider {
