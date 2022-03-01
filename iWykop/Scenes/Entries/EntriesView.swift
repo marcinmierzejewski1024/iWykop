@@ -205,9 +205,6 @@ struct EmbedBodyPreview : View {
     var embed: Embed;
     var fullScreenMode = false;
     
-    func maxWidth()->Double {
-        return fullScreenMode ? 1000.0 : 380.0;
-    }
     
     var body: some View {
         HStack{
@@ -218,7 +215,7 @@ struct EmbedBodyPreview : View {
                         case .success(let image):
                             VStack(alignment: fullScreenMode ? .center : .leading) {
                                 image.resizable()
-                                    .aspectRatio(contentMode: .fit).frame(width: self.maxWidth(), height: self.maxWidth())
+                                    .aspectRatio(contentMode: .fit)
                             }
                         case .failure(let error):
                             Text(error.localizedDescription)
