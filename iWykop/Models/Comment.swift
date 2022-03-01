@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Comment: AutoCodable, AutoEquatable, AutoHashable {
+struct Comment: AutoCodable, AutoEquatable, Hashable {
     let author: Author
     let status: Status
     let id: Int

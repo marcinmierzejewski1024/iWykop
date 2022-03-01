@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Link: AutoCodable, AutoEquatable, AutoHashable {
+struct Link: AutoCodable, AutoEquatable, Hashable {
     let id: Int
     let body: String?
     let favorite: Bool?
