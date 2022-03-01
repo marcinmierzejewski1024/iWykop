@@ -7,11 +7,13 @@
 
 import SwiftUI
 import DBDebugToolkit
+import Resolver
 
 @main
 struct iWykopApp: App {
     
-    let viewModel = EntriesViewModel();
+    let settingsStore = SettingsStore();
+    let viewModel = EntriesViewModel(); // should viewModel be injected via DI?
     let linksViewModel = LinksViewModel();
 
     init(){
@@ -36,29 +38,19 @@ struct iWykopApp: App {
                 EntriesView(viewModel: viewModel).task {
                     await viewModel.getEntries();
                 }.tabItem {
-                    Label("Mikroblog", systemImage: "number.square")
+                    Label("Entries", systemImage: "number.square")
                 }
                 
-                EntriesView(viewModel: viewModel).task {
-//                    await viewModel.getEntries();
-                }.tabItem {
-                    Label("Settings", systemImage: "list.dash")
-                }
+                SettingsView().tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
+                }.environmentObject(settingsStore)
                 
-                EntriesView(viewModel: viewModel).task {
-//                    await viewModel.getEntries();
-                }.tabItem {
-                    Label("Search", systemImage: "s.square")
+                SearchView().tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
                 }
             }
             
 //            ContentView()
         }
     }
-}
-
-//TODO:move
-extension URLCache {
-    
-    static let imageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 10*1000*1000*1000)
 }
