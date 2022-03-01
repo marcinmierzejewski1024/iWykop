@@ -39,24 +39,7 @@ struct EntryCommentsView: View {
             
             ForEach(entry.comments ?? [], id: \.id) { item in
                 VStack(alignment: .leading) {
-                    HStack {
-                        CacheAsyncImage(
-                            url: URL(string:item.author.avatar)){ phase in
-                                switch phase {
-                                case .success(let image):
-                                    VStack {
-                                        image.resizable()
-                                            .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
-                                    }
-                                    
-                                default:
-                                    Image(systemName: "questionmark")
-                                    
-                                }
-                            }
-
-                        Text(item.author.login).bold().padding()
-                    }
+                    AuthorView(author: item.author)
                     Text(item.original ?? "")
                     EmbedBodyPreviewWithModal(embed: item.embed)
                     HStack{

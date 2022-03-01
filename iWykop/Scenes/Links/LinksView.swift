@@ -82,8 +82,8 @@ struct LinksListCell: View {
                     }
                 }
             VStack(alignment: .leading) {
-                Text(link.author.login)
-                
+                AuthorView(author: link.author)
+
                 
                 Button(link.getSourceDomain() ?? "") {
                     openURL(URL(string: link.sourceUrl)!)

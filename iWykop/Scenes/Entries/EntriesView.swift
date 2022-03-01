@@ -106,6 +106,9 @@ struct EntryViewCell: View {
             VStack(alignment: .leading) {
                 EntryViewCellHeader(entry: entry)
                 EntryBodyPreview(entry: entry)
+                
+                Text("comments:") + Text(" \(entry.commentsCount)").bold()
+
             }
             
         }.padding(0)
@@ -121,10 +124,9 @@ struct EntryViewCellHeader : View
     
     var body: some View {
         HStack{
-            Text("comments: \(entry.commentsCount)")
-            Spacer()
-            Text(entry.author.login).bold()
-            
+
+            AuthorView(author: entry.author)
+
         }.padding(0)
         
         
