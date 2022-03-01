@@ -12,11 +12,11 @@ struct Comment: AutoCodable, AutoEquatable, AutoHashable {
     let status: Status
     let id: Int
     let voteCount: Int
-    let favorite: Bool
+    let favorite: Bool?
     let date: String
-    let blocked: Bool
+    let blocked: Bool?
     let embed: Embed?
-    let userVote: Int
+    let userVote: Int?
 //    let app: App?
     let entryID: Int
     let body: String?

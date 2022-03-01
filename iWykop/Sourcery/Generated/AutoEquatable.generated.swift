@@ -41,11 +41,11 @@ internal func == (lhs: Comment, rhs: Comment) -> Bool {
     guard lhs.status == rhs.status else { return false }
     guard lhs.id == rhs.id else { return false }
     guard lhs.voteCount == rhs.voteCount else { return false }
-    guard lhs.favorite == rhs.favorite else { return false }
+    guard compareOptionals(lhs: lhs.favorite, rhs: rhs.favorite, compare: ==) else { return false }
     guard lhs.date == rhs.date else { return false }
-    guard lhs.blocked == rhs.blocked else { return false }
+    guard compareOptionals(lhs: lhs.blocked, rhs: rhs.blocked, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.embed, rhs: rhs.embed, compare: ==) else { return false }
-    guard lhs.userVote == rhs.userVote else { return false }
+    guard compareOptionals(lhs: lhs.userVote, rhs: rhs.userVote, compare: ==) else { return false }
     guard lhs.entryID == rhs.entryID else { return false }
     guard compareOptionals(lhs: lhs.body, rhs: rhs.body, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.original, rhs: rhs.original, compare: ==) else { return false }
@@ -69,9 +69,9 @@ extension Entry: Equatable {}
 internal func == (lhs: Entry, rhs: Entry) -> Bool {
     guard lhs.id == rhs.id else { return false }
     guard compareOptionals(lhs: lhs.body, rhs: rhs.body, compare: ==) else { return false }
-    guard lhs.favorite == rhs.favorite else { return false }
-    guard lhs.userVote == rhs.userVote else { return false }
-    guard lhs.blocked == rhs.blocked else { return false }
+    guard compareOptionals(lhs: lhs.favorite, rhs: rhs.favorite, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.userVote, rhs: rhs.userVote, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.blocked, rhs: rhs.blocked, compare: ==) else { return false }
     guard lhs.author == rhs.author else { return false }
     guard compareOptionals(lhs: lhs.original, rhs: rhs.original, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.embed, rhs: rhs.embed, compare: ==) else { return false }
@@ -82,6 +82,27 @@ internal func == (lhs: Entry, rhs: Entry) -> Bool {
     guard lhs.status == rhs.status else { return false }
     guard compareOptionals(lhs: lhs.app, rhs: rhs.app, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.comments, rhs: rhs.comments, compare: ==) else { return false }
+    return true
+}
+// MARK: - Link AutoEquatable
+extension Link: Equatable {}
+internal func == (lhs: Link, rhs: Link) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard compareOptionals(lhs: lhs.body, rhs: rhs.body, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.favorite, rhs: rhs.favorite, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.comments, rhs: rhs.comments, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.blocked, rhs: rhs.blocked, compare: ==) else { return false }
+    guard lhs.author == rhs.author else { return false }
+    guard compareOptionals(lhs: lhs.userVote, rhs: rhs.userVote, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.original, rhs: rhs.original, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.embed, rhs: rhs.embed, compare: ==) else { return false }
+    guard lhs.url == rhs.url else { return false }
+    guard lhs.date == rhs.date else { return false }
+    guard compareOptionals(lhs: lhs.app, rhs: rhs.app, compare: ==) else { return false }
+    guard lhs.voteCount == rhs.voteCount else { return false }
+    guard lhs.commentsCount == rhs.commentsCount else { return false }
+    guard lhs.status == rhs.status else { return false }
+    guard compareOptionals(lhs: lhs.canComment, rhs: rhs.canComment, compare: ==) else { return false }
     return true
 }
 

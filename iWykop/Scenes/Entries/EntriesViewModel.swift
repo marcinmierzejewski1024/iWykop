@@ -17,7 +17,8 @@ class EntriesViewModel : Resolving, ObservableObject
     @Published var entries = OrderedSet<Entry>();
     private var lastDownloadedPage = 1;
     
-    
+    @Published var requestedPeriod = EntriesPeriod.from6;
+
     @Published var currentEntry :Entry?
     @Published var entryActive = false;
     
@@ -29,7 +30,7 @@ class EntriesViewModel : Resolving, ObservableObject
     func refreshEntries() async {
         
         do {
-            let newEntries = try await entriesService.getEntries(page: 1);
+            let newEntries = try await entriesService.getEntries(page: 1,period: self.requestedPeriod);
             
             DispatchQueue.main.async {
                 self.entries.removeAll()
@@ -40,6 +41,11 @@ class EntriesViewModel : Resolving, ObservableObject
             
         } catch {
         }
+    }
+    
+    func changeRequestedPeriod(period:EntriesPeriod) async {
+        self.requestedPeriod = period;
+        await self.refreshEntries()
     }
     
     
@@ -61,7 +67,7 @@ class EntriesViewModel : Resolving, ObservableObject
     
     func getEntries(page : Int = 1) async {
         do {
-            let newEntries = try await entriesService.getEntries(page: page);
+            let newEntries = try await entriesService.getEntries(page: page, period:self.requestedPeriod);
             
             DispatchQueue.main.async {
                 

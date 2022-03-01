@@ -13,20 +13,41 @@ struct EntriesView: View {
     @ViewBuilder
     var body: some View {
         
-        let title = "Mikroblog";
         
         NavigationView {
             
             
             
+            GroupBox {
+                DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
+                    Text("6h").padding(5).onTapGesture {
+                        Task {
+                            await viewModel.changeRequestedPeriod(period: .from6);
+                        }
+                    }
+                    Text("12h").padding(5).onTapGesture {
+                        Task {
+                            
+                            await viewModel.changeRequestedPeriod(period: .from12);
+                        }
+                    }
+                    Text("24h").padding(5).onTapGesture {
+                        Task {
+                            
+                            await viewModel.changeRequestedPeriod(period: .from24);
+                        }
+                    }
+                }
+                
+                EntriesListView(viewModel: self.viewModel)
+                
+            }
             
             
-            EntriesListView(viewModel: self.viewModel).navigationBarTitle(title)
             
             
             
-            
-        }
+        }.navigationViewStyle(.stack)
         
     }
     
@@ -40,7 +61,7 @@ struct EntriesView: View {
         var body: some View {
             
             let entryTitle = "Wpis"
-
+            
             List() {
                 ForEach(viewModel.entries, id: \.id) { item in
                     
@@ -147,7 +168,7 @@ struct EmbedBodyPreviewWithModal : View {
                     self.isPresented.toggle()
                 }
                 .fullScreenCover(isPresented: $isPresented, content: {
-                    EmbedBodyPreview(embed: embed).offset(x: offset.width * 0.2, y: offset.height * 0.7)
+                    EmbedBodyPreview(embed: embed, fullScreenMode: true).offset(x: offset.width * 0.2, y: offset.height * 0.7)
                     
                         .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global).onChanged({ value in
                             
@@ -180,26 +201,34 @@ struct EmbedBodyPreviewWithModal : View {
 
 
 struct EmbedBodyPreview : View {
+    
     var embed: Embed;
+    var fullScreenMode = false;
+    
+    func maxWidth()->Double {
+        return fullScreenMode ? 1000.0 : 380.0;
+    }
     
     var body: some View {
         HStack{
             if(embed.type == .image) {
-                AsyncImage(
-                    url: URL(string:embed.url),
-                    content: { image in
-                        image.resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(minWidth : 270,maxWidth: 1080,
-                                   minHeight: 270, maxHeight: 1800)
-                    },
-                    placeholder: {
-                        ProgressView()
+                CacheAsyncImage(
+                    url: URL(string:embed.url)){ phase in
+                        switch phase {
+                        case .success(let image):
+                            VStack(alignment: fullScreenMode ? .center : .leading) {
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit).frame(width: self.maxWidth(), height: self.maxWidth())
+                            }
+                        case .failure(let error):
+                            Text(error.localizedDescription)
+                            
+                        default:
+                            Image(systemName: "questionmark")
+                            
+                        }
                     }
-                )
-                
-            }
-            if(embed.type == .video){
+            } else if(embed.type == .video){
                 UIWKWebview(url: embed.url)
             }
             
@@ -207,6 +236,7 @@ struct EmbedBodyPreview : View {
         
     }
 }
+
 
 
 

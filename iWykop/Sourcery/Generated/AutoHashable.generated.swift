@@ -65,5 +65,26 @@ extension Entry: Hashable {
         comments.hash(into: &hasher)
     }
 }
+// MARK: - Link AutoHashable
+extension Link: Hashable {
+    internal func hash(into hasher: inout Hasher) {
+        id.hash(into: &hasher)
+        body.hash(into: &hasher)
+        favorite.hash(into: &hasher)
+        comments.hash(into: &hasher)
+        blocked.hash(into: &hasher)
+        author.hash(into: &hasher)
+        userVote.hash(into: &hasher)
+        original.hash(into: &hasher)
+        embed.hash(into: &hasher)
+        url.hash(into: &hasher)
+        date.hash(into: &hasher)
+        app.hash(into: &hasher)
+        voteCount.hash(into: &hasher)
+        commentsCount.hash(into: &hasher)
+        status.hash(into: &hasher)
+        canComment.hash(into: &hasher)
+    }
+}
 
 // MARK: - AutoHashable for Enums

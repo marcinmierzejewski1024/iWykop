@@ -23,9 +23,9 @@ protocol AutoHashable {
 struct Entry: AutoCodable, AutoEquatable, AutoHashable {
     let id: Int
     let body: String?
-    let favorite: Bool
-    let userVote: Int
-    let blocked: Bool
+    let favorite: Bool?
+    let userVote: Int?
+    let blocked: Bool?
     let author: Author
     let original: String?
     let embed: Embed?
@@ -54,6 +54,8 @@ enum Status: String, AutoCodable {
     case visible = "visible"
     case `public` = "public"
     case deleted = "deleted"
+    case promoted = "promoted"
+
 
 }
 

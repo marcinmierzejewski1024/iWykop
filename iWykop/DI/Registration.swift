@@ -23,6 +23,10 @@ extension Resolver : ResolverRegistering {
         register(EntryService.self) { resolver, args in
             return EntryService()
         }.scope(.graph)
+        
+        register(LinksService.self) { resolver, args in
+            return LinksService()
+        }.scope(.graph)
 
         
     }

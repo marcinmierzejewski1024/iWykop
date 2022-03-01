@@ -11,8 +11,8 @@ import DBDebugToolkit
 @main
 struct iWykopApp: App {
     
-    let persistenceController = PersistenceController.shared
     let viewModel = EntriesViewModel();
+    let linksViewModel = LinksViewModel();
 
     init(){
         let shakeTrigger = DBShakeTrigger()
@@ -24,11 +24,41 @@ struct iWykopApp: App {
     var body: some Scene {
         
         WindowGroup {
-            EntriesView(viewModel: viewModel).task {
-                await viewModel.getEntries();
+            
+            TabView {
+
+                LinksView(viewModel: linksViewModel).task {
+                    await linksViewModel.refreshLinks()
+                }.tabItem {
+                    Label("Main", systemImage: "w.square")
+                }
+                
+                EntriesView(viewModel: viewModel).task {
+                    await viewModel.getEntries();
+                }.tabItem {
+                    Label("Mikroblog", systemImage: "number.square")
+                }
+                
+                EntriesView(viewModel: viewModel).task {
+//                    await viewModel.getEntries();
+                }.tabItem {
+                    Label("Settings", systemImage: "list.dash")
+                }
+                
+                EntriesView(viewModel: viewModel).task {
+//                    await viewModel.getEntries();
+                }.tabItem {
+                    Label("Search", systemImage: "s.square")
+                }
             }
             
 //            ContentView()
         }
     }
+}
+
+//TODO:move
+extension URLCache {
+    
+    static let imageCache = URLCache(memoryCapacity: 512*1000*1000, diskCapacity: 10*1000*1000*1000)
 }

@@ -33,13 +33,37 @@ struct EntryCommentsView: View {
             VStack (alignment: .leading){
                 EntryViewCellHeader(entry: entry)
                 EntryBodyPreview(entry: entry).padding()
-                Text("Comments:").font(.title).padding()
+//                Text("Comments:").font(.title).padding()
             }
+            Spacer(minLength: 50)
+            
             ForEach(entry.comments ?? [], id: \.id) { item in
                 VStack(alignment: .leading) {
-                    Text(item.author.login).bold().padding()
+                    HStack {
+                        CacheAsyncImage(
+                            url: URL(string:item.author.avatar)){ phase in
+                                switch phase {
+                                case .success(let image):
+                                    VStack {
+                                        image.resizable()
+                                            .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
+                                    }
+                                    
+                                default:
+                                    Image(systemName: "questionmark")
+                                    
+                                }
+                            }
+
+                        Text(item.author.login).bold().padding()
+                    }
                     Text(item.original ?? "")
                     EmbedBodyPreviewWithModal(embed: item.embed)
+                    HStack{
+                        Spacer()
+                        Text("+\(item.voteCount)").foregroundColor(Color.green)
+                    }.padding(10)
+                    
                 }.padding(10)
             }
             

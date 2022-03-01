@@ -7,14 +7,15 @@
 
 import Foundation
 
+enum EntriesPeriod : Int {
+    case from6 = 6
+    case from12 = 12
+    case from24 = 24
+}
 
 class EntriesService : ApiV2Service {
     
-    enum EntriesPeriod : Int {
-        case from6 = 6
-        case from12 = 12
-        case from24 = 24
-    }
+
     
     private var requestedPeriod = EntriesPeriod.from6;
     private var requestedPage = 0;
@@ -33,8 +34,9 @@ class EntriesService : ApiV2Service {
         return superParams;
     }
     
-    func getEntries(page:Int) async throws -> [Entry] {
+    func getEntries(page:Int, period:EntriesPeriod) async throws -> [Entry] {
 
+        self.requestedPeriod = period;
         self.requestedPage = page;
         let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
 
