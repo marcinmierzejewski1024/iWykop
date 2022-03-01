@@ -103,10 +103,10 @@ struct EntryViewCell: View {
     var body: some View {
         HStack{
             Spacer()
-            VStack(alignment: .trailing) {
+            VStack(alignment: .leading) {
                 EntryViewCellHeader(entry: entry)
                 EntryBodyPreview(entry: entry)
-            }.frame( alignment: .trailing)
+            }
             
         }.padding(0)
         

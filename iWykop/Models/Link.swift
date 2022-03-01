@@ -23,6 +23,13 @@ struct Link: AutoCodable, AutoEquatable, Hashable {
     let voteCount, commentsCount: Int
     let status: String
     let canComment: Bool?
+    let sourceUrl: String
+    let isHot : Bool
+    let buryCount: Int?
+    let relatedCount: Int?
+    let preview: String?
+
+
 
     enum CodingKeys: String, CodingKey {
         case id, body, comments, blocked, author
@@ -32,9 +39,23 @@ struct Link: AutoCodable, AutoEquatable, Hashable {
         case commentsCount = "comments_count"
         case status
         case canComment = "can_comment"
+        case sourceUrl = "source_url"
+        case buryCount = "bury_count"
+        case relatedCount = "related_count"
+        case isHot = "is_hot"
+        case preview
 
 // sourcery:inline:auto:Link.CodingKeys.AutoCodable
         case favorite
 // sourcery:end
+    }
+    
+    
+    func getSourceDomain() -> String? {
+        if let url = URL(string: sourceUrl) {
+            return url.host
+        }
+        
+        return nil;
     }
 }

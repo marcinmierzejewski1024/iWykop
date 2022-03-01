@@ -38,7 +38,7 @@ struct LinksView: View {
             List() {
                 ForEach(viewModel.links, id: \.id) { item in
                     
-                    Text(item.url)
+                    LinksListCell(link: item)
                     
                     
                 }
@@ -57,6 +57,46 @@ struct LinksView: View {
 }
 
 
+struct LinksListCell: View {
+    var link: Link;
+    @Environment(\.openURL) var openURL
+
+    
+    var body: some View {
+        HStack{
+            
+            CacheAsyncImage(
+                url: URL(string:link.preview ?? "")){ phase in
+                    switch phase {
+                    case .success(let image):
+                        VStack(alignment: .leading) {
+                            image.resizable()
+                                .aspectRatio(contentMode: .fit).frame(width: 200, height: 200)
+                        }
+                    case .failure(let error):
+                        Text(error.localizedDescription)
+                        
+                    default:
+                        Image(systemName: "questionmark")
+                        
+                    }
+                }
+            VStack(alignment: .leading) {
+                Text(link.author.login)
+                
+                
+                Button(link.getSourceDomain() ?? "") {
+                    openURL(URL(string: link.sourceUrl)!)
+                }
+
+            }
+            
+            
+        }.padding(0)
+        
+    }
+    
+}
 
 
 
