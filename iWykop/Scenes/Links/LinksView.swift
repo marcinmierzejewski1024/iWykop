@@ -71,7 +71,7 @@ struct LinksListCell: View {
                     case .success(let image):
                         VStack(alignment: .leading) {
                             image.resizable()
-                                .aspectRatio(contentMode: .fit).frame(width: 200, height: 200)
+                                .aspectRatio(contentMode: .fit).frame(width: 120, height: 120)
                         }
                     case .failure(let error):
                         Text(error.localizedDescription)
