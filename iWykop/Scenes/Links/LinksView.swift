@@ -36,16 +36,22 @@ struct LinksView: View {
             
             
             List() {
-                ForEach(viewModel.links, id: \.id) { item in
+                ForEach(viewModel.displayedLinks, id: \.id) { item in
                     
-                    LinksListCell(link: item)
+                    LinksListCell(link: item).onAppear {
+                        if item == self.viewModel.displayedLinks.last {
+                            Task {
+                                await self.viewModel.getNextLinks()
+                            }
+                        }
+                    }
                     
                     
                 }
             }.padding(0).refreshable {
                 Task {
                     
-                    await self.viewModel.refreshLinks()
+                    await self.viewModel.refreshCurrentCollectionsLinks()
                 }
             }
             

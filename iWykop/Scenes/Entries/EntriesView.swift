@@ -60,7 +60,7 @@ struct EntriesView: View {
         @ViewBuilder
         var body: some View {
             
-            let entryTitle = "Wpis"
+            let entryTitle = "Entry"
             
             List() {
                 ForEach(viewModel.entries, id: \.id) { item in

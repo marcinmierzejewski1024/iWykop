@@ -44,7 +44,7 @@ struct CacheAsyncImage<Content>: View where Content: View {
             }
             
         } else {
-            Text("provide url!")
+
         }
     }
 

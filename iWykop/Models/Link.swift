@@ -53,7 +53,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable {
     
     func getSourceDomain() -> String? {
         if let url = URL(string: sourceUrl) {
-            return url.host
+            return url.host?.replacingOccurrences(of: "www.", with: "")
         }
         
         return nil;

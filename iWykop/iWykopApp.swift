@@ -30,7 +30,7 @@ struct iWykopApp: App {
             TabView {
 
                 LinksView(viewModel: linksViewModel).task {
-                    await linksViewModel.refreshLinks()
+                    await linksViewModel.getLinks()
                 }.tabItem {
                     Label("Main", systemImage: "w.square")
                 }

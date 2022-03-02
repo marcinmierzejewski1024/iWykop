@@ -8,36 +8,22 @@
 
 import Foundation
 
-enum LinksServiceCollections {
-    case Promoted(page:Int)
-    case Upcoming(page:Int)
-    case Popular
-    case Observed(page:Int)
+enum LinksServiceCollections : String {
+    case Promoted = "Links/Promoted/"
+    case Upcoming = "Links/Upcoming/"
+    case Popular = "Hits/Popular/"
+    case Observed = "Links/Observed/"
     
-    
-    func path()->String {
-        switch self {
-            
-        case .Promoted:
-            return "Links/Promoted/"
-        case .Upcoming:
-            return "Links/Upcoming/"
-        case .Popular:
-            return "Hits/Popular/"
-        case .Observed:
-            return "Links/Observed/"
-            
-        }
-    }
     
 }
 
 class LinksService : ApiV2Service {
     
-    var requestedCollection = LinksServiceCollections.Upcoming(page: 1)
+    var requestedCollection = LinksServiceCollections.Upcoming
+    var requestedPage = 1;
     
     override func getPath() -> String {
-        return requestedCollection.path();
+        return requestedCollection.rawValue;
     }
     
     override func urlParams() -> [String : String]? {
@@ -45,12 +31,12 @@ class LinksService : ApiV2Service {
         
         superParams["data"] = "full";
         switch requestedCollection {
-        case .Promoted(let page):
-            superParams["page"] = "\(page)";
-        case .Upcoming(let page):
-            superParams["page"] = "\(page)";
-        case .Observed(let page):
-            superParams["page"] = "\(page)";
+        case .Promoted:
+            superParams["page"] = "\(requestedPage)";
+        case .Upcoming:
+            superParams["page"] = "\(requestedPage)";
+        case .Observed:
+            superParams["page"] = "\(requestedPage)";
             
         case .Popular:
             print("popular");
@@ -60,8 +46,10 @@ class LinksService : ApiV2Service {
         return superParams;
     }
     
-    func getLinks() async throws -> [Link] {
+    func getLinks(collection:LinksServiceCollections, page : Int = 1) async throws -> [Link] {
         
+        self.requestedPage = page;
+        self.requestedCollection = collection;
         let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
         
         let data = try await self.apiClient.httpRequestAsync(request)

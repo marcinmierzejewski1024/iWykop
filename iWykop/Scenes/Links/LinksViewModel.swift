@@ -14,26 +14,35 @@ class LinksViewModel : Resolving, ObservableObject
 {
     lazy var linksService: LinksService = resolver.resolve()
     
-    @Published var links = OrderedSet<Link>();
-    private var lastDownloadedPage = 1;
+    @Published var displayedLinks = OrderedSet<Link>();
+    
+    @Published var linksCollections = [LinksServiceCollections:OrderedSet<Link>](); //TODO:cache
+    
+    @Published var displayedCollection = LinksServiceCollections.Upcoming {
+        didSet {
+            //TODO:cache
+        }
+    };
+
+    private var lastDownloadedPageCollections = [LinksServiceCollections:Int]();
     
     @Published var currentLink :Link?
-    @Published var LinkActive = false;
-//
+//    @Published var LinkActive = false;
     
-//    func getNextlinks() async {
-//        await self.getlinks(page: self.lastDownloadedPage + 1);
-//    }
+    func getNextLinks() async {
+        
+        await self.getLinks(page: self.downloadedPageForDisplayedCollection() + 1);
+    }
     
-    func refreshLinks() async {
+    func refreshCurrentCollectionsLinks() async {
         
         do {
-            let newlinks = try await linksService.getLinks();
+            let newlinks = try await linksService.getLinks(collection: self.displayedCollection);
             
             DispatchQueue.main.async {
-                self.links.removeAll()
-                self.links.append(contentsOf: newlinks)
-                self.lastDownloadedPage = 1;
+                self.displayedLinks.removeAll()
+                self.displayedLinks.append(contentsOf: newlinks)
+                self.lastDownloadedPageCollections[self.displayedCollection] = 1;
             }
             
             
@@ -41,6 +50,37 @@ class LinksViewModel : Resolving, ObservableObject
         }
     }
     
+
+    
+    func getLinks(page : Int = 1) async {
+        do {
+            
+            let requestedCollection = self.displayedCollection;
+            let newlinks = try await linksService.getLinks(collection: self.displayedCollection, page: page);
+
+            DispatchQueue.main.async {
+
+                self.displayedLinks.append(contentsOf: newlinks);
+                self.lastDownloadedPageCollections[requestedCollection] = page;
+                
+
+            }
+
+        } catch {
+        }
+    }
+    
+    
+    private func downloadedPageForDisplayedCollection() -> Int {
+        if let page = self.lastDownloadedPageCollections[self.displayedCollection] {
+            return page;
+        }
+        
+        return 0;
+    }
+    
+    
+    //TODO:
     
 //
 //    func refreshLink() async {
@@ -58,20 +98,6 @@ class LinksViewModel : Resolving, ObservableObject
 //        }
 //    }
     
-//    func getlinks(page : Int = 1) async {
-//        do {
-//            let newlinks = try await linksService.getLinks();
-//
-//            DispatchQueue.main.async {
-//
-//                self.links.append(contentsOf: newlinks);
-//                self.lastDownloadedPage = page;
-//
-//            }
-//
-//        } catch {
-//        }
-//    }
     
 //    func selectLink(_ Link:Link?) {
 //
