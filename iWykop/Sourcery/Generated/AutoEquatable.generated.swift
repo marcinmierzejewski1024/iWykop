@@ -108,6 +108,7 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
     guard compareOptionals(lhs: lhs.buryCount, rhs: rhs.buryCount, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.relatedCount, rhs: rhs.relatedCount, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.preview, rhs: rhs.preview, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.description, rhs: rhs.description, compare: ==) else { return false }
     return true
 }
 

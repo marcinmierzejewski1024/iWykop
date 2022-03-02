@@ -28,7 +28,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable {
     let buryCount: Int?
     let relatedCount: Int?
     let preview: String?
-
+    let description: String?
 
 
     enum CodingKeys: String, CodingKey {
@@ -44,6 +44,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable {
         case relatedCount = "related_count"
         case isHot = "is_hot"
         case preview
+        case description
 
 // sourcery:inline:auto:Link.CodingKeys.AutoCodable
         case favorite
