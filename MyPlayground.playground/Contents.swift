@@ -32,24 +32,33 @@ let ahrefRegex = "<a\\shref=\\\"([^\\\"]*?)\\\">(.*?)<\\/a>"
 
 let regex = try NSRegularExpression(pattern: ahrefRegex,options: [.caseInsensitive])
 
-print(regex)
+//print(regex)
 
-let haystack = "poczatek <a href=\"#w\">#aa</a> <a href=\"www.wykop.pl\">aa</a>w inna trest"
-var haystackCopy = haystack;
+let haystack = "poczatek <a href=\"#w\">#aa</a> <a href=\"www.wykop.pl\">aa</a>w inny tekst"
+let mutableString = NSMutableString(string: haystack)
 
 let range = NSRange(location: 0, length: haystack.utf16.count)
-let matches = regex.matches(in: haystack, options: [], range: range)
+var matches = regex.matches(in: String(mutableString), options: [], range: range)
 
-for match in matches {
-    let rangeUrl = (match.range(at: 0))
-    let rangeName = (match.range(at: 1))
+
+while let match = matches.first {
+    let rangeUrl = (match.range(at: 1))
+    let rangeName = (match.range(at: 2))
     
 //    haystack.substring(from: rangeUrl)
+    
+    print(match)
+    let foundBlock = mutableString.substring(with: match.range)
+    let url = mutableString.substring(with: rangeUrl)
+    let name = mutableString.substring(with: rangeName)
 
-//    haystackCopy.replaceSubrange(match.range, with: <#T##Collection#>)
-//    haystackCopy.replaceSubrange(match.range, with: "tu markdownowy link".map({ c in
-//        return String(c)
-//    }))
+
+    mutableString.replaceOccurrences(of: foundBlock, with: "[\(name)](\(url))", options: [], range: match.range)
+    let asString = String(mutableString);
+    print(asString)
+    let newRange = NSRange(location: 0, length: asString.utf16.count)
+
+    matches = regex.matches(in: asString, options: [], range: newRange)
 }
 
-print(haystackCopy)
+print(mutableString)
