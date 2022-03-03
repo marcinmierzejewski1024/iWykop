@@ -40,7 +40,7 @@ struct EntryCommentsView: View {
             ForEach(entry.comments ?? [], id: \.id) { item in
                 VStack(alignment: .leading) {
                     AuthorView(author: item.author)
-                    Text(item.original ?? "")
+                    Text(item.body?.markupFromHtml ?? "")
                     EmbedBodyPreviewWithModal(embed: item.embed)
                     HStack{
                         Spacer()
