@@ -39,5 +39,15 @@ extension String {
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
+
+
+    var markupFromHtml:String {
+        var result = self;
+        return result;
+    }
+    
+    
 }
+
+
 

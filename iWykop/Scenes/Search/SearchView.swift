@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State private var searchText = ""
+    @State private var searchText = "".markupFromHtml;
 
     var body: some View {
         NavigationView {
