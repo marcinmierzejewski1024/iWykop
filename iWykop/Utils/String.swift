@@ -62,11 +62,12 @@ extension String {
                     
                     let foundBlock = mutableString.substring(with: match.range)
                     
-                    let url = mutableString.substring(with: rangeUrl)
+                    var url = mutableString.substring(with: rangeUrl)
                     var name = mutableString.substring(with: rangeName)
 
                     if(url.starts(with: "#") || url.starts(with: "@")){
                         name = url;
+                        url = "iWykop:\(url)"
                     }
                     
                     

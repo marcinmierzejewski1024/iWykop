@@ -11,7 +11,8 @@ import Resolver
 
 @main
 struct iWykopApp: App {
-    
+
+
     let settingsStore = SettingsStore();
     let viewModel = EntriesViewModel(); // should viewModel be injected via DI?
     let linksViewModel = LinksViewModel();
@@ -33,30 +34,24 @@ struct iWykopApp: App {
                     await linksViewModel.getLinks()
                 }.tabItem {
                     Label("Main", systemImage: "w.square")
-                }.onOpenURL { (url) in
-                    print("\(url) to open!")
                 }
                 
                 EntriesView(viewModel: viewModel).task {
                     await viewModel.getEntries();
                 }.tabItem {
                     Label("Entries", systemImage: "number.square")
-                }.onOpenURL { (url) in
-                    print("\(url) to open!")
                 }
                 
                 SettingsView().tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
-                }.environmentObject(settingsStore).onOpenURL { (url) in
-                    print("\(url) to open!")
-                }
-                
+                }.environmentObject(settingsStore)
+
                 SearchView().tabItem {
                     Label("Search", systemImage: "magnifyingglass")
-                }.onOpenURL { (url) in
-                    print("\(url) to open!")
                 }
-            }
+            }.onOpenURL { (url) in
+                print("\(url) to open!")
+            }.font(.system(size: 12))
             
         }
     }
