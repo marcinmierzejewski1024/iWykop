@@ -16,7 +16,7 @@ protocol AutoEquatable {
 }
 
 
-struct Entry: AutoCodable, AutoEquatable, Hashable {
+struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable{
     let id: Int
     let body: String?
     let favorite: Bool?
@@ -32,6 +32,8 @@ struct Entry: AutoCodable, AutoEquatable, Hashable {
     let app: String?
     let comments: [Comment]?
 
+    
+    var bodyAttributed : AttributedString?
 
     enum CodingKeys: String, CodingKey {
         case id, body, favorite
@@ -41,6 +43,10 @@ struct Entry: AutoCodable, AutoEquatable, Hashable {
         case commentsCount = "comments_count"
         case status, app
         case comments
+
+// sourcery:inline:auto:Entry.CodingKeys.AutoCodable
+        case bodyAttributed
+// sourcery:end
     }
 }
 

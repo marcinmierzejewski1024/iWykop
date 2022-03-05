@@ -36,9 +36,14 @@ class EntryService : ApiV2Service {
 //        let resultString = String(data: data, encoding: .utf8);
 //        print(resultString);
 
-        let result = self.mapDataToEntities(Entry.self, data:data)
-
-        return result;
+        if let result = self.mapDataToEntities(Entry.self, data:data) {
+        
+            let withAttributedBody = await bodyFormatter.addBodyAttr(es: [result])
+            
+            return withAttributedBody.first as? Entry;
+        }
+        
+        return nil;
         
     }
     

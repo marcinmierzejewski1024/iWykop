@@ -19,6 +19,7 @@ enum LinksServiceCollections : String {
 
 class LinksService : ApiV2Service {
     
+
     var requestedCollection = LinksServiceCollections.Upcoming
     var requestedPage = 1;
     
@@ -54,12 +55,14 @@ class LinksService : ApiV2Service {
         
         let data = try await self.apiClient.httpRequestAsync(request)
         
-        let resultString = String(data: data, encoding: .utf8);
-        print(resultString);
+//        let resultString = String(data: data, encoding: .utf8);
+//        print(resultString);
         
         if let result = self.mapDataToEntities([Link].self, data:data) {
             
-            return result;
+            let withAttributedBody = await bodyFormatter.addBodyAttr(es: result)
+            
+            return withAttributedBody as? [Link] ?? [];
         } else {
             return [];
         }

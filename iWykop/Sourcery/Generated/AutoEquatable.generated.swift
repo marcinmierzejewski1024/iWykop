@@ -49,6 +49,7 @@ internal func == (lhs: Comment, rhs: Comment) -> Bool {
     guard lhs.entryID == rhs.entryID else { return false }
     guard compareOptionals(lhs: lhs.body, rhs: rhs.body, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.original, rhs: rhs.original, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     return true
 }
 // MARK: - Embed AutoEquatable
@@ -82,6 +83,7 @@ internal func == (lhs: Entry, rhs: Entry) -> Bool {
     guard lhs.status == rhs.status else { return false }
     guard compareOptionals(lhs: lhs.app, rhs: rhs.app, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.comments, rhs: rhs.comments, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     return true
 }
 // MARK: - Link AutoEquatable
@@ -109,6 +111,7 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
     guard compareOptionals(lhs: lhs.relatedCount, rhs: rhs.relatedCount, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.preview, rhs: rhs.preview, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.description, rhs: rhs.description, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     return true
 }
 

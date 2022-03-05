@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Comment: AutoCodable, AutoEquatable, Hashable {
+struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
     let author: Author
     let status: Status
     let id: Int
@@ -21,6 +21,9 @@ struct Comment: AutoCodable, AutoEquatable, Hashable {
     let entryID: Int
     let body: String?
     let original: String?
+
+    var bodyAttributed : AttributedString?
+
 
     enum CodingKeys: String, CodingKey {
         case author, status, id

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Link: AutoCodable, AutoEquatable, Hashable {
+struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
     let id: Int
     let body: String?
     let favorite: Bool?
@@ -30,6 +30,9 @@ struct Link: AutoCodable, AutoEquatable, Hashable {
     let preview: String?
     let description: String?
 
+    
+    var bodyAttributed : AttributedString?
+
 
     enum CodingKeys: String, CodingKey {
         case id, body, comments, blocked, author
@@ -48,6 +51,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable {
 
 // sourcery:inline:auto:Link.CodingKeys.AutoCodable
         case favorite
+        case bodyAttributed
 // sourcery:end
     }
     

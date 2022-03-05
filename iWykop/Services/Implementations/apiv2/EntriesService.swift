@@ -47,7 +47,10 @@ class EntriesService : ApiV2Service {
         
         if let result = self.mapDataToEntities([Entry].self, data:data) {
 
-            return result;
+            let withAttributedBody = await bodyFormatter.addBodyAttr(es: result)
+            
+            return withAttributedBody as? [Entry] ?? [];
+
         } else {
             return [];
         }

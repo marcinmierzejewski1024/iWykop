@@ -15,6 +15,7 @@ class ApiV2Service : Resolving
     
     var compacted = false;
     
+    lazy var bodyFormatter : BodyFormater = resolver.resolve();
     lazy var apiClient: ApiClient = resolver.resolve()
     
     func urlParams() -> [String: String]?

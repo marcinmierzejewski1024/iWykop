@@ -145,7 +145,7 @@ struct EntryBodyPreview : View
         VStack{
 //            Text(entry.body ?? "")
 
-            Text(entry.body?.markupFromHtml ?? "")
+            Text(entry.bodyAttributed ?? "")
             if(entry.embed != nil && entry.embed?.plus18 == false) {
                 EmbedBodyPreviewWithModal(embed: entry.embed!)
             }

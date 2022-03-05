@@ -36,76 +36,7 @@ extension String {
             return nil
         }
     }
-    var htmlToString: String {
-        return htmlToAttributedString?.string ?? ""
-    }
-
-
     
-    
-    func replaceLinks(html: String) -> String {
-        let ahrefRegex = "#{0,1}@{0,1}<a\\shref=\\\"([^\\\"]*?)\\\".*?>(.*?)<\\/a>"
-        do {
-            let regex = try NSRegularExpression(pattern: ahrefRegex,options: [.caseInsensitive])
-            
-            let mutableString = NSMutableString(string: html)
-            
-            let range = NSRange(location: 0, length: html.utf16.count)
-            var matches = regex.matches(in: String(mutableString), options: [], range: range)
-            
-            
-            while let match = matches.first {
-                
-                if match.numberOfRanges >= 2 {
-                    let rangeName = (match.range(at: 2))
-                    let rangeUrl = (match.range(at: 1))
-                    
-                    let foundBlock = mutableString.substring(with: match.range)
-                    
-                    var url = mutableString.substring(with: rangeUrl)
-                    var name = mutableString.substring(with: rangeName)
-
-                    if(url.starts(with: "#") || url.starts(with: "@")){
-                        name = url;
-                        url = "iWykop:\(url)"
-                    }
-                    
-                    
-                    
-                    
-                    mutableString.replaceOccurrences(of: foundBlock, with: "[\(name)](\(url))", options: [], range: match.range)
-                    let asString = String(mutableString);
-                    let newRange = NSRange(location: 0, length: asString.utf16.count)
-                    
-                    matches = regex.matches(in: asString, options: [], range: newRange)
-                }
-            }
-            
-            return String(mutableString);
-        } catch {
-            return html;
-        }
-        
-    }
-
-    
-    func replaceOtherStuff(html: String) -> String {
-        return html.replacingOccurrences(of: "<br />", with: "\n")
-        //TODO:
-        
-    }
-
-
-    var markupFromHtml:AttributedString? {
-        var result = replaceLinks(html: self);
-        result = replaceOtherStuff(html: result);
-        do {
-            return try AttributedString(markdown: result)
-        } catch {
-            return nil;
-        }
-;
-    }
     
     
     

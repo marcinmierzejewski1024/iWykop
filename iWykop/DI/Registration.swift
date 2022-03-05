@@ -31,6 +31,11 @@ extension Resolver : ResolverRegistering {
         register(SettingsStore.self) { resolver, args in
             return SettingsStore()
         }.scope(.graph)
+        
+        register(BodyFormater.self) { resolver, args in
+            return BodyFormater()
+        }.scope(.graph)
+        
 
 
         
