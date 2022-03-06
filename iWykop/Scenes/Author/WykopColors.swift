@@ -16,6 +16,14 @@ class WykopColors {
         }
     }
 
+    static var backgroundColor : Color {
+        get {
+            return Color(red: 240, green: 240, blue: 240);
+        }
+    }
+
+    
+    
     static var authorColors : [Int:Color] {
         
         get {

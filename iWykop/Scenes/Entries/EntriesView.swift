@@ -18,26 +18,26 @@ struct EntriesView: View {
             
             
             
-            GroupBox {
+            VStack {
                 DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
-                    Text("6h").padding(5).onTapGesture {
+                    Text("6h").font(.headline).padding(5).onTapGesture {
                         Task {
                             await viewModel.changeRequestedPeriod(period: .from6);
                         }
                     }
-                    Text("12h").padding(5).onTapGesture {
+                    Text("12h").font(.headline).padding(5).onTapGesture {
                         Task {
                             
                             await viewModel.changeRequestedPeriod(period: .from12);
                         }
                     }
-                    Text("24h").padding(5).onTapGesture {
+                    Text("24h").font(.headline).padding(5).onTapGesture {
                         Task {
                             
                             await viewModel.changeRequestedPeriod(period: .from24);
                         }
                     }
-                }
+                }.padding(.horizontal, 20).padding(.vertical, 10).font(.title)
                 
                 EntriesListView(viewModel: self.viewModel)
                 
@@ -79,9 +79,12 @@ struct EntriesView: View {
                         }
                     }
                     
+                    WykopColors.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+
+                    
                     
                 }
-            }.padding(0).refreshable {
+            }.listStyle(PlainListStyle()).refreshable {
                 Task {
                     
                     await self.viewModel.refreshEntries()

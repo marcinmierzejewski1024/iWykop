@@ -44,11 +44,13 @@ struct LinksView: View {
                                 await self.viewModel.getNextLinks()
                             }
                         }
-                    }
+                    }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                    
+                    WykopColors.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                     
                     
                 }
-            }.padding(0).refreshable {
+            }.listStyle(PlainListStyle()).refreshable {
                 Task {
                     
                     await self.viewModel.refreshCurrentCollectionsLinks()

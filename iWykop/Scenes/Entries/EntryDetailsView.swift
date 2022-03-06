@@ -9,14 +9,14 @@ import SwiftUI
 
 struct EntryDetailsView: View {
     @ObservedObject var viewModel : EntriesViewModel;
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             if let entry = viewModel.currentEntry {
                 EntryCommentsView(entry: entry)
             }
             
-        }.refreshable {
+        }.listStyle(PlainListStyle()).refreshable {
             task {
                 await viewModel.refreshEntry()
             }
@@ -30,31 +30,40 @@ struct EntryCommentsView: View {
     
     var body: some View {
         List() {
-            VStack (alignment: .leading){
-                EntryViewCellHeader(entry: entry)
-                EntryBodyPreview(entry: entry).padding()
-//                Text("Comments:").font(.title).padding()
+            Section {
+                
+                VStack (alignment: .leading){
+                    EntryViewCellHeader(entry: entry)
+                    EntryBodyPreview(entry: entry)
+                    //                Text("Comments:").font(.title).padding()
+                }.listRowSeparator(.hidden)
             }
-            Spacer(minLength: 50)
             
-            ForEach(entry.comments ?? [], id: \.id) { item in
-                VStack(alignment: .leading) {
-                    AuthorView(author: item.author)
-                    Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-                    EmbedBodyPreviewWithModal(embed: item.embed)
-                    HStack{
-                        Spacer()
-                        Text("+\(item.voteCount)").foregroundColor(Color.green)
-                    }.padding(10)
-                    
-                }.padding(10)
+            WykopColors.backgroundColor.frame( height: 30, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+
+            Section {
+                
+                ForEach(entry.comments ?? [], id: \.id) { item in
+                    VStack(alignment: .leading) {
+                        AuthorView(author: item.author)
+                        Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
+                        EmbedBodyPreviewWithModal(embed: item.embed)
+                        HStack{
+                            Spacer()
+                            Text("+\(item.voteCount)").foregroundColor(Color.green)
+                        }
+                        
+                    }.listRowSeparator(.hidden)
+                    WykopColors.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+
+                }
             }
             
         }
     }
 }
-    //struct EntryDetailsView_Previews: PreviewProvider {
-    //    static var previews: some View {
-    //        EntryDetailsView()
-    //    }
-    //}
+//struct EntryDetailsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EntryDetailsView()
+//    }
+//}
