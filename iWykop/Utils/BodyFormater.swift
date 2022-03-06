@@ -59,11 +59,13 @@ class BodyFormater
         }
         
         let replacedLinks = self.replaceLocalLinks(html!);
-        
+        let withCustomCss = self.addFontCss(replacedLinks);
 
         do {
-            let data = Data(replacedLinks.utf8)
-            if let nsAttr = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            let data = Data(withCustomCss.utf8)
+            
+
+            if let nsAttr = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding : String.Encoding.utf8.rawValue], documentAttributes: nil) {
 
                 let attr = try AttributedString(nsAttr, including: \.uiKit)
 
@@ -78,6 +80,11 @@ class BodyFormater
     }
 
     
+    func addFontCss(_ html: String) -> String {
+
+        return String(format:"<span style=\"font-family: '-apple-system', 'HelveticaNeue'; font-size: \(UIFont.bodyFont().pointSize)\">%@</span>", html)
+
+    }
     
     func replaceLocalLinks(_ html: String) -> String {
         let ahrefRegex = "#{0,1}@{0,1}<a\\shref=\\\"([^\\\"]*?)\\\".*?>(.*?)<\\/a>"

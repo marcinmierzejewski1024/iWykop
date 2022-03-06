@@ -60,14 +60,13 @@ struct EntriesView: View {
         @ViewBuilder
         var body: some View {
             
-            let entryTitle = "Entry"
             
             List() {
                 ForEach(viewModel.entries, id: \.id) { item in
                     
                     
                     NavigationLink(destination:
-                                    EntryDetailsView(viewModel: self.viewModel).navigationTitle(entryTitle) , isActive: $viewModel.entryActive) {
+                                    EntryDetailsView(viewModel: self.viewModel) , isActive: $viewModel.entryActive) {
                         EntryViewCell(entry: item).onTapGesture {
                             viewModel.selectEntry(item)
                             viewModel.entryActive = true;
