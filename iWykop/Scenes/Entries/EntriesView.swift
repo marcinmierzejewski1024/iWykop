@@ -144,7 +144,7 @@ struct EntryBodyPreview : View
         VStack{
 //            Text(entry.body ?? "")
 
-            Text(entry.bodyAttributed ?? "")
+            Text(entry.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
             if(entry.embed != nil && entry.embed?.plus18 == false) {
                 EmbedBodyPreviewWithModal(embed: entry.embed!)
             }

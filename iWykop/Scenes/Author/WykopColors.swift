@@ -9,6 +9,13 @@ import Foundation
 import SwiftUI
 
 class WykopColors {
+    
+    static var accentColor : Color {
+        get {
+            return Color.indigo;
+        }
+    }
+
     static var authorColors : [Int:Color] {
         
         get {
@@ -41,4 +48,18 @@ extension Color {
            blue: rgb & 0xFF
        )
    }
+    
+    public func hexDescription(_ includeAlpha: Bool = false) -> String {
+        let uiColor = UIColor(self);
+        guard uiColor.cgColor.numberOfComponents == 4 else {
+            return "Color not RGB."
+        }
+        let a = uiColor.cgColor.components!.map { Int($0 * CGFloat(255)) }
+        let color = String.init(format: "%02x%02x%02x", a[0], a[1], a[2])
+        if includeAlpha {
+            let alpha = String.init(format: "%02x", a[3])
+            return "\(color)\(alpha)"
+        }
+        return color
+    }
 }

@@ -81,8 +81,20 @@ class BodyFormater
 
     
     func addFontCss(_ html: String) -> String {
-
-        return String(format:"<span style=\"font-family: '-apple-system', 'HelveticaNeue'; font-size: \(UIFont.bodyFont().pointSize)\">%@</span>", html)
+        
+        
+        let css = """
+            *{
+            font-family: '-apple-system', 'HelveticaNeue'; font-size: \(UIFont.bodyFont().pointSize)pt;
+            }
+            a{
+                 text-decoration: none;
+                 color: #\(WykopColors.accentColor.hexDescription());
+                 
+             }
+            """;
+        
+        return "<style>\(css)</style> <span>\(html)</span>";
 
     }
     
@@ -110,7 +122,7 @@ class BodyFormater
                     var url = mutableString.substring(with: rangeUrl)
                     var name = mutableString.substring(with: rangeName)
 
-                    if(url.starts(with: "#") || url.starts(with: "@") || url.starts(with: "spoiler:")){
+                    if (url.starts(with: "#") || url.starts(with: "@") || url.starts(with: "spoiler:")) {
                         name = url;
                         url = "iWykop:\(url)"
                         
