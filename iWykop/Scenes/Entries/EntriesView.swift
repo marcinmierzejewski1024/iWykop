@@ -163,6 +163,7 @@ struct EmbedBodyPreviewWithModal : View {
     
     
     
+    
     var body: some View {
         HStack{
             if let embed = embed {

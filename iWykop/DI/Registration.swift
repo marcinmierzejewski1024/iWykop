@@ -17,15 +17,15 @@ extension Resolver : ResolverRegistering {
         }.scope(.graph)
 
         register(EntriesService.self) { resolver, args in
-            return EntriesService()
+            return EntriesServiceImpl()
         }.scope(.graph)
 
         register(EntryService.self) { resolver, args in
-            return EntryService()
+            return EntryServiceImpl()
         }.scope(.graph)
         
         register(LinksService.self) { resolver, args in
-            return LinksService()
+            return LinksServiceImpl()
         }.scope(.graph)
         
         register(SettingsStore.self) { resolver, args in

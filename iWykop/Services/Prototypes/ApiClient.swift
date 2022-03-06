@@ -9,7 +9,6 @@ import Foundation
 
 struct ApiRequestBody {
     var body : [String:String];
-    //TODO:jak nie urosnie to moze zrobic typealias tez
 }
 
 typealias ApiRequestHeaders = [String:String]

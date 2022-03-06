@@ -37,7 +37,7 @@ class LinksViewModel : Resolving, ObservableObject
     func refreshCurrentCollectionsLinks() async {
         
         do {
-            let newlinks = try await linksService.getLinks(collection: self.displayedCollection);
+            let newlinks = try await linksService.getLinks(collection: self.displayedCollection, page: 1);
             
             DispatchQueue.main.async {
                 self.displayedLinks.removeAll()

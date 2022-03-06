@@ -1,5 +1,5 @@
 //
-//  EntriesService.swift
+//  EntriesServiceImpl.swift
 //  iWykop
 //
 //  Created by Marcin Mierzejewski on 18/02/2022.
@@ -7,13 +7,8 @@
 
 import Foundation
 
-enum EntriesPeriod : Int {
-    case from6 = 6
-    case from12 = 12
-    case from24 = 24
-}
 
-class EntriesService : ApiV2Service {
+class EntriesServiceImpl : ApiV2Service, EntriesService  {
     
 
     

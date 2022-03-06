@@ -1,5 +1,5 @@
 //
-//  EntryService.swift
+//  EntryServiceImpl.swift
 //  iWykop
 //
 //  Created by Marcin Mierzejewski on 20/02/2022.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-class EntryService : ApiV2Service {
+class EntryServiceImpl : ApiV2Service, EntryService  {
     
 
     private var requestedId = 0;

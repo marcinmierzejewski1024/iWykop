@@ -1,5 +1,5 @@
 //
-//  LinksService.swift
+//  LinksServiceImpl.swift
 //  iWykop
 //
 //  Created by Marcin Mierzejewski on 01/03/2022.
@@ -8,16 +8,8 @@
 
 import Foundation
 
-enum LinksServiceCollections : String {
-    case Promoted = "Links/Promoted/"
-    case Upcoming = "Links/Upcoming/"
-    case Popular = "Hits/Popular/"
-    case Observed = "Links/Observed/"
-    
-    
-}
 
-class LinksService : ApiV2Service {
+class LinksServiceImpl : ApiV2Service, LinksService {
     
 
     var requestedCollection = LinksServiceCollections.Upcoming
