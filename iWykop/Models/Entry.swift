@@ -16,7 +16,7 @@ protocol AutoEquatable {
 }
 
 
-struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable{
+struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComments{
     let id: Int
     let body: String?
     let favorite: Bool?
@@ -30,7 +30,7 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable{
     let voteCount, commentsCount: Int
     let status: Status
     let app: String?
-    let comments: [Comment]?
+    var comments: [Comment]?
 
     
     var bodyAttributed : AttributedString?

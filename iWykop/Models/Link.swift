@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
+struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments {
     let id: Int
     let body: String?
     let favorite: Bool?
-    let comments: [Comment]?
+    var comments: [Comment]?
     let blocked: Bool?
     let author: Author
     let userVote: Int?

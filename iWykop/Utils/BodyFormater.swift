@@ -11,7 +11,11 @@ import UIKit
 protocol BodyFormatable {
     var bodyAttributed: AttributedString? { get set }
     var body: String? { get }
+}
 
+protocol WithComments : BodyFormatable
+{
+    var comments: [Comment]? { get set}
 
 }
 
@@ -20,11 +24,24 @@ class BodyFormater
  
     @MainActor
     func addBodyAttr(es:[BodyFormatable]) async -> [BodyFormatable] {
-
+        //creating attributedString fails when is on non-main queue
         
         es.map { entry in
             var withAttributed = entry;
             withAttributed.bodyAttributed = self.markupFromHtml(entry.body)
+            if var withComments = withAttributed as? WithComments {
+                
+                withComments.comments = withComments.comments?.map({ c in
+                    var commentWithAttributed = c;
+                    commentWithAttributed.bodyAttributed = self.markupFromHtml(commentWithAttributed.body);
+                    return commentWithAttributed;
+                });
+                
+                
+                return withComments;
+                
+            }
+            
             return withAttributed;
         }
         
@@ -76,6 +93,8 @@ class BodyFormater
             while let match = matches.first {
                 
                 if match.numberOfRanges >= 2 {
+                    
+                    
                     let rangeName = (match.range(at: 2))
                     let rangeUrl = (match.range(at: 1))
                     
@@ -84,17 +103,26 @@ class BodyFormater
                     var url = mutableString.substring(with: rangeUrl)
                     var name = mutableString.substring(with: rangeName)
 
-                    if(url.starts(with: "#") || url.starts(with: "@")){
+                    if(url.starts(with: "#") || url.starts(with: "@") || url.starts(with: "spoiler:")){
                         name = url;
                         url = "iWykop:\(url)"
                         
                      
-                        mutableString.replaceOccurrences(of: foundBlock, with: "<a href='\(url)'>\(name)</a>", options: [], range: match.range)
+                        mutableString.replaceOccurrences(of: foundBlock, with: "<a href=\"\(url)\">\(name)</a>", options: [], range: match.range)
                         let asString = String(mutableString);
                         let newRange = NSRange(location: 0, length: asString.utf16.count)
                         
                         matches = regex.matches(in: asString, options: [], range: newRange)
+                    } else {
+                        
+                        
+                        let asString = String(mutableString);
+                        let newRange = NSRange(location: match.range.location + match.range.length , length: (asString.utf16.count - match.range.location - match.range.length))
+                        
+                        matches = regex.matches(in: asString, options: [], range: newRange)
+
                     }
+                    
                     
                     
                     
