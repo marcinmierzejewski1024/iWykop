@@ -27,7 +27,11 @@ extension Resolver : ResolverRegistering {
         register(LinksService.self) { resolver, args in
             return LinksServiceImpl()
         }.scope(.graph)
-        
+
+        register(LinkService.self) { resolver, args in
+            return LinkServiceImpl()
+        }.scope(.graph)
+
         register(SettingsStore.self) { resolver, args in
             return SettingsStore()
         }.scope(.graph)

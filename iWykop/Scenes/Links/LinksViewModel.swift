@@ -14,6 +14,8 @@ import KSToastView
 class LinksViewModel : Resolving, ObservableObject
 {
     lazy var linksService: LinksService = resolver.resolve()
+    lazy var linkService: LinkService = resolver.resolve()
+
     
     @Published var displayedLinks = OrderedSet<Link>();
     
@@ -27,8 +29,6 @@ class LinksViewModel : Resolving, ObservableObject
 
     private var lastDownloadedPageCollections = [LinksServiceCollections:Int]();
     
-    @Published var currentLink :Link?
-//    @Published var LinkActive = false;
     
     func getNextLinks() async {
         
@@ -91,40 +91,23 @@ class LinksViewModel : Resolving, ObservableObject
     }
     
     
-    //TODO:
+    func refreshLink(_ old:Link) async -> Link? {
+
+        do {
+            let newLink = try await linkService.getLink(id: old.id);
+
+            return newLink;
+
+        } catch {
+            print(error)
+            DispatchQueue.main.async {
+                KSToastView.ks_showToast(error.localizedDescription)
+            }
+            
+        }
+        return nil;
+    }
     
-//
-//    func refreshLink() async {
-//
-//        do {
-//            if let id = currentLink?.id {
-//                let newLink = try await linkService.getLink(id: id);
-//
-//                DispatchQueue.main.async {
-//                    self.currentLink = newLink;
-//                }
-//            }
-//
-//        } catch {
-//        }
-//    }
-    
-    
-//    func selectLink(_ Link:Link?) {
-//
-//        self.currentLink = Link;
-//
-//        if(self.currentLink != nil){
-//            Task {
-//
-//                let fullLink = try await self.LinkService.getLink(id: self.currentLink!.id);
-//
-//                DispatchQueue.main.async {
-//                    self.currentLink = fullLink;
-//                }
-//            }
-//        }
-//    }
     
     
 }

@@ -38,7 +38,7 @@ struct LinksView: View {
             List() {
                 ForEach(viewModel.displayedLinks, id: \.id) { item in
                     
-                    LinksListCell(link: item).onAppear {
+                    LinksListCell(link: item, viewModel: viewModel).onAppear {
                         if item == self.viewModel.displayedLinks.last {
                             Task {
                                 await self.viewModel.getNextLinks()
@@ -67,6 +67,7 @@ struct LinksView: View {
 
 struct LinksListCell: View {
     var link: Link;
+    @ObservedObject var viewModel : LinksViewModel;
     @Environment(\.openURL) var openURL
 
     
@@ -94,7 +95,11 @@ struct LinksListCell: View {
 
                 
                 Button(link.getSourceDomain() ?? "") {
-                    openURL(URL(string: link.sourceUrl)!)
+//                    openURL(URL(string: link.sourceUrl)!)
+                    Task {
+                        let result = await viewModel.refreshLink(self.link)
+                        print("result \(result)")
+                    }
                 }
 
             }

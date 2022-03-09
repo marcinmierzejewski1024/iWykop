@@ -29,6 +29,11 @@ protocol LinksService {
 
 }
 
+protocol LinkService {
+    func getLink(id:Int) async throws -> Link?;
+
+}
+
 protocol EntriesService {
     func getEntries(page:Int, period:EntriesPeriod) async throws -> [Entry];
 }
