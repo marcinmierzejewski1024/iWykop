@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/DBDebugToolkit/DBDebugToolkit.framework
+${BUILT_PRODUCTS_DIR}/KSToastView/KSToastView.framework
 ${BUILT_PRODUCTS_DIR}/Resolver/Resolver.framework

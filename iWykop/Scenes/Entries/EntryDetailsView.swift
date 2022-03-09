@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import KSToastView
 
 struct EntryDetailsView: View {
     @State var entry : Entry;
     @ObservedObject var viewModel : EntriesViewModel;
     
     func reloadEntry() {
+
         Task {
-            
             if let new = await viewModel.refreshEntry(entry) {
                 entry = new;
             }

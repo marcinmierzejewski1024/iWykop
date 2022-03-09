@@ -8,6 +8,7 @@
 import Foundation
 import Resolver
 import OrderedCollections
+import KSToastView
 
 class EntriesViewModel : Resolving, ObservableObject
 {
@@ -38,6 +39,11 @@ class EntriesViewModel : Resolving, ObservableObject
             
             
         } catch {
+            print(error);
+            DispatchQueue.main.async {
+                KSToastView.ks_showToast(error.localizedDescription);
+            }
+
         }
     }
     
@@ -57,6 +63,10 @@ class EntriesViewModel : Resolving, ObservableObject
             
         } catch {
             print(error);
+            DispatchQueue.main.async {
+                KSToastView.ks_showToast(error.localizedDescription);
+            }
+
         }
         
         return nil;
@@ -74,6 +84,11 @@ class EntriesViewModel : Resolving, ObservableObject
             }
             
         } catch {
+            print(error);
+            DispatchQueue.main.async {
+                KSToastView.ks_showToast(error.localizedDescription);
+            }
+
         }
     }
     

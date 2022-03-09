@@ -8,6 +8,7 @@
 import Foundation
 import Resolver
 import OrderedCollections
+import KSToastView
 
 
 class LinksViewModel : Resolving, ObservableObject
@@ -47,6 +48,11 @@ class LinksViewModel : Resolving, ObservableObject
             
             
         } catch {
+            print(error);
+            DispatchQueue.main.async {
+                KSToastView.ks_showToast(error.localizedDescription);
+            }
+
         }
     }
     
@@ -67,6 +73,11 @@ class LinksViewModel : Resolving, ObservableObject
             }
 
         } catch {
+            print(error);
+            DispatchQueue.main.async {
+                KSToastView.ks_showToast(error.localizedDescription);
+            }
+
         }
     }
     

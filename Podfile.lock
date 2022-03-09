@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.5.0)
   - DBDebugToolkit (0.7.0)
+  - KSToastView (0.5.7)
   - Resolver (1.5.0)
   - Sourcery (1.6.1):
     - Sourcery/CLI-Only (= 1.6.1)
@@ -9,6 +10,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - DBDebugToolkit
+  - KSToastView (from `https://github.com/marcinmierzejewski1024/KSToastView.git`)
   - Resolver
   - Sourcery
 
@@ -19,12 +21,22 @@ SPEC REPOS:
     - Resolver
     - Sourcery
 
+EXTERNAL SOURCES:
+  KSToastView:
+    :git: https://github.com/marcinmierzejewski1024/KSToastView.git
+
+CHECKOUT OPTIONS:
+  KSToastView:
+    :commit: e5bdb20506cf13d8701d650450b4f553115ef463
+    :git: https://github.com/marcinmierzejewski1024/KSToastView.git
+
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   DBDebugToolkit: ae299ea98eeef649c05ea3229f952fef817e7604
+  KSToastView: aeb0ca50b44e9568b6f95b2d1ec53a3f016b50fc
   Resolver: 68984624572763018fd8ec7b8e3e8df0e3b6bba5
   Sourcery: f3759f803bd0739f74fc92a4341eed0473ce61ac
 
-PODFILE CHECKSUM: 2f3180046e1cbcbcaad0fb78c7bd2cceef636530
+PODFILE CHECKSUM: 345be15d91a8d1a58094a0f21b5685bfc1b3133d
 
 COCOAPODS: 1.11.2
