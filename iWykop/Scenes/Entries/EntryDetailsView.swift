@@ -8,24 +8,34 @@
 import SwiftUI
 
 struct EntryDetailsView: View {
+    @State var entry : Entry;
     @ObservedObject var viewModel : EntriesViewModel;
+    
+    func reloadEntry() {
+        Task {
+            
+            if let new = await viewModel.refreshEntry(entry) {
+                entry = new;
+            }
+        }
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let entry = viewModel.currentEntry {
-                EntryCommentsView(entry: entry)
-            }
-            
+            EntryWithCommentsView(entry: entry)
         }.listStyle(PlainListStyle()).refreshable {
-            task {
-                await viewModel.refreshEntry()
-            }
+            self.reloadEntry();
+        }.onAppear(){
+            self.reloadEntry();
         }
+        
+        
+        
     }
 }
 
 
-struct EntryCommentsView: View {
+struct EntryWithCommentsView: View {
     var entry:Entry
     
     var body: some View {
@@ -40,7 +50,7 @@ struct EntryCommentsView: View {
             }
             
             WykopColors.backgroundColor.frame( height: 30, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-
+            
             Section {
                 
                 ForEach(entry.comments ?? [], id: \.id) { item in
@@ -55,7 +65,7 @@ struct EntryCommentsView: View {
                         
                     }.listRowSeparator(.hidden)
                     WykopColors.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-
+                    
                 }
             }
             

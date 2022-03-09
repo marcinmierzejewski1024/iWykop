@@ -19,8 +19,6 @@ class EntriesViewModel : Resolving, ObservableObject
     
     @Published var requestedPeriod = EntriesPeriod.from6;
 
-    @Published var currentEntry :Entry?
-    @Published var entryActive = false;
     
     
     func getNextEntries() async {
@@ -49,20 +47,19 @@ class EntriesViewModel : Resolving, ObservableObject
     }
     
     
-    
-    func refreshEntry() async {
+    func refreshEntry(_ old:Entry) async -> Entry? {
         
         do {
-            if let id = currentEntry?.id {
-                let newEntry = try await entryService.getEntry(id: id);
-                
-                DispatchQueue.main.async {
-                    self.currentEntry = newEntry;
-                }
-            }
+            let newEntry = try await entryService.getEntry(id: old.id);
+            
+            return newEntry;
+            
             
         } catch {
+            print(error);
         }
+        
+        return nil;
     }
     
     func getEntries(page : Int = 1) async {
@@ -80,21 +77,7 @@ class EntriesViewModel : Resolving, ObservableObject
         }
     }
     
-    func selectEntry(_ entry:Entry?) {
-        
-        self.currentEntry = entry;
-        
-        if(self.currentEntry != nil){
-            Task {
-                
-                let fullEntry = try await self.entryService.getEntry(id: self.currentEntry!.id);
-                
-                DispatchQueue.main.async {
-                    self.currentEntry = fullEntry;
-                }
-            }
-        }
-    }
+   
     
     func addButtonClicked() {
         

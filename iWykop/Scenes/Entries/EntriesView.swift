@@ -62,15 +62,13 @@ struct EntriesView: View {
             
             
             List() {
+                
                 ForEach(viewModel.entries, id: \.id) { item in
                     
                     
                     NavigationLink(destination:
-                                    EntryDetailsView(viewModel: self.viewModel) , isActive: $viewModel.entryActive) {
-                        EntryViewCell(entry: item).onTapGesture {
-                            viewModel.selectEntry(item)
-                            viewModel.entryActive = true;
-                        }.onAppear {
+                                    EntryDetailsView(entry:item, viewModel: self.viewModel)) {
+                        EntryViewCell(entry: item).onAppear {
                             if item == self.viewModel.entries.last {
                                 Task {
                                     await self.viewModel.getNextEntries()
