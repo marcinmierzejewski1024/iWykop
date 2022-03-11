@@ -38,6 +38,8 @@ struct LinksView: View {
             List() {
                 ForEach(viewModel.displayedLinks, id: \.id) { item in
                     
+                    NavigationLink(destination:
+                                    LinkDetailsView(link:item, viewModel: self.viewModel)) {
                     LinksListCell(link: item, viewModel: viewModel).onAppear {
                         if item == self.viewModel.displayedLinks.last {
                             Task {
@@ -45,7 +47,7 @@ struct LinksView: View {
                             }
                         }
                     }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-                    
+                    }
                     WykopColors.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                     
                     
@@ -72,7 +74,7 @@ struct LinksListCell: View {
 
     
     var body: some View {
-        HStack{
+        VStack{
             
             CacheAsyncImage(
                 url: URL(string:link.preview ?? "")){ phase in
@@ -80,7 +82,7 @@ struct LinksListCell: View {
                     case .success(let image):
                         VStack(alignment: .leading) {
                             image.resizable()
-                                .aspectRatio(contentMode: .fit).frame(width: 120, height: 120)
+                                .aspectRatio(contentMode: .fit).fixedSize(horizontal: false, vertical: true)
                         }
                     case .failure(let error):
                         Text(error.localizedDescription)
@@ -91,16 +93,25 @@ struct LinksListCell: View {
                     }
                 }
             VStack(alignment: .leading) {
-                AuthorView(author: link.author)
+                
+                Text(link.title ?? "").font(.subheadline).padding(.vertical, 5)
+                HStack{
+                    Button(link.getSourceDomain() ?? "") {
+    //                    openURL(URL(string: link.sourceUrl)!)
+                        
+                    }
+
+                    Spacer()
+                    Image(systemName:"flame.fill")
+                    Text("\(link.voteCount)").padding(.trailing, 10)
+                    Image(systemName:"text.bubble")
+                    Text("\(link.commentsCount)")
+
+                }
+//                AuthorView(author: link.author)
 
                 
-                Button(link.getSourceDomain() ?? "") {
-//                    openURL(URL(string: link.sourceUrl)!)
-                    Task {
-                        let result = await viewModel.refreshLink(self.link)
-                        print("result \(result)")
-                    }
-                }
+
 
             }
             

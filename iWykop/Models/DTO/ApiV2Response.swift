@@ -15,9 +15,9 @@ struct ApiV2Error: AutoCodable {
     
     enum CodingKeys: String, CodingKey {
         case code
-        case messageEn
+        case messageEn = "message_en"
         case field
-        case messagePl
+        case messagePl  = "message_pl"
     }
     
     func throwPl() throws {

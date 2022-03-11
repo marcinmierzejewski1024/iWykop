@@ -14,15 +14,13 @@ class LinkServiceImpl : ApiV2Service, LinkService  {
     private var requestedId = 0;
     
     override func getPath() -> String {
-        "Links/"
+        "Links/Link/\(requestedId)/withcomments/1/"
     }
     
     override func urlParams() -> [String : String]? {
         var superParams = super.urlParams()!;
         
         superParams["data"] = "full";
-        superParams["Link"] = "\(requestedId)";
-        
         return superParams;
     }
     

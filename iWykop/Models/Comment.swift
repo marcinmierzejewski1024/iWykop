@@ -9,7 +9,7 @@ import Foundation
 
 struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
     let author: Author
-    let status: Status
+    let status: Status?
     let id: Int
     let voteCount: Int
     let favorite: Bool?
@@ -18,7 +18,7 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
     let embed: Embed?
     let userVote: Int?
 //    let app: App?
-    let entryID: Int
+    let entryID: Int?
     let body: String?
     let original: String?
 

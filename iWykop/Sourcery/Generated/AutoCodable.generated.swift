@@ -39,7 +39,7 @@ extension Comment {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         author = try container.decode(Author.self, forKey: .author)
-        status = try container.decode(Status.self, forKey: .status)
+        status = try container.decodeIfPresent(Status.self, forKey: .status)
         id = try container.decode(Int.self, forKey: .id)
         voteCount = try container.decode(Int.self, forKey: .voteCount)
         favorite = try container.decodeIfPresent(Bool.self, forKey: .favorite)
@@ -47,7 +47,7 @@ extension Comment {
         blocked = try container.decodeIfPresent(Bool.self, forKey: .blocked)
         embed = try container.decodeIfPresent(Embed.self, forKey: .embed)
         userVote = try container.decodeIfPresent(Int.self, forKey: .userVote)
-        entryID = try container.decode(Int.self, forKey: .entryID)
+        entryID = try container.decodeIfPresent(Int.self, forKey: .entryID)
         body = try container.decodeIfPresent(String.self, forKey: .body)
         original = try container.decodeIfPresent(String.self, forKey: .original)
     }
@@ -56,7 +56,7 @@ extension Comment {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encode(author, forKey: .author)
-        try container.encode(status, forKey: .status)
+        try container.encodeIfPresent(status, forKey: .status)
         try container.encode(id, forKey: .id)
         try container.encode(voteCount, forKey: .voteCount)
         try container.encodeIfPresent(favorite, forKey: .favorite)
@@ -64,7 +64,7 @@ extension Comment {
         try container.encodeIfPresent(blocked, forKey: .blocked)
         try container.encodeIfPresent(embed, forKey: .embed)
         try container.encodeIfPresent(userVote, forKey: .userVote)
-        try container.encode(entryID, forKey: .entryID)
+        try container.encodeIfPresent(entryID, forKey: .entryID)
         try container.encodeIfPresent(body, forKey: .body)
         try container.encodeIfPresent(original, forKey: .original)
     }

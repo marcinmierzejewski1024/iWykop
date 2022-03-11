@@ -21,7 +21,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
     let date: String
     let app: String?
     let voteCount, commentsCount: Int
-    let status: String
+    let status: String?
     let canComment: Bool?
     let sourceUrl: String
     let isHot : Bool
@@ -29,6 +29,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
     let relatedCount: Int?
     let preview: String?
     let description: String?
+    let title: String?
 
     
     var bodyAttributed : AttributedString?
@@ -51,6 +52,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
 
 // sourcery:inline:auto:Link.CodingKeys.AutoCodable
         case favorite
+        case title
         case bodyAttributed
 // sourcery:end
     }

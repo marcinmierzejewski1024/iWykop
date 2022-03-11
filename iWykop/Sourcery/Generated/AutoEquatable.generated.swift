@@ -38,7 +38,7 @@ internal func == (lhs: Author, rhs: Author) -> Bool {
 extension Comment: Equatable {}
 internal func == (lhs: Comment, rhs: Comment) -> Bool {
     guard lhs.author == rhs.author else { return false }
-    guard lhs.status == rhs.status else { return false }
+    guard compareOptionals(lhs: lhs.status, rhs: rhs.status, compare: ==) else { return false }
     guard lhs.id == rhs.id else { return false }
     guard lhs.voteCount == rhs.voteCount else { return false }
     guard compareOptionals(lhs: lhs.favorite, rhs: rhs.favorite, compare: ==) else { return false }
@@ -46,7 +46,7 @@ internal func == (lhs: Comment, rhs: Comment) -> Bool {
     guard compareOptionals(lhs: lhs.blocked, rhs: rhs.blocked, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.embed, rhs: rhs.embed, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.userVote, rhs: rhs.userVote, compare: ==) else { return false }
-    guard lhs.entryID == rhs.entryID else { return false }
+    guard compareOptionals(lhs: lhs.entryID, rhs: rhs.entryID, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.body, rhs: rhs.body, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.original, rhs: rhs.original, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
@@ -103,7 +103,7 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
     guard compareOptionals(lhs: lhs.app, rhs: rhs.app, compare: ==) else { return false }
     guard lhs.voteCount == rhs.voteCount else { return false }
     guard lhs.commentsCount == rhs.commentsCount else { return false }
-    guard lhs.status == rhs.status else { return false }
+    guard compareOptionals(lhs: lhs.status, rhs: rhs.status, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.canComment, rhs: rhs.canComment, compare: ==) else { return false }
     guard lhs.sourceUrl == rhs.sourceUrl else { return false }
     guard lhs.isHot == rhs.isHot else { return false }
@@ -111,6 +111,7 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
     guard compareOptionals(lhs: lhs.relatedCount, rhs: rhs.relatedCount, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.preview, rhs: rhs.preview, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.description, rhs: rhs.description, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.title, rhs: rhs.title, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     return true
 }

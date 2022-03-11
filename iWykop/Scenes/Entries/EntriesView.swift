@@ -107,8 +107,11 @@ struct EntryViewCell: View {
                 EntryViewCellHeader(entry: entry)
                 EntryBodyPreview(entry: entry)
                 
-                Text("comments:") + Text(" \(entry.commentsCount)").bold()
-
+                HStack {
+                    Spacer()
+                    Image(systemName:"text.bubble")
+                    Text("\(entry.commentsCount)")
+                }
             }
             
         }.padding(0)
