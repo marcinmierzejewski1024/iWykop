@@ -8,23 +8,68 @@
 import Foundation
 import SwiftUI
 
+
 class WykopColors {
+    static var currentTheme : Theme = WykopColorsLight();
     
-    static var accentColor : Color {
+    
+}
+
+protocol Theme {
+    var accentColor: Color { get }
+    var backgroundColor: Color { get }
+    var plusGreenColor: Color { get }
+    var cardColor: Color { get }
+    var textColor: Color { get }
+    var secondaryTextColor: Color { get }
+    var authorColors : [Int:Color] { get }
+
+}
+
+class WykopColorsLight : Theme {
+    
+    var accentColor : Color {
         get {
             return Color.indigo;
         }
     }
 
-    static var backgroundColor : Color {
+    var backgroundColor : Color {
         get {
             return Color(red: 240, green: 240, blue: 240);
         }
     }
+    
+    var plusGreenColor : Color {
+        get {
+            return .green
+        }
+    }
+    
+    var cardColor : Color {
+        get {
+            return .white;
+        }
+    }
+    
+    
+    var textColor : Color {
+        get {
+            return .black;
+        }
+    }
+    
+    var secondaryTextColor : Color {
+        get {
+            return Color(red: 40, green: 40, blue: 40);
 
+        }
+    }
     
     
-    static var authorColors : [Int:Color] {
+    
+    
+    var authorColors : [Int:Color] {
         
         get {
             var result = [Int:Color]();
@@ -38,6 +83,67 @@ class WykopColors {
         
     }
 }
+
+
+class WykopColorsDark : Theme {
+    var accentColor : Color {
+        get {
+            return Color.orange;
+        }
+    }
+
+    var backgroundColor : Color {
+        get {
+            return Color(red: 40, green: 40, blue: 40);
+        }
+    }
+    
+    var plusGreenColor : Color {
+        get {
+            return .green
+        }
+    }
+    
+    var cardColor : Color {
+        get {
+            return .black;
+        }
+    }
+    
+    
+    var textColor : Color {
+        get {
+            return .white;
+        }
+    }
+    
+    
+    var secondaryTextColor : Color {
+        get {
+            return Color(red: 220, green: 220, blue: 220);
+
+        }
+    }
+    
+    
+    
+    
+    var authorColors : [Int:Color] {
+        
+        get {
+            var result = [Int:Color]();
+            result[0] = Color(rgb: 0x339933)
+            result[1] = Color(rgb: 0xff5917)
+            result[2] = Color(rgb: 0xBB0000)
+            result[5] = Color(rgb: 0x000000)
+       
+            return result;
+        }
+        
+    }
+
+}
+
 
 
 extension Color {

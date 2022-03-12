@@ -21,12 +21,12 @@ struct AuthorView: View {
                         }
                         
                     default:
-                        Image(systemName: "questionmark")
+                        Image(systemName: "questionmark").modifier(BodyStyle())
                         
                     }
                 }
             Spacer()
-            Text(author.login).bold().foregroundColor(WykopColors.authorColors[author.color] ?? .black)
+            Text(author.login).bold().foregroundColor(WykopColors.currentTheme.authorColors[author.color] ?? .black)
         }
     }
 }

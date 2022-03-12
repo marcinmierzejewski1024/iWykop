@@ -34,21 +34,21 @@ struct iWykopApp: App {
                     await linksViewModel.getLinks()
                 }.tabItem {
                     Label("Main", systemImage: "w.square")
-                }
+                }.modifier(BackgroundStyle())
                 
                 EntriesView(viewModel: viewModel).task {
                     await viewModel.getEntries();
                 }.tabItem {
                     Label("Entries", systemImage: "number.square")
-                }
+                }.modifier(BackgroundStyle())
                 
                 SettingsView().tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
-                }.environmentObject(settingsStore)
+                }.environmentObject(settingsStore).modifier(BackgroundStyle())
 
                 SearchView().tabItem {
                     Label("Search", systemImage: "magnifyingglass")
-                }
+                }.modifier(BackgroundStyle())
             }.onOpenURL { (url) in
                 print("\(url) to open!")
             }.font(.system(size: 12))

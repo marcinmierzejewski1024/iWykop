@@ -10,9 +10,14 @@ import SwiftUI
 
 extension Font {
     
-//    var entryBodyFontSize : Double = { return 12.0 }();
     
+    static func bodyFont() ->Font {
+        return Font(uiFont: .bodyFont());
+    }
     
+    static func commentFont() ->Font {
+        return Font(uiFont: .commentFont());
+    }
 }
 
 extension UIFont {
@@ -22,12 +27,18 @@ extension UIFont {
         return .systemFont(ofSize: 12);
     }
 
-    class func entryFont() -> UIFont
+    class func commentFont() -> UIFont
     {
-        return .systemFont(ofSize: 12);
+        return .systemFont(ofSize: 10);
     }
 
     
+}
+
+public extension Font {
+  init(uiFont: UIFont) {
+    self = Font(uiFont as CTFont)
+  }
 }
 
 

@@ -35,6 +35,7 @@ struct LinksView: View {
         var body: some View {
             
             
+            
             List() {
                 ForEach(viewModel.displayedLinks, id: \.id) { item in
                     
@@ -48,7 +49,7 @@ struct LinksView: View {
                         }
                     }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                     }
-                    WykopColors.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                    WykopColors.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                     
                     
                 }
@@ -88,13 +89,13 @@ struct LinksListCell: View {
                         Text(error.localizedDescription)
                         
                     default:
-                        Image(systemName: "questionmark")
+                        Image(systemName: "questionmark").modifier(BodyStyle())
                         
                     }
                 }
             VStack(alignment: .leading) {
                 
-                Text(link.title ?? "").font(.subheadline).padding(.vertical, 5)
+                Text(link.title ?? "").modifier(TitleStyle()).padding(.vertical, 5)
                 HStack{
                     Button(link.getSourceDomain() ?? "") {
     //                    openURL(URL(string: link.sourceUrl)!)
@@ -102,10 +103,10 @@ struct LinksListCell: View {
                     }
 
                     Spacer()
-                    Image(systemName:"flame.fill")
-                    Text("\(link.voteCount)").padding(.trailing, 10)
-                    Image(systemName:"text.bubble")
-                    Text("\(link.commentsCount)")
+                    Image(systemName:"flame.fill").modifier(BodyStyle())
+                    Text("\(link.voteCount)").padding(.trailing, 10).modifier(BodyStyle())
+                    Image(systemName:"text.bubble").modifier(BodyStyle())
+                    Text("\(link.commentsCount)").modifier(BodyStyle())
 
                 }
 //                AuthorView(author: link.author)
@@ -116,7 +117,7 @@ struct LinksListCell: View {
             }
             
             
-        }.padding(0)
+        }.padding(0).modifier(CardStyle())
         
     }
     

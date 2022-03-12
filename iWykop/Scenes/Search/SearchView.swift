@@ -12,10 +12,10 @@ struct SearchView: View {
 
     var body: some View {
         NavigationView {
-            Text("Searching for \(searchText)")
+            Text("Searching for \(searchText)").modifier(BodyStyle())
                 .searchable(text: $searchText, prompt: "Look for something")
                 .navigationTitle("Search")
-        }
+        }.modifier(BackgroundStyle())
     }
 }
 

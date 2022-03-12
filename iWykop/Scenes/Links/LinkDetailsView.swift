@@ -45,7 +45,7 @@ struct LinkDetailsView: View {
                 //                    LinkBodyPreview(link: link)
             }.listRowSeparator(.hidden).padding(0)
             
-            WykopColors.backgroundColor.frame( height: 30, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+            WykopColors.currentTheme.backgroundColor.frame( height: 30, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
             
             
             Tabs(tabs: .constant(LinkDetailsTabs.allCases.map({ tab in
@@ -107,11 +107,11 @@ struct LinkWithCommentsView: View {
                     EmbedBodyPreviewWithModal(embed: item.embed)
                     HStack{
                         Spacer()
-                        Text("+\(item.voteCount)").foregroundColor(Color.green)
+                        Text("+\(item.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.currentTheme.plusGreenColor)
                     }
                     
                 }.listRowSeparator(.hidden)
-                WykopColors.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                 
             }
         }
@@ -161,11 +161,11 @@ struct LinkViewCellHeader : View
                         Text(error.localizedDescription)
                         
                     default:
-                        Image(systemName: "questionmark")
+                        Image(systemName: "questionmark").modifier(BodyStyle())
                         
                     }
                 }.padding(0)
-            Text(link.description ?? "").padding(10).fixedSize(horizontal: false, vertical: true)
+            Text(link.description ?? "").padding(10).fixedSize(horizontal: false, vertical: true).modifier(BodyStyle())
             
         }.padding(0)
         

@@ -89,7 +89,7 @@ class BodyFormater
             }
             a{
                  text-decoration: none;
-                 color: #\(WykopColors.accentColor.hexDescription());
+                 color: #\(WykopColors.currentTheme.accentColor.hexDescription());
                  
              }
             """;

@@ -77,7 +77,7 @@ struct EntriesView: View {
                         }
                     }
                     
-                    WykopColors.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                    WykopColors.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
 
                     
                     
@@ -109,12 +109,15 @@ struct EntryViewCell: View {
                 
                 HStack {
                     Spacer()
-                    Image(systemName:"text.bubble")
+                    
+                    Text("+\(entry.voteCount)").foregroundColor(Color.green).padding(.trailing, 5)
+                    Image(systemName:"text.bubble").modifier(BodyStyle())
                     Text("\(entry.commentsCount)")
                 }
             }
             
-        }.padding(0)
+        }.padding(0).modifier(CardStyle())
+
         
     }
     
@@ -229,7 +232,7 @@ struct EmbedBodyPreview : View {
                             Text(error.localizedDescription)
                             
                         default:
-                            Image(systemName: "questionmark")
+                            Image(systemName: "questionmark").modifier(BodyStyle())
                             
                         }
                     }

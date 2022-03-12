@@ -16,20 +16,20 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Content settings")) {
+                Section(header: Text("Content settings").modifier(TitleStyle())) {
                     Toggle(isOn: $settings.openInSafari) {
-                        Text("Open links in external browser")
+                        Text("Open links in external browser").modifier(BodyStyle())
                     }
                     Toggle(isOn: $settings.plus18Enabled) {
-                        Text("Show +18 content")
+                        Text("Show +18 content").modifier(BodyStyle())
                     }
                     
                     Toggle(isOn: $settings.darkMode) {
-                        Text("Dark mode")
+                        Text("Dark mode").modifier(BodyStyle())
                     }
                 }
                 
-                Section(header: Text("Assets")) {
+                Section(header: Text("Assets").modifier(TitleStyle())) {
                     Button("https://www.flaticon.com/free-icons/hide"){
                         openURL(URL(string: "https://www.flaticon.com/free-icons/hide")!)
 
