@@ -66,8 +66,9 @@ struct EntriesView: View {
                 ForEach(viewModel.entries, id: \.id) { item in
                     
                     
-                    NavigationLink(destination:
-                                    EntryDetailsView(entry:item, viewModel: self.viewModel)) {
+                    ZStack {
+                        
+                        
                         EntryViewCell(entry: item).onAppear {
                             if item == self.viewModel.entries.last {
                                 Task {
@@ -75,10 +76,18 @@ struct EntriesView: View {
                                 }
                             }
                         }
+                        
+                        NavigationLink(destination:
+                                        EntryDetailsView(entry:item, viewModel: self.viewModel)) {
+                            EmptyView()
+                        }.buttonStyle(PlainButtonStyle())
+                        
                     }
                     
+                    
+                    
                     WykopColors.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-
+                    
                     
                     
                 }
@@ -117,7 +126,7 @@ struct EntryViewCell: View {
             }
             
         }.padding(0).modifier(CardStyle())
-
+        
         
     }
     
@@ -130,9 +139,9 @@ struct EntryViewCellHeader : View
     
     var body: some View {
         HStack{
-
+            
             AuthorView(author: entry.author)
-
+            
         }.padding(0)
         
         
@@ -149,8 +158,8 @@ struct EntryBodyPreview : View
     
     var body: some View {
         VStack{
-//            Text(entry.body ?? "")
-
+            //            Text(entry.body ?? "")
+            
             Text(entry.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
             if(entry.embed != nil && entry.embed?.plus18 == false) {
                 EmbedBodyPreviewWithModal(embed: entry.embed!)

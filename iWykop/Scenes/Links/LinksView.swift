@@ -16,9 +16,9 @@ struct LinksView: View {
         
         NavigationView {
             
-                
-                LinksListView(viewModel: self.viewModel)
-                
+            
+            LinksListView(viewModel: self.viewModel)
+            
             
             
         }.navigationViewStyle(.stack)
@@ -39,32 +39,42 @@ struct LinksView: View {
             List() {
                 ForEach(viewModel.displayedLinks, id: \.id) { item in
                     
-                    NavigationLink(destination:
-                                    LinkDetailsView(link:item, viewModel: self.viewModel)) {
-                    LinksListCell(link: item, viewModel: viewModel).onAppear {
-                        if item == self.viewModel.displayedLinks.last {
-                            Task {
-                                await self.viewModel.getNextLinks()
+                    ZStack {
+                        
+                        
+                        LinksListCell(link: item, viewModel: viewModel).onAppear {
+                            if item == self.viewModel.displayedLinks.last {
+                                Task {
+                                    await self.viewModel.getNextLinks()
+                                }
+                                
                             }
+                            
                         }
-                    }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-                    }
-                    WykopColors.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                        
+                        NavigationLink(destination:
+                                        LinkDetailsView(link:item, viewModel: self.viewModel)) {
+                            EmptyView()
+                        }.buttonStyle(PlainButtonStyle())
                     
+                }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                     
-                }
-            }.listStyle(PlainListStyle()).refreshable {
-                Task {
-                    
-                    await self.viewModel.refreshCurrentCollectionsLinks()
-                }
+                WykopColors.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                
+                
             }
-            
-            
-            
+        }.listStyle(PlainListStyle()).refreshable {
+            Task {
+                
+                await self.viewModel.refreshCurrentCollectionsLinks()
+            }
         }
+        
+        
+        
     }
-    
+}
+
 }
 
 
@@ -72,7 +82,7 @@ struct LinksListCell: View {
     var link: Link;
     @ObservedObject var viewModel : LinksViewModel;
     @Environment(\.openURL) var openURL
-
+    
     
     var body: some View {
         VStack{
@@ -98,22 +108,22 @@ struct LinksListCell: View {
                 Text(link.title ?? "").modifier(TitleStyle()).padding(.vertical, 5)
                 HStack{
                     Button(link.getSourceDomain() ?? "") {
-    //                    openURL(URL(string: link.sourceUrl)!)
+                        //                    openURL(URL(string: link.sourceUrl)!)
                         
                     }
-
+                    
                     Spacer()
                     Image(systemName:"flame.fill").modifier(BodyStyle())
                     Text("\(link.voteCount)").padding(.trailing, 10).modifier(BodyStyle())
                     Image(systemName:"text.bubble").modifier(BodyStyle())
                     Text("\(link.commentsCount)").modifier(BodyStyle())
-
+                    
                 }
-//                AuthorView(author: link.author)
-
+                //                AuthorView(author: link.author)
                 
-
-
+                
+                
+                
             }
             
             
