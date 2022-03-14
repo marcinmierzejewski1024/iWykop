@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KSToastView
 
 struct LinksView: View {
     @ObservedObject var viewModel : LinksViewModel;
@@ -34,47 +35,52 @@ struct LinksView: View {
         @ViewBuilder
         var body: some View {
             
-            
-            
-            List() {
-                ForEach(viewModel.displayedLinks, id: \.id) { item in
-                    
-                    ZStack {
+            VStack {
+                NavigationLink(destination: self.viewModel.childView(), isActive: $viewModel.childViewActive) { EmptyView() }.hidden()
+                
+                
+                List() {
+                    ForEach(viewModel.displayedLinks, id: \.id) { item in
                         
-                        
-                        LinksListCell(link: item, viewModel: viewModel).onAppear {
-                            if item == self.viewModel.displayedLinks.last {
-                                Task {
-                                    await self.viewModel.getNextLinks()
+                        ZStack {
+                            
+                            
+                            LinksListCell(link: item, viewModel: viewModel).onAppear {
+                                if item == self.viewModel.displayedLinks.last {
+                                    Task {
+                                        await self.viewModel.getNextLinks()
+                                    }
+                                    
                                 }
                                 
+                            }.onTapGesture {
+                                
+                                self.viewModel.presentChildViewModel(LinkViewModel(link: item))
                             }
                             
-                        }
+                            //                        NavigationLink(destination:
+                            //                                        LinkDetailsView(link:item, viewModel: self.viewModel)) {
+                            //                            EmptyView()
+                            //                        }.buttonStyle(PlainButtonStyle())
+                            
+                        }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                         
-                        NavigationLink(destination:
-                                        LinkDetailsView(link:item, viewModel: self.viewModel)) {
-                            EmptyView()
-                        }.buttonStyle(PlainButtonStyle())
-                    
-                }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-                    
-                WykopColors.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-                
+                        WykopColors.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                        
+                        
+                    }
+                }.listStyle(PlainListStyle()).refreshable {
+                    Task {
+                        
+                        await self.viewModel.refreshCurrentCollectionsLinks()
+                    }
+                }
                 
             }
-        }.listStyle(PlainListStyle()).refreshable {
-            Task {
-                
-                await self.viewModel.refreshCurrentCollectionsLinks()
-            }
+            
         }
-        
-        
-        
     }
-}
-
+    
 }
 
 

@@ -19,7 +19,7 @@ enum LinkDetailsTabs : String, CaseIterable {
 struct LinkDetailsView: View {
     @State var selected = 0;
     @State var link : Link;
-    @ObservedObject var viewModel : LinksViewModel;
+    @ObservedObject var viewModel : LinkViewModel;
     
     func selectedTab() -> LinkDetailsTabs {
         return LinkDetailsTabs.allCases[selected];

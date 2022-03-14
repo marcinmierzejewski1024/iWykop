@@ -9,12 +9,12 @@ import Foundation
 import Resolver
 import OrderedCollections
 import KSToastView
+import SwiftUI
 
 
-class LinksViewModel : Resolving, ObservableObject
+class LinksViewModel : BasePushableViewModel, Resolving
 {
     lazy var linksService: LinksService = resolver.resolve()
-    lazy var linkService: LinkService = resolver.resolve()
 
     
     @Published var displayedLinks = OrderedSet<Link>();
@@ -91,21 +91,11 @@ class LinksViewModel : Resolving, ObservableObject
     }
     
     
-    func refreshLink(_ old:Link) async -> Link? {
-
-        do {
-            let newLink = try await linkService.getLink(id: old.id);
-
-            return newLink;
-
-        } catch {
-            print(error)
-            DispatchQueue.main.async {
-                KSToastView.ks_showToast(error.localizedDescription)
-            }
-            
-        }
-        return nil;
+    override func prepareView() -> AnyView {
+        
+        return AnyView(LinksView(viewModel: self).task {
+            await self.getLinks()
+        })
     }
     
     

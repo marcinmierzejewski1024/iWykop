@@ -30,9 +30,7 @@ struct iWykopApp: App {
             
             TabView {
 
-                LinksView(viewModel: linksViewModel).task {
-                    await linksViewModel.getLinks()
-                }.tabItem {
+                linksViewModel.prepareView().tabItem {
                     Label("Main", systemImage: "w.square")
                 }.modifier(BackgroundStyle())
                 
