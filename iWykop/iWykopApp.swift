@@ -34,9 +34,7 @@ struct iWykopApp: App {
                     Label("Main", systemImage: "w.square")
                 }.modifier(BackgroundStyle())
                 
-                EntriesView(viewModel: viewModel).task {
-                    await viewModel.getEntries();
-                }.tabItem {
+                viewModel.prepareView().tabItem {
                     Label("Entries", systemImage: "number.square")
                 }.modifier(BackgroundStyle())
                 

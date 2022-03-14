@@ -16,9 +16,11 @@ struct EntriesView: View {
         
         NavigationView {
             
-            
+
             
             VStack {
+                NavigationLink(destination: self.viewModel.childView(), isActive: $viewModel.childViewActive) { EmptyView() }.hidden()
+
                 DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
                     Text("6h").font(.headline).padding(5).onTapGesture {
                         Task {
@@ -75,12 +77,10 @@ struct EntriesView: View {
                                     await self.viewModel.getNextEntries()
                                 }
                             }
+                        }.onTapGesture {
+                            self.viewModel.presentChildViewModel(EntryViewModel(entry: item))
                         }
                         
-                        NavigationLink(destination:
-                                        EntryDetailsView(entry:item, viewModel: self.viewModel)) {
-                            EmptyView()
-                        }.buttonStyle(PlainButtonStyle())
                         
                     }
                     
@@ -268,9 +268,3 @@ struct BackgroundBlurView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
-
-//struct EntriesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EntriesView(viewModel: MockEntriesViewModel())
-//    }
-//}

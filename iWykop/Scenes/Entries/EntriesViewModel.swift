@@ -9,11 +9,11 @@ import Foundation
 import Resolver
 import OrderedCollections
 import KSToastView
+import SwiftUI
 
-class EntriesViewModel : Resolving, ObservableObject
+class EntriesViewModel : BasePushableViewModel, Resolving
 {
     lazy var entriesService: EntriesService = resolver.resolve()
-    lazy var entryService: EntryService = resolver.resolve()
     
     @Published var entries = OrderedSet<Entry>();
     private var lastDownloadedPage = 1;
@@ -53,24 +53,6 @@ class EntriesViewModel : Resolving, ObservableObject
     }
     
     
-    func refreshEntry(_ old:Entry) async -> Entry? {
-        
-        do {
-            let newEntry = try await entryService.getEntry(id: old.id);
-            
-            return newEntry;
-            
-            
-        } catch {
-            print(error);
-            DispatchQueue.main.async {
-                KSToastView.ks_showToast(error.localizedDescription);
-            }
-
-        }
-        
-        return nil;
-    }
     
     func getEntries(page : Int = 1) async {
         do {
@@ -93,10 +75,12 @@ class EntriesViewModel : Resolving, ObservableObject
     }
     
    
-    
-    func addButtonClicked() {
-        
+    override func prepareView() -> AnyView {
+        return AnyView(EntriesView(viewModel: self).task {
+            await self.getEntries();
+        });
     }
+    
     
 }
 

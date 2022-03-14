@@ -17,10 +17,7 @@ struct LinksView: View {
         
         NavigationView {
             
-            
             LinksListView(viewModel: self.viewModel)
-            
-            
             
         }.navigationViewStyle(.stack)
         
@@ -54,14 +51,9 @@ struct LinksView: View {
                                 }
                                 
                             }.onTapGesture {
-                                
                                 self.viewModel.presentChildViewModel(LinkViewModel(link: item))
                             }
                             
-                            //                        NavigationLink(destination:
-                            //                                        LinkDetailsView(link:item, viewModel: self.viewModel)) {
-                            //                            EmptyView()
-                            //                        }.buttonStyle(PlainButtonStyle())
                             
                         }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                         

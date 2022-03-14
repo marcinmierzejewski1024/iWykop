@@ -10,7 +10,7 @@ import KSToastView
 
 struct EntryDetailsView: View {
     @State var entry : Entry;
-    @ObservedObject var viewModel : EntriesViewModel;
+    @ObservedObject var viewModel : EntryViewModel;
     
     func reloadEntry() {
 
