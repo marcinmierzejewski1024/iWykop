@@ -22,16 +22,16 @@ enum LinksServiceCollections : String {
     
     
 }
-
+protocol AnythingViewModelProvider {
+    func getViewModelFor(url:URL) async throws -> BasePushableViewModel?;
+}
 
 protocol LinksService {
     func getLinks(collection:LinksServiceCollections, page : Int) async throws -> [Link];
-
 }
 
 protocol LinkService {
     func getLink(id:Int) async throws -> Link?;
-
 }
 
 protocol EntriesService {
@@ -40,4 +40,12 @@ protocol EntriesService {
 
 protocol EntryService {
     func getEntry(id:Int) async throws -> Entry?;
+}
+
+protocol TagService {
+    func getTag(tag:String) async throws -> Tag?;
+}
+
+protocol AuthorService {
+    func getAuthor(name:String) async throws -> Author?;
 }

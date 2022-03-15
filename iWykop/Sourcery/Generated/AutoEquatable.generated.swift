@@ -115,5 +115,11 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     return true
 }
+// MARK: - Tag AutoEquatable
+extension Tag: Equatable {}
+internal func == (lhs: Tag, rhs: Tag) -> Bool {
+    guard lhs.name == rhs.name else { return false }
+    return true
+}
 
 // MARK: - AutoEquatable for Enums

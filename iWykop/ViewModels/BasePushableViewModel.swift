@@ -58,11 +58,16 @@ class BasePushableViewModel : ObservableObject {
     }
     
     func prepareView() -> AnyView {
+        assertionFailure("You need override this method!")
         return AnyView(EmptyView());
     }
+
     
+
     
 }
+
+
 
 
 

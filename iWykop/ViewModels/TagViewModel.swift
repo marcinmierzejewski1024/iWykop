@@ -10,7 +10,9 @@ import SwiftUI
 
 class TagViewModel : BasePushableViewModel {
 
-
+    var tagName = "#awww";
+    var otherTags = [TagViewModel]();
+    
     
     init(name: String) {
         super.init()
@@ -35,9 +37,6 @@ class TagViewModel : BasePushableViewModel {
     }
     
 
-    var tagName = "#awww";
-    
-    var otherTags = [TagViewModel]();
     
     
     
