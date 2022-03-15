@@ -12,33 +12,6 @@
 import WebKit
 import SwiftUI
 
-struct ContentView: View {
-    @State private var isPresented = false
-    
-    var body: some View {
-        Button("Show Modal with full screen") {
-            self.isPresented.toggle()
-        }
-        .fullScreenCover(isPresented: $isPresented, content: FullScreenModalView.init)
-    }
-}
-
-struct FullScreenModalView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
-    var body: some View {
-        VStack {
-            Text("This is a modal view")
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black)
-        .edgesIgnoringSafeArea(.all)
-        .onTapGesture {
-            presentationMode.wrappedValue.dismiss()
-        }
-    }
-}
-
 
 struct UIWKWebview: UIViewRepresentable {
     let url: String
@@ -54,3 +27,15 @@ struct UIWKWebview: UIViewRepresentable {
 }
 
 
+
+struct BackgroundBlurView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
