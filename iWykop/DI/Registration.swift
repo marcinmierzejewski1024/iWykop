@@ -40,6 +40,14 @@ extension Resolver : ResolverRegistering {
             return BodyFormater()
         }.scope(.graph)
         
+        register(TagService.self) { resolver, args in
+            return TagServiceImpl()
+        }.scope(.graph)
+        
+        register(AnythingViewModelProvider.self) { resolver, args in
+            return AnythingViewModelProviderImpl()
+        }.scope(.graph)
+        
 
 
         

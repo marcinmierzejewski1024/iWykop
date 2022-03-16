@@ -12,7 +12,7 @@ import KSToastView
 import SwiftUI
 
 
-class EntryViewModel : BasePushableViewModel, Resolving
+class EntryViewModel : BasePushableViewModel
 {
     var entry : Entry;
     init(entry : Entry) {

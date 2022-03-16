@@ -11,7 +11,7 @@
 			<string>pl.marcinmierzejewski.iWykop</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>iWykop</string>
+				<string>iwykop</string>
 			</array>
 		</dict>
 	</array>

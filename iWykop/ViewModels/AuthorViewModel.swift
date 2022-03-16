@@ -10,7 +10,7 @@ import Foundation
 import Resolver
 import OrderedCollections
 
-class AuthorViewModel : BasePushableViewModel, Resolving
+class AuthorViewModel : BasePushableViewModel
 {
     lazy var authorService: AuthorService = resolver.resolve()
 

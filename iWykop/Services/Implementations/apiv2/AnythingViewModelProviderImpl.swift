@@ -20,15 +20,19 @@ class AnythingViewModelProviderImpl : AnythingViewModelProvider, Resolving
 
     
     func getViewModelFor(url: URL) async throws -> BasePushableViewModel? {
-        if(url.absoluteString.starts(with: "iWykop:@")){
-            if let author = try await authorService.getAuthor(name: "todo") {
-                return AuthorViewModel(author: author);
+        if let decoded = url.absoluteString.decodeUrl() {
+            if(decoded.starts(with: "iwykop:@")){
+                let authorName = decoded.replacingOccurrences(of: "iwykop:@", with: "")
+                if let author = try await authorService.getAuthor(name: authorName) {
+                    return AuthorViewModel(author: author);
+                }
             }
-        }
-        
-        if(url.absoluteString.starts(with: "iWykop:#")){
-            if let tag = try await tagService.getTag(tag: "todo") {
-                return TagViewModel(name: tag.name);
+            
+            if(decoded.starts(with: "iwykop:#")){
+                let tagName = decoded.replacingOccurrences(of: "iwykop:#", with: "")
+                if let tag = try await tagService.getTag(tag: tagName) {
+                    return TagViewModel(name: tagName);
+                }
             }
         }
         

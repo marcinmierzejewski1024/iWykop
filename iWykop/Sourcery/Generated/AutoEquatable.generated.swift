@@ -118,7 +118,7 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
 // MARK: - Tag AutoEquatable
 extension Tag: Equatable {}
 internal func == (lhs: Tag, rhs: Tag) -> Bool {
-    guard lhs.name == rhs.name else { return false }
+    guard compareOptionals(lhs: lhs.meta, rhs: rhs.meta, compare: ==) else { return false }
     return true
 }
 

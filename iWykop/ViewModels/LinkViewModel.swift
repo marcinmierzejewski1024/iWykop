@@ -12,7 +12,7 @@ import KSToastView
 import SwiftUI
 
 
-class LinkViewModel : BasePushableViewModel, Resolving
+class LinkViewModel : BasePushableViewModel
 {
     var link: Link;
     lazy var linkService: LinkService = resolver.resolve()

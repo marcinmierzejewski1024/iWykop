@@ -31,10 +31,9 @@ struct EntryDetailsView: View {
         }.onAppear(){
             self.reloadEntry();
         }.onOpenURL { url in
-            
-//TODO:
-            self.viewModel.presentChildViewModel(TagViewModel(name:"#fromURL!!"))
-            
+            Task {
+                await self.viewModel.presentFromUrl(url)
+            }
         }
         
         

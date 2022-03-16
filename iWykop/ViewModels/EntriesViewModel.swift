@@ -11,7 +11,7 @@ import OrderedCollections
 import KSToastView
 import SwiftUI
 
-class EntriesViewModel : BasePushableViewModel, Resolving
+class EntriesViewModel : BasePushableViewModel
 {
     lazy var entriesService: EntriesService = resolver.resolve()
     

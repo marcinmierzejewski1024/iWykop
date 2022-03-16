@@ -124,7 +124,7 @@ class BodyFormater
 
                     if (url.starts(with: "#") || url.starts(with: "@") || url.starts(with: "spoiler:")) {
                         name = url;
-                        url = "iWykop:\(url)"
+                        url = "iwykop:\(url)"
                         
                      
                         mutableString.replaceOccurrences(of: foundBlock, with: "<a href=\"\(url)\">\(name)</a>", options: [], range: match.range)
