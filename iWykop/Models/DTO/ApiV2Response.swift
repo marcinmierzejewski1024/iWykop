@@ -29,6 +29,7 @@ struct ApiV2Error: AutoCodable {
 struct ApiV2Response<T : Codable> : AutoCodable {
         var error: ApiV2Error?
         var data: T?;
+        var meta: Meta?
     
     
 }

@@ -36,7 +36,7 @@ class LinkServiceImpl : ApiV2Service, LinkService  {
 
         if let result = self.mapDataToEntities(Link.self, data:data) {
         
-            let withAttributedBody = await bodyFormatter.addBodyAttr(es: [result])
+            let withAttributedBody = await bodyFormatter.addBodyAttr(es: [result.data!])
             
             return withAttributedBody.first as? Link;
         }

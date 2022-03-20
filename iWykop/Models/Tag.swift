@@ -7,28 +7,21 @@
 
 import Foundation
 
+typealias TagContent = [ItemInTag]
 
-struct Tag: AutoCodable, AutoEquatable, Hashable {
-    let meta: Meta?;
+struct Tag: AutoCodable, AutoEquatable {
+    var content : TagContent?;
+    var meta : Meta?;
+}
+
+
+
+struct ItemInTag : AutoCodable, AutoEquatable, Hashable {
+
+    var type : String?;
+    var link : Link?
+    var entry : Entry?
     
 }
 
 
-struct Meta: Codable,Hashable {
-    let isOwn, isObserved: Bool
-    let owner: String?
-    let isBlocked: Bool?
-    let tag: String
-    let description: String?
-    let background: String?
-
-    enum CodingKeys: String, CodingKey {
-        case isOwn = "is_own"
-        case isObserved = "is_observed"
-        case owner
-        case isBlocked = "is_blocked"
-        case tag
-        case description = "description"
-        case background
-    }
-}

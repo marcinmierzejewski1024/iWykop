@@ -86,6 +86,14 @@ internal func == (lhs: Entry, rhs: Entry) -> Bool {
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     return true
 }
+// MARK: - ItemInTag AutoEquatable
+extension ItemInTag: Equatable {}
+internal func == (lhs: ItemInTag, rhs: ItemInTag) -> Bool {
+    guard compareOptionals(lhs: lhs.type, rhs: rhs.type, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.link, rhs: rhs.link, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.entry, rhs: rhs.entry, compare: ==) else { return false }
+    return true
+}
 // MARK: - Link AutoEquatable
 extension Link: Equatable {}
 internal func == (lhs: Link, rhs: Link) -> Bool {
@@ -118,6 +126,7 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
 // MARK: - Tag AutoEquatable
 extension Tag: Equatable {}
 internal func == (lhs: Tag, rhs: Tag) -> Bool {
+    guard compareOptionals(lhs: lhs.content, rhs: rhs.content, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.meta, rhs: rhs.meta, compare: ==) else { return false }
     return true
 }

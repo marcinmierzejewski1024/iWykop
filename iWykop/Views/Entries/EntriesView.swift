@@ -93,6 +93,10 @@ struct EntriesView: View {
                     
                     await self.viewModel.refreshEntries()
                 }
+            }.onOpenURL { url in
+                Task {
+                    await self.viewModel.presentFromUrl(url)
+                }
             }
             
             

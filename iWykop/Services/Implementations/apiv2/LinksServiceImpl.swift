@@ -52,7 +52,7 @@ class LinksServiceImpl : ApiV2Service, LinksService {
         
         if let result = self.mapDataToEntities([Link].self, data:data) {
             
-            let withAttributedBody = await bodyFormatter.addBodyAttr(es: result)
+            let withAttributedBody = await bodyFormatter.addBodyAttr(es: result.data ?? [])
             
             return withAttributedBody as? [Link] ?? [];
         } else {

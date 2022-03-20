@@ -8,26 +8,36 @@
 import Foundation
 import SwiftUI
 
-class TagViewModel : BasePushableViewModel {
+enum TagViewMode {
+    case Entries
+    case Links
+    case Both
+}
 
-    var tagName = "#awww";
-    var otherTags = [TagViewModel]();
+class TagViewModel : BasePushableViewModel {
+    
+    var mode = TagViewMode.Entries;
+    var tag : Tag?;
     
     
-    init(name: String) {
+    init(tag: Tag) {
         super.init()
+        self.tag = tag;
         
-        self.tagName = name;
-        if(tagName == "tag1"){
-            self.otherTags = [TagViewModel(name: "#monotyp"),TagViewModel(name: "#eeeee"),TagViewModel(name: "#wwwww")];
-        }
-        
-        if(tagName == "#monotyp"){
-            self.otherTags = [TagViewModel(name: "#ttt"),TagViewModel(name: "#aaaa"),TagViewModel(name: "#gfkjkgfj")];
-        }
-        if(tagName == "#ttt"){
-            self.otherTags = [TagViewModel(name: "#asEWWE"),TagViewModel(name: "#DSDSD"),TagViewModel(name: "#NBNBN")];
-        }
+    }
+    
+    public func items() -> [ItemInTag]? {
+        return self.tag?.content?.filter({ item in
+
+            switch self.mode {
+            case .Entries:
+                return item.entry != nil;
+            case .Links:
+                return item.link != nil;
+            case .Both:
+                return true;
+            }
+        })
     }
     
     
@@ -36,7 +46,7 @@ class TagViewModel : BasePushableViewModel {
         return AnyView(TagView(viewModel: self));
     }
     
-
+    
     
     
     

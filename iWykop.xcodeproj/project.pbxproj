@@ -13,6 +13,7 @@
 		561196AB27BEA68100605D03 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561196AA27BEA68100605D03 /* ApiClient.swift */; };
 		561196AD27BEA7D800605D03 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561196AC27BEA7D800605D03 /* String.swift */; };
 		561196B127BEED7900605D03 /* AFApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561196B027BEED7900605D03 /* AFApiClient.swift */; };
+		5624984B27E7573200A7EA10 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624984A27E7573200A7EA10 /* Meta.swift */; };
 		56250B5C27C192390086AFF5 /* HtmlStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B5B27C192390086AFF5 /* HtmlStringView.swift */; };
 		56250B5F27C23B310086AFF5 /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 56250B5E27C23B310086AFF5 /* Crypto */; };
 		56250B6227C255F10086AFF5 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 56250B6127C255F10086AFF5 /* Collections */; };
@@ -102,6 +103,7 @@
 		561196AA27BEA68100605D03 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		561196AC27BEA7D800605D03 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		561196B027BEED7900605D03 /* AFApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFApiClient.swift; sourceTree = "<group>"; };
+		5624984A27E7573200A7EA10 /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
 		56250B5B27C192390086AFF5 /* HtmlStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlStringView.swift; sourceTree = "<group>"; };
 		56250B6B27C26FE90086AFF5 /* EntryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsView.swift; sourceTree = "<group>"; };
 		56250B6D27C27D1E0086AFF5 /* EntryServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryServiceImpl.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				56250B6F27C27F980086AFF5 /* Comment.swift */,
 				56ECA37427CE6A5300EBCA33 /* Link.swift */,
 				5662048427E1327400A61508 /* Tag.swift */,
+				5624984A27E7573200A7EA10 /* Meta.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				561196AB27BEA68100605D03 /* ApiClient.swift in Sources */,
 				56684F3927C156FB00604432 /* AutoCodable.generated.swift in Sources */,
 				561196B127BEED7900605D03 /* AFApiClient.swift in Sources */,
+				5624984B27E7573200A7EA10 /* Meta.swift in Sources */,
 				56ECA39327CED1A700EBCA33 /* AuthorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

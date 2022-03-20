@@ -31,7 +31,7 @@ class AnythingViewModelProviderImpl : AnythingViewModelProvider, Resolving
             if(decoded.starts(with: "iwykop:#")){
                 let tagName = decoded.replacingOccurrences(of: "iwykop:#", with: "")
                 if let tag = try await tagService.getTag(tag: tagName) {
-                    return TagViewModel(name: tagName);
+                    return TagViewModel(tag: tag);
                 }
             }
         }

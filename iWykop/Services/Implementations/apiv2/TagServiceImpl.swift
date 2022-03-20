@@ -14,7 +14,7 @@ class TagServiceImpl : ApiV2Service, TagService  {
     private var requestedTag = "";
     
     override func getPath() -> String {
-        "Tags/Index/page/\(requestedPage)/tag/\(requestedTag)"
+        "Tags/Index/\(requestedTag)/page/\(requestedPage)/"
     }
     
     override func urlParams() -> [String : String]? {
@@ -27,15 +27,25 @@ class TagServiceImpl : ApiV2Service, TagService  {
     
     
     func getTag(tag: String) async throws -> Tag? {
+        self.requestedTag = tag;
+        
         let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         
+        if let result = self.mapDataToEntities(TagContent.self, data:data) {
         
-        let resultString = String(data: data, encoding: .utf8);
-        print(resultString);
+//            let withAttributedBody = await bodyFormatter.addBodyAttr(es: result.data)
+            
+            
+            var tag = Tag();
+            tag.content = result.data;
+            tag.meta = result.meta
+            return tag;
+        }
+
         
-        return Tag(meta: nil);
+        return nil;
 
 
     }

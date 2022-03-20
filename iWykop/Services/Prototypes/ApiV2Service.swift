@@ -69,7 +69,7 @@ class ApiV2Service : Resolving
     }
     
     
-    func mapDataToEntities<T : Codable>(_ t: T.Type, data:Data) -> T?
+    func mapDataToEntities<T : Codable>(_ t: T.Type, data:Data) -> ApiV2Response<T>?
     {
         
         let decoder = JSONDecoder()
@@ -80,7 +80,7 @@ class ApiV2Service : Resolving
                 throw err.messageEn;
             }
 
-            return respo.data!;
+            return respo;
             
         } catch let DecodingError.dataCorrupted(context) {
             print(context)
