@@ -79,8 +79,3 @@ struct EntryWithCommentsView: View {
         }
     }
 }
-//struct EntryDetailsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EntryDetailsView()
-//    }
-//}

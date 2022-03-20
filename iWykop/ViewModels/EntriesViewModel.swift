@@ -29,14 +29,13 @@ class EntriesViewModel : BasePushableViewModel
     func refreshEntries() async {
         
         do {
-            let newEntries = try await entriesService.getEntries(page: 1,period: self.requestedPeriod);
-            
-            DispatchQueue.main.async {
-                self.entries.removeAll()
-                self.entries.append(contentsOf: newEntries);
-                self.lastDownloadedPage = 1;
-            }
-            
+            var newEntries = try await entriesService.getEntries(page: 1,period: self.requestedPeriod);
+            newEntries = await self.withAttributedBody(newEntries);
+
+            self.entries.removeAll()
+            self.entries.append(contentsOf: newEntries);
+            self.lastDownloadedPage = 1;
+        
             
         } catch {
             print(error);
@@ -56,14 +55,12 @@ class EntriesViewModel : BasePushableViewModel
     
     func getEntries(page : Int = 1) async {
         do {
-            let newEntries = try await entriesService.getEntries(page: page, period:self.requestedPeriod);
+            var newEntries = try await entriesService.getEntries(page: page, period:self.requestedPeriod);
+            newEntries = await self.withAttributedBody(newEntries);
+
+            self.entries.append(contentsOf: newEntries);
+            self.lastDownloadedPage = page;
             
-            DispatchQueue.main.async {
-                
-                self.entries.append(contentsOf: newEntries);
-                self.lastDownloadedPage = page;
-                
-            }
             
         } catch {
             print(error);
@@ -72,6 +69,13 @@ class EntriesViewModel : BasePushableViewModel
             }
 
         }
+    }
+    
+    func withAttributedBody(_ entries:[Entry]) async -> [Entry] {
+        let withAttributedBody = await bodyFormatter.addBodyAttr(es: entries)
+        
+        return withAttributedBody as? [Entry] ?? [];
+
     }
     
    

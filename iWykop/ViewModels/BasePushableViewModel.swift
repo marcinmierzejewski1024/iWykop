@@ -14,6 +14,7 @@ import KSToastView
 
 class BasePushableViewModel : ObservableObject, Resolving {
     
+    lazy var bodyFormatter : BodyFormater = resolver.resolve();
     lazy var anythingProvider : AnythingViewModelProvider = resolver.resolve();
     
     @Published var parentViewModel : BasePushableViewModel?

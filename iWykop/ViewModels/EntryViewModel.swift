@@ -24,7 +24,8 @@ class EntryViewModel : BasePushableViewModel
     func refreshEntry(_ old:Entry) async -> Entry? {
         
         do {
-            let newEntry = try await entryService.getEntry(id: old.id);
+            var newEntry = try await entryService.getEntry(id: old.id);
+            newEntry = await self.withAttributedBody(newEntry!);
             
             return newEntry;
             
@@ -40,6 +41,12 @@ class EntryViewModel : BasePushableViewModel
         return nil;
     }
     
+    func withAttributedBody(_ entry:Entry) async -> Entry? {
+        let withAttributedBody = await bodyFormatter.addBodyAttrSingle(es: entry)
+        
+        return withAttributedBody as? Entry;
+
+    }
     
     override func prepareView() -> AnyView {
         return AnyView(EntryDetailsView(entry: self.entry, viewModel: self).task {

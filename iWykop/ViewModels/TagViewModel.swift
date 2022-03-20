@@ -18,7 +18,6 @@ class TagViewModel : BasePushableViewModel {
     
     var mode = TagViewMode.Entries;
     var tag : Tag?;
-    lazy var bodyFormatter : BodyFormater = resolver.resolve();
     @Published var items : [ItemInTag]?
     
     
