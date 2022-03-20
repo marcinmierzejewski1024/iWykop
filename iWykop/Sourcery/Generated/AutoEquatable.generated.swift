@@ -89,7 +89,7 @@ internal func == (lhs: Entry, rhs: Entry) -> Bool {
 // MARK: - ItemInTag AutoEquatable
 extension ItemInTag: Equatable {}
 internal func == (lhs: ItemInTag, rhs: ItemInTag) -> Bool {
-    guard compareOptionals(lhs: lhs.type, rhs: rhs.type, compare: ==) else { return false }
+    guard lhs.type == rhs.type else { return false }
     guard compareOptionals(lhs: lhs.link, rhs: rhs.link, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.entry, rhs: rhs.entry, compare: ==) else { return false }
     return true

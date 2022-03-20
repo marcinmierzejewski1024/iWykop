@@ -18,16 +18,21 @@ class TagViewModel : BasePushableViewModel {
     
     var mode = TagViewMode.Entries;
     var tag : Tag?;
+    lazy var bodyFormatter : BodyFormater = resolver.resolve();
+    @Published var items : [ItemInTag]?
     
     
     init(tag: Tag) {
         super.init()
         self.tag = tag;
+        Task {
+            await prepareItems();
+        }
         
     }
     
-    public func items() -> [ItemInTag]? {
-        return self.tag?.content?.filter({ item in
+    @MainActor public func prepareItems() async {
+        let filtered = self.tag?.content?.filter({ item in
 
             switch self.mode {
             case .Entries:
@@ -38,6 +43,25 @@ class TagViewModel : BasePushableViewModel {
                 return true;
             }
         })
+        
+        
+        var withAttributed = [ItemInTag]();
+        for filtered in filtered ?? [] {
+            var item = filtered;
+            if let entry = item.entry {
+                let entryAttributed = await self.bodyFormatter.addBodyAttrSingle(es: entry)
+                item.entry = entryAttributed as? Entry;
+                withAttributed.append(item);
+            }
+            
+            if let link = item.link {
+                let linkAttributed = await self.bodyFormatter.addBodyAttrSingle(es: link)
+                item.link = linkAttributed as? Link;
+                withAttributed.append(item);
+            }
+        }
+        
+        self.items = withAttributed;
     }
     
     

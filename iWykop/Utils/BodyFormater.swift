@@ -21,7 +21,9 @@ protocol WithComments : BodyFormatable
 
 class BodyFormater
 {
- 
+
+    
+    
     @MainActor
     func addBodyAttr(es:[BodyFormatable]) async -> [BodyFormatable] {
         //creating attributedString fails when is on non-main queue
@@ -47,8 +49,12 @@ class BodyFormater
         
     }
     
+    @MainActor
+    func addBodyAttrSingle(es:BodyFormatable) async -> BodyFormatable? {
+        return await addBodyAttr(es: [es]).first;
+    }
     
-    func markupFromHtml(_ html: String?) -> AttributedString? {
+    private func markupFromHtml(_ html: String?) -> AttributedString? {
 
         guard html != nil else {
             return nil;
@@ -80,7 +86,7 @@ class BodyFormater
     }
 
     
-    func addFontCss(_ html: String) -> String {
+    private func addFontCss(_ html: String) -> String {
         
         
         let css = """
@@ -98,7 +104,7 @@ class BodyFormater
 
     }
     
-    func replaceLocalLinks(_ html: String) -> String {
+    private func replaceLocalLinks(_ html: String) -> String {
         let ahrefRegex = "#{0,1}@{0,1}<a\\shref=\\\"([^\\\"]*?)\\\".*?>(.*?)<\\/a>"
         do {
             let regex = try NSRegularExpression(pattern: ahrefRegex,options: [.caseInsensitive])

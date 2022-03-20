@@ -14,11 +14,15 @@ struct Tag: AutoCodable, AutoEquatable {
     var meta : Meta?;
 }
 
+enum ItemInTagType : String, AutoCodable {
+    case entry = "entry"
+    case link = "link"
+}
 
 
 struct ItemInTag : AutoCodable, AutoEquatable, Hashable {
 
-    var type : String?;
+    var type : ItemInTagType;
     var link : Link?
     var entry : Entry?
     

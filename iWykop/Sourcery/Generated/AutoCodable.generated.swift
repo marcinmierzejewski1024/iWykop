@@ -74,6 +74,37 @@ extension Comment {
 
 
 
+extension ItemInTagType {
+
+    enum CodingKeys: String, CodingKey {
+        case entry
+        case link
+    }
+
+    internal init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+
+        let enumCase = try container.decode(String.self)
+        switch enumCase {
+        case CodingKeys.entry.rawValue: self = .entry
+        case CodingKeys.link.rawValue: self = .link
+        default: throw DecodingError.dataCorrupted(.init(codingPath: decoder.codingPath, debugDescription: "Unknown enum case '\(enumCase)'"))
+        }
+    }
+
+    internal func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+
+        switch self {
+        case .entry: try container.encode(CodingKeys.entry.rawValue)
+        case .link: try container.encode(CodingKeys.link.rawValue)
+        }
+    }
+
+}
+
+
+
 
 extension Status {
 
