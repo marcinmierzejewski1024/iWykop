@@ -12,6 +12,12 @@ import Resolver
 extension Resolver : ResolverRegistering {
     public static func registerAllServices() {
 
+        
+        register(AFNetworkApiClient.self) { resolver, args in
+            return AFNetworkApiClient()
+        }.scope(.graph)
+
+        
         register(ApiClient.self) { resolver, args in
             return AFNetworkApiClient()
         }.scope(.graph)

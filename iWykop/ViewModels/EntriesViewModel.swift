@@ -61,6 +61,7 @@ class EntriesViewModel : BasePushableViewModel
             self.entries.append(contentsOf: newEntries);
             self.lastDownloadedPage = page;
             
+            self.imagesPreload()
             
         } catch {
             print(error);
@@ -78,6 +79,14 @@ class EntriesViewModel : BasePushableViewModel
 
     }
     
+    
+    func imagesPreload(){
+        self.entries.forEach { entry in
+            if(entry.embed?.type == .image){
+                ImageCache.sharedInstance.preloadImage(url: entry.embed?.preview);
+            }
+        }
+    }
    
     override func prepareView() -> AnyView {
         return AnyView(EntriesView(viewModel: self).task {

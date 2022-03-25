@@ -68,7 +68,7 @@ class LinksViewModel : BasePushableViewModel
 
                 self.displayedLinks.append(contentsOf: newlinks);
                 self.lastDownloadedPageCollections[requestedCollection] = page;
-                
+                self.imagesPreload()
 
             }
 
@@ -88,6 +88,12 @@ class LinksViewModel : BasePushableViewModel
         }
         
         return 0;
+    }
+    
+    func imagesPreload(){
+        self.displayedLinks.forEach { link in
+            ImageCache.sharedInstance.preloadImage(url: link.getFullPreviewImageURL())
+        }
     }
     
     

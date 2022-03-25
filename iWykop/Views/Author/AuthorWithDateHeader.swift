@@ -24,7 +24,8 @@ struct AuthorWithDateHeader: View {
                             }
                             
                         default:
-                            Image(systemName: "questionmark").modifier(BodyStyle())
+                            Image("userPlaceholder").resizable()
+                                .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
                             
                         }
                     }

@@ -97,7 +97,7 @@ struct LinksListCell: View {
                         Text(error.localizedDescription)
                         
                     default:
-                        Image(systemName: "questionmark").modifier(BodyStyle())
+                        Image("placeholder").modifier(BodyStyle())
                         
                     }
                 }
