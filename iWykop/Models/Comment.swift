@@ -34,4 +34,8 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
         case entryID = "entry_id"
         case body, original
     }
+    
+    func getDate() -> Date? {
+        return Date.fromString(self.date)
+    }
 }

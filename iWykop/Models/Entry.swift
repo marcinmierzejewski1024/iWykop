@@ -16,6 +16,8 @@ protocol AutoEquatable {
 }
 
 
+
+
 struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComments{
     let id: Int
     let body: String?
@@ -48,6 +50,10 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComment
         case bodyAttributed
 // sourcery:end
     }
+    
+    func getDate() -> Date? {
+        return Date.fromString(self.date)
+    }
 }
 
 
@@ -64,5 +70,4 @@ enum Status: String, AutoCodable {
 struct Pagination: AutoCodable {
     let next: String
 }
-
 

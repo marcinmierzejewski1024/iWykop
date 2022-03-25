@@ -62,7 +62,7 @@ struct EntryWithCommentsView: View {
                 
                 ForEach(entry.comments ?? [], id: \.id) { item in
                     VStack(alignment: .leading) {
-                        AuthorView(author: item.author)
+                        AuthorWithDateHeader(author: item.author, date: item.getDate())
                         Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
                         EmbedBodyPreviewWithModal(embed: item.embed)
                         HStack{

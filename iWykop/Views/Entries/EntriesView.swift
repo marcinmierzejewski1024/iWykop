@@ -141,7 +141,7 @@ struct EntryViewCellHeader : View
     var body: some View {
         HStack{
             
-            AuthorView(author: entry.author)
+            AuthorWithDateHeader(author: entry.author, date: entry.getDate())
             
         }.padding(0)
         

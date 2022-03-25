@@ -65,4 +65,8 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
         
         return nil;
     }
+    
+    func getDate() -> Date? {
+        return Date.fromString(self.date)
+    }
 }
