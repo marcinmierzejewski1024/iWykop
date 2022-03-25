@@ -26,6 +26,9 @@ struct EmbedBodyPreviewWithModal : View {
                     self.isPresented.toggle()
                 }
                 .fullScreenCover(isPresented: $isPresented, content: {
+                    
+                    ZoomableScrollView {
+
                     EmbedBodyPreview(embed: embed, fullScreenMode: true).offset(x: offset.width * 0.2, y: offset.height * 0.7)
                     
                         .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global).onChanged({ value in
@@ -46,7 +49,8 @@ struct EmbedBodyPreviewWithModal : View {
                             withAnimation {
                                 offset = CGSize.zero;
                             }
-                        }).frame(maxWidth: .infinity, maxHeight: .infinity).ignoresSafeArea().background(BackgroundBlurView())
+                        }).frame(maxWidth: .infinity, maxHeight: .infinity).background(.clear)
+                    }.ignoresSafeArea().background(BackgroundBlurView().ignoresSafeArea())
                     
                 })
             }

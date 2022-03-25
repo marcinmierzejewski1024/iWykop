@@ -15,6 +15,8 @@ class ImageCache : Resolving {
     lazy var networkClient : AFNetworkApiClient = resolver.resolve();
 
     static private var cache: [URL: Image] = [:]
+    static var inProgress = [URL]();
+
 
     static subscript(url: URL) -> Image? {
         get {
@@ -41,6 +43,11 @@ class ImageCache : Resolving {
             if(ImageCache[key] != nil){
                 return;
             }
+            if ImageCache.inProgress.contains(key) {
+                return;
+            }
+            
+            ImageCache.inProgress.append(key);
             
             networkClient.httpRequest(ApiRequest.Get(url: url!, headers: nil)) { data, err in
                 if let data = data {
@@ -49,6 +56,11 @@ class ImageCache : Resolving {
                         ImageCache[key] = imageToBeCached;
                     }
                 }
+                
+                ImageCache.inProgress.removeAll { inProgress in
+                    return key == inProgress;
+                };
+
             }
         }
     }

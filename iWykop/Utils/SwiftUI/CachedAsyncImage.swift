@@ -34,6 +34,7 @@ struct CacheAsyncImage<Content>: View where Content: View {
                 content(.success(cached))
             } else {
                 let _ = print("request \(url.absoluteString)")
+                let _ = ImageCache.inProgress.append(url);
                 AsyncImage(
                     url: url,
                     scale: scale,
@@ -49,9 +50,14 @@ struct CacheAsyncImage<Content>: View where Content: View {
     }
 
     func cacheAndRender(phase: AsyncImagePhase) -> some View {
+        
         if case .success(let image) = phase {
             if let url = url {
                 ImageCache[url] = image
+                ImageCache.inProgress.removeAll { inProgress in
+                    return url == inProgress;
+                };
+
             }
         }
 
