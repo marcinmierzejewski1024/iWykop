@@ -154,7 +154,7 @@ struct LinkViewCellHeader : View
     var body: some View {
         VStack{
             CacheAsyncImage(
-                url: URL(string:link.preview ?? "")){ phase in
+                url: URL(string:link.getFullPreviewImageURL() ?? "")){ phase in
                     switch phase {
                     case .success(let image):
                         VStack(alignment: .center) {

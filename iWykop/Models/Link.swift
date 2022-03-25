@@ -69,4 +69,10 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
     func getDate() -> Date? {
         return Date.fromString(self.date)
     }
+    
+    func getFullPreviewImageURL() -> String? {
+        let thumbnail = self.preview;
+        return thumbnail?.replacingOccurrences(of: ",w104h74", with: "");
+        
+    }
 }
