@@ -10,6 +10,10 @@ import SwiftUI
 
 extension Font {
     
+
+    static func titleFont() ->Font {
+        return Font(uiFont: .titleFont());
+    }
     
     static func bodyFont() ->Font {
         return Font(uiFont: .bodyFont());
@@ -29,15 +33,21 @@ extension Font {
 }
 
 extension UIFont {
+
     
+    class func titleFont() -> UIFont
+    {
+        return .systemFont(ofSize: 22, weight: .semibold);
+    }
+
     class func bodyFont() -> UIFont
     {
-        return .systemFont(ofSize: 12);
+        return .systemFont(ofSize: 14);
     }
 
     class func commentFont() -> UIFont
     {
-        return .systemFont(ofSize: 10);
+        return .systemFont(ofSize: 12);
     }
 
     

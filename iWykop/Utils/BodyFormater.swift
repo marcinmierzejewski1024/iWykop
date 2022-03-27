@@ -31,6 +31,7 @@ class BodyFormater
         es.map { entry in
             var withAttributed = entry;
             withAttributed.bodyAttributed = self.markupFromHtml(entry.body)
+            
             if var withComments = withAttributed as? WithComments {
                 
                 withComments.comments = withComments.comments?.map({ c in
@@ -64,9 +65,9 @@ class BodyFormater
             return nil;
         }
         
-        let replacedLinks = self.replaceLocalLinks(html!);
-        let otherReplaced = self.replaceOtherSymbols(replacedLinks);
-        let withCustomCss = self.addFontCss(otherReplaced);
+        let replacedLinks = BodyFormater.replaceLocalLinks(html!);
+        let otherReplaced = BodyFormater.replaceOtherSymbols(replacedLinks);
+        let withCustomCss = BodyFormater.addFontCss(otherReplaced);
         
         
         do {
@@ -88,7 +89,7 @@ class BodyFormater
     }
     
     
-    private func addFontCss(_ html: String) -> String {
+    static private func addFontCss(_ html: String) -> String {
         
         
         let css = """
@@ -107,11 +108,11 @@ class BodyFormater
     }
     
     
-    private func replaceOtherSymbols(_ html: String) -> String {
+    static func replaceOtherSymbols(_ html: String) -> String {
         return html.replacingOccurrences(of: "&quot;", with: "\"");
     }
     
-    private func replaceLocalLinks(_ html: String) -> String {
+    static private func replaceLocalLinks(_ html: String) -> String {
         let ahrefRegex = "#{0,1}@{0,1}<a\\shref=\\\"([^\\\"]*?)\\\".*?>(.*?)<\\/a>"
         do {
             let regex = try NSRegularExpression(pattern: ahrefRegex,options: [.caseInsensitive])

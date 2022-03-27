@@ -15,11 +15,9 @@ struct LinksView: View {
     var body: some View {
         
         
-        NavigationView {
             
             LinksListView(viewModel: self.viewModel)
             
-        }.navigationViewStyle(.stack)
         
     }
     

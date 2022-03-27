@@ -26,7 +26,9 @@ struct TagView : View {
                 
                 ForEach(self.viewModel.items ?? [], id: \.self ) { item in
                     
-                    ItemInTagView(item: item)
+                    ItemInTagView(item: item).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                    WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+
                 }
             }
             

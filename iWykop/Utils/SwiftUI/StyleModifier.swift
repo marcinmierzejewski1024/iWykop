@@ -10,7 +10,7 @@ import SwiftUI
 struct TitleStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.subheadline)
+            .font(Font.titleFont())
             .foregroundColor(WykopColors.currentTheme.textColor)
     }
 }

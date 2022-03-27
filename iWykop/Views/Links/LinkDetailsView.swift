@@ -71,7 +71,7 @@ struct LinkDetailsView: View {
                 VStack(alignment: .leading) {
                     LinkWithVoters()
                 }
-
+                
             case .VotersDown:
                 Text("TODO")
             case .Attachments:
@@ -122,7 +122,7 @@ struct LinkWithCommentsView: View {
                 }.listRowSeparator(.hidden).padding(.leading,                                                   (item.isResponseComment() ? 30.0 : 0.0))
                 
                 
-
+                
             }
         }
         
@@ -131,7 +131,7 @@ struct LinkWithCommentsView: View {
 }
 
 struct LinkWithVoters: View {
-//    var voters:[Author]
+    //    var voters:[Author]
     
     var body: some View {
         
@@ -154,7 +154,8 @@ struct LinkWithVoters: View {
 
 struct LinkViewCellHeader : View
 {
-    
+    @Environment(\.openURL) var openURL
+
     var link: Link;
     
     var body: some View {
@@ -176,9 +177,14 @@ struct LinkViewCellHeader : View
                         
                     }
                 }.padding(0)
-            Text(link.description ?? "").padding(Margins.huge.rawValue).fixedSize(horizontal: false, vertical: true).modifier(BodyStyle())
+            Text(BodyFormater.replaceOtherSymbols(link.title ?? "")).padding(Margins.huge.rawValue).fixedSize(horizontal: false, vertical: true).modifier(TitleStyle())
             
-        }.padding(0)
+            Text(BodyFormater.replaceOtherSymbols(link.description ?? "")).padding(Margins.huge.rawValue).fixedSize(horizontal: false, vertical: true).modifier(BodyStyle())
+            
+        }.padding(0).onTapGesture {
+            openURL(URL(string: link.sourceUrl)!)
+            
+        }
         
         
         
