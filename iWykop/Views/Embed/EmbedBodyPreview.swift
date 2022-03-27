@@ -83,7 +83,8 @@ struct EmbedBodyPreview : View {
                             Text(error.localizedDescription)
                             
                         default:
-                            Image("placeholder").modifier(BodyStyle())
+                            Image("placeholder").resizable()
+                                .aspectRatio(contentMode: .fit)
                             
                         }
                     }

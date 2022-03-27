@@ -23,35 +23,50 @@ class BasePushableViewModel : ObservableObject, Resolving {
     
     
     final func dissmissSelf() {
-        self.parentViewModel?.dismissChildViewModel();
+        DispatchQueue.main.async {
+            
+            self.parentViewModel?.dismissChildViewModel();
+        }
     }
     
     final func dismissChildViewModel() {
         //TODO:fix - not working 100% - please use back button ;)
-        self.childViewModel = nil;
-        self.childViewActive = false;
-        
-        self.willChangeUp()
-        self.willChangeDown()
+        DispatchQueue.main.async {
+            
+            self.childViewModel = nil;
+            self.childViewActive = false;
+            
+            self.willChangeUp()
+            self.willChangeDown()
+        }
     }
     
     private final func willChangeUp(){
-        self.objectWillChange.send()
-        self.parentViewModel?.willChangeUp();
+        DispatchQueue.main.async {
+            
+            self.objectWillChange.send()
+            self.parentViewModel?.willChangeUp();
+        }
     }
     
     private final func willChangeDown(){
-        self.objectWillChange.send()
-        self.childViewModel?.willChangeDown();
+        DispatchQueue.main.async {
+            
+            self.objectWillChange.send()
+            self.childViewModel?.willChangeDown();
+        }
     }
     
     final func presentChildViewModel(_ child:BasePushableViewModel){
-        self.childViewModel = child;
-        child.parentViewModel = self;
-        self.childViewActive = true;
+        DispatchQueue.main.async {
+            self.childViewModel = child;
+            child.parentViewModel = self;
+            self.childViewActive = true;
+        }
     }
     
-    final func presentFromUrl(_ url:URL) async{
+    func presentFromUrl(_ url:URL) async{
+        
         do {
             if let childVM = try await self.anythingProvider.getViewModelFor(url: url) {
                 self.presentChildViewModel(childVM);
@@ -61,6 +76,7 @@ class BasePushableViewModel : ObservableObject, Resolving {
         } catch {
             print(error);
         }
+        
     }
     
     final func childView() -> AnyView {

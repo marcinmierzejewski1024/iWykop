@@ -91,13 +91,14 @@ struct LinksListCell: View {
                     case .success(let image):
                         VStack(alignment: .leading) {
                             image.resizable()
-                                .aspectRatio(contentMode: .fit).fixedSize(horizontal: false, vertical: true)
+                                .aspectRatio(contentMode: .fit).frame( maxHeight: 250).fixedSize(horizontal: false, vertical: false)
                         }
                     case .failure(let error):
                         Text(error.localizedDescription)
                         
                     default:
-                        Image("placeholder").modifier(BodyStyle())
+                        Image("placeholder").resizable()
+                            .aspectRatio(contentMode: .fit)
                         
                     }
                 }

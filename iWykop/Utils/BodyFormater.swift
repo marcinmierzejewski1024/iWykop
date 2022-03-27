@@ -16,12 +16,12 @@ protocol BodyFormatable {
 protocol WithComments : BodyFormatable
 {
     var comments: [Comment]? { get set}
-
+    
 }
 
 class BodyFormater
 {
-
+    
     
     
     @MainActor
@@ -55,7 +55,7 @@ class BodyFormater
     }
     
     private func markupFromHtml(_ html: String?) -> AttributedString? {
-
+        
         guard html != nil else {
             return nil;
         }
@@ -65,26 +65,28 @@ class BodyFormater
         }
         
         let replacedLinks = self.replaceLocalLinks(html!);
-        let withCustomCss = self.addFontCss(replacedLinks);
-
+        let otherReplaced = self.replaceOtherSymbols(replacedLinks);
+        let withCustomCss = self.addFontCss(otherReplaced);
+        
+        
         do {
             let data = Data(withCustomCss.utf8)
             
-
+            
             if let nsAttr = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding : String.Encoding.utf8.rawValue], documentAttributes: nil) {
-
+                
                 let attr = try AttributedString(nsAttr, including: \.uiKit)
-
+                
                 return attr;
             }
         } catch {
             return nil;
         }
-
+        
         return nil;
-
+        
     }
-
+    
     
     private func addFontCss(_ html: String) -> String {
         
@@ -101,7 +103,12 @@ class BodyFormater
             """;
         
         return "<style>\(css)</style> <span>\(html)</span>";
-
+        
+    }
+    
+    
+    private func replaceOtherSymbols(_ html: String) -> String {
+        return html.replacingOccurrences(of: "&quot;", with: "\"");
     }
     
     private func replaceLocalLinks(_ html: String) -> String {
@@ -127,12 +134,17 @@ class BodyFormater
                     
                     var url = mutableString.substring(with: rangeUrl)
                     var name = mutableString.substring(with: rangeName)
+                    
+                    if (url.starts(with: "#") || url.starts(with: "@") || (url.starts(with: "spoiler:"))) {
 
-                    if (url.starts(with: "#") || url.starts(with: "@") || url.starts(with: "spoiler:")) {
-                        name = url;
-                        url = "iwykop:\(url)"
+                        if (url.starts(with: "spoiler:")) {
+                            url = "iwykop:\(url)"
+                        } else {
+                            name = url;
+                            url = "iwykop:\(url)"
+                        }
+
                         
-                     
                         mutableString.replaceOccurrences(of: foundBlock, with: "<a href=\"\(url)\">\(name)</a>", options: [], range: match.range)
                         let asString = String(mutableString);
                         let newRange = NSRange(location: 0, length: asString.utf16.count)
@@ -145,14 +157,14 @@ class BodyFormater
                         let newRange = NSRange(location: match.range.location + match.range.length , length: (asString.utf16.count - match.range.location - match.range.length))
                         
                         matches = regex.matches(in: asString, options: [], range: newRange)
-
+                        
                     }
                     
                     
                     
                     
                     
-
+                    
                 }
             }
             
@@ -162,6 +174,6 @@ class BodyFormater
         }
         
     }
-
-
+    
+    
 }

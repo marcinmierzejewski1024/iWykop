@@ -158,7 +158,7 @@ struct LinkViewCellHeader : View
     var link: Link;
     
     var body: some View {
-        VStack{
+        VStack(alignment: .leading){
             CacheAsyncImage(
                 url: URL(string:link.getFullPreviewImageURL() ?? "")){ phase in
                     switch phase {
@@ -171,7 +171,8 @@ struct LinkViewCellHeader : View
                         Text(error.localizedDescription)
                         
                     default:
-                        Image("placeholder").modifier(BodyStyle())
+                        Image("placeholder").resizable()
+                            .aspectRatio(contentMode: .fit)
                         
                     }
                 }.padding(0)

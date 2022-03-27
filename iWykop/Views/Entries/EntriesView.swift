@@ -71,6 +71,10 @@ struct EntriesView: View {
                             }
                         }.onTapGesture {
                             self.viewModel.presentChildViewModel(EntryViewModel(entry: item))
+                        }.onOpenURL { url in
+                            Task {
+                                await self.viewModel.presentFromUrl(url)
+                            }
                         }
                         
                         
@@ -87,10 +91,6 @@ struct EntriesView: View {
                 Task {
                     
                     await self.viewModel.refreshEntries()
-                }
-            }.onOpenURL { url in
-                Task {
-                    await self.viewModel.presentFromUrl(url)
                 }
             }
             
