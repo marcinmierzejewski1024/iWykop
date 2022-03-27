@@ -28,8 +28,9 @@ struct AuthorWithDateHeader: View {
                     }
                 }
             VStack(alignment: .leading,spacing: 4) {
-                Text(date?.timeAgoDisplay() ?? "");
-                Text(author.login).bold().foregroundColor(WykopColors.currentTheme.authorColors[author.color] ?? .black)
+                Text(author.login).bold().modifier(LoginStyle(loginColor: WykopColors.currentTheme.authorColors[author.color] ?? WykopColors.currentTheme.textColor))
+                Text(date?.timeAgoDisplay() ?? "").modifier(DateStyle());
+
             }
             
             Spacer()

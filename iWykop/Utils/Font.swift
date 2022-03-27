@@ -18,6 +18,14 @@ extension Font {
     static func commentFont() ->Font {
         return Font(uiFont: .commentFont());
     }
+    
+    static func loginFont() ->Font {
+        return Font(uiFont: .loginFont());
+    }
+    
+    static func dateFont() ->Font {
+        return Font(uiFont: .dateFont());
+    }
 }
 
 extension UIFont {
@@ -28,6 +36,18 @@ extension UIFont {
     }
 
     class func commentFont() -> UIFont
+    {
+        return .systemFont(ofSize: 10);
+    }
+
+    
+    class func loginFont() -> UIFont
+    {
+        return .systemFont(ofSize: 14);
+    }
+
+    
+    class func dateFont() -> UIFont
     {
         return .systemFont(ofSize: 10);
     }

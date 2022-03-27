@@ -48,6 +48,25 @@ struct CommentStyle: ViewModifier {
     }
 }
 
+
+struct LoginStyle: ViewModifier {
+    let loginColor : Color;
+    func body(content: Content) -> some View {
+        content
+            .font(Font.loginFont()).foregroundColor(loginColor)
+    }
+}
+
+struct DateStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(Font.dateFont())
+            .foregroundColor(WykopColors.currentTheme.secondaryTextColor)
+
+    }
+}
+
+
 enum Margins : CGFloat {
     case small = 4.0
     case medium = 8.0
