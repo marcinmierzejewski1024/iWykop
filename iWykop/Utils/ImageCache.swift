@@ -11,13 +11,13 @@ import Resolver
 
 class ImageCache : Resolving {
     static let sharedInstance = ImageCache()
-
+    
     lazy var networkClient : AFNetworkApiClient = resolver.resolve();
-
+    
     static private var cache: [URL: Image] = [:]
     static var inProgress = [URL]();
-
-
+    
+    
     static subscript(url: URL) -> Image? {
         get {
             ImageCache.cache[url]
@@ -40,30 +40,42 @@ class ImageCache : Resolving {
         
         if let key = URL(string: url!) {
             
-            if(ImageCache[key] != nil){
-                return;
+            synced(ImageCache.sharedInstance) {
+                
+                
+                if(ImageCache[key] != nil){
+                    return;
+                }
+                if ImageCache.inProgress.contains(key) {
+                    return;
+                }
+                
+                ImageCache.inProgress.append(key);
             }
-            if ImageCache.inProgress.contains(key) {
-                return;
-            }
-            
-            ImageCache.inProgress.append(key);
-            
             networkClient.httpRequest(ApiRequest.Get(url: url!, headers: nil)) { data, err in
                 if let data = data {
                     if let image = UIImage(data: data) {
-                       let imageToBeCached = Image(uiImage: image)
-                        ImageCache[key] = imageToBeCached;
+                        let imageToBeCached = Image(uiImage: image)
+                        synced(ImageCache.sharedInstance) {
+                            ImageCache[key] = imageToBeCached;
+                        }
                     }
                 }
-                
-                ImageCache.inProgress.removeAll { inProgress in
-                    return key == inProgress;
-                };
 
+                synced(ImageCache.sharedInstance) {
+                    ImageCache.inProgress.removeAll { inProgress in
+                        return key == inProgress;
+                    };
+                }
+                
             }
         }
     }
 }
 
 
+func synced(_ lock: Any, closure: () -> ()) {
+    objc_sync_enter(lock)
+    closure()
+    objc_sync_exit(lock)
+}

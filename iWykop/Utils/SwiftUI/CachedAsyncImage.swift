@@ -34,7 +34,9 @@ struct CacheAsyncImage<Content>: View where Content: View {
                 content(.success(cached))
             } else {
                 let _ = print("request \(url.absoluteString)")
-                let _ = ImageCache.inProgress.append(url);
+                let _ = synced(ImageCache.sharedInstance) {
+                    ImageCache.inProgress.append(url);
+                }
                 AsyncImage(
                     url: url,
                     scale: scale,
@@ -53,10 +55,12 @@ struct CacheAsyncImage<Content>: View where Content: View {
         
         if case .success(let image) = phase {
             if let url = url {
-                ImageCache[url] = image
-                ImageCache.inProgress.removeAll { inProgress in
-                    return url == inProgress;
-                };
+                synced(ImageCache.sharedInstance) {
+                    ImageCache[url] = image
+                    ImageCache.inProgress.removeAll { inProgress in
+                        return url == inProgress;
+                    };
+                }
 
             }
         }
