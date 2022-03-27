@@ -17,6 +17,7 @@ struct TagView : View {
     
     var body: some View {
         
+        
         VStack {
             NavigationLink(destination: self.viewModel.childView(), isActive: $viewModel.childViewActive) { EmptyView() }
             

@@ -13,10 +13,6 @@ struct EntriesView: View {
     @ViewBuilder
     var body: some View {
         
-        
-        NavigationView {
-            
-
             
             VStack {
                 NavigationLink(destination: self.viewModel.childView(), isActive: $viewModel.childViewActive) { EmptyView() }.hidden()
@@ -46,7 +42,6 @@ struct EntriesView: View {
             }
             
             
-        }.navigationViewStyle(.stack)
         
     }
     
