@@ -11,6 +11,7 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
     let author: Author
     let status: Status?
     let id: Int
+    let parentID: Int?
     let voteCount: Int
     let favorite: Bool?
     let date: String
@@ -33,9 +34,20 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
         case app
         case entryID = "entry_id"
         case body, original
+        case parentID = "parent_id"
+
     }
     
     func getDate() -> Date? {
         return Date.fromString(self.date)
+    }
+    
+    func isResponseComment() -> Bool {
+        
+        if(self.parentID != self.id) {
+            return true;
+        }
+        
+        return false;
     }
 }

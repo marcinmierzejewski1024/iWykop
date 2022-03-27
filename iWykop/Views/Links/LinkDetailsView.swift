@@ -105,6 +105,11 @@ struct LinkWithCommentsView: View {
         Section {
             
             ForEach(link.comments ?? [], id: \.id) { item in
+                
+                if (!item.isResponseComment()) {
+                    WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                }
+                
                 VStack(alignment: .leading) {
                     AuthorWithDateHeader(author: item.author, date: item.getDate())
                     Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
@@ -114,9 +119,10 @@ struct LinkWithCommentsView: View {
                         Text("+\(item.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.currentTheme.plusGreenColor)
                     }
                     
-                }.listRowSeparator(.hidden)
-                WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                }.listRowSeparator(.hidden).padding(.leading,                                                   (item.isResponseComment() ? 30.0 : 0.0))
                 
+                
+
             }
         }
         

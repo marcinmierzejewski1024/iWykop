@@ -40,6 +40,7 @@ internal func == (lhs: Comment, rhs: Comment) -> Bool {
     guard lhs.author == rhs.author else { return false }
     guard compareOptionals(lhs: lhs.status, rhs: rhs.status, compare: ==) else { return false }
     guard lhs.id == rhs.id else { return false }
+    guard compareOptionals(lhs: lhs.parentID, rhs: rhs.parentID, compare: ==) else { return false }
     guard lhs.voteCount == rhs.voteCount else { return false }
     guard compareOptionals(lhs: lhs.favorite, rhs: rhs.favorite, compare: ==) else { return false }
     guard lhs.date == rhs.date else { return false }

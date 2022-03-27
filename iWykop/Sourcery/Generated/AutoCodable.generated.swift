@@ -50,6 +50,7 @@ extension Comment {
         entryID = try container.decodeIfPresent(Int.self, forKey: .entryID)
         body = try container.decodeIfPresent(String.self, forKey: .body)
         original = try container.decodeIfPresent(String.self, forKey: .original)
+        parentID = try container.decodeIfPresent(Int.self, forKey: .parentID)
     }
 
     internal func encode(to encoder: Encoder) throws {
@@ -67,6 +68,7 @@ extension Comment {
         try container.encodeIfPresent(entryID, forKey: .entryID)
         try container.encodeIfPresent(body, forKey: .body)
         try container.encodeIfPresent(original, forKey: .original)
+        try container.encodeIfPresent(parentID, forKey: .parentID)
     }
 
 }
