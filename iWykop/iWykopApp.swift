@@ -52,7 +52,7 @@ struct iWykopApp: App {
                 }.modifier(BackgroundStyle())
             }.onOpenURL { (url) in
                 print("\(url) to open!")
-            }.font(.system(size: 12))
+            }.font(.bodyFont())
             
         }
     }

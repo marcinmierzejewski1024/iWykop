@@ -37,23 +37,23 @@ extension UIFont {
     
     class func titleFont() -> UIFont
     {
-        return .systemFont(ofSize: 22, weight: .semibold);
+        return .systemFont(ofSize: 18, weight: .semibold);
     }
 
     class func bodyFont() -> UIFont
     {
-        return .systemFont(ofSize: 14);
+        return .systemFont(ofSize: 10);
     }
 
     class func commentFont() -> UIFont
     {
-        return .systemFont(ofSize: 12);
+        return .systemFont(ofSize: 10);
     }
 
     
     class func loginFont() -> UIFont
     {
-        return .systemFont(ofSize: 14);
+        return .systemFont(ofSize: 13);
     }
 
     
