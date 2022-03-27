@@ -48,4 +48,8 @@ struct CommentStyle: ViewModifier {
     }
 }
 
-
+enum Margins : CGFloat {
+    case small = 4.0
+    case medium = 8.0
+    case huge = 12.0
+}

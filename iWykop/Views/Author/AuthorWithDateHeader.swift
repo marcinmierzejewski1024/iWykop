@@ -34,7 +34,7 @@ struct AuthorWithDateHeader: View {
             
             Spacer()
             
-        }.padding(.bottom, 6)
+        }.padding(.bottom, Margins.medium.rawValue)
     }
 }
 

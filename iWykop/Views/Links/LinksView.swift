@@ -103,7 +103,7 @@ struct LinksListCell: View {
                 }
             VStack(alignment: .leading) {
                 
-                Text(link.title ?? "").modifier(TitleStyle()).padding(.vertical, 5)
+                Text(link.title ?? "").modifier(TitleStyle()).padding(Margins.medium.rawValue)
                 HStack{
                     Button(link.getSourceDomain() ?? "") {
                         //                    openURL(URL(string: link.sourceUrl)!)
@@ -111,12 +111,12 @@ struct LinksListCell: View {
                     }
                     
                     Spacer()
-                    Image(systemName:"flame.fill").modifier(BodyStyle())
-                    Text("\(link.voteCount)").padding(.trailing, 10).modifier(BodyStyle())
+                    Image(systemName: (link.isHot ? "flame.fill" : "arrow.up")).modifier(BodyStyle())
+                    Text("\(link.voteCount)").padding(.trailing, Margins.medium.rawValue).modifier(BodyStyle())
                     Image(systemName:"text.bubble").modifier(BodyStyle())
                     Text("\(link.commentsCount)").modifier(BodyStyle())
                     
-                }
+                }.padding(.horizontal, Margins.medium.rawValue)
                 //                AuthorView(author: link.author)
                 
                 

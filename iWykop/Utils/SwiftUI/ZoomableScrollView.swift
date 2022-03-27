@@ -14,9 +14,9 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     self.content = content()
   }
 
-  func makeUIView(context: Context) -> UIScrollView {
+  func makeUIView(context: Context) -> ScrollViewWithDoubleTap {
     // set up the UIScrollView
-    let scrollView = UIScrollView()
+    let scrollView = ScrollViewWithDoubleTap()
     scrollView.delegate = context.coordinator  // for viewForZooming(in:)
     scrollView.maximumZoomScale = 4
     scrollView.minimumZoomScale = 1
@@ -32,6 +32,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     scrollView.addSubview(hostedView)
       
 
+      
     return scrollView
   }
 
@@ -39,7 +40,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     return Coordinator(hostingController: UIHostingController(rootView: self.content))
   }
 
-  func updateUIView(_ uiView: UIScrollView, context: Context) {
+  func updateUIView(_ uiView: ScrollViewWithDoubleTap, context: Context) {
     // update the hosting controller's SwiftUI content
     context.coordinator.hostingController.rootView = self.content
     assert(context.coordinator.hostingController.view.superview == uiView)
@@ -58,4 +59,34 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
       return hostingController.view
     }
   }
+}
+
+
+class ScrollViewWithDoubleTap : UIScrollView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+
+    private func commonInit() {
+        
+        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        addGestureRecognizer(doubleTapRecognizer)
+
+    }
+    
+    @objc private func handleDoubleTap(_ sender: UITapGestureRecognizer) {
+        if zoomScale == 1 {
+            setZoomScale(2, animated: true)
+        } else {
+            setZoomScale(1, animated: true)
+        }
+    }
 }

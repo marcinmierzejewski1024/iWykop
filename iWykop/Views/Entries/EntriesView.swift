@@ -18,24 +18,24 @@ struct EntriesView: View {
                 NavigationLink(destination: self.viewModel.childView(), isActive: $viewModel.childViewActive) { EmptyView() }.hidden()
 
                 DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
-                    Text("6h").font(.headline).padding(5).onTapGesture {
+                    Text("6h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
                         Task {
                             await viewModel.changeRequestedPeriod(period: .from6);
                         }
                     }
-                    Text("12h").font(.headline).padding(5).onTapGesture {
+                    Text("12h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
                         Task {
                             
                             await viewModel.changeRequestedPeriod(period: .from12);
                         }
                     }
-                    Text("24h").font(.headline).padding(5).onTapGesture {
+                    Text("24h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
                         Task {
                             
                             await viewModel.changeRequestedPeriod(period: .from24);
                         }
                     }
-                }.padding(.horizontal, 20).padding(.vertical, 10).font(.title)
+                }.padding(.horizontal, Margins.huge.rawValue).padding(.vertical, Margins.huge.rawValue).font(.title)
                 
                 EntriesListView(viewModel: self.viewModel)
                 
@@ -115,7 +115,7 @@ struct EntryViewCell: View {
                 HStack {
                     Spacer()
                     
-                    Text("+\(entry.voteCount)").foregroundColor(Color.green).padding(.trailing, 5)
+                    Text("+\(entry.voteCount)").foregroundColor(Color.green).padding(.trailing, Margins.medium.rawValue)
                     Image(systemName:"text.bubble").modifier(BodyStyle())
                     Text("\(entry.commentsCount)")
                 }

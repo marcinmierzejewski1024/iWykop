@@ -169,7 +169,7 @@ struct LinkViewCellHeader : View
                         
                     }
                 }.padding(0)
-            Text(link.description ?? "").padding(10).fixedSize(horizontal: false, vertical: true).modifier(BodyStyle())
+            Text(link.description ?? "").padding(Margins.huge.rawValue).fixedSize(horizontal: false, vertical: true).modifier(BodyStyle())
             
         }.padding(0)
         

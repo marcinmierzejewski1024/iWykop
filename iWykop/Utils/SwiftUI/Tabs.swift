@@ -15,7 +15,7 @@ struct Tabs<Label: View>: View {
                 ForEach($tabs, id: \.self) {tab in
                     self.tab(title: tab.wrappedValue)
                 }
-            }.padding(.horizontal, 3) // Tuck the out-most elements in a bit
+            }.padding(.horizontal, Margins.small.rawValue) // Tuck the out-most elements in a bit
         }
     }
     
@@ -34,7 +34,7 @@ struct Tabs<Label: View>: View {
                             .frame(height: 2)
                          // The underline is visible only for the currently selected tab
                             .foregroundColor(isSelected ? underlineColor : .clear)
-                            .padding(.top, 2)
+                            .padding(.top, Margins.small.rawValue)
                          // Animates the tab selection
                             .transition(.move(edge: .bottom)) ,alignment: .bottomLeading)
         }
