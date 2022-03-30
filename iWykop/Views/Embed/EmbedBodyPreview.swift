@@ -66,11 +66,10 @@ struct EmbedBodyPreview : View {
     
     var embed: Embed;
     var fullScreenMode = false;
-    @State var playAnimated = false;
 
     
     func playingGif() -> Bool {
-        return playAnimated && embed.animated;
+        return fullScreenMode && embed.animated;
     }
     
     var body: some View {
@@ -78,9 +77,7 @@ struct EmbedBodyPreview : View {
             if(embed.type == .image) {
                 
                 if(playingGif()) {
-                    Text("GIF HERE").onTapGesture {
-                        self.playAnimated.toggle();
-                    };
+                    Text("GIF HERE");
                     
                 } else {
                     let imageUrl = fullScreenMode ? embed.getFullImageUrl() : embed.getThumbnailImageURL()!;
@@ -101,8 +98,6 @@ struct EmbedBodyPreview : View {
                                     .aspectRatio(contentMode: .fit)
                                 
                             }
-                        }.onTapGesture {
-                            self.playAnimated.toggle();
                         }
                 }
             } else if(embed.type == .video){
