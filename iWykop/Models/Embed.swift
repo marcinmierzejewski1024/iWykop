@@ -16,6 +16,21 @@ struct Embed: AutoCodable, AutoEquatable, Hashable {
     let ratio: Double
     let url: String
     let size: String?
+    
+    
+    func getThumbnailImageURL() -> String? {
+        if(self.type == .image) {
+            let thumbnail = self.url;
+            return thumbnail.replacingOccurrences(of: ".jpg", with: ",w250.jpg");
+        }
+        
+        return nil;
+        
+    }
+    
+    func isGif() -> Bool {
+        return self.url.hasSuffix(".gif");
+    }
 }
 
 

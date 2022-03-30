@@ -44,12 +44,16 @@ class ImageCache : Resolving {
                 
                 
                 if(ImageCache[key] != nil){
+                    print("stop preloading image already in cache \(url)")
                     return;
                 }
                 if ImageCache.inProgress.contains(key) {
+                    print("stop preloading image already in progress \(url)")
                     return;
                 }
                 
+                print("start loading!!! \(url)")
+
                 ImageCache.inProgress.append(key);
             }
             networkClient.httpRequest(ApiRequest.Get(url: url!, headers: nil)) { data, err in
