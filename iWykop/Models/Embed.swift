@@ -5,7 +5,7 @@
 ////  Created by Marcin Mierzejewski on 18/02/2022.
 ////
 //
-
+import Foundation
 
 struct Embed: AutoCodable, AutoEquatable, Hashable {
     let source: String
@@ -28,9 +28,24 @@ struct Embed: AutoCodable, AutoEquatable, Hashable {
         
     }
     
-    func isGif() -> Bool {
-        return self.url.hasSuffix(".gif");
+    
+    func getFullImageUrl() -> String{
+        if self.animated {
+            return url.replacingOccurrences(of: ".jpg", with: ".gif");//wykop apiv2 nonsense
+        }
+        
+        return url;
+
     }
+    
+    func getSourceDomain() -> String? {
+        if let url = URL(string: self.url) {
+            return url.host?.replacingOccurrences(of: "www.", with: "")
+        }
+        
+        return nil;
+    }
+
 }
 
 
@@ -38,3 +53,6 @@ enum TypeEnum: String, Codable {
     case image = "image"
     case video = "video"
 }
+
+//"youtube", "youtu" -- odtwarzacz natywny
+//"gfycat", "streamable", "coub" -- odtwarzacz natywny

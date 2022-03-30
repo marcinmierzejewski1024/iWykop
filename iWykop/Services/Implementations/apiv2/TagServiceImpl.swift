@@ -28,6 +28,7 @@ class TagServiceImpl : ApiV2Service, TagService  {
     
     func getTag(tag: String) async throws -> Tag? {
         self.requestedTag = tag;
+        self.requestedTag = "gif";//TODO:skasowac
         
         let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
 

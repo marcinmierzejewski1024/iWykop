@@ -66,17 +66,24 @@ struct EmbedBodyPreview : View {
     
     var embed: Embed;
     var fullScreenMode = false;
+    @State var playAnimated = false;
+
     
+    func playingGif() -> Bool {
+        return playAnimated && embed.animated;
+    }
     
     var body: some View {
         HStack{
             if(embed.type == .image) {
                 
-                if(embed.isGif()) {
-                    Text("GIF HERE");
+                if(playingGif()) {
+                    Text("GIF HERE").onTapGesture {
+                        self.playAnimated.toggle();
+                    };
                     
                 } else {
-                    let imageUrl = fullScreenMode ? embed.url : embed.getThumbnailImageURL()!;
+                    let imageUrl = fullScreenMode ? embed.getFullImageUrl() : embed.getThumbnailImageURL()!;
                     
                     CacheAsyncImage(
                         url: URL(string:imageUrl)){ phase in
@@ -94,6 +101,8 @@ struct EmbedBodyPreview : View {
                                     .aspectRatio(contentMode: .fit)
                                 
                             }
+                        }.onTapGesture {
+                            self.playAnimated.toggle();
                         }
                 }
             } else if(embed.type == .video){

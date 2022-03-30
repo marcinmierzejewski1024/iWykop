@@ -6,6 +6,7 @@ PODS:
   - Sourcery (1.6.1):
     - Sourcery/CLI-Only (= 1.6.1)
   - Sourcery/CLI-Only (1.6.1)
+  - SwiftyGif (5.4.3)
 
 DEPENDENCIES:
   - Alamofire
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - KSToastView (from `https://github.com/marcinmierzejewski1024/KSToastView.git`)
   - Resolver
   - Sourcery
+  - SwiftyGif
 
 SPEC REPOS:
   trunk:
@@ -20,6 +22,7 @@ SPEC REPOS:
     - DBDebugToolkit
     - Resolver
     - Sourcery
+    - SwiftyGif
 
 EXTERNAL SOURCES:
   KSToastView:
@@ -36,7 +39,8 @@ SPEC CHECKSUMS:
   KSToastView: aeb0ca50b44e9568b6f95b2d1ec53a3f016b50fc
   Resolver: 68984624572763018fd8ec7b8e3e8df0e3b6bba5
   Sourcery: f3759f803bd0739f74fc92a4341eed0473ce61ac
+  SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
 
-PODFILE CHECKSUM: 345be15d91a8d1a58094a0f21b5685bfc1b3133d
+PODFILE CHECKSUM: 725bb5c0737a53174ae09cd7a551217b9c9138bb
 
 COCOAPODS: 1.11.2
