@@ -60,6 +60,8 @@
 		5687F68E27E25FCF00ECD3BD /* TagServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5687F68D27E25FCF00ECD3BD /* TagServiceImpl.swift */; };
 		568A778227EE565A00DB72C2 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568A778127EE565A00DB72C2 /* ImageCache.swift */; };
 		568A778427EE5F8E00DB72C2 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568A778327EE5F8E00DB72C2 /* ZoomableScrollView.swift */; };
+		568A778727F4964200DB72C2 /* XNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 568A778627F4964200DB72C2 /* XNavigation */; };
+		568A778927F496BB00DB72C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568A778827F496BB00DB72C2 /* ContentView.swift */; };
 		56ECA37027CE66F200EBCA33 /* LinksServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA36F27CE66F200EBCA33 /* LinksServiceImpl.swift */; };
 		56ECA37327CE67DE00EBCA33 /* LinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA37227CE67DE00EBCA33 /* LinksViewModel.swift */; };
 		56ECA37527CE6A5300EBCA33 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA37427CE6A5300EBCA33 /* Link.swift */; };
@@ -152,6 +154,7 @@
 		5687F68D27E25FCF00ECD3BD /* TagServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagServiceImpl.swift; sourceTree = "<group>"; };
 		568A778127EE565A00DB72C2 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		568A778327EE5F8E00DB72C2 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
+		568A778827F496BB00DB72C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		56ECA36F27CE66F200EBCA33 /* LinksServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksServiceImpl.swift; sourceTree = "<group>"; };
 		56ECA37227CE67DE00EBCA33 /* LinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksViewModel.swift; sourceTree = "<group>"; };
 		56ECA37427CE6A5300EBCA33 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -187,6 +190,7 @@
 				56250B6427C255F10086AFF5 /* DequeModule in Frameworks */,
 				52A27DD202A992B9392EFBB9 /* Pods_iWykop.framework in Frameworks */,
 				56250B5F27C23B310086AFF5 /* Crypto in Frameworks */,
+				568A778727F4964200DB72C2 /* XNavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +264,7 @@
 				56ECA37627CE6E7E00EBCA33 /* Settings */,
 				56ECA37127CE67C600EBCA33 /* Links */,
 				56684F2427BFC85F00604432 /* Entries */,
+				568A778827F496BB00DB72C2 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				56250B6127C255F10086AFF5 /* Collections */,
 				56250B6327C255F10086AFF5 /* DequeModule */,
 				56250B6527C255F10086AFF5 /* OrderedCollections */,
+				568A778627F4964200DB72C2 /* XNavigation */,
 			);
 			productName = iWykop;
 			productReference = 5680865927BE8FB0001E4F43 /* iWykop.app */;
@@ -652,6 +658,7 @@
 			packageReferences = (
 				56250B5D27C23B310086AFF5 /* XCRemoteSwiftPackageReference "swift-crypto" */,
 				56250B6027C255F10086AFF5 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				568A778527F4964200DB72C2 /* XCRemoteSwiftPackageReference "XNavigation" */,
 			);
 			productRefGroup = 5680865A27BE8FB0001E4F43 /* Products */;
 			projectDirPath = "";
@@ -837,6 +844,7 @@
 				56684F2B27C11F3900604432 /* ApiV2Response.swift in Sources */,
 				56ECA3F927D5589C00EBCA33 /* Apiv2Protocols.swift in Sources */,
 				56684F1527BFB78D00604432 /* Registration.swift in Sources */,
+				568A778927F496BB00DB72C2 /* ContentView.swift in Sources */,
 				568A778227EE565A00DB72C2 /* ImageCache.swift in Sources */,
 				56684F1F27BFC40600604432 /* EntriesViewModel.swift in Sources */,
 				5680866927BE8FB1001E4F43 /* iWykop.xcdatamodeld in Sources */,
@@ -1247,6 +1255,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		568A778527F4964200DB72C2 /* XCRemoteSwiftPackageReference "XNavigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DoubleSymmetry/XNavigation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1269,6 +1285,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 56250B6027C255F10086AFF5 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
+		};
+		568A778627F4964200DB72C2 /* XNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 568A778527F4964200DB72C2 /* XCRemoteSwiftPackageReference "XNavigation" */;
+			productName = XNavigation;
 		};
 /* End XCSwiftPackageProductDependency section */
 

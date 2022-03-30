@@ -8,51 +8,48 @@
 import SwiftUI
 import DBDebugToolkit
 import Resolver
+import XNavigation
+
 
 @main
 struct iWykopApp: App {
     
+    var navigation : Navigation?;
     
-    let settingsStore = SettingsStore();
-    let viewModel = EntriesViewModel(); // should viewModel be injected via DI?
-    let linksViewModel = LinksViewModel();
+    private var window: UIWindow? {
+        guard let scene = UIApplication.shared.connectedScenes.first,
+              let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
+              let window = windowSceneDelegate.window else {
+                  return nil
+              }
+        return window
+    }
     
     init(){
         let shakeTrigger = DBShakeTrigger()
         DBDebugToolkit.setup(with: [shakeTrigger])
         
+        
     }
+    
+    
+    
     
     
     var body: some Scene {
         
         WindowGroup {
             
-            TabView {
+            WindowReader { window in
                 
-                NavigationView {
-                    linksViewModel.prepareView()
-                }.navigationViewStyle(.stack).tabItem {
-                    Label("Main", systemImage: "w.square")
-                }.modifier(BackgroundStyle())
-                
-                NavigationView {
-                    viewModel.prepareView().modifier(BackgroundStyle())
-                }.navigationViewStyle(.stack).tabItem {
-                    Label("Entries", systemImage: "number.square")
+                if let navigation = Navigation(window: window!) {
+                    
+                    ContentView()
+                        .environmentObject(navigation)
                 }
-                
-                
-                SettingsView().tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
-                }.environmentObject(settingsStore).modifier(BackgroundStyle())
-                
-                SearchView().tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
-                }.modifier(BackgroundStyle())
-            }.onOpenURL { (url) in
-                print("\(url) to open!")
-            }.font(.bodyFont())
+
+            }
+
             
         }
     }

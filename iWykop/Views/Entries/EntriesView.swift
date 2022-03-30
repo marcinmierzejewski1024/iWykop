@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KSToastView
 
 struct EntriesView: View {
     @ObservedObject var viewModel : EntriesViewModel;
@@ -15,7 +16,6 @@ struct EntriesView: View {
         
             
             VStack {
-                NavigationLink(destination: self.viewModel.childView(), isActive: $viewModel.childViewActive) { EmptyView() }.hidden()
 
                 DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
                     Text("6h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
@@ -70,11 +70,8 @@ struct EntriesView: View {
                                 }
                             }
                         }.onTapGesture {
-                            self.viewModel.presentChildViewModel(EntryViewModel(entry: item))
-                        }.onOpenURL { url in
-                            Task {
-                                await self.viewModel.presentFromUrl(url)
-                            }
+                            BasePushableViewModel.navigation?.pushView(EntryViewModel(entry: item).prepareView())
+
                         }
                         
                         

@@ -85,10 +85,6 @@ struct LinkDetailsView: View {
             self.reloadLink();
         }.onAppear(){
             self.reloadLink();
-        }.onOpenURL { url in
-            Task {
-                await self.viewModel.presentFromUrl(url)
-            }
         }
         
         

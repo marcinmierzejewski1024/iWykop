@@ -94,20 +94,6 @@ class EntriesViewModel : BasePushableViewModel
         });
     }
     
-    func presentFromUrl(_ url: URL, context: Entry) async {
-        
-        if (url.absoluteString.contains("spoiler:")) {
-            var entryToUpdate = self.entries.first { item in
-                return item == context;
-            }
-            
-            var mutable = entryToUpdate?.bodyAttributed;
-            
-            await KSToastView.ks_showToast("TODO:")
-        } else {
-            await super.presentFromUrl(url);
-        }
-
     }
     
 }

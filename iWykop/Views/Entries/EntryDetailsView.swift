@@ -23,17 +23,12 @@ struct EntryDetailsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            NavigationLink(destination: self.viewModel.childView(), isActive: $viewModel.childViewActive) { EmptyView() }.hidden()
 
             EntryWithCommentsView(entry: entry)
         }.listStyle(PlainListStyle()).refreshable {
             self.reloadEntry();
         }.onAppear(){
             self.reloadEntry();
-        }.onOpenURL { url in
-            Task {
-                await self.viewModel.presentFromUrl(url)
-            }
         }
         
         

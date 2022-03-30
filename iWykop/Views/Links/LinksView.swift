@@ -31,7 +31,6 @@ struct LinksView: View {
         var body: some View {
             
             VStack {
-                NavigationLink(destination: self.viewModel.childView(), isActive: $viewModel.childViewActive) { EmptyView() }.hidden()
                 
                 
                 List() {
@@ -49,7 +48,7 @@ struct LinksView: View {
                                 }
                                 
                             }.onTapGesture {
-                                self.viewModel.presentChildViewModel(LinkViewModel(link: item))
+                                BasePushableViewModel.navigation?.pushView(LinkViewModel(link: item).prepareView())
                             }
                             
                             
