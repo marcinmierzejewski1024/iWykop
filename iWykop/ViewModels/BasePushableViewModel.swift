@@ -17,6 +17,8 @@ class BasePushableViewModel : ObservableObject, Resolving {
 
     lazy var bodyFormatter : BodyFormater = resolver.resolve();
     lazy var anythingProvider : AnythingViewModelProvider = resolver.resolve();
+    lazy var settingsStore : SettingsStore = resolver.resolve();
+
     
     func prepareView() -> AnyView {
         assertionFailure("You need override this method!")

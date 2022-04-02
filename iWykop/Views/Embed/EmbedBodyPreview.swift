@@ -77,7 +77,8 @@ struct EmbedBodyPreview : View {
             if(embed.type == .image) {
                 
                 if(playingGif()) {
-                    Text("GIF HERE");
+
+                    AnimatedImagePreview(urlString: embed.getFullImageUrl())
                     
                 } else {
                     let imageUrl = fullScreenMode ? embed.getFullImageUrl() : embed.getThumbnailImageURL()!;
@@ -107,6 +108,24 @@ struct EmbedBodyPreview : View {
         }
         
     }
+}
+
+
+struct AnimatedImagePreview : View {
+    var urlString: String
+    @State var downloadProgress:Float = 0.4;
+    
+    var body: some View {
+        VStack{
+            ProgressbarView(value: $downloadProgress).frame(maxHeight:15).padding()
+            Spacer()
+            Text("GIF HERE");
+            Spacer()
+
+        }
+        
+    }
+    
 }
 
 

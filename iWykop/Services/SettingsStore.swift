@@ -11,4 +11,7 @@ class SettingsStore : ObservableObject {
     @Published var plus18Enabled = false;
     @Published var darkMode = false;
     @Published var openInSafari = false;
+    @Published var autoplayAnimated = false;
+
+    
 }

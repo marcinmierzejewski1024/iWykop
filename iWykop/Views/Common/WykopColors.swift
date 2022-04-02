@@ -24,9 +24,29 @@ protocol Theme {
     var secondaryTextColor: Color { get }
     var authorColors : [Int:Color] { get }
 
+    var progressBarForeground: Color { get }
+    var progressBarBackground: Color { get }
+
+    
+
 }
 
 class WykopColorsLight : Theme {
+    
+    var progressBarForeground: Color {
+        get {
+            return Color.blue;
+        }
+
+    }
+    
+    var progressBarBackground: Color {
+        get {
+            return Color.cyan;
+        }
+
+    }
+    
     
     var accentColor : Color {
         get {
@@ -86,6 +106,23 @@ class WykopColorsLight : Theme {
 
 
 class WykopColorsDark : Theme {
+    
+    var progressBarForeground: Color {
+        get {
+            return Color.blue;
+        }
+
+    }
+    
+    var progressBarBackground: Color {
+        get {
+            return Color.cyan;
+        }
+
+    }
+    
+
+    
     var accentColor : Color {
         get {
             return Color.orange;
