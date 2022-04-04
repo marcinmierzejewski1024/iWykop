@@ -13,7 +13,7 @@ struct EntryDetailsView: View {
     @ObservedObject var viewModel : EntryViewModel;
     
     func reloadEntry() {
-
+        
         Task {
             if let new = await viewModel.refreshEntry(entry) {
                 entry = new;
@@ -23,7 +23,7 @@ struct EntryDetailsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-
+            
             EntryWithCommentsView(entry: entry)
         }.listStyle(PlainListStyle()).refreshable {
             self.reloadEntry();
@@ -39,6 +39,7 @@ struct EntryDetailsView: View {
 
 struct EntryWithCommentsView: View {
     var entry:Entry
+    var embedViewModel : EmbedViewModel?;
     
     var body: some View {
         List() {
@@ -56,16 +57,8 @@ struct EntryWithCommentsView: View {
             Section {
                 
                 ForEach(entry.comments ?? [], id: \.id) { item in
-                    VStack(alignment: .leading) {
-                        AuthorWithDateHeader(author: item.author, date: item.getDate())
-                        Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-                        EmbedBodyPreviewWithModal(embed: item.embed)
-                        HStack{
-                            Spacer()
-                            Text("+\(item.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.currentTheme.plusGreenColor)
-                        }
-                        
-                    }.listRowSeparator(.hidden)
+                    
+                    CommentViewModel(comment: item).prepareView()
                     WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                     
                 }
@@ -74,3 +67,25 @@ struct EntryWithCommentsView: View {
         }
     }
 }
+
+struct CommentView: View {
+    var viewModel: CommentViewModel;
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            AuthorWithDateHeader(author: viewModel.comment.author, date: viewModel.comment.getDate())
+            Text(viewModel.comment.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
+            if let embed = self.viewModel.comment.embed {
+                EmbedBodyPreviewWithModal(viewModel:EmbedViewModel(embed: embed))
+            }
+            HStack{
+                Spacer()
+                Text("+\(viewModel.comment.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.currentTheme.plusGreenColor)
+            }
+            
+        }.listRowSeparator(.hidden)
+
+    }
+}
+
+

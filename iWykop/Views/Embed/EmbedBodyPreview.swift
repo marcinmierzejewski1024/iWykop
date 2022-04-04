@@ -11,7 +11,7 @@ import SwiftUI
 
 struct EmbedBodyPreviewWithModal : View {
     
-    var embed: Embed?;
+    var viewModel: EmbedViewModel;
     @State private var isPresented = false
     @State private var offset = CGSize.zero
     
@@ -20,16 +20,15 @@ struct EmbedBodyPreviewWithModal : View {
     
     var body: some View {
         HStack{
-            if let embed = embed {
                 
-                EmbedBodyPreview(embed: embed).onTapGesture {
+                EmbedBodyPreview(viewModel: viewModel).onTapGesture {
                     self.isPresented.toggle()
                 }
                 .fullScreenCover(isPresented: $isPresented, content: {
                     
                     ZoomableScrollView {
                         
-                        EmbedBodyPreview(embed: embed, fullScreenMode: true).offset(x: offset.width * 0.2, y: offset.height * 0.7)
+                        EmbedBodyPreview(viewModel: viewModel, fullScreenMode: true).offset(x: offset.width * 0.2, y: offset.height * 0.7)
                         
                             .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global).onChanged({ value in
                                 
@@ -53,35 +52,35 @@ struct EmbedBodyPreviewWithModal : View {
                     }.ignoresSafeArea().background(BackgroundBlurView().ignoresSafeArea())
                     
                 })
-            }
+            
             
         }.padding(0)
-        
     }
+    
     
 }
 
 
 struct EmbedBodyPreview : View {
     
-    var embed: Embed;
-    var fullScreenMode = false;
+    var viewModel: EmbedViewModel;
+    @State var fullScreenMode = false;
 
     
     func playingGif() -> Bool {
-        return fullScreenMode && embed.animated;
+        return fullScreenMode && viewModel.embed.animated;
     }
     
     var body: some View {
         HStack{
-            if(embed.type == .image) {
+            if(viewModel.embed.type == .image) {
                 
                 if(playingGif()) {
 
-                    AnimatedImagePreview(urlString: embed.getFullImageUrl())
+                    AnimatedImagePreview(viewModel: viewModel)
                     
                 } else {
-                    let imageUrl = fullScreenMode ? embed.getFullImageUrl() : embed.getThumbnailImageURL()!;
+                    let imageUrl = fullScreenMode ? viewModel.embed.getFullImageUrl() : viewModel.embed.getThumbnailImageURL()!;
                     
                     CacheAsyncImage(
                         url: URL(string:imageUrl)){ phase in
@@ -101,8 +100,8 @@ struct EmbedBodyPreview : View {
                             }
                         }
                 }
-            } else if(embed.type == .video){
-                UIWKWebview(url: embed.url)
+            } else if(viewModel.embed.type == .video){
+                UIWKWebview(url: viewModel.embed.url)
             }
             
         }
@@ -112,8 +111,8 @@ struct EmbedBodyPreview : View {
 
 
 struct AnimatedImagePreview : View {
-    var urlString: String
-    @State var downloadProgress:Float = 0.4;
+    var viewModel: EmbedViewModel;
+    @State var downloadProgress:Float = 0.4;//TODO:use view model
     
     var body: some View {
         VStack{

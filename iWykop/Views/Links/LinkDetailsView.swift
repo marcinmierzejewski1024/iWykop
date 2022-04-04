@@ -109,7 +109,10 @@ struct LinkWithCommentsView: View {
                 VStack(alignment: .leading) {
                     AuthorWithDateHeader(author: item.author, date: item.getDate())
                     Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-                    EmbedBodyPreviewWithModal(embed: item.embed)
+//                    EmbedBodyPreviewWithModal(embed: item.embed)
+                    if let embed = item.embed {
+                        EmbedViewModel(embed: embed).prepareView()
+                    }
                     HStack{
                         Spacer()
                         Text("+\(item.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.currentTheme.plusGreenColor)

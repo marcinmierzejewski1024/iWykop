@@ -153,7 +153,7 @@ struct EntryBodyPreview : View
         VStack(alignment: .leading) {
             Text(entry.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
             if(entry.embed != nil && entry.embed?.plus18 == false) {
-                EmbedBodyPreviewWithModal(embed: entry.embed!)
+                EmbedViewModel(embed: entry.embed!).prepareView()
             }
             
         }.padding(0)
