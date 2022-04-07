@@ -29,7 +29,7 @@ class LinkServiceImpl : ApiV2Service, LinkService  {
         self.requestedId = id;
         let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
 
-        let data = try await self.apiClient.httpRequestAsync(request)
+        let data = try await self.apiClient.httpRequestAsync(request, progress: nil)
         
         let resultString = String(data: data, encoding: .utf8);
         print(resultString);

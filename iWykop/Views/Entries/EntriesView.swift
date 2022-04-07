@@ -99,7 +99,7 @@ struct EntriesView: View {
 }
 
 struct EntryViewCell: View {
-    var entry: Entry;
+    @State var entry: Entry;
     
     
     var body: some View {
@@ -147,16 +147,29 @@ struct EntryViewCellHeader : View
 struct EntryBodyPreview : View
 {
     var entry: Entry;
+    @State var generatedViewModel : EmbedViewModel?;
     
+    func prepareViewModel() {
+        print("preparing view model!")
+        if let embed = entry.embed {
+            if(self.generatedViewModel == nil) {
+                self.generatedViewModel = EmbedViewModel(embed: embed);
+            }
+        }
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
             Text(entry.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-            if(entry.embed != nil && entry.embed?.plus18 == false) {
-                EmbedViewModel(embed: entry.embed!).prepareView()
+            if(entry.embed != nil) {
+                if (entry.embed?.plus18 == false) {
+                    self.generatedViewModel?.prepareView()
+                }
             }
             
-        }.padding(0)
+        }.padding(0).onAppear {
+            self.prepareViewModel();
+        }
         
     }
 }

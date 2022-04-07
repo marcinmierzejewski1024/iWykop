@@ -82,6 +82,9 @@
 		56ECA3F527D547F900EBCA33 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA3F427D547F900EBCA33 /* Color.swift */; };
 		56ECA3F727D5559C00EBCA33 /* AuthorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA3F627D5559C00EBCA33 /* AuthorViewModel.swift */; };
 		56ECA3F927D5589C00EBCA33 /* Apiv2Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA3F827D5589C00EBCA33 /* Apiv2Protocols.swift */; };
+		56F8250027FF6C8100F3FC86 /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F824FF27FF6C8100F3FC86 /* GifView.swift */; };
+		56F8250227FF706300F3FC86 /* 5.gif in Resources */ = {isa = PBXBuildFile; fileRef = 56F8250127FF706300F3FC86 /* 5.gif */; };
+		56F8250427FF843A00F3FC86 /* URLSessionApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F8250327FF843A00F3FC86 /* URLSessionApiClient.swift */; };
 		64B1C92C73876F3E9A758423 /* Pods_iWykopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7C1A62050E194F85B03CE3 /* Pods_iWykopTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +182,9 @@
 		56ECA3F427D547F900EBCA33 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		56ECA3F627D5559C00EBCA33 /* AuthorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorViewModel.swift; sourceTree = "<group>"; };
 		56ECA3F827D5589C00EBCA33 /* Apiv2Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apiv2Protocols.swift; sourceTree = "<group>"; };
+		56F824FF27FF6C8100F3FC86 /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
+		56F8250127FF706300F3FC86 /* 5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 5.gif; sourceTree = "<group>"; };
+		56F8250327FF843A00F3FC86 /* URLSessionApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionApiClient.swift; sourceTree = "<group>"; };
 		7E7C1A62050E194F85B03CE3 /* Pods_iWykopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWykopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		858CA0CA1B7CAFBD627EA16C /* Pods-iWykopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykopTests.release.xcconfig"; path = "Target Support Files/Pods-iWykopTests/Pods-iWykopTests.release.xcconfig"; sourceTree = "<group>"; };
 		996A85F5A5569CC0126A2D8D /* Pods-iWykop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop.release.xcconfig"; path = "Target Support Files/Pods-iWykop/Pods-iWykop.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +304,7 @@
 			children = (
 				56684F1727BFBF0800604432 /* apiv2 */,
 				561196B027BEED7900605D03 /* AFApiClient.swift */,
+				56F8250327FF843A00F3FC86 /* URLSessionApiClient.swift */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -311,6 +318,7 @@
 				56554E1A27DCA84300BB8DD7 /* StyleModifier.swift */,
 				568A778327EE5F8E00DB72C2 /* ZoomableScrollView.swift */,
 				56D4738427F8E8B8007896E8 /* ProgressbarView.swift */,
+				56F824FF27FF6C8100F3FC86 /* GifView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -508,6 +516,7 @@
 		56ECA38027CEC4E300EBCA33 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				56F8250127FF706300F3FC86 /* 5.gif */,
 				561196A727BE9FDE00605D03 /* apiCreditentials.plist */,
 				56ECA38F27CECC0000EBCA33 /* en */,
 				56ECA38E27CECBF500EBCA33 /* pl */,
@@ -688,6 +697,7 @@
 				561196A827BE9FDE00605D03 /* apiCreditentials.plist in Resources */,
 				5680866427BE8FB1001E4F43 /* Preview Assets.xcassets in Resources */,
 				56684F3527C14F3400604432 /* AutoEquatable.stencil in Resources */,
+				56F8250227FF706300F3FC86 /* 5.gif in Resources */,
 				56ECA38527CEC61400EBCA33 /* Localizable.strings in Resources */,
 				5680866127BE8FB1001E4F43 /* Assets.xcassets in Resources */,
 				56684F2D27C13BCD00604432 /* AutoCodable.swifttemplate in Resources */,
@@ -845,6 +855,7 @@
 				56684F2627BFC96300604432 /* EntriesView.swift in Sources */,
 				56ECA3F327D4D1AD00EBCA33 /* Font.swift in Sources */,
 				561196AD27BEA7D800605D03 /* String.swift in Sources */,
+				56F8250427FF843A00F3FC86 /* URLSessionApiClient.swift in Sources */,
 				5662048127E12AD500A61508 /* EmbedBodyPreview.swift in Sources */,
 				56684F3827C156FB00604432 /* AutoEquatable.generated.swift in Sources */,
 				56ECA37327CE67DE00EBCA33 /* LinksViewModel.swift in Sources */,
@@ -862,6 +873,7 @@
 				56554E1727DB67C500BB8DD7 /* LinkDetailsView.swift in Sources */,
 				56250B6C27C26FE90086AFF5 /* EntryDetailsView.swift in Sources */,
 				56ECA37A27CE887A00EBCA33 /* CachedAsyncImage.swift in Sources */,
+				56F8250027FF6C8100F3FC86 /* GifView.swift in Sources */,
 				56554E1D27DE070700BB8DD7 /* BasePushableViewModel.swift in Sources */,
 				56684F2127BFC4A000604432 /* EntryViewModel.swift in Sources */,
 				568A778427EE5F8E00DB72C2 /* ZoomableScrollView.swift in Sources */,

@@ -11,7 +11,7 @@ import SwiftUI
 
 struct EmbedBodyPreviewWithModal : View {
     
-    var viewModel: EmbedViewModel;
+    @State var viewModel: EmbedViewModel;
     @State private var isPresented = false
     @State private var offset = CGSize.zero
     
@@ -63,12 +63,14 @@ struct EmbedBodyPreviewWithModal : View {
 
 struct EmbedBodyPreview : View {
     
-    var viewModel: EmbedViewModel;
+    @State var viewModel: EmbedViewModel;
     @State var fullScreenMode = false;
 
     
     func playingGif() -> Bool {
-        return fullScreenMode && viewModel.embed.animated;
+        let result = fullScreenMode && viewModel.embed.animated;
+        
+        return result;
     }
     
     var body: some View {
@@ -98,7 +100,10 @@ struct EmbedBodyPreview : View {
                                     .aspectRatio(contentMode: .fit)
                                 
                             }
+                        }.onTapGesture {
+                            self.fullScreenMode.toggle();
                         }
+
                 }
             } else if(viewModel.embed.type == .video){
                 UIWKWebview(url: viewModel.embed.url)
@@ -111,16 +116,22 @@ struct EmbedBodyPreview : View {
 
 
 struct AnimatedImagePreview : View {
-    var viewModel: EmbedViewModel;
-    @State var downloadProgress:Float = 0.4;//TODO:use view model
+    @ObservedObject var viewModel: EmbedViewModel;
+    
     
     var body: some View {
         VStack{
-            ProgressbarView(value: $downloadProgress).frame(maxHeight:15).padding()
             Spacer()
-            Text("GIF HERE");
+            if(viewModel.animatedImageData != nil) {
+                A9_SwiftyGif_final(gifData:viewModel.animatedImageData)
+            } else {
+                ProgressbarView(value: viewModel.downloadProgress).frame(maxHeight:15).padding()
+            }
             Spacer()
 
+        }.onAppear {
+            viewModel.loadData()
+            
         }
         
     }

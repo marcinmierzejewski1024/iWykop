@@ -11,51 +11,43 @@ import Resolver
 import OrderedCollections
 import KSToastView
 import SwiftUI
+import Combine
+import SwiftyGif
 
 
 class EmbedViewModel : BasePushableViewModel
 {
-    @Published var downloadProgress : Float = 0.2;
+    lazy var apiClient : ApiClient = resolver.resolve();
+    @Published var downloadProgress = 0.1;
     @Published var embed : Embed;
+    @Published var animatedImageData : Data?;
     
     init(embed : Embed) {
         self.embed = embed;
     }
     
     
-    func loadData() async {
+    func loadData() {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.downloadProgress = 0.4;
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.downloadProgress = 0.5;
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.downloadProgress = 0.6;
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.downloadProgress = 0.8;
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.downloadProgress = 1.0;
-        }
-        
-        
-//        do {
-//            var newEntry = try await entryService.getEntry(id: old.id);
-//            newEntry = await self.withAttributedBody(newEntry!);
-//
-//            return newEntry;
-            
-            
-//        } catch {
-//            print(error);
-//            DispatchQueue.main.async {
-//                KSToastView.ks_showToast(error.localizedDescription);
-//            }
+        if let gifUrl = embed.getAnimatedImageUrl() {
+            print("starting gif\(gifUrl)")
+            apiClient.httpRequest(.Get(url: gifUrl, headers: nil)) { progress in
+                print("progress gif\(progress)")
 
-//        }
+                self.downloadProgress = progress;
+                self.objectWillChange.send()
+
+            } completion: { data, error in
+                
+                if let data = data {
+                    self.animatedImageData = data;
+                    self.objectWillChange.send()
+                }
+                
+    //            image from data
+            }
+        }
+
         
     }
     
@@ -69,9 +61,7 @@ class EmbedViewModel : BasePushableViewModel
     
     
     override func prepareView() -> AnyView {
-        return AnyView(EmbedBodyPreview(viewModel: self).task {
-            await self.loadData()
-        });
+        return AnyView(EmbedBodyPreview(viewModel: self));
     }
     
     

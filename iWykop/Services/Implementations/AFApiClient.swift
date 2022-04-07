@@ -8,8 +8,12 @@
 import Foundation
 import Alamofire
 
+
 class AFNetworkApiClient : ApiClient {
-    func httpRequest(_ request: ApiRequest, completion: @escaping (Data?, Error?) -> Void) {
+    
+    
+    
+    func httpRequest(_ request: ApiRequest, progress: ((Double) -> Void)?, completion: (@escaping (Data?, Error?) -> Void)) {
         
         var requestUrl = "";
         var requestBody :ApiRequestBody?;
@@ -48,7 +52,9 @@ class AFNetworkApiClient : ApiClient {
         
         
         
-        AF.request(requestUrl, method: method, parameters: requestBody?.body, headers: requestHeaders).response(completionHandler: { response in
+        AF.request(requestUrl, method: method, parameters: requestBody?.body, headers: requestHeaders).downloadProgress(closure: { p in
+            progress?(p.fractionCompleted)
+        }).response(completionHandler: { response in
             
             switch response.result {
                 

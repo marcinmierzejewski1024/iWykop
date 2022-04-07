@@ -29,13 +29,18 @@ struct Embed: AutoCodable, AutoEquatable, Hashable {
     }
     
     
-    func getFullImageUrl() -> String{
+    func getFullImageUrl() -> String {
+        return url;
+
+    }
+    
+    func getAnimatedImageUrl() ->String? {
+        
         if self.animated {
             return url.replacingOccurrences(of: ".jpg", with: ".gif");//wykop apiv2 nonsense
         }
         
-        return url;
-
+        return nil;
     }
     
     func getSourceDomain() -> String? {

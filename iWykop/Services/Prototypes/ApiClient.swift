@@ -9,6 +9,13 @@ import Foundation
 
 struct ApiRequestBody {
     var body : [String:String];
+    
+    func toData() throws -> Data {
+        let jsonData = try JSONSerialization.data(withJSONObject: self.body, options: [])
+
+        return jsonData
+
+    }
 }
 
 typealias ApiRequestHeaders = [String:String]
@@ -22,16 +29,16 @@ enum ApiRequest {
 }
 
 protocol ApiClient {
-    func httpRequestAsync(_ request: ApiRequest) async throws -> Data
-    func httpRequest(_ request: ApiRequest, completion: @escaping (_ data: Data?, _ error: Error?) -> Void)
+    func httpRequestAsync(_ request: ApiRequest, progress:((Double) -> Void)?) async throws -> Data
+    func httpRequest(_ request: ApiRequest, progress:((Double) -> Void)?, completion: @escaping (_ data: Data?, _ error: Error?) -> Void)
 
 }
 
 
 extension ApiClient {
-    func httpRequestAsync(_ request: ApiRequest) async throws -> Data {
+    func httpRequestAsync(_ request: ApiRequest, progress:((Double) -> Void)?) async throws -> Data {
         try await withCheckedThrowingContinuation({ cont in
-            self.httpRequest(request) { data, error in
+            self.httpRequest(request, progress: progress) { data, error in
                 if let error = error {
                     cont.resume(throwing: error)
                     return

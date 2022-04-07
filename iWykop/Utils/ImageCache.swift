@@ -34,6 +34,8 @@ class ImageCache : Resolving {
     
     func preloadImage(url:String?)
     {
+        return;//to be reviewed
+        
         guard url != nil else {
             return;
         }
@@ -56,7 +58,7 @@ class ImageCache : Resolving {
 
                 ImageCache.inProgress.append(key);
             }
-            networkClient.httpRequest(ApiRequest.Get(url: url!, headers: nil)) { data, err in
+            networkClient.httpRequest(ApiRequest.Get(url: url!, headers: nil), progress: nil) { data, err in
                 if let data = data {
                     if let image = UIImage(data: data) {
                         let imageToBeCached = Image(uiImage: image)
