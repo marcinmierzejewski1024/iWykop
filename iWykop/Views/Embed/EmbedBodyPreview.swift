@@ -65,12 +65,15 @@ struct EmbedBodyPreview : View {
     
     @State var viewModel: EmbedViewModel;
     @State var fullScreenMode = false;
+    @EnvironmentObject var settings: SettingsStore
+    @State var isViewDisplayed = false
 
     
     func playingGif() -> Bool {
-        let result = fullScreenMode && viewModel.embed.animated;
-        
-        return result;
+        let fullscreen = fullScreenMode && viewModel.embed.animated;
+        let autoplay = settings.autoplayAnimated && viewModel.embed.animated;
+
+        return (fullscreen || autoplay) && isViewDisplayed;
     }
     
     var body: some View {
@@ -109,6 +112,11 @@ struct EmbedBodyPreview : View {
                 UIWKWebview(url: viewModel.embed.url)
             }
             
+        }.onAppear {
+            self.isViewDisplayed = true
+        }
+        .onDisappear {
+            self.isViewDisplayed = false
         }
         
     }

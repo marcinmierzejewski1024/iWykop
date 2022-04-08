@@ -17,6 +17,10 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 Section(header: Text("Content settings").modifier(TitleStyle())) {
+                    Toggle(isOn: $settings.autoplayAnimated) {
+                        Text("Autoplay animated images").modifier(SettingsTextStyle())
+                    }
+
                     Toggle(isOn: $settings.openInSafari) {
                         Text("Open links in external browser").modifier(SettingsTextStyle())
                     }

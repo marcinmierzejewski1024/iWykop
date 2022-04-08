@@ -51,9 +51,15 @@ struct ItemInTagView : View {
         
         switch item.type {
         case .link:
-            LinkDetailsView(link: item.link!, viewModel: LinkViewModel(link: item.link!))
+            LinkDetailsView(link: item.link!, viewModel: LinkViewModel(link: item.link!)).onTapGesture {
+                BasePushableViewModel.navigation?.pushView(LinkViewModel(link: item.link!).prepareView())
+                
+            }
         case .entry:
-            EntryViewCell(entry: item.entry!)
+            EntryViewCell(entry: item.entry!).onTapGesture {
+                BasePushableViewModel.navigation?.pushView(EntryViewModel(entry: item.entry!).prepareView())
+                
+            }
         }
         
     }

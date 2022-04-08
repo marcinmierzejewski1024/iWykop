@@ -18,7 +18,7 @@ import SwiftyGif
 class EmbedViewModel : BasePushableViewModel
 {
     lazy var apiClient : ApiClient = resolver.resolve();
-    @Published var downloadProgress = 0.1;
+    @Published var downloadProgress = 0.0;
     @Published var embed : Embed;
     @Published var animatedImageData : Data?;
     
@@ -32,16 +32,19 @@ class EmbedViewModel : BasePushableViewModel
         if let gifUrl = embed.getAnimatedImageUrl() {
             print("starting gif\(gifUrl)")
             apiClient.httpRequest(.Get(url: gifUrl, headers: nil)) { progress in
-                print("progress gif\(progress)")
-
-                self.downloadProgress = progress;
-                self.objectWillChange.send()
+                DispatchQueue.main.async {
+                    print("progress gif\(progress)")
+                    self.downloadProgress = progress;
+                    self.objectWillChange.send()
+                }
 
             } completion: { data, error in
                 
                 if let data = data {
-                    self.animatedImageData = data;
-                    self.objectWillChange.send()
+                    DispatchQueue.main.async {
+                        self.animatedImageData = data;
+                        self.objectWillChange.send()
+                    }
                 }
                 
     //            image from data
