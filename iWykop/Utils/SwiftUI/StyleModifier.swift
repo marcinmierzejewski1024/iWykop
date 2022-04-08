@@ -66,6 +66,14 @@ struct DateStyle: ViewModifier {
     }
 }
 
+struct SettingsTextStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(Font.settingsFont())
+            .foregroundColor(WykopColors.currentTheme.textColor)
+    }
+}
+
 
 enum Margins : CGFloat {
     case small = 4.0

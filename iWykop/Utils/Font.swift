@@ -27,6 +27,10 @@ extension Font {
         return Font(uiFont: .loginFont());
     }
     
+    static func settingsFont() ->Font {
+        return Font(uiFont: .settingsFont());
+    }
+    
     static func dateFont() ->Font {
         return Font(uiFont: .dateFont());
     }
@@ -37,7 +41,7 @@ extension UIFont {
     
     class func titleFont() -> UIFont
     {
-        return .systemFont(ofSize: 18, weight: .semibold);
+        return .systemFont(ofSize: 16, weight: .semibold);
     }
 
     class func bodyFont() -> UIFont
@@ -52,6 +56,12 @@ extension UIFont {
 
     
     class func loginFont() -> UIFont
+    {
+        return .systemFont(ofSize: 13);
+    }
+    
+    
+    class func settingsFont() -> UIFont
     {
         return .systemFont(ofSize: 13);
     }

@@ -8,7 +8,11 @@
 import Foundation
 import Alamofire
 
-class URLSessionApiClient : ApiClient {
+class URLSessionApiClient : NSObject, ApiClient, URLSessionDelegate, URLSessionDataDelegate {
+    
+    var session:URLSession?
+
+    
     func httpRequest(_ request: ApiRequest, progress: ((Double) -> Void)?, completion: (@escaping (Data?, Error?) -> Void)) {
      
         var sessionMethod : HTTPMethod?;
@@ -43,12 +47,32 @@ class URLSessionApiClient : ApiClient {
         var urlRequest = try! URLRequest(url: urlString!, method: sessionMethod!, headers: sessionHeaders)
         urlRequest.httpBody = sessionBody;
         
-        var dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            completion(data,error);
+        
+        let configuration = URLSessionConfiguration.default
+        let mainqueue = OperationQueue.main
+        if (self.session == nil) {
+            session = URLSession(configuration: configuration, delegate:self, delegateQueue: nil)
         }
 
-//        dataTask.pr
+        let dataTask = session!.dataTask(with: urlRequest) { data, response, error in
+            completion(data,error);
+        }
+        
+        dataTask.delegate = self;
+
         dataTask.resume();
     }
+
+//    func URLSession(session: URLSession, dataTask: URLSessionDataTask, didReceiveResponse response: URLResponse, completionHandler: (URLSessionResponseDisposition) -> Void) {
+//        completionHandler(URLSessionResponseDisposition.Allow) //.Cancel,If you want to stop the download
+//    }
+
     
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+                print("didReceive222");
+
+    }
+//    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+//        print("didReceive");
+//    }
 }

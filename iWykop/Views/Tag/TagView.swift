@@ -12,6 +12,8 @@ import SwiftUI
 
 
 struct TagView : View {
+    @EnvironmentObject var settings: SettingsStore
+
     @ObservedObject var viewModel : TagViewModel;
     
     
@@ -24,9 +26,12 @@ struct TagView : View {
                 
                 ForEach(self.viewModel.items ?? [], id: \.self ) { item in
                     
-                    ItemInTagView(item: item).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-                    WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-
+                    if (item.hasAdultContent() == false || settings.plus18Enabled ) {
+                        
+                        ItemInTagView(item: item).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                        WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                    }
+                    
                 }
             }
             

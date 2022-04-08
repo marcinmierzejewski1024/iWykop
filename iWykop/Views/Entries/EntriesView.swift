@@ -14,39 +14,40 @@ struct EntriesView: View {
     @ViewBuilder
     var body: some View {
         
+        
+        VStack {
             
-            VStack {
-
-                DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
-                    Text("6h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
-                        Task {
-                            await viewModel.changeRequestedPeriod(period: .from6);
-                        }
+            DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
+                Text("6h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
+                    Task {
+                        await viewModel.changeRequestedPeriod(period: .from6);
                     }
-                    Text("12h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
-                        Task {
-                            
-                            await viewModel.changeRequestedPeriod(period: .from12);
-                        }
+                }
+                Text("12h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
+                    Task {
+                        
+                        await viewModel.changeRequestedPeriod(period: .from12);
                     }
-                    Text("24h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
-                        Task {
-                            
-                            await viewModel.changeRequestedPeriod(period: .from24);
-                        }
+                }
+                Text("24h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
+                    Task {
+                        
+                        await viewModel.changeRequestedPeriod(period: .from24);
                     }
-                }.padding(.horizontal, Margins.huge.rawValue).padding(.vertical, Margins.huge.rawValue).font(.title)
-                
-                EntriesListView(viewModel: self.viewModel)
-                
-            }
+                }
+            }.padding(.horizontal, Margins.huge.rawValue).padding(.vertical, Margins.huge.rawValue).font(.title)
             
+            EntriesListView(viewModel: self.viewModel)
             
+        }
+        
+        
         
     }
     
     
     struct EntriesListView: View {
+        @EnvironmentObject var settings: SettingsStore
         
         @ObservedObject var viewModel : EntriesViewModel;
         
@@ -62,16 +63,20 @@ struct EntriesView: View {
                     
                     ZStack {
                         
-                        
-                        EntryViewCell(entry: item).onAppear {
-                            if item == self.viewModel.entries.last {
-                                Task {
-                                    await self.viewModel.getNextEntries()
+                        if (item.hasAdultContent() == false || settings.plus18Enabled ) {
+                            
+                            EntryViewCell(entry: item).onAppear {
+                                if item == self.viewModel.entries.last {
+                                    Task {
+                                        await self.viewModel.getNextEntries()
+                                    }
                                 }
+                                
+                                
+                            }.onTapGesture {
+                                BasePushableViewModel.navigation?.pushView(EntryViewModel(entry: item).prepareView())
+                                
                             }
-                        }.onTapGesture {
-                            BasePushableViewModel.navigation?.pushView(EntryViewModel(entry: item).prepareView())
-
                         }
                         
                         
@@ -146,6 +151,7 @@ struct EntryViewCellHeader : View
 
 struct EntryBodyPreview : View
 {
+    
     var entry: Entry;
     @State var generatedViewModel : EmbedViewModel?;
     
@@ -162,9 +168,7 @@ struct EntryBodyPreview : View
         VStack(alignment: .leading) {
             Text(entry.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
             if(entry.embed != nil) {
-                if (entry.embed?.plus18 == false) {
-                    self.generatedViewModel?.prepareView()
-                }
+                self.generatedViewModel?.prepareView()
             }
             
         }.padding(0).onAppear {

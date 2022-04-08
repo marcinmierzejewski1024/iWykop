@@ -54,6 +54,14 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComment
     func getDate() -> Date? {
         return Date.fromString(self.date)
     }
+    
+    func hasAdultContent() -> Bool {
+        if let embed = embed {
+            return embed.plus18;
+        }
+        
+        return false;
+    }
 }
 
 

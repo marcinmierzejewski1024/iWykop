@@ -36,7 +36,7 @@ struct ContentView: View {
             
             SettingsView().tabItem {
                 Label("Settings", systemImage: "gearshape.fill")
-            }.environmentObject(settingsStore).modifier(BackgroundStyle())
+            }
             
             SearchView().tabItem {
                 Label("Search", systemImage: "magnifyingglass")
@@ -56,7 +56,7 @@ struct ContentView: View {
         }.font(.bodyFont())
             .onAppear {
                 BasePushableViewModel.navigation = self.navigation;
-            }
+            }.environmentObject(settingsStore).modifier(BackgroundStyle())
         
     }
 }

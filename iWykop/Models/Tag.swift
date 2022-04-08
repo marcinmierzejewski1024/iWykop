@@ -26,6 +26,17 @@ struct ItemInTag : AutoCodable, AutoEquatable, Hashable {
     var link : Link?
     var entry : Entry?
     
+    
+    func hasAdultContent() -> Bool {
+        switch type {
+        case .entry:
+            return entry!.hasAdultContent();
+        case .link:
+            return false;
+        }
+        
+    }
+    
 }
 
 

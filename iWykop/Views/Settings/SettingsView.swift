@@ -18,23 +18,21 @@ struct SettingsView: View {
             Form {
                 Section(header: Text("Content settings").modifier(TitleStyle())) {
                     Toggle(isOn: $settings.openInSafari) {
-                        Text("Open links in external browser").modifier(BodyStyle())
+                        Text("Open links in external browser").modifier(SettingsTextStyle())
                     }
                     Toggle(isOn: $settings.plus18Enabled) {
-                        Text("Show +18 content").modifier(BodyStyle())
+                        Text("Show +18 content").modifier(SettingsTextStyle())
                     }
                     
                     Toggle(isOn: $settings.darkMode) {
-                        Text("Dark mode").modifier(BodyStyle())
+                        Text("Dark mode").modifier(SettingsTextStyle())
                     }
                 }
                 
                 Section(header: Text("Assets").modifier(TitleStyle())) {
                     Button("https://www.flaticon.com/free-icons/hide"){
                         openURL(URL(string: "https://www.flaticon.com/free-icons/hide")!)
-
-
-                    }
+                    }.font(.settingsFont())
                 }
                 
                 
