@@ -15,9 +15,9 @@ struct LinksView: View {
     var body: some View {
         
         
-            
-            LinksListView(viewModel: self.viewModel)
-            
+        
+        LinksListView(viewModel: self.viewModel)
+        
         
     }
     
@@ -76,54 +76,61 @@ struct LinksView: View {
 struct LinksListCell: View {
     var link: Link;
     @ObservedObject var viewModel : LinksViewModel;
-    @Environment(\.openURL) var openURL
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     
     var body: some View {
-        VStack{
-            
-            CacheAsyncImage(
-                url: URL(string:link.getFullPreviewImageURL() ?? "")){ phase in
-                    switch phase {
-                    case .success(let image):
-                        VStack(alignment: .leading) {
-                            image.resizable()
-                                .aspectRatio(contentMode: .fit).frame( maxHeight: 250).fixedSize(horizontal: false, vertical: false)
+        
+        if horizontalSizeClass == .compact {
+            VStack{
+                
+                CacheAsyncImage(
+                    url: URL(string:link.getFullPreviewImageURL() ?? "")){ phase in
+                        switch phase {
+                        case .success(let image):
+                            VStack(alignment: .leading) {
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit).frame( maxHeight: 250).fixedSize(horizontal: false, vertical: false)
+                            }
+                        case .failure(let error):
+                            Text(error.localizedDescription)
+                            
+                        default:
+                            Image("placeholder").resizable()
+                                .aspectRatio(contentMode: .fit)
+                            
                         }
-                    case .failure(let error):
-                        Text(error.localizedDescription)
-                        
-                    default:
-                        Image("placeholder").resizable()
-                            .aspectRatio(contentMode: .fit)
-                        
                     }
-                }
-            VStack(alignment: .leading) {
+                LinkHeader(link: link, displayDescription: false)
                 
-                Text(link.title ?? "").modifier(TitleStyle()).padding(Margins.medium.rawValue)
-                HStack{
-                    Button(link.getSourceDomain() ?? "") {
-                        //                    openURL(URL(string: link.sourceUrl)!)
-                        
+            }.padding(0).modifier(CardStyle())
+        } else {
+            HStack {
+                CacheAsyncImage(
+                    url: URL(string:link.getFullPreviewImageURL() ?? "")){ phase in
+                        switch phase {
+                        case .success(let image):
+                            VStack(alignment: .leading) {
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit).frame( maxWidth: 150)
+                            }
+
+                        default:
+                            Image("placeholder").resizable()
+                                .aspectRatio(contentMode: .fit)
+                            
+                        }
                     }
-                    
-                    Spacer()
-                    Image(systemName: (link.isHot ? "flame.fill" : "arrow.up")).modifier(BodyStyle())
-                    Text("\(link.voteCount)").padding(.trailing, Margins.medium.rawValue).modifier(BodyStyle())
-                    Image(systemName:"text.bubble").modifier(BodyStyle())
-                    Text("\(link.commentsCount)").modifier(BodyStyle())
-                    
-                }.padding(.horizontal, Margins.medium.rawValue)
-                //                AuthorView(author: link.author)
-                
-                
-                
-                
+
+                LinkHeader(link: link, displayDescription: true)
             }
-            
-            
-        }.padding(0).modifier(CardStyle())
+
+        }
+        
+        
+        
+        
+        
         
     }
     
@@ -131,3 +138,35 @@ struct LinksListCell: View {
 
 
 
+struct LinkHeader : View {
+    var link: Link;
+    var displayDescription: Bool;
+    
+    @Environment(\.openURL) var openURL
+    
+    var body: some View {
+        
+        VStack(alignment: .leading) {
+            
+            Text(link.title ?? "").modifier(TitleStyle()).padding([.leading,.top,.trailing],Margins.medium.rawValue)
+            if(displayDescription){
+                Text(link.description ?? "").modifier(BodyStyle()).padding(.trailing, 100).padding(.leading,Margins.medium.rawValue)
+
+            }
+            HStack{
+                Button(link.getSourceDomain() ?? "") {
+                    openURL(URL(string: link.sourceUrl)!)
+                }
+                
+                Spacer()
+                Image(systemName: (link.isHot ? "flame.fill" : "arrow.up")).modifier(BodyStyle())
+                Text("\(link.voteCount)").padding(.trailing, Margins.medium.rawValue).modifier(BodyStyle())
+                Image(systemName:"text.bubble").modifier(BodyStyle())
+                Text("\(link.commentsCount)").modifier(BodyStyle())
+                
+            }.padding(.horizontal, Margins.medium.rawValue).padding(.top, Margins.small.rawValue)
+            //                AuthorView(author: link.author)
+            
+        }
+    }
+}
