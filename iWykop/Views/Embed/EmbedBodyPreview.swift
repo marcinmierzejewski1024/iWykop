@@ -20,38 +20,38 @@ struct EmbedBodyPreviewWithModal : View {
     
     var body: some View {
         HStack{
+            
+            EmbedBodyPreview(viewModel: viewModel).onTapGesture {
+                self.isPresented.toggle()
+            }
+            .fullScreenCover(isPresented: $isPresented, content: {
                 
-                EmbedBodyPreview(viewModel: viewModel).onTapGesture {
-                    self.isPresented.toggle()
-                }
-                .fullScreenCover(isPresented: $isPresented, content: {
+                ZoomableScrollView {
                     
-                    ZoomableScrollView {
-                        
-                        EmbedBodyPreview(viewModel: viewModel, fullScreenMode: true).offset(x: offset.width * 0.2, y: offset.height * 0.7)
-                        
-                            .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global).onChanged({ value in
-                                
-                                offset = value.translation
-                                
-                                
-                            }).onEnded { value in
-                                let horizontalAmount = value.translation.width as CGFloat
-                                let verticalAmount = value.translation.height as CGFloat
-                                
-                                if abs(horizontalAmount) > 80 || abs(verticalAmount) > 80 {
-                                    withAnimation {
-                                        isPresented.toggle();
-                                    }
-                                }
-                                
+                    EmbedBodyPreview(viewModel: viewModel, fullScreenMode: true).offset(x: offset.width * 0.2, y: offset.height * 0.7)
+                    
+                        .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global).onChanged({ value in
+                            
+                            offset = value.translation
+                            
+                            
+                        }).onEnded { value in
+                            let horizontalAmount = value.translation.width as CGFloat
+                            let verticalAmount = value.translation.height as CGFloat
+                            
+                            if abs(horizontalAmount) > 80 || abs(verticalAmount) > 80 {
                                 withAnimation {
-                                    offset = CGSize.zero;
+                                    isPresented.toggle();
                                 }
-                            }).frame(maxWidth: .infinity, maxHeight: .infinity).background(.clear)
-                    }.ignoresSafeArea().background(BackgroundBlurView().ignoresSafeArea())
-                    
-                })
+                            }
+                            
+                            withAnimation {
+                                offset = CGSize.zero;
+                            }
+                        }).frame(maxWidth: .infinity, maxHeight: .infinity).background(.clear)
+                }.ignoresSafeArea().background(BackgroundBlurView().ignoresSafeArea())
+                
+            })
             
             
         }.padding(0)
@@ -67,12 +67,12 @@ struct EmbedBodyPreview : View {
     @State var fullScreenMode = false;
     @EnvironmentObject var settings: SettingsStore
     @State var isViewDisplayed = false
-
+    
     
     func playingGif() -> Bool {
         let fullscreen = fullScreenMode && viewModel.embed.animated;
         let autoplay = settings.autoplayAnimated && viewModel.embed.animated;
-
+        
         return (fullscreen || autoplay) && isViewDisplayed;
     }
     
@@ -81,7 +81,7 @@ struct EmbedBodyPreview : View {
             if(viewModel.embed.type == .image) {
                 
                 if(playingGif()) {
-
+                    
                     AnimatedImagePreview(viewModel: viewModel)
                     
                 } else {
@@ -93,7 +93,19 @@ struct EmbedBodyPreview : View {
                             case .success(let image):
                                 VStack(alignment: fullScreenMode ? .center : .leading) {
                                     image.resizable()
-                                        .aspectRatio(contentMode: .fit)
+                                        .aspectRatio(contentMode: .fit).overlay {
+                                            if(!playingGif() && viewModel.embed.animated) {
+                                                VStack {
+                                                    Spacer()
+                                                    HStack {
+                                                        Spacer()
+                                                        Text("GIF").font(.title).bold().foregroundColor(.blue).padding(10).background(Color.white).cornerRadius(10.0).padding(10);
+                                                    }
+                                                    
+                                                    
+                                                }
+                                            }
+                                        }
                                 }
                             case .failure(let error):
                                 Text(error.localizedDescription)
@@ -106,7 +118,7 @@ struct EmbedBodyPreview : View {
                         }.onTapGesture {
                             self.fullScreenMode.toggle();
                         }
-
+                    
                 }
             } else if(viewModel.embed.type == .video){
                 UIWKWebview(url: viewModel.embed.url)
@@ -136,7 +148,7 @@ struct AnimatedImagePreview : View {
                 ProgressbarView(value: viewModel.downloadProgress).frame(maxHeight:15).padding()
             }
             Spacer()
-
+            
         }.onAppear {
             viewModel.loadData()
             
