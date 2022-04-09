@@ -22,13 +22,13 @@ struct ContentView: View {
         TabView {
             
             NavigationView {
-                linksViewModel.prepareView()
+                linksViewModel.prepareView().navigationTitle("").navigationBarHidden(true)
             }.navigationViewStyle(.stack).tabItem {
                 Label("Main", systemImage: "w.square")
             }.modifier(BackgroundStyle())
             
             NavigationView {
-                viewModel.prepareView().modifier(BackgroundStyle())
+                viewModel.prepareView().modifier(BackgroundStyle()).navigationTitle("").navigationBarHidden(true)
             }.navigationViewStyle(.stack).tabItem {
                 Label("Entries", systemImage: "number.square")
             }
