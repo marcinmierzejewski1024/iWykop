@@ -83,7 +83,6 @@ struct LinksListCell: View {
         
         if horizontalSizeClass == .compact {
             VStack{
-                
                 CacheAsyncImage(
                     url: URL(string:link.getFullPreviewImageURL() ?? "")){ phase in
                         switch phase {
@@ -92,9 +91,6 @@ struct LinksListCell: View {
                                 image.resizable()
                                     .aspectRatio(contentMode: .fit).frame( maxHeight: 250).fixedSize(horizontal: false, vertical: false)
                             }
-                        case .failure(let error):
-                            Text(error.localizedDescription)
-                            
                         default:
                             Image("placeholder").resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -148,9 +144,9 @@ struct LinkHeader : View {
         
         VStack(alignment: .leading) {
             
-            Text(link.title ?? "").modifier(TitleStyle()).padding([.leading,.top,.trailing],Margins.medium.rawValue)
-            if(displayDescription){
-                Text(link.description ?? "").modifier(BodyStyle()).padding(.trailing, 100).padding(.leading,Margins.medium.rawValue)
+            Text(BodyFormater.replaceOtherSymbols(link.title ?? "")).modifier(TitleStyle()).padding([.leading,.top,.trailing],Margins.medium.rawValue)
+            if(displayDescription) {
+                Text(BodyFormater.replaceOtherSymbols(link.description ?? "")).modifier(BodyStyle()).padding(.trailing, 100).padding(.leading,Margins.medium.rawValue)
 
             }
             HStack{

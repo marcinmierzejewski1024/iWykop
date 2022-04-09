@@ -109,10 +109,10 @@ struct LinkWithCommentsView: View {
                 VStack(alignment: .leading) {
                     AuthorWithDateHeader(author: item.author, date: item.getDate())
                     Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-//                    EmbedBodyPreviewWithModal(embed: item.embed)
-//                    if let embed = item.embed {
-//                        EmbedViewModel(embed: embed).prepareView()
-//                    }
+                    //                    EmbedBodyPreviewWithModal(embed: item.embed)
+                    //                    if let embed = item.embed {
+                    //                        EmbedViewModel(embed: embed).prepareView()
+                    //                    }
                     HStack{
                         Spacer()
                         Text("+\(item.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.currentTheme.plusGreenColor)
@@ -153,32 +153,56 @@ struct LinkWithVoters: View {
 
 struct LinkViewCellHeader : View
 {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
     @Environment(\.openURL) var openURL
-
+    
     var link: Link;
     
     var body: some View {
         VStack(alignment: .leading){
-            CacheAsyncImage(
-                url: URL(string:link.getFullPreviewImageURL() ?? "")){ phase in
-                    switch phase {
-                    case .success(let image):
-                        VStack(alignment: .center) {
-                            image.resizable()
-                                .aspectRatio(contentMode: .fit)
-                        }
-                    case .failure(let error):
-                        Text(error.localizedDescription)
-                        
-                    default:
-                        Image("placeholder").resizable()
-                            .aspectRatio(contentMode: .fit)
-                        
-                    }
-                }.padding(0)
-            Text(BodyFormater.replaceOtherSymbols(link.title ?? "")).padding(Margins.huge.rawValue).fixedSize(horizontal: false, vertical: true).modifier(TitleStyle())
             
-            Text(BodyFormater.replaceOtherSymbols(link.description ?? "")).padding(Margins.huge.rawValue).fixedSize(horizontal: false, vertical: true).modifier(BodyStyle())
+            if horizontalSizeClass == .compact {
+                VStack{
+                    CacheAsyncImage(
+                        url: URL(string:link.getFullPreviewImageURL() ?? "")){ phase in
+                            switch phase {
+                            case .success(let image):
+                                VStack(alignment: .leading) {
+                                    image.resizable()
+                                        .aspectRatio(contentMode: .fit).frame( maxHeight: 250).fixedSize(horizontal: false, vertical: false)
+                                }
+                            default:
+                                Image("placeholder").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                
+                            }
+                        }
+                    LinkHeader(link: link, displayDescription: true)
+                    
+                }.padding(0).modifier(CardStyle())
+            } else {
+                HStack {
+                    CacheAsyncImage(
+                        url: URL(string:link.getFullPreviewImageURL() ?? "")){ phase in
+                            switch phase {
+                            case .success(let image):
+                                VStack(alignment: .leading) {
+                                    image.resizable()
+                                        .aspectRatio(contentMode: .fit).frame( maxWidth: 150)
+                                }
+                                
+                            default:
+                                Image("placeholder").resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                
+                            }
+                        }
+                    
+                    LinkHeader(link: link, displayDescription: true)
+                }
+                
+            }
             
         }.padding(0).onTapGesture {
             openURL(URL(string: link.sourceUrl)!)

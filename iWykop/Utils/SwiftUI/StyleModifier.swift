@@ -66,7 +66,7 @@ struct DateStyle: ViewModifier {
     }
 }
 
-struct SettingsTextStyle: ViewModifier {
+struct OtherTextStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(Font.settingsFont())

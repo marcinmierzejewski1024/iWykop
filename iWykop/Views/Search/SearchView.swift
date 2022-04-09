@@ -12,8 +12,8 @@ struct SearchView: View {
 
     var body: some View {
         NavigationView {
-            Text("Searching for \(searchText)").modifier(BodyStyle())
-                .searchable(text: $searchText, prompt: "Look for something")
+            Text("Searching for \(searchText)").modifier(OtherTextStyle())
+                .searchable(text: $searchText, prompt: "Look for something").modifier(OtherTextStyle())
                 .navigationTitle("Search")
         }.modifier(BackgroundStyle())
     }

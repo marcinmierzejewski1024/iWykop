@@ -14,7 +14,8 @@ struct EntriesView: View {
     @ViewBuilder
     var body: some View {
         
-        
+  
+
         VStack {
             
             DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {

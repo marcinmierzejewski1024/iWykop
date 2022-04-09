@@ -18,18 +18,18 @@ struct SettingsView: View {
             Form {
                 Section(header: Text("Content settings").modifier(TitleStyle())) {
                     Toggle(isOn: $settings.autoplayAnimated) {
-                        Text("Autoplay animated images").modifier(SettingsTextStyle())
+                        Text("Autoplay animated images").modifier(OtherTextStyle())
                     }
 
                     Toggle(isOn: $settings.openInSafari) {
-                        Text("Open links in external browser").modifier(SettingsTextStyle())
+                        Text("Open links in external browser").modifier(OtherTextStyle())
                     }
                     Toggle(isOn: $settings.plus18Enabled) {
-                        Text("Show +18 content").modifier(SettingsTextStyle())
+                        Text("Show +18 content").modifier(OtherTextStyle())
                     }
                     
                     Toggle(isOn: $settings.darkMode) {
-                        Text("Dark mode").modifier(SettingsTextStyle())
+                        Text("Dark mode").modifier(OtherTextStyle())
                     }
                 }
                 
