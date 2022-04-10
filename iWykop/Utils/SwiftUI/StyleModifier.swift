@@ -26,7 +26,7 @@ struct CardStyle: ViewModifier {
 struct BackgroundStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .background(WykopColors.currentTheme.backgroundColor)
+            .background(WykopColors.currentTheme.backgroundColor).ignoresSafeArea()
     }
 }
 
@@ -76,7 +76,7 @@ struct OtherTextStyle: ViewModifier {
 
 
 enum Margins : CGFloat {
-    case small = 4.0
-    case medium = 8.0
-    case huge = 12.0
+    case small = 6.0
+    case medium = 10.0
+    case huge = 14.0
 }

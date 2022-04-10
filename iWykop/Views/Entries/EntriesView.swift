@@ -17,7 +17,7 @@ struct EntriesView: View {
         
         
         VStack {
-            
+
             DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
                 Text("6h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
                     Task {
@@ -26,17 +26,18 @@ struct EntriesView: View {
                 }
                 Text("12h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
                     Task {
-                        
+
                         await viewModel.changeRequestedPeriod(period: .from12);
                     }
                 }
                 Text("24h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
                     Task {
-                        
+
                         await viewModel.changeRequestedPeriod(period: .from24);
                     }
                 }
-            }.padding(.horizontal, Margins.huge.rawValue).padding(.vertical, Margins.huge.rawValue).font(.title)
+            }
+            .padding(.horizontal, Margins.huge.rawValue).padding(.vertical, Margins.huge.rawValue).font(.title)
             
             EntriesListView(viewModel: self.viewModel)
             
@@ -63,25 +64,25 @@ struct EntriesView: View {
                     
                     
                     ZStack {
-                        
+
                         if (item.hasAdultContent() == false || settings.plus18Enabled ) {
-                            
+
                             EntryViewCell(entry: item).onAppear {
                                 if item == self.viewModel.entries.last {
                                     Task {
                                         await self.viewModel.getNextEntries()
                                     }
                                 }
-                                
-                                
+
+
                             }.onTapGesture {
                                 BasePushableViewModel.navigation?.pushView(EntryViewModel(entry: item).prepareView())
-                                
+
                             }
                         }
                         
                         
-                    }.listRowBackground(WykopColors.currentTheme.backgroundColor.ignoresSafeArea())
+                    }.listRowBackground(WykopColors.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
                     
                     
                     
@@ -105,8 +106,8 @@ struct EntryViewCell: View {
     
     
     var body: some View {
-        HStack{
-            Spacer()
+        ZStack{
+
             VStack(alignment: .leading) {
                 EntryViewCellHeader(entry: entry)
                 EntryBodyPreview(entry: entry)
@@ -120,7 +121,7 @@ struct EntryViewCell: View {
                 }
             }
             
-        }.padding(0).modifier(CardStyle())
+        }.modifier(CardStyle()).padding(0)
         
         
     }

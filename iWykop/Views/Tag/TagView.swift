@@ -20,22 +20,27 @@ struct TagView : View {
     var body: some View {
         
         
-        VStack {
+        ZStack {
             
             List(){
                 
                 ForEach(self.viewModel.items ?? [], id: \.self ) { item in
+                    ZStack {
+                        if (item.hasAdultContent() == false || settings.plus18Enabled ) {
+                            
+                            ItemInTagView(item: item)
+                        }
+                    }.listRowBackground(WykopColors.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
                     
-                    if (item.hasAdultContent() == false || settings.plus18Enabled ) {
-                        
-                        ItemInTagView(item: item).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-                        WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-                    }
+                }
+            }.listStyle(PlainListStyle()).refreshable {
+                Task {
                     
+//                    await self.viewModel.refreshCurrentCollectionsLinks()
                 }
             }
             
-        }.navigationTitle(viewModel.tag?.meta?.tag ?? "")
+        }.navigationTitle(viewModel.tag?.meta?.tag ?? "").padding(0)
         
     }
 }

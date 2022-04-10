@@ -28,10 +28,10 @@ struct ContentView: View {
             }.modifier(BackgroundStyle())
             
             NavigationView {
-                viewModel.prepareView().modifier(BackgroundStyle()).navigationTitle("").navigationBarHidden(true)
+                viewModel.prepareView().navigationTitle("").navigationBarHidden(true)
             }.navigationViewStyle(.stack).tabItem {
                 Label("Entries", systemImage: "number.square")
-            }
+            }.modifier(BackgroundStyle())
             
             
             SettingsView().tabItem {
