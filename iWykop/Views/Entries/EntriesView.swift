@@ -14,8 +14,8 @@ struct EntriesView: View {
     @ViewBuilder
     var body: some View {
         
-  
-
+        
+        
         VStack {
             
             DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
@@ -81,11 +81,7 @@ struct EntriesView: View {
                         }
                         
                         
-                    }
-                    
-                    
-                    
-                    WykopColors.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                    }.listRowBackground(WykopColors.currentTheme.backgroundColor.ignoresSafeArea())
                     
                     
                     

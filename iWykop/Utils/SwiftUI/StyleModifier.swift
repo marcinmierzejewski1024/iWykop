@@ -19,7 +19,7 @@ struct CardStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .background(WykopColors.currentTheme.cardColor)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+//            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 

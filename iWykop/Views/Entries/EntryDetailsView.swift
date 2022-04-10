@@ -52,14 +52,13 @@ struct EntryWithCommentsView: View {
                 }.listRowSeparator(.hidden)
             }
             
-            WykopColors.currentTheme.backgroundColor.frame( height: 30, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
             
             Section {
                 
                 ForEach(entry.comments ?? [], id: \.id) { item in
                     
-                    CommentViewModel(comment: item).prepareView()
-                    WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                    CommentViewModel(comment: item).prepareView().listRowBackground(Color.green.ignoresSafeArea())
+
                     
                 }
             }
