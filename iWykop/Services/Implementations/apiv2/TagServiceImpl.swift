@@ -32,7 +32,7 @@ class TagServiceImpl : ApiV2Service, TagService  {
         
         let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
 
-        let data = try await self.apiClient.httpRequestAsync(request, progress: nil)
+        let data = try await self.apiClient.httpRequestAsync(request)
         
         if let result = self.mapDataToEntities(TagContent.self, data:data) {
         

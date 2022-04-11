@@ -9,11 +9,15 @@ import Foundation
 import Alamofire
 
 class URLSessionApiClient : NSObject, ApiClient, URLSessionDelegate, URLSessionDataDelegate {
+    func getFile(from url: String, progress: ((Double) -> Void)?, completion: @escaping (Data?, Error?) -> Void) {
+        //TODO:impl
+    }
+    
     
     var session:URLSession?
 
     
-    func httpRequest(_ request: ApiRequest, progress: ((Double) -> Void)?, completion: (@escaping (Data?, Error?) -> Void)) {
+    func httpRequest(_ request: ApiRequest, completion: (@escaping (Data?, Error?) -> Void)) {
      
         var sessionMethod : HTTPMethod?;
         var urlString : String?;
@@ -51,7 +55,7 @@ class URLSessionApiClient : NSObject, ApiClient, URLSessionDelegate, URLSessionD
         let configuration = URLSessionConfiguration.default
         let mainqueue = OperationQueue.main
         if (self.session == nil) {
-            session = URLSession(configuration: configuration, delegate:self, delegateQueue: nil)
+            session = URLSession(configuration: configuration, delegate:self, delegateQueue: mainqueue)
         }
 
         let dataTask = session!.dataTask(with: urlRequest) { data, response, error in

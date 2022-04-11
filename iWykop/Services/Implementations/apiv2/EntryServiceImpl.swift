@@ -31,7 +31,7 @@ class EntryServiceImpl : ApiV2Service, EntryService  {
         self.requestedId = id;
         let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
 
-        let data = try await self.apiClient.httpRequestAsync(request, progress: nil)
+        let data = try await self.apiClient.httpRequestAsync(request)
         
 //        let resultString = String(data: data, encoding: .utf8);
 //        print(resultString);

@@ -56,7 +56,8 @@ class WykopColorsLight : Theme {
 
     var backgroundColor : Color {
         get {
-            return Color(red: 240, green: 240, blue: 240);
+            return .red;
+//            return Color(red: 240, green: 240, blue: 240);
         }
     }
     
@@ -67,8 +68,11 @@ class WykopColorsLight : Theme {
     }
     
     var cardColor : Color {
+        
+    
         get {
-            return .white;
+            return .yellow
+//            return .white;
         }
     }
     

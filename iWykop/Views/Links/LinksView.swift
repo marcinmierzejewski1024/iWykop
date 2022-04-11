@@ -108,7 +108,7 @@ struct LinksListCell: View {
                         case .success(let image):
                             VStack(alignment: .leading) {
                                 image.resizable()
-                                    .aspectRatio(contentMode: .fit).frame( maxWidth: 150)
+                                    .aspectRatio(contentMode: .fill).frame( maxWidth: 150)
                             }
 
                         default:
@@ -116,10 +116,10 @@ struct LinksListCell: View {
                                 .aspectRatio(contentMode: .fit)
                             
                         }
-                    }
+                    }.frame(width: 180)
 
                 LinkHeader(link: link, displayDescription: true)
-            }
+            }.padding(0).modifier(CardStyle())
 
         }
         

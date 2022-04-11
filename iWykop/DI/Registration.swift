@@ -19,8 +19,7 @@ extension Resolver : ResolverRegistering {
 
         
         register(ApiClient.self) { resolver, args in
-//            return AFNetworkApiClient()
-            return URLSessionApiClient();
+            return AFNetworkApiClient()
         }.scope(.graph)
 
         register(EntriesService.self) { resolver, args in

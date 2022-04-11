@@ -31,14 +31,16 @@ class EmbedViewModel : BasePushableViewModel
         
         if let gifUrl = embed.getAnimatedImageUrl() {
             print("starting gif\(gifUrl)")
-            apiClient.httpRequest(.Get(url: gifUrl, headers: nil)) { progress in
+            
+            
+            apiClient.getFile(from: gifUrl, progress: { progress in
                 DispatchQueue.main.async {
                     print("progress gif\(progress)")
                     self.downloadProgress = progress;
                     self.objectWillChange.send()
                 }
 
-            } completion: { data, error in
+            }, completion: { data, error in
                 
                 if let data = data {
                     DispatchQueue.main.async {
@@ -48,7 +50,7 @@ class EmbedViewModel : BasePushableViewModel
                 }
                 
     //            image from data
-            }
+            })
         }
 
         

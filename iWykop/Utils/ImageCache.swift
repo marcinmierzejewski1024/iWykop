@@ -58,7 +58,7 @@ class ImageCache : Resolving {
 
                 ImageCache.inProgress.append(key);
             }
-            networkClient.httpRequest(ApiRequest.Get(url: url!, headers: nil), progress: nil) { data, err in
+            networkClient.getFile(from: url!, progress: nil) { data, err in
                 if let data = data {
                     if let image = UIImage(data: data) {
                         let imageToBeCached = Image(uiImage: image)
