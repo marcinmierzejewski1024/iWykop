@@ -8,8 +8,8 @@
 import Foundation
 import Alamofire
 
-class URLSessionApiClient : NSObject, ApiClient, URLSessionDelegate, URLSessionDataDelegate {
-    func getFile(from url: String, progress: ((Double) -> Void)?, completion: @escaping (Data?, Error?) -> Void) {
+public class URLSessionApiClient : NSObject, ApiClient, URLSessionDelegate, URLSessionDataDelegate {
+    public func getFile(from url: String, progress: ((Double) -> Void)?, completion: @escaping (Data?, Error?) -> Void) {
         //TODO:impl
     }
     
@@ -17,7 +17,7 @@ class URLSessionApiClient : NSObject, ApiClient, URLSessionDelegate, URLSessionD
     var session:URLSession?
 
     
-    func httpRequest(_ request: ApiRequest, completion: (@escaping (Data?, Error?) -> Void)) {
+    public func httpRequest(_ request: ApiRequest, completion: (@escaping (Data?, Error?) -> Void)) {
      
         var sessionMethod : HTTPMethod?;
         var urlString : String?;
@@ -72,7 +72,7 @@ class URLSessionApiClient : NSObject, ApiClient, URLSessionDelegate, URLSessionD
 //    }
 
     
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
                 print("didReceive222");
 
     }

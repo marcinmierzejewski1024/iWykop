@@ -9,25 +9,28 @@ import Foundation
 import Alamofire
 
 
-class AFNetworkApiClient : ApiClient {
+public class AFNetworkApiClient : ApiClient {
     
-    func getFile(from url: String, progress: ((Double) -> Void)?, completion: @escaping (Data?, Error?) -> Void) {
-        let progressStream = AF.download(url).responseData { response in
+    public func getFile(from url: String, progress: ((Double) -> Void)?, completion: @escaping (Data?, Error?) -> Void) {
+        
+        AF.request(url, method: .get, parameters: nil, headers: nil).response(completionHandler: { response in
             
-            if let fileDownloadedUrl = response.fileURL {
-                do {
-                let data = try Data(contentsOf: fileDownloadedUrl)
-                    completion(data, nil)
-
-                } catch {
-                    completion(nil, error)
-
-                }
-            } else {
+            switch response.result {
+                
+            case .success:
+                completion(response.data, nil)
+                
+            case .failure:
                 completion(nil, response.error)
             }
             
-        }.downloadProgress();
+            
+        }).downloadProgress { p in
+            progress?(p.fractionCompleted);
+        };
+
+
+        
         
 
     
@@ -36,7 +39,7 @@ class AFNetworkApiClient : ApiClient {
     
     
     
-    func httpRequest(_ request: ApiRequest, completion: (@escaping (Data?, Error?) -> Void)) {
+    public func httpRequest(_ request: ApiRequest, completion: (@escaping (Data?, Error?) -> Void)) {
         
         var requestUrl = "";
         var requestBody :ApiRequestBody?;
