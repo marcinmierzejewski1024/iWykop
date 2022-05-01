@@ -1,5 +1,5 @@
 //
-//  apiClientTest.swift
+//  ApiClientTests.swift
 //  iWykopTests
 //
 //  Created by Marcin Mierzejewski on 15/04/2022.
@@ -9,7 +9,7 @@ import XCTest
 import Resolver
 import iWykop
 
-class apiClientTest: XCTestCase, Resolving {
+class ApiClientTests: XCTestCase, Resolving {
 
     lazy var AFApiClient : AFNetworkApiClient = resolver.resolve()
     lazy var urlSessionApiClient : URLSessionApiClient = resolver.resolve()
