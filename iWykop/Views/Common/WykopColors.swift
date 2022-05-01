@@ -7,15 +7,28 @@
 
 import Foundation
 import SwiftUI
+import Resolver
 
 
 class WykopColors {
-    static var currentTheme : Theme = WykopColorsLight();
+
+    
+    static var currentTheme : Theme {
+        let settingsStore = SettingsStore();//TODO:DI?
+        if(settingsStore.darkMode) {
+            return self.darkTheme;
+        }
+        return self.lightTheme;
+    }
+    static var lightTheme : Theme = WykopColorsLight();
+    static var darkTheme : Theme = WykopColorsDark();
+
     
     
 }
 
 protocol Theme {
+    var colorScheme: ColorScheme { get }
     var accentColor: Color { get }
     var backgroundColor: Color { get }
     var plusGreenColor: Color { get }
@@ -32,6 +45,12 @@ protocol Theme {
 }
 
 class WykopColorsLight : Theme {
+    var colorScheme: ColorScheme {
+        get {
+            return .light;
+        }
+    }
+    
     
     var progressBarForeground: Color {
         get {
@@ -56,8 +75,8 @@ class WykopColorsLight : Theme {
 
     var backgroundColor : Color {
         get {
-            return .red;
-//            return Color(red: 240, green: 240, blue: 240);
+//            return .red;
+            return Color(red: 240, green: 240, blue: 240);
         }
     }
     
@@ -71,8 +90,8 @@ class WykopColorsLight : Theme {
         
     
         get {
-            return .yellow
-//            return .white;
+//            return .yellow
+            return .white;
         }
     }
     
@@ -111,6 +130,12 @@ class WykopColorsLight : Theme {
 
 class WykopColorsDark : Theme {
     
+    var colorScheme: ColorScheme {
+        get {
+            return .dark;
+        }
+    }
+    
     var progressBarForeground: Color {
         get {
             return Color.blue;
@@ -147,6 +172,7 @@ class WykopColorsDark : Theme {
     
     var cardColor : Color {
         get {
+//            return .brown
             return .black;
         }
     }
@@ -154,6 +180,7 @@ class WykopColorsDark : Theme {
     
     var textColor : Color {
         get {
+//            return .yellow
             return .white;
         }
     }

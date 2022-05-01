@@ -56,7 +56,7 @@ struct ContentView: View {
         }.font(.bodyFont())
             .onAppear {
                 BasePushableViewModel.navigation = self.navigation;
-            }.environmentObject(settingsStore).modifier(BackgroundStyle())
+            }.environmentObject(settingsStore).modifier(BackgroundStyle()).preferredColorScheme(WykopColors.currentTheme.colorScheme)
         
     }
 }

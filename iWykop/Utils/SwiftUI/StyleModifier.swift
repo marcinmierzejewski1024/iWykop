@@ -75,6 +75,8 @@ struct OtherTextStyle: ViewModifier {
 }
 
 
+
+
 enum Margins : CGFloat {
     case small = 6.0
     case medium = 10.0
