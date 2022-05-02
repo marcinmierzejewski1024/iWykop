@@ -95,6 +95,8 @@ class BodyFormater
         let css = """
             *{
             font-family: '-apple-system', 'HelveticaNeue'; font-size: \(UIFont.bodyFont().pointSize)pt;
+             color: #\(WykopColors.shared.currentTheme.textColor.hexDescription());
+
             }
             a{
                  text-decoration: none;

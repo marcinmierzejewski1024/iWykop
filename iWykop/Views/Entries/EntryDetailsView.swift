@@ -57,7 +57,7 @@ struct EntryWithCommentsView: View {
                 
                 ForEach(entry.comments ?? [], id: \.id) { item in
                     
-                    CommentViewModel(comment: item).prepareView().listRowBackground(Color.green.ignoresSafeArea())
+                    CommentViewModel(comment: item).prepareView().listRowBackground(WykopColors.shared.currentTheme.cardColor.ignoresSafeArea())
 
                     
                 }
@@ -74,9 +74,9 @@ struct CommentView: View {
         VStack(alignment: .leading) {
             AuthorWithDateHeader(author: viewModel.comment.author, date: viewModel.comment.getDate())
             Text(viewModel.comment.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-//            if let embed = self.viewModel.comment.embed {
-//                EmbedBodyPreviewWithModal(viewModel:EmbedViewModel(embed: embed))
-//            }
+            if let embed = self.viewModel.comment.embed {
+                EmbedBodyPreviewWithModal(viewModel:EmbedViewModel(embed: embed))
+            }
             HStack{
                 Spacer()
                 Text("+\(viewModel.comment.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.shared.currentTheme.plusGreenColor)

@@ -14,11 +14,20 @@ struct Author: AutoCodable, AutoEquatable, Hashable {
     let background: String?
     let signupAt: String
     let color: Int
+    
 
     enum CodingKeys: String, CodingKey {
         case avatar, login, sex, background
         case signupAt = "signup_at"
         case color
+    }
+    
+    func isBanned() -> Bool {
+        if(color > 1000){
+            return true;
+       }
+        return false;
+        
     }
 }
 

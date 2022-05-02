@@ -28,7 +28,7 @@ struct AuthorWithDateHeader: View {
                     }
                 }
             VStack(alignment: .leading,spacing: 4) {
-                Text(author.login).bold().modifier(LoginStyle(loginColor: WykopColors.shared.currentTheme.authorColors[author.color] ?? WykopColors.shared.currentTheme.textColor))
+                Text(author.login).strikethrough(author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: WykopColors.shared.currentTheme.authorColors[author.color] ?? WykopColors.shared.currentTheme.textColor))
                 Text(date?.timeAgoDisplay() ?? "").modifier(DateStyle());
 
             }

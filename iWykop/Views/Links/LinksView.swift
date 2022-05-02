@@ -108,7 +108,7 @@ struct LinksListCell: View {
                         case .success(let image):
                             VStack(alignment: .leading) {
                                 image.resizable()
-                                    .aspectRatio(contentMode: .fill).frame( maxWidth: 150)
+                                    .aspectRatio(contentMode: .fit).frame(maxWidth: 150, maxHeight: 150)
                             }
 
                         default:

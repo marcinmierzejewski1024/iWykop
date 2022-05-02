@@ -41,6 +41,8 @@ protocol Theme {
     var accentColor: Color { get }
     var backgroundColor: Color { get }
     var plusGreenColor: Color { get }
+    var minusRedColor: Color { get }
+
     var cardColor: Color { get }
     var textColor: Color { get }
     var secondaryTextColor: Color { get }
@@ -95,6 +97,12 @@ struct WykopColorsLight : Theme {
         }
     }
     
+    var minusRedColor : Color {
+        get {
+            return .red
+        }
+    }
+    
     var cardColor : Color {
         
     
@@ -129,6 +137,7 @@ struct WykopColorsLight : Theme {
             result[1] = Color(rgb: 0xff5917)
             result[2] = Color(rgb: 0xBB0000)
             result[5] = Color(rgb: 0x000000)
+            result[1002] = self.secondaryTextColor
        
             return result;
         }
@@ -179,6 +188,12 @@ struct WykopColorsDark : Theme {
         }
     }
     
+    var minusRedColor : Color {
+        get {
+            return .red
+        }
+    }
+    
     var cardColor : Color {
         get {
 //            return .brown
@@ -213,6 +228,7 @@ struct WykopColorsDark : Theme {
             result[1] = Color(rgb: 0xff5917)
             result[2] = Color(rgb: 0xBB0000)
             result[5] = Color(rgb: 0x000000)
+            result[1002] = self.secondaryTextColor
        
             return result;
         }

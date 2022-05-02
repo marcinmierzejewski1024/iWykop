@@ -50,6 +50,8 @@ internal func == (lhs: Comment, rhs: Comment) -> Bool {
     guard compareOptionals(lhs: lhs.entryID, rhs: rhs.entryID, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.body, rhs: rhs.body, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.original, rhs: rhs.original, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.voteCountPlus, rhs: rhs.voteCountPlus, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.voteCountMinus, rhs: rhs.voteCountMinus, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     return true
 }

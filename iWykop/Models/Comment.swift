@@ -22,6 +22,8 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
     let entryID: Int?
     let body: String?
     let original: String?
+    let voteCountPlus: Int?
+    let voteCountMinus: Int?
 
     var bodyAttributed : AttributedString?
 
@@ -29,6 +31,9 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
     enum CodingKeys: String, CodingKey {
         case author, status, id
         case voteCount = "vote_count"
+        case voteCountPlus = "vote_count_plus"
+        case voteCountMinus = "vote_count_minus"
+
         case favorite, date, blocked, embed
         case userVote = "user_vote"
         case app

@@ -115,7 +115,7 @@ struct EntryViewCell: View {
                 HStack {
                     Spacer()
                     
-                    Text("+\(entry.voteCount)").foregroundColor(Color.green).padding(.trailing, Margins.medium.rawValue)
+                    Text("+\(entry.voteCount)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).padding(.trailing, Margins.medium.rawValue)
                     Image(systemName:"text.bubble").modifier(BodyStyle())
                     Text("\(entry.commentsCount)")
                 }
