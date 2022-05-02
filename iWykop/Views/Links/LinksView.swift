@@ -49,15 +49,15 @@ struct LinksView: View {
                                 
                             }.onTapGesture {
                                 BasePushableViewModel.navigation?.pushView(LinkViewModel(link: item).prepareView())
-                            }.listRowBackground(WykopColors.currentTheme.backgroundColor.ignoresSafeArea())
+                            }.listRowBackground(WykopColors.shared.currentTheme.backgroundColor.ignoresSafeArea())
                             
                             
-                        }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden).listRowBackground(WykopColors.currentTheme.backgroundColor.ignoresSafeArea()).padding(.bottom, Margins.huge.rawValue)
+                        }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden).listRowBackground(WykopColors.shared.currentTheme.backgroundColor.ignoresSafeArea()).padding(.bottom, Margins.huge.rawValue)
                         
 
                         
                         
-                    }.listRowBackground(WykopColors.currentTheme.backgroundColor.ignoresSafeArea())
+                    }.listRowBackground(WykopColors.shared.currentTheme.backgroundColor.ignoresSafeArea())
                 }.listStyle(PlainListStyle()).refreshable {
                     Task {
                         

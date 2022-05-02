@@ -11,14 +11,14 @@ struct TitleStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(Font.titleFont())
-            .foregroundColor(WykopColors.currentTheme.textColor)
+            .foregroundColor(WykopColors.shared.currentTheme.textColor)
     }
 }
 
 struct CardStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .background(WykopColors.currentTheme.cardColor)
+            .background(WykopColors.shared.currentTheme.cardColor)
 //            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
@@ -26,7 +26,7 @@ struct CardStyle: ViewModifier {
 struct BackgroundStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .background(WykopColors.currentTheme.backgroundColor).ignoresSafeArea()
+            .background(WykopColors.shared.currentTheme.backgroundColor).ignoresSafeArea()
     }
 }
 
@@ -35,7 +35,7 @@ struct BodyStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(Font.bodyFont())
-            .foregroundColor(WykopColors.currentTheme.textColor)
+            .foregroundColor(WykopColors.shared.currentTheme.textColor)
     }
 }
 
@@ -44,7 +44,7 @@ struct CommentStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(Font.commentFont())
-            .foregroundColor(WykopColors.currentTheme.textColor)
+            .foregroundColor(WykopColors.shared.currentTheme.textColor)
     }
 }
 
@@ -61,7 +61,7 @@ struct DateStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(Font.dateFont())
-            .foregroundColor(WykopColors.currentTheme.secondaryTextColor)
+            .foregroundColor(WykopColors.shared.currentTheme.secondaryTextColor)
 
     }
 }
@@ -70,7 +70,7 @@ struct OtherTextStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(Font.settingsFont())
-            .foregroundColor(WykopColors.currentTheme.textColor)
+            .foregroundColor(WykopColors.shared.currentTheme.textColor)
     }
 }
 

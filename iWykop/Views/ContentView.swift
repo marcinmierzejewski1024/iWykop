@@ -14,7 +14,8 @@ struct ContentView: View {
     let settingsStore = SettingsStore();
     let viewModel = EntriesViewModel(); // should viewModel be injected via DI?
     let linksViewModel = LinksViewModel();
-
+    
+    @StateObject var colors = WykopColors.shared;
     @EnvironmentObject var navigation: Navigation
 
     var body: some View {
@@ -56,7 +57,7 @@ struct ContentView: View {
         }.font(.bodyFont())
             .onAppear {
                 BasePushableViewModel.navigation = self.navigation;
-            }.environmentObject(settingsStore).modifier(BackgroundStyle()).preferredColorScheme(WykopColors.currentTheme.colorScheme)
+            }.environmentObject(settingsStore).modifier(BackgroundStyle()).preferredColorScheme(colors.currentTheme.colorScheme)
         
     }
 }

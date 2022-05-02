@@ -79,7 +79,7 @@ struct CommentView: View {
 //            }
             HStack{
                 Spacer()
-                Text("+\(viewModel.comment.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.currentTheme.plusGreenColor)
+                Text("+\(viewModel.comment.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.shared.currentTheme.plusGreenColor)
             }
             
         }.listRowSeparator(.hidden)

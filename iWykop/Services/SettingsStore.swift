@@ -24,6 +24,7 @@ class SettingsStore : ObservableObject {
             UserDefaults.standard.set(newValue, forKey: "darkMode")
             UserDefaults.standard.synchronize()
             self.objectWillChange.send();
+            WykopColors.shared.updateCurrent();
         }
         get {
             return UserDefaults.standard.bool(forKey: "darkMode")

@@ -16,10 +16,10 @@ struct ProgressbarView: View {
             ZStack(alignment: .leading) {
                 Rectangle().frame(width: geometry.size.width , height: geometry.size.height)
                     .opacity(0.3)
-                    .foregroundColor(WykopColors.currentTheme.progressBarForeground)
+                    .foregroundColor(WykopColors.shared.currentTheme.progressBarForeground)
                 
                 Rectangle().frame(width: min(CGFloat(self.value)*geometry.size.width, geometry.size.width), height: geometry.size.height)
-                    .foregroundColor(WykopColors.currentTheme.progressBarBackground)
+                    .foregroundColor(WykopColors.shared.currentTheme.progressBarBackground)
             }.cornerRadius(15.0)
         }
     }

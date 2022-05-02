@@ -30,7 +30,7 @@ struct iWykopApp: App {
         DBDebugToolkit.setup(with: [shakeTrigger])
         
         
-
+        WykopColors.shared.updateCurrent()
         
     }
     
@@ -47,7 +47,7 @@ struct iWykopApp: App {
                 if let navigation = Navigation(window: window!) {
                     
                     ContentView()
-                        .environmentObject(navigation).background(WykopColors.currentTheme.backgroundColor).ignoresSafeArea()
+                        .environmentObject(navigation).background(WykopColors.shared.currentTheme.backgroundColor).ignoresSafeArea()
                 }
 
             }

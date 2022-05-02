@@ -82,7 +82,7 @@ struct EntriesView: View {
                         }
                         
                         
-                    }.listRowBackground(WykopColors.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
+                    }.listRowBackground(WykopColors.shared.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
                     
                     
                     

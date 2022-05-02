@@ -45,7 +45,7 @@ struct LinkDetailsView: View {
                 //                    LinkBodyPreview(link: link)
             }.listRowSeparator(.hidden).padding(0)
             
-            WykopColors.currentTheme.backgroundColor.frame( height: 30, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+            WykopColors.shared.currentTheme.backgroundColor.frame( height: 30, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
             
             
             Tabs(tabs: .constant(LinkDetailsTabs.allCases.map({ tab in
@@ -103,7 +103,7 @@ struct LinkWithCommentsView: View {
             ForEach(link.comments ?? [], id: \.id) { item in
                 
                 if (!item.isResponseComment()) {
-                    WykopColors.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                    WykopColors.shared.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                 }
                 
                 VStack(alignment: .leading) {
@@ -115,7 +115,7 @@ struct LinkWithCommentsView: View {
                     //                    }
                     HStack{
                         Spacer()
-                        Text("+\(item.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.currentTheme.plusGreenColor)
+                        Text("+\(item.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.shared.currentTheme.plusGreenColor)
                     }
                     
                 }.listRowSeparator(.hidden).padding(.leading,                                                   (item.isResponseComment() ? 30.0 : 0.0))

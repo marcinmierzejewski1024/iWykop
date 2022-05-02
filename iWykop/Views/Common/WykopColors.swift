@@ -10,16 +10,25 @@ import SwiftUI
 import Resolver
 
 
-class WykopColors {
+class WykopColors : ObservableObject, Resolving {
+
+    static var shared = WykopColors();
+    lazy var settingsStore : SettingsStore = resolver.resolve();
 
     
-    static var currentTheme : Theme {
-        let settingsStore = SettingsStore();//TODO:DI?
+    @Published var currentTheme = WykopColors.lightTheme;
+    
+    func updateCurrent(){
+        
         if(settingsStore.darkMode) {
-            return self.darkTheme;
+            self.currentTheme = WykopColors.darkTheme;
+        } else {
+            self.currentTheme = WykopColors.lightTheme;
         }
-        return self.lightTheme;
+        self.objectWillChange.send();
+        
     }
+    
     static var lightTheme : Theme = WykopColorsLight();
     static var darkTheme : Theme = WykopColorsDark();
 
@@ -44,7 +53,7 @@ protocol Theme {
 
 }
 
-class WykopColorsLight : Theme {
+struct WykopColorsLight : Theme {
     var colorScheme: ColorScheme {
         get {
             return .light;
@@ -128,7 +137,7 @@ class WykopColorsLight : Theme {
 }
 
 
-class WykopColorsDark : Theme {
+struct WykopColorsDark : Theme {
     
     var colorScheme: ColorScheme {
         get {

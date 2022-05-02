@@ -30,7 +30,7 @@ struct TagView : View {
                             
                             ItemInTagView(item: item)
                         }
-                    }.listRowBackground(WykopColors.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
+                    }.listRowBackground(WykopColors.shared.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
                     
                 }
             }.listStyle(PlainListStyle()).refreshable {
