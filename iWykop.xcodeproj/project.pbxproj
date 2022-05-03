@@ -62,6 +62,7 @@
 		568A778427EE5F8E00DB72C2 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568A778327EE5F8E00DB72C2 /* ZoomableScrollView.swift */; };
 		568A778727F4964200DB72C2 /* XNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 568A778627F4964200DB72C2 /* XNavigation */; };
 		568A778927F496BB00DB72C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568A778827F496BB00DB72C2 /* ContentView.swift */; };
+		568E42772821497800AA10C4 /* AxisSegmentedView in Frameworks */ = {isa = PBXBuildFile; productRef = 568E42762821497800AA10C4 /* AxisSegmentedView */; };
 		56C556B22809FA4D0020B0C7 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C556B12809FA4D0020B0C7 /* ApiClientTests.swift */; };
 		56D4738527F8E8B8007896E8 /* ProgressbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738427F8E8B8007896E8 /* ProgressbarView.swift */; };
 		56D4738727F8ED49007896E8 /* EmbedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738627F8ED49007896E8 /* EmbedViewModel.swift */; };
@@ -203,6 +204,7 @@
 				56250B6227C255F10086AFF5 /* Collections in Frameworks */,
 				56250B6427C255F10086AFF5 /* DequeModule in Frameworks */,
 				52A27DD202A992B9392EFBB9 /* Pods_iWykop.framework in Frameworks */,
+				568E42772821497800AA10C4 /* AxisSegmentedView in Frameworks */,
 				56250B5F27C23B310086AFF5 /* Crypto in Frameworks */,
 				568A778727F4964200DB72C2 /* XNavigation in Frameworks */,
 			);
@@ -599,6 +601,7 @@
 				56250B6327C255F10086AFF5 /* DequeModule */,
 				56250B6527C255F10086AFF5 /* OrderedCollections */,
 				568A778627F4964200DB72C2 /* XNavigation */,
+				568E42762821497800AA10C4 /* AxisSegmentedView */,
 			);
 			productName = iWykop;
 			productReference = 5680865927BE8FB0001E4F43 /* iWykop.app */;
@@ -680,6 +683,7 @@
 				56250B5D27C23B310086AFF5 /* XCRemoteSwiftPackageReference "swift-crypto" */,
 				56250B6027C255F10086AFF5 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				568A778527F4964200DB72C2 /* XCRemoteSwiftPackageReference "XNavigation" */,
+				568E42752821497800AA10C4 /* XCRemoteSwiftPackageReference "AxisSegmentedView" */,
 			);
 			productRefGroup = 5680865A27BE8FB0001E4F43 /* Products */;
 			projectDirPath = "";
@@ -1291,6 +1295,14 @@
 				minimumVersion = 0.1.1;
 			};
 		};
+		568E42752821497800AA10C4 /* XCRemoteSwiftPackageReference "AxisSegmentedView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jasudev/AxisSegmentedView";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1318,6 +1330,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 568A778527F4964200DB72C2 /* XCRemoteSwiftPackageReference "XNavigation" */;
 			productName = XNavigation;
+		};
+		568E42762821497800AA10C4 /* AxisSegmentedView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 568E42752821497800AA10C4 /* XCRemoteSwiftPackageReference "AxisSegmentedView" */;
+			productName = AxisSegmentedView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

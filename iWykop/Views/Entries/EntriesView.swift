@@ -7,10 +7,11 @@
 
 import SwiftUI
 import KSToastView
+import AxisSegmentedView
 
 struct EntriesView: View {
     @ObservedObject var viewModel : EntriesViewModel;
-    
+    @State var selection = 0;
     @ViewBuilder
     var body: some View {
         
@@ -18,27 +19,30 @@ struct EntriesView: View {
         
         VStack {
 
-            DisclosureGroup("\(viewModel.requestedPeriod.rawValue)h") {
-                Text("6h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
-                    Task {
-                        await viewModel.changeRequestedPeriod(period: .from6);
+            AxisSegmentedView(selection: $selection, constant: .init()) {
+                Text("6h").font(.headline).padding(Margins.medium.rawValue)
+                    .itemTag(6, selectArea: 0) {
+                        Text("6h").font(.headline).padding(Margins.medium.rawValue)
+                        
                     }
+                Text("12h").font(.headline).padding(Margins.medium.rawValue)
+                    .itemTag(12, selectArea: 0) {
+                        Text("12h").font(.headline).padding(Margins.medium.rawValue)
+                    }
+                Text("24h").font(.headline).padding(Margins.medium.rawValue)
+                    .itemTag(24, selectArea: 0) {
+                        Text("24h").font(.headline).padding(Margins.medium.rawValue)
+                    }
+            } style: {
+                ASBasicStyle(backgroundColor: WykopColors.shared.currentTheme.backgroundColor, foregroundColor: WykopColors.shared.currentTheme.accentColor)
+            } onTapReceive: { selectionTap in
+                Task {
+                    let period = EntriesPeriod.fromRaw(rawValue: selectionTap)!
+                    await viewModel.changeRequestedPeriod(period: period);
                 }
-                Text("12h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
-                    Task {
 
-                        await viewModel.changeRequestedPeriod(period: .from12);
-                    }
-                }
-                Text("24h").font(.headline).padding(Margins.medium.rawValue).onTapGesture {
-                    Task {
-
-                        await viewModel.changeRequestedPeriod(period: .from24);
-                    }
-                }
             }
-            .padding(.horizontal, Margins.huge.rawValue).padding(.vertical, Margins.huge.rawValue).font(.title)
-            
+            .frame(width: 340, height: 44)
             EntriesListView(viewModel: self.viewModel)
             
         }

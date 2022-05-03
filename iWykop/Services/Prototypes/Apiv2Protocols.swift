@@ -12,6 +12,20 @@ enum EntriesPeriod : Int {
     case from6 = 6
     case from12 = 12
     case from24 = 24
+    
+    static func fromRaw(rawValue:Int) -> EntriesPeriod? {
+        switch rawValue {
+        case 6:
+            return .from6
+        case 12:
+            return .from12
+        case 24:
+            return .from24
+            
+        default:
+            return nil;
+        }
+    }
 }
 
 enum LinksServiceCollections : String {
