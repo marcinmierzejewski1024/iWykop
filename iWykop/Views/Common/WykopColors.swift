@@ -19,8 +19,9 @@ class WykopColors : ObservableObject, Resolving {
     @Published var currentTheme = WykopColors.lightTheme;
     
     func updateCurrent(){
-        
-        if(settingsStore.darkMode) {
+        if(settingsStore.selectedTheme == 2) {
+            self.currentTheme = WykopColors.oledTheme;
+        } else if(settingsStore.selectedTheme == 1) {
             self.currentTheme = WykopColors.darkTheme;
         } else {
             self.currentTheme = WykopColors.lightTheme;
@@ -31,6 +32,8 @@ class WykopColors : ObservableObject, Resolving {
     
     static var lightTheme : Theme = WykopColorsLight();
     static var darkTheme : Theme = WykopColorsDark();
+    static var oledTheme : Theme = WykopColorsOled();
+
 
     
     
@@ -55,7 +58,7 @@ protocol Theme {
 
 }
 
-struct WykopColorsLight : Theme {
+class WykopColorsLight : Theme {
     var colorScheme: ColorScheme {
         get {
             return .light;
@@ -80,13 +83,12 @@ struct WykopColorsLight : Theme {
     
     var accentColor : Color {
         get {
-            return Color.indigo;
+            return Color.blue;
         }
     }
 
     var backgroundColor : Color {
         get {
-//            return .red;
             return Color(red: 240, green: 240, blue: 240);
         }
     }
@@ -104,10 +106,7 @@ struct WykopColorsLight : Theme {
     }
     
     var cardColor : Color {
-        
-    
         get {
-//            return .yellow
             return .white;
         }
     }
@@ -146,7 +145,7 @@ struct WykopColorsLight : Theme {
 }
 
 
-struct WykopColorsDark : Theme {
+class WykopColorsDark : Theme {
     
     var colorScheme: ColorScheme {
         get {
@@ -178,7 +177,7 @@ struct WykopColorsDark : Theme {
 
     var backgroundColor : Color {
         get {
-            return Color(red: 40, green: 40, blue: 40);
+            return Color(red: 60, green: 70, blue: 70);
         }
     }
     
@@ -196,15 +195,13 @@ struct WykopColorsDark : Theme {
     
     var cardColor : Color {
         get {
-//            return .brown
-            return .black;
+            return Color(red: 30, green: 30, blue: 30);
         }
     }
     
     
     var textColor : Color {
         get {
-//            return .yellow
             return .white;
         }
     }
@@ -237,6 +234,29 @@ struct WykopColorsDark : Theme {
 
 }
 
+
+class WykopColorsOled : WykopColorsDark {
+    override var backgroundColor : Color {
+        get {
+            return .black
+        }
+    }
+
+    override var cardColor : Color {
+        get {
+            return .black
+
+        }
+    }
+    
+    override var accentColor: Color {
+        get {
+            return .green
+        }
+    }
+    
+
+}
 
 
 extension Color {

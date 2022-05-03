@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import AxisSegmentedView
 
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
     @Environment(\.openURL) var openURL
-    
+
     
     var body: some View {
         VStack {
@@ -29,8 +30,34 @@ struct SettingsView: View {
                             Text("Show +18 content").modifier(OtherTextStyle())
                         }
                         
-                        Toggle(isOn: $settings.darkMode) {
-                            Text("Dark mode").modifier(OtherTextStyle())
+
+                        HStack {
+                        Text("Theme").modifier(OtherTextStyle())
+                        Spacer()
+
+                        AxisSegmentedView(selection: $settings.selectedTheme, constant: .init()) {
+                            Text("Light").foregroundColor(.accentColor)
+                                .itemTag(0, selectArea: 0) {
+                                    Text("Light").bold()
+                                    
+                                }
+                            Text("Dark").foregroundColor(.accentColor)
+                            
+                                .itemTag(1, selectArea: 0) {
+                                    Text("Dark").bold()
+                                }
+                            Text("OLED").foregroundColor(.accentColor)
+                            
+                                .itemTag(2, selectArea: 0) {
+                                    Text("OLED").bold()
+                                }
+                        } style: {
+                            ASScaleStyle(backgroundColor: .clear, foregroundColor: WykopColors.shared.currentTheme.accentColor.opacity(0.4), cornerRadius: 4.0)
+                            
+                        } onTapReceive: { selectionTap in
+                            settings.selectedTheme = selectionTap;
+                        }
+                        .frame(width: 200, height: 30)
                         }
                     }
                     

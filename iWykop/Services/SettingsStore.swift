@@ -19,18 +19,31 @@ class SettingsStore : ObservableObject {
         }
     }
     
-    var darkMode : Bool {
+//    var darkMode : Bool {
+//        set {
+//            UserDefaults.standard.set(newValue, forKey: "darkMode")
+//            UserDefaults.standard.synchronize()
+//            self.objectWillChange.send();
+//            WykopColors.shared.updateCurrent();
+//        }
+//        get {
+//            return UserDefaults.standard.bool(forKey: "darkMode")
+//        }
+//    }
+
+    
+    var selectedTheme : Int {
         set {
-            UserDefaults.standard.set(newValue, forKey: "darkMode")
+            UserDefaults.standard.set(newValue, forKey: "selectedTheme")
             UserDefaults.standard.synchronize()
             self.objectWillChange.send();
             WykopColors.shared.updateCurrent();
         }
         get {
-            return UserDefaults.standard.bool(forKey: "darkMode")
+            return UserDefaults.standard.integer(forKey: "selectedTheme")
         }
     }
-    
+
     var openInSafari : Bool {
         set {
             UserDefaults.standard.set(newValue, forKey: "openInSafari")

@@ -11,7 +11,7 @@ import AxisSegmentedView
 
 struct EntriesView: View {
     @ObservedObject var viewModel : EntriesViewModel;
-    @State var selection = 0;
+    @State var selectedPeriod = 6;
     @ViewBuilder
     var body: some View {
         
@@ -19,7 +19,7 @@ struct EntriesView: View {
         
         VStack(alignment: .center) {
             
-            AxisSegmentedView(selection: $selection, constant: .init()) {
+            AxisSegmentedView(selection: $selectedPeriod, constant: .init()) {
                 Text("6h").font(.title3).foregroundColor(.accentColor)
                     .itemTag(6, selectArea: 0) {
                         Text("6h").font(.title3).bold()
@@ -37,7 +37,6 @@ struct EntriesView: View {
                     }
             } style: {
                 ASScaleStyle(backgroundColor: WykopColors.shared.currentTheme.cardColor, foregroundColor: WykopColors.shared.currentTheme.accentColor.opacity(0.4))
-                //                ASBasicStyle(backgroundColor: WykopColors.shared.currentTheme.cardColor, foregroundColor: WykopColors.shared.currentTheme.accentColor)
                 
             } onTapReceive: { selectionTap in
                 Task {
@@ -46,7 +45,7 @@ struct EntriesView: View {
                 }
                 
             }
-            .frame(width: 280, height: 44)
+            .frame(width: 280, height: 40).padding(.bottom, Margins.medium.rawValue)
             
             EntriesListView(viewModel: self.viewModel)
             
