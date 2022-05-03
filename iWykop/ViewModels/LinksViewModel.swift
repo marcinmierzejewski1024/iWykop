@@ -21,7 +21,7 @@ class LinksViewModel : BasePushableViewModel
     
     @Published var linksCollections = [LinksServiceCollections:OrderedSet<Link>](); //TODO:cache
     
-    @Published var displayedCollection = LinksServiceCollections.Popular {
+    @Published var displayedCollection = LinksServiceCollections.Promoted {
         didSet {
             //TODO:cache
         }

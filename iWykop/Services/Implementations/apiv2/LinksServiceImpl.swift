@@ -12,7 +12,7 @@ import Foundation
 class LinksServiceImpl : ApiV2Service, LinksService {
     
 
-    var requestedCollection = LinksServiceCollections.Upcoming
+    var requestedCollection = LinksServiceCollections.Promoted
     var requestedPage = 1;
     
     override func getPath() -> String {
