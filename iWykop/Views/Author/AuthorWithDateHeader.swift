@@ -10,6 +10,8 @@ import SwiftUI
 struct AuthorWithDateHeader: View {
     let author : Author
     let date : Date?
+    let voteCount : Int?
+
     var body: some View {
         HStack{
             CacheAsyncImage(
@@ -34,6 +36,15 @@ struct AuthorWithDateHeader: View {
             }
             
             Spacer()
+            if let voteCount = voteCount {
+                if(voteCount >= 0) {
+                    Text("+\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).modifier(BodyStyle())
+                } else {
+                    Text("\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.minusRedColor).modifier(BodyStyle())
+
+                }
+            }
+
             
         }.padding(.bottom, Margins.medium.rawValue)
     }

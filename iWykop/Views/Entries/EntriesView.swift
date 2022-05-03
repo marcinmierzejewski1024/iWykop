@@ -122,8 +122,6 @@ struct EntryViewCell: View {
                 
                 HStack {
                     Spacer()
-                    
-                    Text("+\(entry.voteCount)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).padding(.trailing, Margins.medium.rawValue)
                     Image(systemName:"text.bubble").modifier(BodyStyle())
                     Text("\(entry.commentsCount)")
                 }
@@ -144,7 +142,7 @@ struct EntryViewCellHeader : View
     var body: some View {
         HStack{
             
-            AuthorWithDateHeader(author: entry.author, date: entry.getDate())
+            AuthorWithDateHeader(author: entry.author, date: entry.getDate(), voteCount: entry.voteCount)
             
         }.padding(0)
         

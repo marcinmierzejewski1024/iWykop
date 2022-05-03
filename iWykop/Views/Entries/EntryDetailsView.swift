@@ -72,14 +72,10 @@ struct CommentView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            AuthorWithDateHeader(author: viewModel.comment.author, date: viewModel.comment.getDate())
+            AuthorWithDateHeader(author: viewModel.comment.author, date: viewModel.comment.getDate(), voteCount: viewModel.comment.voteCount)
             Text(viewModel.comment.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
             if let embed = self.viewModel.comment.embed {
                 EmbedBodyPreviewWithModal(viewModel:EmbedViewModel(embed: embed))
-            }
-            HStack{
-                Spacer()
-                Text("+\(viewModel.comment.voteCount)").modifier(BodyStyle()).foregroundColor(WykopColors.shared.currentTheme.plusGreenColor)
             }
             
         }.listRowSeparator(.hidden)

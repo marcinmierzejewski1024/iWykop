@@ -107,20 +107,10 @@ struct LinkWithCommentsView: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    AuthorWithDateHeader(author: item.author, date: item.getDate())
+                    AuthorWithDateHeader(author: item.author, date: item.getDate(), voteCount: item.voteCount)
                     Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-                    //                    EmbedBodyPreviewWithModal(embed: item.embed)
-                                        if let embed = item.embed {
-                                            EmbedViewModel(embed: embed).prepareView()
-                                        }
-                    HStack{
-                        Spacer()
-                        if(item.voteCount >= 0) {
-                            Text("+\(item.voteCount)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).modifier(BodyStyle())
-                        } else {
-                            Text("\(item.voteCount)").foregroundColor(WykopColors.shared.currentTheme.minusRedColor).modifier(BodyStyle())
-
-                        }
+                    if let embed = item.embed {
+                        EmbedViewModel(embed: embed).prepareView()
                     }
                     
                 }.listRowSeparator(.hidden).padding(.leading,                                                   (item.isResponseComment() ? 30.0 : 0.0))
