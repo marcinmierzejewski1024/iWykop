@@ -17,32 +17,37 @@ struct EntriesView: View {
         
         
         
-        VStack {
-
+        VStack(alignment: .center) {
+            
             AxisSegmentedView(selection: $selection, constant: .init()) {
-                Text("6h").font(.headline).padding(Margins.medium.rawValue)
+                Text("6h").font(.title3).foregroundColor(.accentColor)
                     .itemTag(6, selectArea: 0) {
-                        Text("6h").font(.headline).padding(Margins.medium.rawValue)
+                        Text("6h").font(.title3).bold()
                         
                     }
-                Text("12h").font(.headline).padding(Margins.medium.rawValue)
+                Text("12h").font(.title3).foregroundColor(.accentColor)
+                
                     .itemTag(12, selectArea: 0) {
-                        Text("12h").font(.headline).padding(Margins.medium.rawValue)
+                        Text("12h").font(.title3).bold()
                     }
-                Text("24h").font(.headline).padding(Margins.medium.rawValue)
+                Text("24h").font(.title3).foregroundColor(.accentColor)
+                
                     .itemTag(24, selectArea: 0) {
-                        Text("24h").font(.headline).padding(Margins.medium.rawValue)
+                        Text("24h").font(.title3).bold()
                     }
             } style: {
-                ASBasicStyle(backgroundColor: WykopColors.shared.currentTheme.backgroundColor, foregroundColor: WykopColors.shared.currentTheme.accentColor)
+                ASScaleStyle(backgroundColor: WykopColors.shared.currentTheme.cardColor, foregroundColor: WykopColors.shared.currentTheme.accentColor.opacity(0.4))
+                //                ASBasicStyle(backgroundColor: WykopColors.shared.currentTheme.cardColor, foregroundColor: WykopColors.shared.currentTheme.accentColor)
+                
             } onTapReceive: { selectionTap in
                 Task {
                     let period = EntriesPeriod.fromRaw(rawValue: selectionTap)!
                     await viewModel.changeRequestedPeriod(period: period);
                 }
-
+                
             }
-            .frame(width: 340, height: 44)
+            .frame(width: 280, height: 44)
+            
             EntriesListView(viewModel: self.viewModel)
             
         }
@@ -68,20 +73,20 @@ struct EntriesView: View {
                     
                     
                     ZStack {
-
+                        
                         if (item.hasAdultContent() == false || settings.plus18Enabled ) {
-
+                            
                             EntryViewCell(entry: item).onAppear {
                                 if item == self.viewModel.entries.last {
                                     Task {
                                         await self.viewModel.getNextEntries()
                                     }
                                 }
-
-
+                                
+                                
                             }.onTapGesture {
                                 BasePushableViewModel.navigation?.pushView(EntryViewModel(entry: item).prepareView())
-
+                                
                             }
                         }
                         
@@ -111,7 +116,7 @@ struct EntryViewCell: View {
     
     var body: some View {
         ZStack{
-
+            
             VStack(alignment: .leading) {
                 EntryViewCellHeader(entry: entry)
                 EntryBodyPreview(entry: entry)

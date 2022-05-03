@@ -160,7 +160,7 @@ struct LinkHeader : View {
                 Image(systemName:"text.bubble").modifier(BodyStyle())
                 Text("\(link.commentsCount)").modifier(BodyStyle())
                 
-            }.padding(.horizontal, Margins.medium.rawValue).padding(.top, Margins.small.rawValue)
+            }.padding(.horizontal, Margins.medium.rawValue).padding(.vertical, Margins.medium.rawValue)
             //                AuthorView(author: link.author)
             
         }

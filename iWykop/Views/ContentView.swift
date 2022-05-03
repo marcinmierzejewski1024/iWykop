@@ -54,7 +54,7 @@ struct ContentView: View {
             }
 
             
-        }.font(.bodyFont())
+        }.accentColor(colors.currentTheme.accentColor).tint(colors.currentTheme.accentColor).font(.bodyFont())
             .onAppear {
                 BasePushableViewModel.navigation = self.navigation;
             }.environmentObject(settingsStore).modifier(BackgroundStyle()).preferredColorScheme(colors.currentTheme.colorScheme)
