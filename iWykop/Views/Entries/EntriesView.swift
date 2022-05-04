@@ -36,7 +36,7 @@ struct EntriesView: View {
                         Text("24h").font(.title3).bold()
                     }
             } style: {
-                ASScaleStyle(backgroundColor: WykopColors.shared.currentTheme.cardColor, foregroundColor: WykopColors.shared.currentTheme.accentColor.opacity(0.4))
+                ASScaleStyle(backgroundColor: .clear, foregroundColor: WykopColors.shared.currentTheme.accentColor.opacity(0.4))
                 
             } onTapReceive: { selectionTap in
                 Task {

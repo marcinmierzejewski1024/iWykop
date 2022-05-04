@@ -16,9 +16,6 @@ struct A9_SwiftyGif_final: View {
         VStack {
             if let gifData = gifData {
                 SwiftyGif(data: gifData, playGif: $playGif)
-                    .frame(height: 350)
-            } else {
-                Text("GIF HERE!")
             }
 
         }

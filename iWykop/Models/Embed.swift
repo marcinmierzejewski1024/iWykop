@@ -22,9 +22,10 @@ struct Embed: AutoCodable, AutoEquatable, Hashable {
         if(self.type == .image) {
             let thumbnail = self.url;
             return thumbnail.replacingOccurrences(of: ".jpg", with: ",w250.jpg");
+        } else {
+            return self.preview;
         }
         
-        return nil;
         
     }
     
@@ -49,6 +50,41 @@ struct Embed: AutoCodable, AutoEquatable, Hashable {
         }
         
         return nil;
+    }
+    
+    
+    func nativePlayerByDomain() -> Bool {
+        let nativeDomains = ["gfycat", "streamable", "coub", "youtu"];
+
+        for nativeDomain in nativeDomains {
+            if(self.getSourceDomain()?.contains(nativeDomain) ?? false) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    func label() -> String? {
+        if(animated){
+            return "GIF";
+        }
+        if(self.getSourceDomain()?.contains("gfycat") ?? false) {
+            return "GFY";
+        }
+        if(self.getSourceDomain()?.contains("youtu") ?? false) {
+            return "YT";
+        }
+        if(self.getSourceDomain()?.contains("streamable") ?? false) {
+            return "STREAMABLE";
+        }
+        if(self.getSourceDomain()?.contains("coub") ?? false) {
+            return "COUB";
+        }
+
+        
+        return nil;
+        
     }
 
 }

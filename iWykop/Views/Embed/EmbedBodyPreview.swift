@@ -78,51 +78,23 @@ struct EmbedBodyPreview : View {
     
     var body: some View {
         HStack{
-            if(viewModel.embed.type == .image) {
+            //            if(viewModel.embed.type == .image) {
+            
+            if(playingGif()) {
                 
-                if(playingGif()) {
-                    
-                    AnimatedImagePreview(viewModel: viewModel)
-                    
-                } else {
-                    let imageUrl = fullScreenMode ? viewModel.embed.getFullImageUrl() : viewModel.embed.getThumbnailImageURL()!;
-                    
-                    CacheAsyncImage(
-                        url: URL(string:imageUrl)){ phase in
-                            switch phase {
-                            case .success(let image):
-                                VStack(alignment: fullScreenMode ? .center : .leading) {
-                                    image.resizable()
-                                        .aspectRatio(contentMode: .fit).overlay {
-                                            if(!playingGif() && viewModel.embed.animated) {
-                                                VStack {
-                                                    Spacer()
-                                                    HStack {
-                                                        Spacer()
-                                                        Text("GIF").font(.title).bold().foregroundColor(.blue).padding(10).background(Color.white).cornerRadius(10.0).padding(10);
-                                                    }
-                                                    
-                                                    
-                                                }
-                                            }
-                                        }
-                                }
-                            case .failure(let error):
-                                Text(error.localizedDescription)
-                                
-                            default:
-                                Image("placeholder").resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                
-                            }
-                        }.onTapGesture {
-                            self.fullScreenMode.toggle();
-                        }
-                    
-                }
-            } else if(viewModel.embed.type == .video){
-                UIWKWebview(url: viewModel.embed.url)
+                AnimatedImagePreview(viewModel: viewModel)
+                
+            } else {
+//                let imageUrl = fullScreenMode ? viewModel.embed.getFullImageUrl() : viewModel.embed.getThumbnailImageURL()!;
+                
+                    ThumbnailImagePreview(viewModel: viewModel).onTapGesture {
+                        self.fullScreenMode.toggle();
+                    }
+                
             }
+            //            } else if(viewModel.embed.type == .video){
+            //                UIWKWebview(url: viewModel.embed.url)
+            //            }
             
         }.onAppear {
             self.isViewDisplayed = true
@@ -134,6 +106,46 @@ struct EmbedBodyPreview : View {
     }
 }
 
+struct ThumbnailImagePreview : View {
+    @State var viewModel: EmbedViewModel;
+    
+    var body: some View {
+        let previewImageUrl = viewModel.embed.getThumbnailImageURL()!;
+        
+        CacheAsyncImage(
+            url: URL(string:previewImageUrl)){ phase in
+                switch phase {
+                case .success(let image):
+                    VStack(alignment: .leading) {
+                        image.resizable()
+                            .aspectRatio(contentMode: .fit).overlay {
+                                if let label = viewModel.embed.label() {
+                                    VStack {
+                                        Spacer()
+                                        HStack {
+                                            Spacer()
+                                            Text(label).font(.title).bold().foregroundColor(.blue).padding(10).background(Color.white).cornerRadius(10.0).padding(10);
+                                        }
+                                        
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                    }
+                case .failure(let error):
+                    Text(error.localizedDescription)
+                    
+                default:
+                    Image("placeholder").resizable()
+                        .aspectRatio(contentMode: .fit)
+                    
+                }
+            }
+    }
+}
+
 
 struct AnimatedImagePreview : View {
     @ObservedObject var viewModel: EmbedViewModel;
@@ -141,13 +153,15 @@ struct AnimatedImagePreview : View {
     
     var body: some View {
         VStack{
-            Spacer()
             if(viewModel.animatedImageData != nil) {
-                A9_SwiftyGif_final(gifData:viewModel.animatedImageData)
+                A9_SwiftyGif_final(gifData:viewModel.animatedImageData).frame(height: 350)
             } else {
-                ProgressbarView(value: viewModel.downloadProgress).frame(maxHeight:15).padding()
+                VStack {
+                    ThumbnailImagePreview(viewModel: viewModel)
+
+                    ProgressbarView(value: viewModel.downloadProgress).frame(maxHeight:5)
+                }.frame(height: 350)
             }
-            Spacer()
             
         }.onAppear {
             viewModel.loadData()
