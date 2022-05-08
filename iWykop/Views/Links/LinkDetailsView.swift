@@ -110,7 +110,9 @@ struct LinkWithCommentsView: View {
                     AuthorWithDateHeader(author: item.author, date: item.getDate(), voteCount: item.voteCount)
                     Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
                     if let embed = item.embed {
-                        EmbedViewModel(embed: embed).prepareView()
+                        EmbedViewModel(embed: embed).prepareView().onTapGesture {
+                            BasePushableViewModel.navigation?.presentFullScreen(EmbedViewModel(embed: embed).prepareModalView())
+                        }
                     }
                     
                 }.listRowSeparator(.hidden).padding(.leading,                                                   (item.isResponseComment() ? 30.0 : 0.0))

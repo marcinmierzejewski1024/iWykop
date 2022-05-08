@@ -76,7 +76,6 @@ struct CommentView: View {
             Text(commentVM.comment.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
             if let embed = self.commentVM.comment.embed {
                 EmbedViewModel(embed: embed).prepareView().onTapGesture {
-                    
                     BasePushableViewModel.navigation?.presentFullScreen(EmbedViewModel(embed: embed).prepareModalView())
                 }
             }

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import YouTubePlayerKit
 
 
 struct EmbedBodyPreviewWithModal: View {
@@ -60,33 +61,33 @@ struct EmbedBodyPreview : View {
     @State var isViewDisplayed = false
     
     
-    func playingGif() -> Bool {
-        let fullscreen = fullScreenMode && embedVM.embed.animated;
+    func playing() -> Bool {
+        let fullscreen = fullScreenMode
+        let isGif = embedVM.embed.animated;
+        let isVideo = embedVM.embed.type == .video;
+        
         let autoplay = embedVM.settingsStore.autoplayAnimated && embedVM.embed.animated;
         
-        return (fullscreen || autoplay) && isViewDisplayed;
+        return (fullscreen || autoplay) && isViewDisplayed && (isGif || isVideo);
     }
+    
     
     var body: some View {
         HStack{
-            //            if(viewModel.embed.type == .image) {
             
-            if(playingGif()) {
+            if(playing()) {
                 
-                AnimatedImagePreview(embedVM: embedVM)
-                
+                if(embedVM.embed.type == .video) {
+                    VideoPreview(embedVM: embedVM)
+                } else {
+                    AnimatedImagePreview(embedVM: embedVM)
+                }
             } else {
-//                let imageUrl = fullScreenMode ? viewModel.embed.getFullImageUrl() : viewModel.embed.getThumbnailImageURL()!;
-                
-                    ThumbnailImagePreview(embedVM: embedVM)
-//                    .onTapGesture {
-//                        self.fullScreenMode.toggle();
-//                    }
+
+                ThumbnailImagePreview(embedVM: embedVM)
                 
             }
-            //            } else if(viewModel.embed.type == .video){
-            //                UIWKWebview(url: viewModel.embed.url)
-            //            }
+
             
         }.onAppear {
             self.isViewDisplayed = true
@@ -166,3 +167,13 @@ struct AnimatedImagePreview : View {
 
 
 
+struct VideoPreview: View
+{
+    @ObservedObject var embedVM: EmbedViewModel;
+    var body: some View {
+        VStack{
+            YouTubePlayerView("https://youtube.com/watch?v=psL_5RIBqnY")
+//            UIWKWebview(url: embedVM.embedVideoUrl())
+        }
+    }
+}

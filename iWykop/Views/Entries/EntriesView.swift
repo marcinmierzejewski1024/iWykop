@@ -170,8 +170,12 @@ struct EntryBodyPreview : View
     var body: some View {
         VStack(alignment: .leading) {
             Text(entry.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-            if(entry.embed != nil) {
-                self.generatedViewModel?.prepareView()
+            if let embed = entry.embed {
+                
+                self.generatedViewModel?.prepareView().onTapGesture {
+                    BasePushableViewModel.navigation?.presentFullScreen(EmbedViewModel(embed: embed).prepareModalView())
+                }
+                
             }
             
         }.padding(0).onAppear {

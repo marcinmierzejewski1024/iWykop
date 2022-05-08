@@ -23,6 +23,7 @@
 		56250B6E27C27D1E0086AFF5 /* EntryServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6D27C27D1E0086AFF5 /* EntryServiceImpl.swift */; };
 		56250B7027C27F980086AFF5 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6F27C27F980086AFF5 /* Comment.swift */; };
 		56430F002827D96E00333DB5 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56430EFF2827D96E00333DB5 /* Navigation.swift */; };
+		56430F032827F3F700333DB5 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56430F022827F3F700333DB5 /* YouTubePlayerKit */; };
 		5646B88127EE46CB006FCF8C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5646B88027EE46CB006FCF8C /* Date.swift */; };
 		56554E1527D9636C00BB8DD7 /* LinkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56554E1427D9636C00BB8DD7 /* LinkServiceImpl.swift */; };
 		56554E1727DB67C500BB8DD7 /* LinkDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56554E1627DB67C500BB8DD7 /* LinkDetailsView.swift */; };
@@ -204,6 +205,7 @@
 			files = (
 				56250B6627C255F10086AFF5 /* OrderedCollections in Frameworks */,
 				56250B6227C255F10086AFF5 /* Collections in Frameworks */,
+				56430F032827F3F700333DB5 /* YouTubePlayerKit in Frameworks */,
 				56250B6427C255F10086AFF5 /* DequeModule in Frameworks */,
 				52A27DD202A992B9392EFBB9 /* Pods_iWykop.framework in Frameworks */,
 				568E42772821497800AA10C4 /* AxisSegmentedView in Frameworks */,
@@ -605,6 +607,7 @@
 				56250B6527C255F10086AFF5 /* OrderedCollections */,
 				568A778627F4964200DB72C2 /* XNavigation */,
 				568E42762821497800AA10C4 /* AxisSegmentedView */,
+				56430F022827F3F700333DB5 /* YouTubePlayerKit */,
 			);
 			productName = iWykop;
 			productReference = 5680865927BE8FB0001E4F43 /* iWykop.app */;
@@ -687,6 +690,7 @@
 				56250B6027C255F10086AFF5 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				568A778527F4964200DB72C2 /* XCRemoteSwiftPackageReference "XNavigation" */,
 				568E42752821497800AA10C4 /* XCRemoteSwiftPackageReference "AxisSegmentedView" */,
+				56430F012827F3F700333DB5 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
 			);
 			productRefGroup = 5680865A27BE8FB0001E4F43 /* Products */;
 			projectDirPath = "";
@@ -1291,6 +1295,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		56430F012827F3F700333DB5 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SvenTiigi/YouTubePlayerKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		568A778527F4964200DB72C2 /* XCRemoteSwiftPackageReference "XNavigation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/DoubleSymmetry/XNavigation";
@@ -1329,6 +1341,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 56250B6027C255F10086AFF5 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
+		};
+		56430F022827F3F700333DB5 /* YouTubePlayerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56430F012827F3F700333DB5 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */;
+			productName = YouTubePlayerKit;
 		};
 		568A778627F4964200DB72C2 /* XNavigation */ = {
 			isa = XCSwiftPackageProductDependency;

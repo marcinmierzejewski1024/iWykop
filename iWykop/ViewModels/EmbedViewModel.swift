@@ -64,6 +64,10 @@ class EmbedViewModel : BasePushableViewModel
         return nil;
     }
     
+    func embedVideoUrl() -> String {
+        //TODO:
+        return "https://www.youtube.com/embed/Za7YYCasDkE";
+    }
     
     override func prepareView() -> AnyView {
         return AnyView(EmbedBodyPreview(embedVM: self));
