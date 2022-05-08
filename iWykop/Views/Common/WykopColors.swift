@@ -136,7 +136,9 @@ class WykopColorsLight : Theme {
             result[1] = Color(rgb: 0xff5917)
             result[2] = Color(rgb: 0xBB0000)
             result[5] = Color(rgb: 0x000000)
+            result[1001] = .gray
             result[1002] = .gray
+
        
             return result;
         }
@@ -225,8 +227,9 @@ class WykopColorsDark : Theme {
             result[1] = Color(rgb: 0xff5917)
             result[2] = Color(rgb: 0xBB0000)
             result[5] = Color(rgb: 0x000000)
+            result[1001] = .gray
             result[1002] = .gray
-       
+
             return result;
         }
         

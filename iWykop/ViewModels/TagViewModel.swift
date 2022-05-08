@@ -66,7 +66,7 @@ class TagViewModel : BasePushableViewModel {
     
     override func prepareView() -> AnyView
     {
-        return AnyView(TagView(viewModel: self));
+        return AnyView(TagView(tagVM: self));
     }
     
     

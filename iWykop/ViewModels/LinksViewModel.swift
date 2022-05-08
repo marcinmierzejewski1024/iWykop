@@ -99,7 +99,7 @@ class LinksViewModel : BasePushableViewModel
     
     override func prepareView() -> AnyView {
         
-        return AnyView(LinksView(viewModel: self).task {
+        return AnyView(LinksView(linksVM: self).task {
             await self.getLinks()
         })
     }

@@ -43,7 +43,7 @@ class LinkViewModel : BasePushableViewModel
     
     
     override func prepareView() -> AnyView {
-        return AnyView(LinkDetailsView(link: self.link, viewModel: self));
+        return AnyView(LinkDetailsView(link: self.link, linkVM: self));
     }
     
     

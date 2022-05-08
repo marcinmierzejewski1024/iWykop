@@ -9,14 +9,14 @@ import SwiftUI
 import KSToastView
 
 struct LinksView: View {
-    @ObservedObject var viewModel : LinksViewModel;
+    @ObservedObject var linksVM : LinksViewModel;
     
     @ViewBuilder
     var body: some View {
         
         
         
-        LinksListView(viewModel: self.viewModel)
+        LinksListView(linksVM: self.linksVM)
         
         
     }
@@ -24,7 +24,7 @@ struct LinksView: View {
     
     struct LinksListView: View {
         
-        @ObservedObject var viewModel : LinksViewModel;
+        @ObservedObject var linksVM : LinksViewModel;
         
         
         @ViewBuilder
@@ -34,15 +34,15 @@ struct LinksView: View {
                 
                 
                 List() {
-                    ForEach(viewModel.displayedLinks, id: \.id) { item in
+                    ForEach(linksVM.displayedLinks, id: \.id) { item in
                         
                         ZStack {
                             
                             
-                            LinksListCell(link: item, viewModel: viewModel).onAppear {
-                                if item == self.viewModel.displayedLinks.last {
+                            LinksListCell(link: item, linksVM: linksVM).onAppear {
+                                if item == self.linksVM.displayedLinks.last {
                                     Task {
-                                        await self.viewModel.getNextLinks()
+                                        await self.linksVM.getNextLinks()
                                     }
                                     
                                 }
@@ -61,7 +61,7 @@ struct LinksView: View {
                 }.listStyle(PlainListStyle()).refreshable {
                     Task {
                         
-                        await self.viewModel.refreshCurrentCollectionsLinks()
+                        await self.linksVM.refreshCurrentCollectionsLinks()
                     }
                 }
                 
@@ -75,7 +75,7 @@ struct LinksView: View {
 
 struct LinksListCell: View {
     var link: Link;
-    @ObservedObject var viewModel : LinksViewModel;
+    @ObservedObject var linksVM : LinksViewModel;
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     

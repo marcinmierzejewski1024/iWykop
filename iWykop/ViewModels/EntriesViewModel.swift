@@ -89,7 +89,7 @@ class EntriesViewModel : BasePushableViewModel
     }
    
     override func prepareView() -> AnyView {
-        return AnyView(EntriesView(viewModel: self).task {
+        return AnyView(EntriesView(entriesVM: self).task {
             await self.getEntries();
         });
     }

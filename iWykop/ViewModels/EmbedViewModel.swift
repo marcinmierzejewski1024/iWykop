@@ -66,9 +66,14 @@ class EmbedViewModel : BasePushableViewModel
     
     
     override func prepareView() -> AnyView {
-        return AnyView(EmbedBodyPreview(viewModel: self));
+        return AnyView(EmbedBodyPreview(embedVM: self));
     }
+
     
+    func prepareModalView() -> AnyView {
+        return AnyView(EmbedBodyPreviewWithModal(embedVM: self));
+    }
+
     
 }
 

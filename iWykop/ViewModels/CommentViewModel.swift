@@ -17,7 +17,7 @@ class CommentViewModel : BasePushableViewModel {
     }
     
     override func prepareView() -> AnyView {
-        return AnyView(CommentView(viewModel: self));
+        return AnyView(CommentView(commentVM: self));
     }
     
 }

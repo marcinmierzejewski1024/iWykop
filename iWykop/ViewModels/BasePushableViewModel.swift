@@ -25,6 +25,9 @@ class BasePushableViewModel : ObservableObject, Resolving {
         return AnyView(EmptyView());
     }
     
+    func dismiss(animated: Bool = true){
+        BasePushableViewModel.navigation?.dismiss(animated: animated, completion: nil);
+    }
     
     
     

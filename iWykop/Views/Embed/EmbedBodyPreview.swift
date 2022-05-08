@@ -9,10 +9,9 @@ import Foundation
 import SwiftUI
 
 
-struct EmbedBodyPreviewWithModal : View {
+struct EmbedBodyPreviewWithModal: View {
     
-    @State var viewModel: EmbedViewModel;
-    @State private var isPresented = false
+    @State var embedVM: EmbedViewModel;
     @State private var offset = CGSize.zero
     
     
@@ -20,15 +19,10 @@ struct EmbedBodyPreviewWithModal : View {
     
     var body: some View {
         HStack{
-            
-            EmbedBodyPreview(viewModel: viewModel).onTapGesture {
-                self.isPresented.toggle()
-            }
-            .fullScreenCover(isPresented: $isPresented, content: {
                 
                 ZoomableScrollView {
                     
-                    EmbedBodyPreview(viewModel: viewModel, fullScreenMode: true).offset(x: offset.width * 0.2, y: offset.height * 0.7)
+                    EmbedBodyPreview(embedVM: embedVM, fullScreenMode: true).offset(x: offset.width * 0.2, y: offset.height * 0.7)
                     
                         .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global).onChanged({ value in
                             
@@ -41,7 +35,7 @@ struct EmbedBodyPreviewWithModal : View {
                             
                             if abs(horizontalAmount) > 80 || abs(verticalAmount) > 80 {
                                 withAnimation {
-                                    isPresented.toggle();
+                                    embedVM.dismiss()
                                 }
                             }
                             
@@ -51,8 +45,6 @@ struct EmbedBodyPreviewWithModal : View {
                         }).frame(maxWidth: .infinity, maxHeight: .infinity).background(.clear)
                 }.ignoresSafeArea().background(BackgroundBlurView().ignoresSafeArea())
                 
-            })
-            
             
         }.padding(0)
     }
@@ -63,15 +55,14 @@ struct EmbedBodyPreviewWithModal : View {
 
 struct EmbedBodyPreview : View {
     
-    @State var viewModel: EmbedViewModel;
+    @State var embedVM: EmbedViewModel;
     @State var fullScreenMode = false;
-    @EnvironmentObject var settings: SettingsStore
     @State var isViewDisplayed = false
     
     
     func playingGif() -> Bool {
-        let fullscreen = fullScreenMode && viewModel.embed.animated;
-        let autoplay = settings.autoplayAnimated && viewModel.embed.animated;
+        let fullscreen = fullScreenMode && embedVM.embed.animated;
+        let autoplay = embedVM.settingsStore.autoplayAnimated && embedVM.embed.animated;
         
         return (fullscreen || autoplay) && isViewDisplayed;
     }
@@ -82,14 +73,15 @@ struct EmbedBodyPreview : View {
             
             if(playingGif()) {
                 
-                AnimatedImagePreview(viewModel: viewModel)
+                AnimatedImagePreview(embedVM: embedVM)
                 
             } else {
 //                let imageUrl = fullScreenMode ? viewModel.embed.getFullImageUrl() : viewModel.embed.getThumbnailImageURL()!;
                 
-                    ThumbnailImagePreview(viewModel: viewModel).onTapGesture {
-                        self.fullScreenMode.toggle();
-                    }
+                    ThumbnailImagePreview(embedVM: embedVM)
+//                    .onTapGesture {
+//                        self.fullScreenMode.toggle();
+//                    }
                 
             }
             //            } else if(viewModel.embed.type == .video){
@@ -107,10 +99,10 @@ struct EmbedBodyPreview : View {
 }
 
 struct ThumbnailImagePreview : View {
-    @State var viewModel: EmbedViewModel;
+    @State var embedVM: EmbedViewModel;
     
     var body: some View {
-        let previewImageUrl = viewModel.embed.getThumbnailImageURL()!;
+        let previewImageUrl = embedVM.embed.getThumbnailImageURL()!;
         
         CacheAsyncImage(
             url: URL(string:previewImageUrl)){ phase in
@@ -119,12 +111,12 @@ struct ThumbnailImagePreview : View {
                     VStack(alignment: .leading) {
                         image.resizable()
                             .aspectRatio(contentMode: .fit).overlay {
-                                if let label = viewModel.embed.label() {
+                                if let label = embedVM.embed.label() {
                                     VStack {
                                         Spacer()
                                         HStack {
                                             Spacer()
-                                            Text(label).font(.title).bold().foregroundColor(.blue).padding(10).background(Color.white).cornerRadius(10.0).padding(10);
+                                            Text(label).font(.title3).bold().foregroundColor(.blue).padding(Margins.medium.rawValue).background(Color.white).cornerRadius(6.0).padding(Margins.medium.rawValue);
                                         }
                                         
                                         
@@ -148,23 +140,23 @@ struct ThumbnailImagePreview : View {
 
 
 struct AnimatedImagePreview : View {
-    @ObservedObject var viewModel: EmbedViewModel;
+    @ObservedObject var embedVM: EmbedViewModel;
     
     
     var body: some View {
         VStack{
-            if(viewModel.animatedImageData != nil) {
-                A9_SwiftyGif_final(gifData:viewModel.animatedImageData).frame(height: 350)
+            if(embedVM.animatedImageData != nil) {
+                A9_SwiftyGif_final(gifData:embedVM.animatedImageData).frame(height: 350)
             } else {
                 VStack {
-                    ThumbnailImagePreview(viewModel: viewModel)
+                    ThumbnailImagePreview(embedVM: embedVM)
 
-                    ProgressbarView(value: viewModel.downloadProgress).frame(maxHeight:5)
+                    ProgressbarView(value: embedVM.downloadProgress).frame(maxHeight:5)
                 }.frame(height: 350)
             }
             
         }.onAppear {
-            viewModel.loadData()
+            embedVM.loadData()
             
         }
         

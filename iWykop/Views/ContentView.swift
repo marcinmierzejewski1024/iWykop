@@ -10,7 +10,7 @@ import XNavigation
 import KSToastView
 
 struct ContentView: View {
-    
+
     let settingsStore = SettingsStore();
     let viewModel = EntriesViewModel(); // should viewModel be injected via DI?
     let linksViewModel = LinksViewModel();

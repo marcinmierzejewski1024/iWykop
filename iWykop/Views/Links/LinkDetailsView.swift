@@ -19,7 +19,7 @@ enum LinkDetailsTabs : String, CaseIterable {
 struct LinkDetailsView: View {
     @State var selected = 0;
     @State var link : Link;
-    @ObservedObject var viewModel : LinkViewModel;
+    @ObservedObject var linkVM : LinkViewModel;
     
     func selectedTab() -> LinkDetailsTabs {
         return LinkDetailsTabs.allCases[selected];
@@ -28,7 +28,7 @@ struct LinkDetailsView: View {
     func reloadLink() {
         
         Task {
-            if let new = await viewModel.refreshLink(link) {
+            if let new = await linkVM.refreshLink(link) {
                 link = new;
             }
         }

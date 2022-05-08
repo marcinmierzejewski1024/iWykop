@@ -10,12 +10,12 @@ import KSToastView
 
 struct EntryDetailsView: View {
     @State var entry : Entry;
-    @ObservedObject var viewModel : EntryViewModel;
+    @ObservedObject var entryVM : EntryViewModel;
     
     func reloadEntry() {
         
         Task {
-            if let new = await viewModel.refreshEntry(entry) {
+            if let new = await entryVM.refreshEntry(entry) {
                 entry = new;
             }
         }
@@ -68,14 +68,17 @@ struct EntryWithCommentsView: View {
 }
 
 struct CommentView: View {
-    @State var viewModel: CommentViewModel;
+    @State var commentVM: CommentViewModel;
     
     var body: some View {
         VStack(alignment: .leading) {
-            AuthorWithDateHeader(author: viewModel.comment.author, date: viewModel.comment.getDate(), voteCount: viewModel.comment.voteCount)
-            Text(viewModel.comment.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-            if let embed = self.viewModel.comment.embed {
-                EmbedBodyPreviewWithModal(viewModel:EmbedViewModel(embed: embed))
+            AuthorWithDateHeader(author: commentVM.comment.author, date: commentVM.comment.getDate(), voteCount: commentVM.comment.voteCount)
+            Text(commentVM.comment.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
+            if let embed = self.commentVM.comment.embed {
+                EmbedViewModel(embed: embed).prepareView().onTapGesture {
+                    
+                    BasePushableViewModel.navigation?.presentFullScreen(EmbedViewModel(embed: embed).prepareModalView())
+                }
             }
             
         }.listRowSeparator(.hidden)

@@ -49,7 +49,7 @@ class EntryViewModel : BasePushableViewModel
     }
     
     override func prepareView() -> AnyView {
-        return AnyView(EntryDetailsView(entry: self.entry, viewModel: self).task {
+        return AnyView(EntryDetailsView(entry: self.entry, entryVM: self).task {
             await self.refreshEntry(self.entry)
         });
     }

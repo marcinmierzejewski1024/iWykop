@@ -12,9 +12,8 @@ import SwiftUI
 
 
 struct TagView : View {
-    @EnvironmentObject var settings: SettingsStore
 
-    @ObservedObject var viewModel : TagViewModel;
+    @ObservedObject var tagVM : TagViewModel;
     
     
     var body: some View {
@@ -24,9 +23,9 @@ struct TagView : View {
             
             List(){
                 
-                ForEach(self.viewModel.items ?? [], id: \.self ) { item in
+                ForEach(self.tagVM.items ?? [], id: \.self ) { item in
                     ZStack {
-                        if (item.hasAdultContent() == false || settings.plus18Enabled ) {
+                        if (item.hasAdultContent() == false || tagVM.settingsStore.plus18Enabled ) {
                             
                             ItemInTagView(item: item)
                         }
@@ -40,7 +39,7 @@ struct TagView : View {
                 }
             }
             
-        }.navigationTitle(viewModel.tag?.meta?.tag ?? "").padding(0)
+        }.navigationTitle(tagVM.tag?.meta?.tag ?? "").padding(0)
         
     }
 }
@@ -56,7 +55,7 @@ struct ItemInTagView : View {
         
         switch item.type {
         case .link:
-            LinkDetailsView(link: item.link!, viewModel: LinkViewModel(link: item.link!)).onTapGesture {
+            LinkDetailsView(link: item.link!, linkVM: LinkViewModel(link: item.link!)).onTapGesture {
                 BasePushableViewModel.navigation?.pushView(LinkViewModel(link: item.link!).prepareView())
                 
             }

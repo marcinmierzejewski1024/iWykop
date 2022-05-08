@@ -10,7 +10,7 @@ import KSToastView
 import AxisSegmentedView
 
 struct EntriesView: View {
-    @ObservedObject var viewModel : EntriesViewModel;
+    @ObservedObject var entriesVM : EntriesViewModel;
     @State var selectedPeriod = 6;
     @ViewBuilder
     var body: some View {
@@ -41,13 +41,13 @@ struct EntriesView: View {
             } onTapReceive: { selectionTap in
                 Task {
                     let period = EntriesPeriod.fromRaw(rawValue: selectionTap)!
-                    await viewModel.changeRequestedPeriod(period: period);
+                    await entriesVM.changeRequestedPeriod(period: period);
                 }
                 
             }
             .frame(width: 280, height: 40).padding(.bottom, Margins.medium.rawValue)
             
-            EntriesListView(viewModel: self.viewModel)
+            EntriesListView(entriesVM: self.entriesVM)
             
         }
         
@@ -57,9 +57,8 @@ struct EntriesView: View {
     
     
     struct EntriesListView: View {
-        @EnvironmentObject var settings: SettingsStore
         
-        @ObservedObject var viewModel : EntriesViewModel;
+        @ObservedObject var entriesVM : EntriesViewModel;
         
         
         @ViewBuilder
@@ -68,17 +67,17 @@ struct EntriesView: View {
             
             List() {
                 
-                ForEach(viewModel.entries, id: \.id) { item in
+                ForEach(entriesVM.entries, id: \.id) { item in
                     
                     
                     ZStack {
                         
-                        if (item.hasAdultContent() == false || settings.plus18Enabled ) {
+                        if (item.hasAdultContent() == false || entriesVM.settingsStore.plus18Enabled ) {
                             
                             EntryViewCell(entry: item).onAppear {
-                                if item == self.viewModel.entries.last {
+                                if item == self.entriesVM.entries.last {
                                     Task {
-                                        await self.viewModel.getNextEntries()
+                                        await self.entriesVM.getNextEntries()
                                     }
                                 }
                                 
@@ -98,7 +97,7 @@ struct EntriesView: View {
             }.listStyle(PlainListStyle()).refreshable {
                 Task {
                     
-                    await self.viewModel.refreshEntries()
+                    await self.entriesVM.refreshEntries()
                 }
             }
             
