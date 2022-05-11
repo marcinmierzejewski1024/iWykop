@@ -14,7 +14,7 @@ import SwiftUI
 
 class EntryViewModel : BasePushableViewModel
 {
-    var entry : Entry;
+    @Published var entry : Entry;
     init(entry : Entry) {
         self.entry = entry;
     }
@@ -49,11 +49,30 @@ class EntryViewModel : BasePushableViewModel
     }
     
     override func prepareView() -> AnyView {
-        return AnyView(EntryDetailsView(entry: self.entry, entryVM: self).task {
+        return AnyView(EntryDetailsView(entryVM: self).task {
             await self.refreshEntry(self.entry)
         });
     }
     
     
+    override func handle(url: URL){
+
+        if(url.absoluteString.contains("iwykop:spoiler:")) {
+
+            Task {
+                self.entry = await withSpoiler(self.entry, spoiler: url) ?? self.entry;
+            }
+
+        }
+    }
+
+    
+    func withSpoiler(_ entry:Entry, spoiler:URL) async -> Entry? {
+        let withSpoiler = await bodyFormatter.showSpoiler(es: entry, spoiler: spoiler)
+        
+        return withSpoiler as? Entry;
+
+    }
+
 }
 

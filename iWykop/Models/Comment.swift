@@ -25,6 +25,7 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
     let voteCountPlus: Int?
     let voteCountMinus: Int?
 
+    var visibleSpoilers: [String]?
     var bodyAttributed : AttributedString?
 
 
@@ -34,12 +35,13 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
         case voteCountPlus = "vote_count_plus"
         case voteCountMinus = "vote_count_minus"
 
-        case favorite, date, blocked, embed
+        case favorite, date, blocked, embed, visibleSpoilers, bodyAttributed
         case userVote = "user_vote"
         case app
         case entryID = "entry_id"
         case body, original
         case parentID = "parent_id"
+
 
     }
     

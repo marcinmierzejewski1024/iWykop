@@ -33,8 +33,7 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComment
     let status: Status
     let app: String?
     var comments: [Comment]?
-
-    
+    var visibleSpoilers: [String]?
     var bodyAttributed : AttributedString?
 
     enum CodingKeys: String, CodingKey {
@@ -47,6 +46,7 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComment
         case comments
 
 // sourcery:inline:auto:Entry.CodingKeys.AutoCodable
+        case visibleSpoilers
         case bodyAttributed
 // sourcery:end
     }

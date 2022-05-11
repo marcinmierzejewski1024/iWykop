@@ -1,7 +1,7 @@
 // Generated using Sourcery 1.6.1 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
-
+import Foundation
 
 
 extension AuthorSex {
@@ -33,6 +33,7 @@ extension AuthorSex {
 
 }
 
+
 extension Comment {
 
     internal init(from decoder: Decoder) throws {
@@ -53,6 +54,8 @@ extension Comment {
         body = try container.decodeIfPresent(String.self, forKey: .body)
         original = try container.decodeIfPresent(String.self, forKey: .original)
         parentID = try container.decodeIfPresent(Int.self, forKey: .parentID)
+        visibleSpoilers = try container.decodeIfPresent([String].self, forKey: .visibleSpoilers)
+        bodyAttributed = try container.decodeIfPresent(AttributedString.self, forKey: .bodyAttributed)
     }
 
     internal func encode(to encoder: Encoder) throws {
@@ -73,6 +76,8 @@ extension Comment {
         try container.encodeIfPresent(body, forKey: .body)
         try container.encodeIfPresent(original, forKey: .original)
         try container.encodeIfPresent(parentID, forKey: .parentID)
+        try container.encodeIfPresent(visibleSpoilers, forKey: .visibleSpoilers)
+        try container.encodeIfPresent(bodyAttributed, forKey: .bodyAttributed)
     }
 
 }

@@ -48,7 +48,7 @@ struct ContentView: View {
                 if let newViewModel = try await self.viewModel.anythingProvider.getViewModelFor(url: url) {
                     BasePushableViewModel.navigation?.pushView(newViewModel.prepareView())
                 } else {
-                    await KSToastView.ks_showToast(NSLocalizedString("Unhandled", comment: "") + " \(url)");
+//                    await KSToastView.ks_showToast(NSLocalizedString("Unhandled", comment: "") + " \(url)");
                 }
 
             }

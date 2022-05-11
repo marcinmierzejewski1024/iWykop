@@ -11,6 +11,8 @@ import UIKit
 protocol BodyFormatable {
     var bodyAttributed: AttributedString? { get set }
     var body: String? { get }
+    var visibleSpoilers: [String]? { get set }
+
 }
 
 protocol WithComments : BodyFormatable
@@ -30,13 +32,13 @@ class BodyFormater
         
         es.map { entry in
             var withAttributed = entry;
-            withAttributed.bodyAttributed = self.markupFromHtml(entry.body)
+            withAttributed.bodyAttributed = self.markupFromHtml(entry.body, spoilersToShow: entry.visibleSpoilers)
             
             if var withComments = withAttributed as? WithComments {
                 
                 withComments.comments = withComments.comments?.map({ c in
                     var commentWithAttributed = c;
-                    commentWithAttributed.bodyAttributed = self.markupFromHtml(commentWithAttributed.body);
+                    commentWithAttributed.bodyAttributed = self.markupFromHtml(commentWithAttributed.body, spoilersToShow: commentWithAttributed.visibleSpoilers);
                     return commentWithAttributed;
                 });
                 
@@ -55,7 +57,18 @@ class BodyFormater
         return await addBodyAttr(es: [es]).first;
     }
     
-    private func markupFromHtml(_ html: String?) -> AttributedString? {
+    @MainActor
+    func showSpoiler(es:BodyFormatable, spoiler:URL) async -> BodyFormatable? {
+        var spoilers = es.visibleSpoilers ?? [String]();
+        var copy = es;
+        spoilers.append(spoiler.absoluteString);
+        copy.visibleSpoilers = spoilers;
+        
+        return await self.addBodyAttrSingle(es: copy);
+    }
+
+    
+    private func markupFromHtml(_ html: String?, spoilersToShow:[String]?) -> AttributedString? {
         
         guard html != nil else {
             return nil;
@@ -65,7 +78,7 @@ class BodyFormater
             return nil;
         }
         
-        let replacedLinks = BodyFormater.replaceLocalLinks(html!);
+        let replacedLinks = BodyFormater.replaceLocalLinks(html!,spoilersToShow: spoilersToShow);
         let otherReplaced = BodyFormater.replaceOtherSymbols(replacedLinks);
         let withCustomCss = BodyFormater.addFontCss(otherReplaced);
         
@@ -114,7 +127,7 @@ class BodyFormater
         return html.replacingOccurrences(of: "&quot;", with: "\"");
     }
     
-    static private func replaceLocalLinks(_ html: String) -> String {
+    static private func replaceLocalLinks(_ html: String, spoilersToShow:[String]?) -> String {
         let ahrefRegex = "#{0,1}@{0,1}<a\\shref=\\\"([^\\\"]*?)\\\".*?>(.*?)<\\/a>"
         do {
             let regex = try NSRegularExpression(pattern: ahrefRegex,options: [.caseInsensitive])
@@ -148,7 +161,17 @@ class BodyFormater
                         }
 
                         
-                        mutableString.replaceOccurrences(of: foundBlock, with: "<a href=\"\(url)\">\(name)</a>", options: [], range: match.range)
+                        var newText = "<a href=\"\(url)\">\(name)</a>";
+                         
+                        if let spoilersToShow = spoilersToShow {
+                            _ = spoilersToShow.map { spoiler in
+                                if(url == spoiler) {
+                                    newText = url.replacingOccurrences(of: "+", with: "%20").decodeUrl()?.replacingOccurrences(of: "iwykop:spoiler:", with: "") ?? "Show Spoiler Bug"
+                                }
+                            }
+                        }
+                        mutableString.replaceOccurrences(of: foundBlock, with: newText, options: [], range: match.range)
+                        
                         let asString = String(mutableString);
                         let newRange = NSRange(location: 0, length: asString.utf16.count)
                         

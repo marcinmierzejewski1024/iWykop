@@ -9,22 +9,22 @@ import SwiftUI
 import KSToastView
 
 struct EntryDetailsView: View {
-    @State var entry : Entry;
     @ObservedObject var entryVM : EntryViewModel;
     
     func reloadEntry() {
         
         Task {
-            if let new = await entryVM.refreshEntry(entry) {
-                entry = new;
-            }
+            await entryVM.refreshEntry(entryVM.entry)
         }
     }
     
     var body: some View {
         VStack(alignment: .leading) {
             
-            EntryWithCommentsView(entry: entry)
+            EntryWithCommentsView(entry: entryVM.entry).onOpenURL { (url) in
+                entryVM.handle(url: url)
+            }
+            
         }.listStyle(PlainListStyle()).refreshable {
             self.reloadEntry();
         }.onAppear(){

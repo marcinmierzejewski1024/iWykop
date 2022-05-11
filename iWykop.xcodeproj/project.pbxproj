@@ -815,7 +815,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#echo $PATH\n$PODS_ROOT/Sourcery/bin/sourcery --config iWykop/Sourcery/.sourcery.yml --verbose\n";
+			shellScript = "#echo $PATH\n#$PODS_ROOT/Sourcery/bin/sourcery --config iWykop/Sourcery/.sourcery.yml --verbose\n";
 		};
 		A2C69C00C278DEEA871BC731 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

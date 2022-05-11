@@ -32,7 +32,7 @@ class TagViewModel : BasePushableViewModel {
     
     @MainActor public func prepareItems() async {
         let filtered = self.tag?.content?.filter({ item in
-
+            
             switch self.mode {
             case .Entries:
                 return item.entry != nil;
@@ -69,6 +69,41 @@ class TagViewModel : BasePushableViewModel {
         return AnyView(TagView(tagVM: self));
     }
     
+    
+    override func handle(url: URL){
+        
+        if(url.absoluteString.contains("iwykop:spoiler:")) {
+            
+            let entryItemWithThisSpoiler = items?.first(where: { candidate in
+                let body = candidate.entry?.body;
+                let needle = url.absoluteString.replacingOccurrences(of: "iwykop:spoiler:", with: "")
+                return body?.contains(needle) ?? false
+            })
+            
+            
+            if let entryItemWithThisSpoiler = entryItemWithThisSpoiler
+            {
+                if let entryWithThisSpoiler = entryItemWithThisSpoiler.entry {
+                    if let index = self.items?.firstIndex(of: entryItemWithThisSpoiler) {
+                        Task {
+                            //TODO:uncoment
+                            let updated = await withSpoiler(entryWithThisSpoiler, spoiler: url) ?? entryWithThisSpoiler;
+                            self.items?[index] = ItemInTag(type: .entry, link: nil, entry: updated)
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
+    func withSpoiler(_ entry:Entry, spoiler:URL) async -> Entry? {
+        let withSpoiler = await bodyFormatter.showSpoiler(es: entry, spoiler: spoiler)
+        
+        return withSpoiler as? Entry;
+        
+    }
     
     
     

@@ -30,9 +30,9 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
     let preview: String?
     let description: String?
     let title: String?
-
-    
     var bodyAttributed : AttributedString?
+    var visibleSpoilers: [String]?
+
 
 
     enum CodingKeys: String, CodingKey {
@@ -54,6 +54,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
         case favorite
         case title
         case bodyAttributed
+        case visibleSpoilers
 // sourcery:end
     }
     

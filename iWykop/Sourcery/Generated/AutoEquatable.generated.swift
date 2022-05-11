@@ -52,6 +52,7 @@ internal func == (lhs: Comment, rhs: Comment) -> Bool {
     guard compareOptionals(lhs: lhs.original, rhs: rhs.original, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.voteCountPlus, rhs: rhs.voteCountPlus, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.voteCountMinus, rhs: rhs.voteCountMinus, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.visibleSpoilers, rhs: rhs.visibleSpoilers, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     return true
 }
@@ -86,6 +87,7 @@ internal func == (lhs: Entry, rhs: Entry) -> Bool {
     guard lhs.status == rhs.status else { return false }
     guard compareOptionals(lhs: lhs.app, rhs: rhs.app, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.comments, rhs: rhs.comments, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.visibleSpoilers, rhs: rhs.visibleSpoilers, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     return true
 }
@@ -124,6 +126,7 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
     guard compareOptionals(lhs: lhs.description, rhs: rhs.description, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.title, rhs: rhs.title, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.visibleSpoilers, rhs: rhs.visibleSpoilers, compare: ==) else { return false }
     return true
 }
 // MARK: - Tag AutoEquatable

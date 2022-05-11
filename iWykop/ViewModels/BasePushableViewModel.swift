@@ -29,6 +29,9 @@ class BasePushableViewModel : ObservableObject, Resolving {
         BasePushableViewModel.navigation?.dismiss(animated: animated, completion: nil);
     }
     
+    func handle(url: URL){
+
+    }
     
     
 }
