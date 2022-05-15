@@ -21,9 +21,7 @@ struct EntryDetailsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             
-            EntryWithCommentsView(entry: entryVM.entry).onOpenURL { (url) in
-                entryVM.handle(url: url)
-            }
+            EntryWithCommentsView(entry: entryVM.entry)
             
         }.listStyle(PlainListStyle()).refreshable {
             self.reloadEntry();

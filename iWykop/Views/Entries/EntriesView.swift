@@ -85,8 +85,6 @@ struct EntriesView: View {
                             }.onTapGesture {
                                 BasePushableViewModel.navigation?.pushView(EntryViewModel(entry: item).prepareView())
                                 
-                            }.onOpenURL { (url) in
-                                entriesVM.handle(url: url)
                             }
                         }
                         

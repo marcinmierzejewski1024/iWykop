@@ -89,7 +89,9 @@ class EntriesViewModel : BasePushableViewModel
     }
     
     override func prepareView() -> AnyView {
-        return AnyView(EntriesView(entriesVM: self).task {
+        return AnyView(EntriesView(entriesVM: self).onOpenURL(perform: { url in
+            self.handle(url: url)
+        }).task {
             await self.getEntries();
         });
     }

@@ -37,8 +37,6 @@ struct TagView : View {
                     
 //                    await self.viewModel.refreshCurrentCollectionsLinks()
                 }
-            }.onOpenURL { url in
-                self.tagVM.handle(url: url)
             }
             
         }.navigationTitle(tagVM.tag?.meta?.tag ?? "").padding(0)

@@ -66,7 +66,9 @@ class TagViewModel : BasePushableViewModel {
     
     override func prepareView() -> AnyView
     {
-        return AnyView(TagView(tagVM: self));
+        return AnyView(TagView(tagVM: self).onOpenURL(perform: { url in
+            self.handle(url: url)
+        }));
     }
     
     
@@ -86,7 +88,6 @@ class TagViewModel : BasePushableViewModel {
                 if let entryWithThisSpoiler = entryItemWithThisSpoiler.entry {
                     if let index = self.items?.firstIndex(of: entryItemWithThisSpoiler) {
                         Task {
-                            //TODO:uncoment
                             let updated = await withSpoiler(entryWithThisSpoiler, spoiler: url) ?? entryWithThisSpoiler;
                             self.items?[index] = ItemInTag(type: .entry, link: nil, entry: updated)
                         }

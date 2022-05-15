@@ -51,7 +51,9 @@ class EntryViewModel : BasePushableViewModel
     override func prepareView() -> AnyView {
         return AnyView(EntryDetailsView(entryVM: self).task {
             await self.refreshEntry(self.entry)
-        });
+        }.onOpenURL(perform: { url in
+            self.handle(url: url)
+        }));
     }
     
     
