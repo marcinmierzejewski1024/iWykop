@@ -152,7 +152,7 @@ struct LinkViewCellHeader : View
 {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
-    @Environment(\.openURL) var openURL
+    @Environment(\.openURL) var openInExternalSafari
     
     var link: Link;
     
@@ -202,7 +202,7 @@ struct LinkViewCellHeader : View
             }
             
         }.padding(0).onTapGesture {
-            openURL(URL(string: link.sourceUrl)!)
+            openInExternalSafari(URL(string: link.sourceUrl)!)
             
         }
         

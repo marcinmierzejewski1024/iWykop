@@ -65,6 +65,7 @@
 		568A778727F4964200DB72C2 /* XNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 568A778627F4964200DB72C2 /* XNavigation */; };
 		568A778927F496BB00DB72C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568A778827F496BB00DB72C2 /* ContentView.swift */; };
 		568E42772821497800AA10C4 /* AxisSegmentedView in Frameworks */ = {isa = PBXBuildFile; productRef = 568E42762821497800AA10C4 /* AxisSegmentedView */; };
+		56A3A18C2832E89B00E828C8 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 56A3A18B2832E89B00E828C8 /* BetterSafariView */; };
 		56C556B22809FA4D0020B0C7 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C556B12809FA4D0020B0C7 /* ApiClientTests.swift */; };
 		56D4738527F8E8B8007896E8 /* ProgressbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738427F8E8B8007896E8 /* ProgressbarView.swift */; };
 		56D4738727F8ED49007896E8 /* EmbedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738627F8ED49007896E8 /* EmbedViewModel.swift */; };
@@ -204,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56250B6627C255F10086AFF5 /* OrderedCollections in Frameworks */,
+				56A3A18C2832E89B00E828C8 /* BetterSafariView in Frameworks */,
 				56250B6227C255F10086AFF5 /* Collections in Frameworks */,
 				56430F032827F3F700333DB5 /* YouTubePlayerKit in Frameworks */,
 				56250B6427C255F10086AFF5 /* DequeModule in Frameworks */,
@@ -608,6 +610,7 @@
 				568A778627F4964200DB72C2 /* XNavigation */,
 				568E42762821497800AA10C4 /* AxisSegmentedView */,
 				56430F022827F3F700333DB5 /* YouTubePlayerKit */,
+				56A3A18B2832E89B00E828C8 /* BetterSafariView */,
 			);
 			productName = iWykop;
 			productReference = 5680865927BE8FB0001E4F43 /* iWykop.app */;
@@ -691,6 +694,7 @@
 				568A778527F4964200DB72C2 /* XCRemoteSwiftPackageReference "XNavigation" */,
 				568E42752821497800AA10C4 /* XCRemoteSwiftPackageReference "AxisSegmentedView" */,
 				56430F012827F3F700333DB5 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
+				56A3A18A2832E89B00E828C8 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 			);
 			productRefGroup = 5680865A27BE8FB0001E4F43 /* Products */;
 			projectDirPath = "";
@@ -1319,6 +1323,14 @@
 				kind = branch;
 			};
 		};
+		56A3A18A2832E89B00E828C8 /* XCRemoteSwiftPackageReference "BetterSafariView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stleamist/BetterSafariView";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1356,6 +1368,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 568E42752821497800AA10C4 /* XCRemoteSwiftPackageReference "AxisSegmentedView" */;
 			productName = AxisSegmentedView;
+		};
+		56A3A18B2832E89B00E828C8 /* BetterSafariView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56A3A18A2832E89B00E828C8 /* XCRemoteSwiftPackageReference "BetterSafariView" */;
+			productName = BetterSafariView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

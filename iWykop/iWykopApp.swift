@@ -46,7 +46,7 @@ struct iWykopApp: App {
                 
                 if let navigation = Navigation(window: window!) {
                     
-                    ContentView()
+                    ContentViewWithWebview()
                         .environmentObject(navigation).background(WykopColors.shared.currentTheme.backgroundColor).ignoresSafeArea()
                 }
 

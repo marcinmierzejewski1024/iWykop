@@ -138,7 +138,7 @@ struct LinkHeader : View {
     var link: Link;
     var displayDescription: Bool;
     
-    @Environment(\.openURL) var openURL
+    @Environment(\.openURL) var openInExternalSafari
     
     var body: some View {
         
@@ -151,7 +151,7 @@ struct LinkHeader : View {
             }
             HStack{
                 Button(link.getSourceDomain() ?? "") {
-                    openURL(URL(string: link.sourceUrl)!)
+                    openInExternalSafari(URL(string: link.sourceUrl)!)
                 }
                 
                 Spacer()
