@@ -14,6 +14,8 @@ import XNavigation
 
 class BasePushableViewModel : ObservableObject, Resolving {
     static var navigation : Navigation?;
+    static var urlHandler : UrlHandler?;
+
 
     lazy var bodyFormatter : BodyFormater = resolver.resolve();
     lazy var anythingProvider : AnythingViewModelProvider = resolver.resolve();

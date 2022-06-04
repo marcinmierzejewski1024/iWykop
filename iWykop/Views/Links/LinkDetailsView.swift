@@ -151,9 +151,7 @@ struct LinkWithVoters: View {
 struct LinkViewCellHeader : View
 {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
-    @Environment(\.openURL) var openInExternalSafari
-    
+        
     var link: Link;
     
     var body: some View {
@@ -201,13 +199,13 @@ struct LinkViewCellHeader : View
                 
             }
             
-        }.padding(0)
+        }.padding(0).onTapGesture {
             
-//            .onTapGesture {
-//            
-//            openInExternalSafari(URL(string: link.sourceUrl)!)
-//            
-//        }
+                if let url = URL(string: link.sourceUrl) {
+                    BasePushableViewModel.urlHandler?.handleUrl(url: url)
+                }
+            
+        }
         
         
         

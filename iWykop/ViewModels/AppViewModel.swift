@@ -48,20 +48,23 @@ extension EnvironmentValues {
 class UrlHandler {
     
     var appViewModel : AppViewModel?
+
     
     func handleUrl(url : URL) {
-        Task {
-            if let newViewModel = try await appViewModel!.anythingProvider.getViewModelFor(url: url) {
-                BasePushableViewModel.navigation?.pushView(newViewModel.prepareView())
-            } else {
-                if(appViewModel!.settingsStore.openInSafari) {
-                    appViewModel!.openInExternalSafari(url)
+        let absoluteString = url.absoluteString
+            Task {
+                if let newViewModel = try await appViewModel!.anythingProvider.getViewModelFor(url: url) {
+                    BasePushableViewModel.navigation?.pushView(newViewModel.prepareView())
                 } else {
-                    appViewModel!.startUrl = url.absoluteString;
-                    appViewModel!.presentingSafariView = true;
-                    
+                    if(appViewModel!.settingsStore.openInSafari) {
+                        appViewModel!.openInExternalSafari(url)
+                    } else {
+                        appViewModel!.startUrl = absoluteString;
+                        appViewModel!.presentingSafariView = true;
+                        
+                    }
                 }
             }
-        }
+        
     }
 }

@@ -138,8 +138,6 @@ struct LinkHeader : View {
     var link: Link;
     var displayDescription: Bool;
     
-    @Environment(\.openURL) var openInExternalSafari
-    
     var body: some View {
         
         VStack(alignment: .leading) {
@@ -151,7 +149,9 @@ struct LinkHeader : View {
             }
             HStack{
                 Button(link.getSourceDomain() ?? "") {
-//                    openInExternalSafari(URL(string: link.sourceUrl)!)
+                    if let url = URL(string: link.sourceUrl) {
+                        BasePushableViewModel.urlHandler?.handleUrl(url: url)
+                    }
                 }
                 
                 Spacer()

@@ -11,7 +11,6 @@ import AxisSegmentedView
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
-    @Environment(\.openURL) var openInExternalSafari
 
     
     var body: some View {
@@ -63,7 +62,10 @@ struct SettingsView: View {
                     
                     Section(header: Text("Assets").modifier(TitleStyle())) {
                         Button("https://www.flaticon.com/free-icons/hide"){
-                            openInExternalSafari(URL(string: "https://www.flaticon.com/free-icons/hide")!)
+                            
+                            if let url = URL(string: "https://www.flaticon.com/free-icons/hide") {
+                                BasePushableViewModel.urlHandler?.handleUrl(url: url)
+                            }
                         }.font(.settingsFont()).foregroundColor(.mint)
                     }
                     
