@@ -151,7 +151,7 @@ struct LinkHeader : View {
             }
             HStack{
                 Button(link.getSourceDomain() ?? "") {
-                    openInExternalSafari(URL(string: link.sourceUrl)!)
+//                    openInExternalSafari(URL(string: link.sourceUrl)!)
                 }
                 
                 Spacer()

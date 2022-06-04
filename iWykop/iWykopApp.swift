@@ -15,6 +15,7 @@ import XNavigation
 struct iWykopApp: App {
     
     var navigation : Navigation?;
+    var appViewModel = AppViewModel();
     
     private var window: UIWindow? {
         guard let scene = UIApplication.shared.connectedScenes.first,
@@ -46,7 +47,7 @@ struct iWykopApp: App {
                 
                 if let navigation = Navigation(window: window!) {
                     
-                    ContentViewWithWebview()
+                    appViewModel.prepareView()
                         .environmentObject(navigation).background(WykopColors.shared.currentTheme.backgroundColor).ignoresSafeArea()
                 }
 

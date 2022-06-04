@@ -201,10 +201,13 @@ struct LinkViewCellHeader : View
                 
             }
             
-        }.padding(0).onTapGesture {
-            openInExternalSafari(URL(string: link.sourceUrl)!)
+        }.padding(0)
             
-        }
+//            .onTapGesture {
+//            
+//            openInExternalSafari(URL(string: link.sourceUrl)!)
+//            
+//        }
         
         
         

@@ -11,10 +11,9 @@ import KSToastView
 import BetterSafariView
 
 struct ContentView: View {
-    
-    let settingsStore = SettingsStore();
-    let viewModel = EntriesViewModel();
-    let linksViewModel = LinksViewModel();
+
+    @State var appViewModel : AppViewModel;
+
     
     @StateObject var colors = WykopColors.shared;
     @EnvironmentObject var navigation: Navigation
@@ -24,13 +23,13 @@ struct ContentView: View {
         TabView {
             
             NavigationView {
-                linksViewModel.prepareView().navigationTitle("").navigationBarHidden(true)
+                appViewModel.linksViewModel.prepareView().navigationTitle("").navigationBarHidden(true)
             }.navigationViewStyle(.stack).tabItem {
                 Label("Main", systemImage: "w.square")
             }.modifier(BackgroundStyle())
             
             NavigationView {
-                viewModel.prepareView().navigationTitle("").navigationBarHidden(true)
+                appViewModel.entriesViewModel.prepareView().navigationTitle("").navigationBarHidden(true)
             }.navigationViewStyle(.stack).tabItem {
                 Label("Entries", systemImage: "number.square")
             }.modifier(BackgroundStyle())
@@ -46,7 +45,7 @@ struct ContentView: View {
         }.accentColor(colors.currentTheme.accentColor).tint(colors.currentTheme.accentColor).font(.bodyFont())
             .onAppear {
                 BasePushableViewModel.navigation = self.navigation;
-            }.environmentObject(settingsStore).modifier(BackgroundStyle()).preferredColorScheme(colors.currentTheme.colorScheme)
+            }.environmentObject(appViewModel.settingsStore).modifier(BackgroundStyle()).preferredColorScheme(colors.currentTheme.colorScheme)
         
     }
 }
@@ -55,40 +54,18 @@ struct ContentView: View {
 
 struct ContentViewWithWebview: View {
     
-    //TODO:move to ViewModel!
-    @State var presentingSafariView = false
-    @State var startUrl = "http://github.com"
-    @State var settingsStore = SettingsStore();
-    @State var anythingProvider = AnythingViewModelProviderImpl();
-    
-    @Environment(\.openURL) var openInExternalSafari
-    
+    @State var appViewModel : AppViewModel;
     
     
     var body: some View {
         
-        ContentView().onOpenURL(perform: { url in
-            
-            Task {
-                if let newViewModel = try await self.anythingProvider.getViewModelFor(url: url) {
-                    BasePushableViewModel.navigation?.pushView(newViewModel.prepareView())
-                } else {
-                    if(settingsStore.openInSafari) {
-                        self.openInExternalSafari(url)
-                    } else {
-                        self.startUrl = url.absoluteString;
-                        self.presentingSafariView = true;
-                        
-                    }
-                }
-            }
-            
-            
+        ContentView(appViewModel: appViewModel).onOpenURL(perform: { url in
+            appViewModel.urlHandler?.handleUrl(url: url);
         })
         
-        .safariView(isPresented: $presentingSafariView) {
+        .safariView(isPresented: $appViewModel.presentingSafariView) {
             SafariView(
-                url: URL(string: startUrl)!,
+                url: URL(string: appViewModel.startUrl)!,
                 configuration: SafariView.Configuration(
                     entersReaderIfAvailable: false,
                     barCollapsingEnabled: true
@@ -100,3 +77,4 @@ struct ContentViewWithWebview: View {
         }
     }
 }
+

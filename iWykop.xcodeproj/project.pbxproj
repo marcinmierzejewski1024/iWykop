@@ -18,7 +18,6 @@
 		56250B5F27C23B310086AFF5 /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 56250B5E27C23B310086AFF5 /* Crypto */; };
 		56250B6227C255F10086AFF5 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 56250B6127C255F10086AFF5 /* Collections */; };
 		56250B6427C255F10086AFF5 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 56250B6327C255F10086AFF5 /* DequeModule */; };
-		56250B6627C255F10086AFF5 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 56250B6527C255F10086AFF5 /* OrderedCollections */; };
 		56250B6C27C26FE90086AFF5 /* EntryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6B27C26FE90086AFF5 /* EntryDetailsView.swift */; };
 		56250B6E27C27D1E0086AFF5 /* EntryServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6D27C27D1E0086AFF5 /* EntryServiceImpl.swift */; };
 		56250B7027C27F980086AFF5 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6F27C27F980086AFF5 /* Comment.swift */; };
@@ -70,6 +69,7 @@
 		56D4738527F8E8B8007896E8 /* ProgressbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738427F8E8B8007896E8 /* ProgressbarView.swift */; };
 		56D4738727F8ED49007896E8 /* EmbedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738627F8ED49007896E8 /* EmbedViewModel.swift */; };
 		56D4738927FB88F3007896E8 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738827FB88F3007896E8 /* CommentViewModel.swift */; };
+		56EABFBB284C048C00D8443E /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EABFBA284C048C00D8443E /* AppViewModel.swift */; };
 		56ECA37027CE66F200EBCA33 /* LinksServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA36F27CE66F200EBCA33 /* LinksServiceImpl.swift */; };
 		56ECA37327CE67DE00EBCA33 /* LinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA37227CE67DE00EBCA33 /* LinksViewModel.swift */; };
 		56ECA37527CE6A5300EBCA33 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA37427CE6A5300EBCA33 /* Link.swift */; };
@@ -171,6 +171,7 @@
 		56D4738427F8E8B8007896E8 /* ProgressbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressbarView.swift; sourceTree = "<group>"; };
 		56D4738627F8ED49007896E8 /* EmbedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedViewModel.swift; sourceTree = "<group>"; };
 		56D4738827FB88F3007896E8 /* CommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewModel.swift; sourceTree = "<group>"; };
+		56EABFBA284C048C00D8443E /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		56ECA36F27CE66F200EBCA33 /* LinksServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksServiceImpl.swift; sourceTree = "<group>"; };
 		56ECA37227CE67DE00EBCA33 /* LinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksViewModel.swift; sourceTree = "<group>"; };
 		56ECA37427CE6A5300EBCA33 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -204,7 +205,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56250B6627C255F10086AFF5 /* OrderedCollections in Frameworks */,
 				56A3A18C2832E89B00E828C8 /* BetterSafariView in Frameworks */,
 				56250B6227C255F10086AFF5 /* Collections in Frameworks */,
 				56430F032827F3F700333DB5 /* YouTubePlayerKit in Frameworks */,
@@ -346,6 +346,7 @@
 				5662047C27E1294C00A61508 /* TagViewModel.swift */,
 				56D4738627F8ED49007896E8 /* EmbedViewModel.swift */,
 				56D4738827FB88F3007896E8 /* CommentViewModel.swift */,
+				56EABFBA284C048C00D8443E /* AppViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -606,7 +607,6 @@
 				56250B5E27C23B310086AFF5 /* Crypto */,
 				56250B6127C255F10086AFF5 /* Collections */,
 				56250B6327C255F10086AFF5 /* DequeModule */,
-				56250B6527C255F10086AFF5 /* OrderedCollections */,
 				568A778627F4964200DB72C2 /* XNavigation */,
 				568E42762821497800AA10C4 /* AxisSegmentedView */,
 				56430F022827F3F700333DB5 /* YouTubePlayerKit */,
@@ -884,6 +884,7 @@
 				56ECA3F927D5589C00EBCA33 /* Apiv2Protocols.swift in Sources */,
 				56684F1527BFB78D00604432 /* Registration.swift in Sources */,
 				568A778927F496BB00DB72C2 /* ContentView.swift in Sources */,
+				56EABFBB284C048C00D8443E /* AppViewModel.swift in Sources */,
 				568A778227EE565A00DB72C2 /* ImageCache.swift in Sources */,
 				56684F1F27BFC40600604432 /* EntriesViewModel.swift in Sources */,
 				5680866927BE8FB1001E4F43 /* iWykop.xcdatamodeld in Sources */,
@@ -1348,11 +1349,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 56250B6027C255F10086AFF5 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = DequeModule;
-		};
-		56250B6527C255F10086AFF5 /* OrderedCollections */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 56250B6027C255F10086AFF5 /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = OrderedCollections;
 		};
 		56430F022827F3F700333DB5 /* YouTubePlayerKit */ = {
 			isa = XCSwiftPackageProductDependency;
