@@ -13,6 +13,7 @@ import SwiftUI
 
 class EntriesViewModel : BasePushableViewModel
 {
+        
     lazy var entriesService: EntriesService = resolver.resolve()
     
     @Published var entries = [Entry]();

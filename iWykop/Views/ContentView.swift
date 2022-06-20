@@ -55,7 +55,7 @@ struct ContentView: View {
 
 struct ContentViewWithWebview: View {
     
-    @State var appViewModel : AppViewModel;
+    @StateObject var appViewModel : AppViewModel;
     
     
     var body: some View {

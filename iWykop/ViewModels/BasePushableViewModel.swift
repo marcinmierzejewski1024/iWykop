@@ -12,7 +12,10 @@ import Resolver
 import KSToastView
 import XNavigation
 
-class BasePushableViewModel : ObservableObject, Resolving {
+class BasePushableViewModel : ObservableObject, Resolving
+{
+        
+    
     static var navigation : Navigation?;
     static var urlHandler : UrlHandler?;
 

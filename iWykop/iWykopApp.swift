@@ -10,7 +10,6 @@ import DBDebugToolkit
 import Resolver
 import XNavigation
 
-
 @main
 struct iWykopApp: App {
     
@@ -32,6 +31,8 @@ struct iWykopApp: App {
         
         
         WykopColors.shared.updateCurrent()
+        
+
         
     }
     

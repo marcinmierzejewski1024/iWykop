@@ -10,12 +10,14 @@ import SwiftUI
 
 class AppViewModel : BasePushableViewModel
 {
+    
+        
     @Environment(\.openURL) var openInExternalSafari
-
+    
     let entriesViewModel = EntriesViewModel();
     let linksViewModel = LinksViewModel();
-
-    @Published var presentingSafariView = true
+    
+    @Published var presentingSafariView = false
     @Published var startUrl = "http://github.com"
     var urlHandler : UrlHandler?;
     
@@ -39,32 +41,33 @@ private struct UrlHandlerKey: EnvironmentKey {
 }
 
 extension EnvironmentValues {
-  var urlHandler: UrlHandler {
-    get { self[UrlHandlerKey.self] }
-    set { self[UrlHandlerKey.self] = newValue }
-  }
+    var urlHandler: UrlHandler {
+        get { self[UrlHandlerKey.self] }
+        set { self[UrlHandlerKey.self] = newValue }
+    }
 }
 
 class UrlHandler {
     
-    var appViewModel : AppViewModel?
-
+    weak var appViewModel : AppViewModel?
     
-    func handleUrl(url : URL) {
+    
+    @MainActor func handleUrl(url : URL) {
         let absoluteString = url.absoluteString
-            Task {
-                if let newViewModel = try await appViewModel!.anythingProvider.getViewModelFor(url: url) {
-                    BasePushableViewModel.navigation?.pushView(newViewModel.prepareView())
+        
+        Task {
+            if let newViewModel = try await appViewModel!.anythingProvider.getViewModelFor(url: url) {
+                BasePushableViewModel.navigation?.pushView(newViewModel.prepareView())
+            } else {
+                if(appViewModel!.settingsStore.openInSafari) {
+                    appViewModel!.openInExternalSafari(url)
                 } else {
-                    if(appViewModel!.settingsStore.openInSafari) {
-                        appViewModel!.openInExternalSafari(url)
-                    } else {
-                        appViewModel!.startUrl = absoluteString;
-                        appViewModel!.presentingSafariView = true;
-                        
-                    }
+                    appViewModel!.startUrl = absoluteString;
+                    appViewModel!.presentingSafariView = true;
+                    
                 }
             }
+        }
         
     }
 }
