@@ -119,7 +119,7 @@ struct LinksListCell: View {
                     }.frame(width: 180)
 
                 LinkHeader(link: link, displayDescription: true)
-            }.padding(0).modifier(CardStyle())
+            }.padding(0)
 
         }
         

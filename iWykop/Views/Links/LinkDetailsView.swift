@@ -40,12 +40,9 @@ struct LinkDetailsView: View {
         
         List() {
             
-            VStack (alignment: .leading){
-                LinkViewCellHeader(link: link)
-                //                    LinkBodyPreview(link: link)
-            }.listRowSeparator(.hidden).padding(0)
+            LinkViewCellHeader(link: link).listRowSeparator(.hidden).listRowInsets(EdgeInsets())
             
-            WykopColors.shared.currentTheme.backgroundColor.frame( height: 30, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+            WykopColors.shared.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
             
             
             Tabs(tabs: .constant(LinkDetailsTabs.allCases.map({ tab in
@@ -53,11 +50,11 @@ struct LinkDetailsView: View {
             })),
                  selection: $selected,
                  underlineColor: .black) { title, isSelected in
-                Text(title.uppercased())
-                    .font(.system(size: 14))
+                Text(NSLocalizedString(title, comment: "").uppercased())
+                    .font(.system(size: 16))
                     .fontWeight(.semibold)
                     .foregroundColor(isSelected ? .black : .gray)
-            }
+            }.listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
             
             
             switch self.selectedTab() {
@@ -65,19 +62,19 @@ struct LinkDetailsView: View {
                 
                 VStack(alignment: .leading) {
                     LinkWithCommentsView(link: link)
-                }
+                }.listRowInsets(EdgeInsets())
                 
             case .VotersUp:
                 VStack(alignment: .leading) {
                     LinkWithVoters()
-                }
+                }.listRowInsets(EdgeInsets())
                 
             case .VotersDown:
-                Text("TODO")
+                Text("TODO").listRowInsets(EdgeInsets())
             case .Attachments:
-                Text("TODO")
+                Text("TODO").listRowInsets(EdgeInsets())
             case .Tags:
-                Text("TODO")
+                Text("TODO").listRowInsets(EdgeInsets())
             }
             
             
@@ -85,8 +82,7 @@ struct LinkDetailsView: View {
             self.reloadLink();
         }.onAppear(){
             self.reloadLink();
-        }
-        
+        }.navigationBarTitle(configuration: .init(title: "", displayMode: .inline))
         
     }
 }
@@ -99,26 +95,30 @@ struct LinkWithCommentsView: View {
         
         
         Section {
-            
-            ForEach(link.comments ?? [], id: \.id) { item in
-                
-                if (!item.isResponseComment()) {
-                    WykopColors.shared.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
-                }
-                
-                VStack(alignment: .leading) {
-                    AuthorWithDateHeader(author: item.author, date: item.getDate(), voteCount: item.voteCount)
-                    Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
-                    if let embed = item.embed {
-                        EmbedViewModel(embed: embed).prepareView().onTapGesture {
-                            BasePushableViewModel.navigation?.presentFullScreen(EmbedViewModel(embed: embed).prepareModalView())
-                        }
+
+            if let comments = link.comments {
+                ForEach(comments, id: \.id) { item in
+                    
+                    if (!item.isResponseComment()) {
+                        WykopColors.shared.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                     }
                     
-                }.listRowSeparator(.hidden).padding(.leading,                                                   (item.isResponseComment() ? 30.0 : 0.0))
-                
-                
-                
+                    VStack(alignment: .leading) {
+                        AuthorWithDateHeader(author: item.author, date: item.getDate(), voteCount: item.voteCount)
+                        Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
+                        if let embed = item.embed {
+                            EmbedViewModel(embed: embed).prepareView().onTapGesture {
+                                BasePushableViewModel.navigation?.presentFullScreen(EmbedViewModel(embed: embed).prepareModalView())
+                            }
+                        }
+                        
+                    }.listRowSeparator(.hidden).padding(.leading,                                                   (item.isResponseComment() ? 30.0 : 0.0))
+                    
+                    
+                    
+                }
+            } else {
+                LoadingView(title: "Loading comments");
             }
         }
         
@@ -151,7 +151,7 @@ struct LinkWithVoters: View {
 struct LinkViewCellHeader : View
 {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-        
+    
     var link: Link;
     
     var body: some View {
@@ -175,7 +175,7 @@ struct LinkViewCellHeader : View
                         }
                     LinkHeader(link: link, displayDescription: true)
                     
-                }.padding(0).modifier(CardStyle())
+                }.padding(0)
             } else {
                 HStack {
                     CacheAsyncImage(
@@ -201,9 +201,9 @@ struct LinkViewCellHeader : View
             
         }.padding(0).onTapGesture {
             
-                if let url = URL(string: link.sourceUrl) {
-                    BasePushableViewModel.urlHandler?.handleUrl(url: url)
-                }
+            if let url = URL(string: link.sourceUrl) {
+                BasePushableViewModel.urlHandler?.handleUrl(url: url)
+            }
             
         }
         

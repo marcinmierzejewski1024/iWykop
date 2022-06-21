@@ -27,7 +27,7 @@ struct EntryDetailsView: View {
             self.reloadEntry();
         }.onAppear(){
             self.reloadEntry();
-        }
+        }.navigationBarTitle(configuration: .init(title: "", displayMode: .inline))
         
         
         
@@ -47,18 +47,25 @@ struct EntryWithCommentsView: View {
                     EntryViewCellHeader(entry: entry)
                     EntryBodyPreview(entry: entry)
                     //                Text("Comments:").font(.title).padding()
-                }.listRowSeparator(.hidden)
+                }.listRowSeparator(.hidden).padding(.bottom, Margins.huge.rawValue)
             }
             
             
             Section {
-                
-                ForEach(entry.comments ?? [], id: \.id) { item in
+                if let comments = entry.comments {
                     
-                    CommentViewModel(comment: item).prepareView().listRowBackground(WykopColors.shared.currentTheme.cardColor.ignoresSafeArea())
-
+                    ForEach(comments, id: \.id) { item in
+                        
+                        CommentViewModel(comment: item).prepareView().listRowBackground(WykopColors.shared.currentTheme.cardColor.ignoresSafeArea())
+                        
+                        
+                    }
+                } else {
+                    
+                    LoadingView(title: "Loading comments");
                     
                 }
+                
             }
             
         }
@@ -79,7 +86,7 @@ struct CommentView: View {
             }
             
         }.listRowSeparator(.hidden)
-
+        
     }
 }
 

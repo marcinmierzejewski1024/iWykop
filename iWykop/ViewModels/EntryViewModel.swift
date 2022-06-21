@@ -21,13 +21,14 @@ class EntryViewModel : BasePushableViewModel
     lazy var entryService: EntryService = resolver.resolve()
     
     
-    func refreshEntry(_ old:Entry) async -> Entry? {
+    func refreshEntry(_ old:Entry) async {
         
         do {
             var newEntry = try await entryService.getEntry(id: old.id);
             newEntry = await self.withAttributedBody(newEntry!);
-            
-            return newEntry;
+            if let newEntry = newEntry {
+                self.entry = newEntry;
+            }
             
             
         } catch {
@@ -38,7 +39,6 @@ class EntryViewModel : BasePushableViewModel
 
         }
         
-        return nil;
     }
     
     func withAttributedBody(_ entry:Entry) async -> Entry? {
