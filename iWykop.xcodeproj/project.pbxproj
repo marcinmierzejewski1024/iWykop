@@ -65,6 +65,8 @@
 		568A778927F496BB00DB72C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568A778827F496BB00DB72C2 /* ContentView.swift */; };
 		568E42772821497800AA10C4 /* AxisSegmentedView in Frameworks */ = {isa = PBXBuildFile; productRef = 568E42762821497800AA10C4 /* AxisSegmentedView */; };
 		569C0F422861D350009002C5 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C0F412861D350009002C5 /* LoadingView.swift */; };
+		569C0F442862001E009002C5 /* VotersServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C0F432862001E009002C5 /* VotersServiceImpl.swift */; };
+		569C0F4628621378009002C5 /* TagsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C0F4528621378009002C5 /* TagsListView.swift */; };
 		56A3A18C2832E89B00E828C8 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 56A3A18B2832E89B00E828C8 /* BetterSafariView */; };
 		56C556B22809FA4D0020B0C7 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C556B12809FA4D0020B0C7 /* ApiClientTests.swift */; };
 		56D4738527F8E8B8007896E8 /* ProgressbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738427F8E8B8007896E8 /* ProgressbarView.swift */; };
@@ -169,6 +171,8 @@
 		568A778327EE5F8E00DB72C2 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
 		568A778827F496BB00DB72C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		569C0F412861D350009002C5 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		569C0F432862001E009002C5 /* VotersServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotersServiceImpl.swift; sourceTree = "<group>"; };
+		569C0F4528621378009002C5 /* TagsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsListView.swift; sourceTree = "<group>"; };
 		56C556B12809FA4D0020B0C7 /* ApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientTests.swift; sourceTree = "<group>"; };
 		56D4738427F8E8B8007896E8 /* ProgressbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressbarView.swift; sourceTree = "<group>"; };
 		56D4738627F8ED49007896E8 /* EmbedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedViewModel.swift; sourceTree = "<group>"; };
@@ -358,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				5662047E27E1298E00A61508 /* TagView.swift */,
+				569C0F4528621378009002C5 /* TagsListView.swift */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				56ECA36F27CE66F200EBCA33 /* LinksServiceImpl.swift */,
 				5662048227E12F7000A61508 /* AnythingViewModelProviderImpl.swift */,
 				5687F68D27E25FCF00ECD3BD /* TagServiceImpl.swift */,
+				569C0F432862001E009002C5 /* VotersServiceImpl.swift */,
 			);
 			path = apiv2;
 			sourceTree = "<group>";
@@ -872,6 +878,7 @@
 			files = (
 				5662048527E1327400A61508 /* Tag.swift in Sources */,
 				5687F68E27E25FCF00ECD3BD /* TagServiceImpl.swift in Sources */,
+				569C0F442862001E009002C5 /* VotersServiceImpl.swift in Sources */,
 				56684F1327BFB73A00604432 /* ApiV2Service.swift in Sources */,
 				56684F2627BFC96300604432 /* EntriesView.swift in Sources */,
 				56ECA3F327D4D1AD00EBCA33 /* Font.swift in Sources */,
@@ -920,6 +927,7 @@
 				56ECA39127CECEDA00EBCA33 /* WykopColors.swift in Sources */,
 				56ECA37D27CEB26C00EBCA33 /* SettingsView.swift in Sources */,
 				56ECA3F727D5559C00EBCA33 /* AuthorViewModel.swift in Sources */,
+				569C0F4628621378009002C5 /* TagsListView.swift in Sources */,
 				5646B88127EE46CB006FCF8C /* Date.swift in Sources */,
 				56ECA37827CE6EA100EBCA33 /* LinksView.swift in Sources */,
 				56ECA3F127D404EA00EBCA33 /* BodyFormater.swift in Sources */,

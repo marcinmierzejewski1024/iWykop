@@ -48,6 +48,12 @@ protocol LinkService {
     func getLink(id:Int) async throws -> Link?;
 }
 
+protocol VotersService {
+    func getLinkVoters(id:Int, downvotes : Bool) async throws -> [AuthorWithDate];
+    func getEntryVoters(id:Int) async throws -> [AuthorWithDate];
+
+}
+
 protocol EntriesService {
     func getEntries(page:Int, period:EntriesPeriod) async throws -> [Entry];
 }

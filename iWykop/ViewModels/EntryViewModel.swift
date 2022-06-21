@@ -19,6 +19,8 @@ class EntryViewModel : BasePushableViewModel
         self.entry = entry;
     }
     lazy var entryService: EntryService = resolver.resolve()
+    lazy var votersService: VotersService = resolver.resolve()
+
     
     
     func refreshEntry(_ old:Entry) async {
@@ -76,5 +78,9 @@ class EntryViewModel : BasePushableViewModel
 
     }
 
+    
+    func getVoters() async throws -> [AuthorWithDate] {
+        return try await votersService.getEntryVoters(id: self.entry.id)
+    }
 }
 

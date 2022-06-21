@@ -84,7 +84,7 @@ struct EmbedBodyPreview : View {
                 }
             } else {
 
-                ThumbnailImagePreview(embedVM: embedVM)
+                ThumbnailImagePreview(embedVM: embedVM, fullScreenMode: fullScreenMode)
                 
             }
 
@@ -101,6 +101,11 @@ struct EmbedBodyPreview : View {
 
 struct ThumbnailImagePreview : View {
     @State var embedVM: EmbedViewModel;
+    let fullScreenMode : Bool;
+
+    func maxWidth() -> CGFloat? {
+        return fullScreenMode ? nil : MaxSizes.previewWidth.rawValue;
+    }
     
     var body: some View {
         let previewImageUrl = embedVM.embed.getThumbnailImageURL()!;
@@ -111,7 +116,7 @@ struct ThumbnailImagePreview : View {
                 case .success(let image):
                     VStack(alignment: .leading) {
                         image.resizable()
-                            .aspectRatio(contentMode: .fit).overlay {
+                            .aspectRatio(contentMode: .fit).frame(maxWidth:self.maxWidth()).overlay {
                                 if let label = embedVM.embed.label() {
                                     VStack {
                                         Spacer()
@@ -128,11 +133,12 @@ struct ThumbnailImagePreview : View {
                             }
                     }
                 case .failure(let error):
+                    
                     Text(error.localizedDescription)
                     
                 default:
                     Image("placeholder").resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fit).frame(maxWidth:self.maxWidth())
                     
                 }
             }
@@ -150,7 +156,7 @@ struct AnimatedImagePreview : View {
                 A9_SwiftyGif_final(gifData:embedVM.animatedImageData).frame(height: 350)
             } else {
                 VStack {
-                    ThumbnailImagePreview(embedVM: embedVM)
+                    ThumbnailImagePreview(embedVM: embedVM, fullScreenMode: false)
 
                     ProgressbarView(value: embedVM.downloadProgress).frame(maxHeight:5)
                 }.frame(height: 350)

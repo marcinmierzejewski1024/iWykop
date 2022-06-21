@@ -30,6 +30,8 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
     let preview: String?
     let description: String?
     let title: String?
+    let tags: String?
+    
     var bodyAttributed : AttributedString?
     var visibleSpoilers: [String]?
 
@@ -49,6 +51,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
         case isHot = "is_hot"
         case preview
         case description
+        case tags
 
 // sourcery:inline:auto:Link.CodingKeys.AutoCodable
         case favorite
@@ -75,5 +78,13 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
         let thumbnail = self.preview;
         return thumbnail?.replacingOccurrences(of: ",w104h74", with: "");
         
+    }
+    
+    func getTagsList() -> [String]? {
+        if let tags = tags {
+            return tags.components(separatedBy: " ");
+        }
+        
+        return nil;
     }
 }

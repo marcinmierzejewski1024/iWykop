@@ -37,7 +37,7 @@ struct ContentView: View {
             
             SettingsView().tabItem {
                 Label("Settings", systemImage: "gearshape.fill")
-            }
+            }.navigationViewStyle(.stack)
             
             SearchView().tabItem {
                 Label("Search", systemImage: "magnifyingglass")

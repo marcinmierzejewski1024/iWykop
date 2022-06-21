@@ -126,7 +126,7 @@ struct EntryViewCell: View {
                 }
             }
             
-        }.modifier(CardStyle()).padding(0)
+        }.padding(.horizontal, Margins.medium.rawValue).padding(.vertical, Margins.medium.rawValue).modifier(CardStyle())
         
         
     }

@@ -13,8 +13,8 @@ struct LoadingView: View {
     var body: some View {
         HStack {
             ProgressView()
-            Text(title).padding()
-        }
+            Text(NSLocalizedString(title, comment: "")).padding()
+        }.padding()
     }
 }
 

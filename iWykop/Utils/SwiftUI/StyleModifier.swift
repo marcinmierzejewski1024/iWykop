@@ -81,4 +81,11 @@ enum Margins : CGFloat {
     case small = 6.0
     case medium = 10.0
     case huge = 14.0
+    case responseOffset = 25.0
 }
+
+enum MaxSizes : CGFloat {
+    case previewWidth = 440.0
+}
+
+

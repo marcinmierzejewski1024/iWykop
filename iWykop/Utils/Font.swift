@@ -15,6 +15,10 @@ extension Font {
         return Font(uiFont: .titleFont());
     }
     
+    static func largeFont() ->Font {
+        return Font(uiFont: .largeFont());
+    }
+    
     static func bodyFont() ->Font {
         return Font(uiFont: .bodyFont());
     }
@@ -41,17 +45,22 @@ extension UIFont {
     
     class func titleFont() -> UIFont
     {
-        return .systemFont(ofSize: 16, weight: .semibold);
+        return .systemFont(ofSize: 17, weight: .semibold);
+    }
+    
+    class func largeFont() -> UIFont
+    {
+        return .systemFont(ofSize: 15, weight: .semibold);
     }
 
     class func bodyFont() -> UIFont
     {
-        return .systemFont(ofSize: 10);
+        return .systemFont(ofSize: 11);
     }
 
     class func commentFont() -> UIFont
     {
-        return .systemFont(ofSize: 10);
+        return .systemFont(ofSize: 11);
     }
 
     
@@ -69,7 +78,7 @@ extension UIFont {
     
     class func dateFont() -> UIFont
     {
-        return .systemFont(ofSize: 10);
+        return .systemFont(ofSize: 11);
     }
 
     

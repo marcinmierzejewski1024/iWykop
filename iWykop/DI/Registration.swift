@@ -58,6 +58,9 @@ extension Resolver : ResolverRegistering {
             return AnythingViewModelProviderImpl()
         }.scope(.graph)
         
+        register(VotersService.self) { resolver, args in
+            return VotersServiceImpl()
+        }.scope(.graph)
 
 
         

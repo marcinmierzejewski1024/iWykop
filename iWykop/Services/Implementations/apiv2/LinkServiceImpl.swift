@@ -10,6 +10,8 @@ import Foundation
 
 class LinkServiceImpl : ApiV2Service, LinkService  {
     
+    
+    
 
     private var requestedId = 0;
     
@@ -44,5 +46,26 @@ class LinkServiceImpl : ApiV2Service, LinkService  {
         return nil;
         
     }
+    
+    func getLinkVoters(id: Int) async throws -> Link? {
+        self.requestedId = id;
+        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+
+        let data = try await self.apiClient.httpRequestAsync(request)
+        
+        let resultString = String(data: data, encoding: .utf8);
+
+        if let result = self.mapDataToEntities(Link.self, data:data) {
+        
+            let withAttributedBody = await bodyFormatter.addBodyAttr(es: [result.data!])
+            
+            return withAttributedBody.first as? Link;
+        }
+        
+        return nil;
+
+    }
+    
+    
     
 }

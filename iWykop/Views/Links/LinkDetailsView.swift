@@ -66,15 +66,24 @@ struct LinkDetailsView: View {
                 
             case .VotersUp:
                 VStack(alignment: .leading) {
-                    LinkWithVoters()
+                    
+                    LinkWithVoters(linkViewModel: self.linkVM, downvotes: false)
                 }.listRowInsets(EdgeInsets())
                 
             case .VotersDown:
-                Text("TODO").listRowInsets(EdgeInsets())
+                VStack(alignment: .leading) {
+                    LinkWithVoters(linkViewModel: self.linkVM, downvotes: true)
+                }.listRowInsets(EdgeInsets())
             case .Attachments:
                 Text("TODO").listRowInsets(EdgeInsets())
             case .Tags:
-                Text("TODO").listRowInsets(EdgeInsets())
+                VStack(alignment: .leading) {
+                    if let tagList = self.link.getTagsList() {
+                        TagsListView(tags: tagList)
+                    }
+                    Text("")
+                }.listRowInsets(EdgeInsets())
+
             }
             
             
@@ -112,7 +121,7 @@ struct LinkWithCommentsView: View {
                             }
                         }
                         
-                    }.listRowSeparator(.hidden).padding(.leading,                                                   (item.isResponseComment() ? 30.0 : 0.0))
+                    }.listRowSeparator(.hidden).padding(.leading,(item.isResponseComment() ? Margins.responseOffset.rawValue : Margins.medium.rawValue)).padding(.trailing, Margins.medium.rawValue)
                     
                     
                     
@@ -127,19 +136,30 @@ struct LinkWithCommentsView: View {
 }
 
 struct LinkWithVoters: View {
-    //    var voters:[Author]
+    
+    var linkViewModel : LinkViewModel;
+    let downvotes : Bool
+    @State var voters:[AuthorWithDate]?
+    
     
     var body: some View {
         
         
-        List {
-            
-            ForEach(["TODO11","TODO1","TODO2","TODO4","TODO3"], id: \.hashValue) { item in
-                VStack(alignment: .leading) {
-                    Text(item)
+        VStack {
+            if let voters = self.voters {
+                ForEach(voters, id: \.author.login) { item in
+                    AuthorWithDateHeader(author: item.author, date: nil, voteCount: nil)
+                }
+            } else {
+                LoadingView();
+            }
+        }.onAppear {
+            Task {
+                do {
+                    voters = self.downvotes ? try await linkViewModel.getDownvoters() : try await linkViewModel.getVoters();
+                } catch {
                     
-                }.listRowSeparator(.hidden)
-                
+                }
             }
         }
         

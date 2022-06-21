@@ -12,7 +12,7 @@ struct Author: AutoCodable, AutoEquatable, Hashable {
     let login: String
     let sex: AuthorSex?
     let background: String?
-    let signupAt: String
+    let signupAt: String?
     let color: Int
     
 
@@ -34,4 +34,11 @@ struct Author: AutoCodable, AutoEquatable, Hashable {
 enum AuthorSex : String, AutoCodable{
     case male = "male"
     case female = "female"
+}
+
+
+struct AuthorWithDate: AutoCodable, AutoEquatable, Hashable {
+    let author: Author
+    let date: String
+
 }
