@@ -2,8 +2,8 @@
 
 Attempt to create lightweight wykop.pl mobile client using swiftUI.
 
+<img src="https://raw.githubusercontent.com/marcinmierzejewski1024/iWykop/main/ScreenShots/3.png" width="300">
+<img src="https://raw.githubusercontent.com/marcinmierzejewski1024/iWykop/main/ScreenShots/4.png" width="300">
+<img src="https://raw.githubusercontent.com/marcinmierzejewski1024/iWykop/main/ScreenShots/2.png" width="300">
+<img src="https://raw.githubusercontent.com/marcinmierzejewski1024/iWykop/main/ScreenShots/1.png" width="300">
 
-![app screenshot1](https://raw.githubusercontent.com/marcinmierzejewski1024/iWykop/main/ScreenShots/1.png)
-![app screenshot2](https://raw.githubusercontent.com/marcinmierzejewski1024/iWykop/main/ScreenShots/2.png)
-![app screenshot3](https://raw.githubusercontent.com/marcinmierzejewski1024/iWykop/main/ScreenShots/3.png)
-![app screenshot4](https://raw.githubusercontent.com/marcinmierzejewski1024/iWykop/main/ScreenShots/4.png)
