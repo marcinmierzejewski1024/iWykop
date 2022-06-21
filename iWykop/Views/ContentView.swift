@@ -61,7 +61,7 @@ struct ContentViewWithWebview: View {
     var body: some View {
         
         ContentView(appViewModel: appViewModel).onOpenURL(perform: { url in
-            appViewModel.urlHandler?.handleUrl(url: url);
+            appViewModel.urlHandler.handleUrl(url: url);
         })
         
         .safariView(isPresented: $appViewModel.presentingSafariView) {

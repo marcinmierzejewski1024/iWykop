@@ -19,16 +19,13 @@ class AppViewModel : BasePushableViewModel
     
     @Published var presentingSafariView = false
     @Published var startUrl = "http://github.com"
-    var urlHandler : UrlHandler?;
+    let urlHandler = UrlHandler();
     
     
     
     override func prepareView() -> AnyView {
-        if(self.urlHandler == nil) {
-            self.urlHandler = UrlHandler()
-        }
-        
-        self.urlHandler?.appViewModel = self;
+
+        self.urlHandler.appViewModel = self;
         return AnyView(ContentViewWithWebview(appViewModel: self))
     }
     
@@ -36,16 +33,6 @@ class AppViewModel : BasePushableViewModel
 
 
 
-private struct UrlHandlerKey: EnvironmentKey {
-    static let defaultValue = UrlHandler();
-}
-
-extension EnvironmentValues {
-    var urlHandler: UrlHandler {
-        get { self[UrlHandlerKey.self] }
-        set { self[UrlHandlerKey.self] = newValue }
-    }
-}
 
 class UrlHandler {
     
@@ -59,12 +46,16 @@ class UrlHandler {
             if let newViewModel = try await appViewModel!.anythingProvider.getViewModelFor(url: url) {
                 BasePushableViewModel.navigation?.pushView(newViewModel.prepareView())
             } else {
-                if(appViewModel!.settingsStore.openInSafari) {
-                    appViewModel!.openInExternalSafari(url)
-                } else {
-                    appViewModel!.startUrl = absoluteString;
-                    appViewModel!.presentingSafariView = true;
+
+                if((url.scheme?.lowercased().contains("http")) ?? false) {
                     
+                    if(appViewModel!.settingsStore.openInSafari) {
+                        appViewModel!.openInExternalSafari(url)
+                    } else {
+                        appViewModel!.startUrl = absoluteString;
+                        appViewModel!.presentingSafariView = true;
+                        
+                    }
                 }
             }
         }
