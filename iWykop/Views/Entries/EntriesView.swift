@@ -121,8 +121,8 @@ struct EntryViewCell: View {
                 
                 HStack {
                     Spacer()
-                    Image(systemName:"text.bubble").modifier(BodyStyle())
-                    Text("\(entry.commentsCount)")
+                    Image(systemName:"text.bubble").modifier(CountStyle())
+                    Text("\(entry.commentsCount)").modifier(CountStyle())
                 }
             }
             

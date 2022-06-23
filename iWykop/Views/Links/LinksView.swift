@@ -155,10 +155,10 @@ struct LinkHeader : View {
                 }
                 
                 Spacer()
-                Image(systemName: (link.isHot ? "flame.fill" : "arrow.up")).modifier(BodyStyle())
-                Text("\(link.voteCount)").padding(.trailing, Margins.medium.rawValue).modifier(BodyStyle())
-                Image(systemName:"text.bubble").modifier(BodyStyle())
-                Text("\(link.commentsCount)").modifier(BodyStyle())
+                Image(systemName: (link.isHot ? "flame.fill" : "arrow.up")).modifier(CountStyle())
+                Text("\(link.voteCount)").padding(.trailing, Margins.medium.rawValue).modifier(CountStyle())
+                Image(systemName:"text.bubble").modifier(CountStyle())
+                Text("\(link.commentsCount)").modifier(CountStyle())
                 
             }.padding(.horizontal, Margins.medium.rawValue).padding(.vertical, Margins.medium.rawValue)
             //                AuthorView(author: link.author)

@@ -38,9 +38,9 @@ struct AuthorWithDateHeader: View {
             Spacer()
             if let voteCount = voteCount {
                 if(voteCount >= 0) {
-                    Text("+\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).modifier(BodyStyle())
+                    Text("+\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).font(.countFont())
                 } else {
-                    Text("\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.minusRedColor).modifier(BodyStyle())
+                    Text("\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.minusRedColor).font(.countFont())
 
                 }
             }

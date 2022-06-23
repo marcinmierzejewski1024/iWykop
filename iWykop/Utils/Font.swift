@@ -38,6 +38,10 @@ extension Font {
     static func dateFont() ->Font {
         return Font(uiFont: .dateFont());
     }
+    
+    static func countFont() ->Font {
+        return Font(uiFont: .countFont());
+    }
 }
 
 extension UIFont {
@@ -55,12 +59,12 @@ extension UIFont {
 
     class func bodyFont() -> UIFont
     {
-        return .systemFont(ofSize: 11);
+        return .systemFont(ofSize: 12);
     }
 
     class func commentFont() -> UIFont
     {
-        return .systemFont(ofSize: 11);
+        return .systemFont(ofSize: 12);
     }
 
     
@@ -79,6 +83,11 @@ extension UIFont {
     class func dateFont() -> UIFont
     {
         return .systemFont(ofSize: 11);
+    }
+    
+    class func countFont() -> UIFont
+    {
+        return .systemFont(ofSize: 13, weight: .bold);
     }
 
     

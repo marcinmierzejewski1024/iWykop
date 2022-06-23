@@ -107,6 +107,10 @@ struct ThumbnailImagePreview : View {
         return fullScreenMode ? nil : MaxSizes.previewWidth.rawValue;
     }
     
+    func maxHeight() -> CGFloat? {
+        return fullScreenMode ? nil : MaxSizes.previewHeight.rawValue;
+    }
+    
     var body: some View {
         let previewImageUrl = embedVM.embed.getThumbnailImageURL()!;
         
@@ -116,7 +120,7 @@ struct ThumbnailImagePreview : View {
                 case .success(let image):
                     VStack(alignment: .leading) {
                         image.resizable()
-                            .aspectRatio(contentMode: .fit).frame(maxWidth:self.maxWidth()).overlay {
+                            .aspectRatio(contentMode: .fit).frame(maxWidth:self.maxWidth(), maxHeight: self.maxHeight()).overlay {
                                 if let label = embedVM.embed.label() {
                                     VStack {
                                         Spacer()
@@ -133,12 +137,12 @@ struct ThumbnailImagePreview : View {
                             }
                     }
                 case .failure(let error):
-                    
+                    #if DEBUG
                     Text(error.localizedDescription)
-                    
+                    #endif
                 default:
                     Image("placeholder").resizable()
-                        .aspectRatio(contentMode: .fit).frame(maxWidth:self.maxWidth())
+                        .aspectRatio(contentMode: .fit).frame(maxWidth:self.maxWidth(), maxHeight: self.maxHeight())
                     
                 }
             }

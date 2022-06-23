@@ -40,6 +40,17 @@ struct BodyStyle: ViewModifier {
 }
 
 
+
+struct CountStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(Font.countFont())
+            .foregroundColor(WykopColors.shared.currentTheme.textColor)
+    }
+}
+
+
+
 struct CommentStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -86,6 +97,8 @@ enum Margins : CGFloat {
 
 enum MaxSizes : CGFloat {
     case previewWidth = 440.0
+    case previewHeight = 340.0
+
 }
 
 
