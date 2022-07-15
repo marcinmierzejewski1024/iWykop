@@ -113,7 +113,7 @@ struct LinkWithCommentsView: View {
                     }
                     
                     VStack(alignment: .leading) {
-                        AuthorWithDateHeader(author: item.author, date: item.getDate(), voteCount: item.voteCount)
+                        AuthorWithDateHeader(author: item.author, date: item.getDate(), voteCount: VoteCount.from(comment: item))
                         Text(item.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
                         if let embed = item.embed {
                             EmbedViewModel(embed: embed).prepareView().onTapGesture {

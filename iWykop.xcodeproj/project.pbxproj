@@ -93,6 +93,7 @@
 		56F8250027FF6C8100F3FC86 /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F824FF27FF6C8100F3FC86 /* GifView.swift */; };
 		56F8250227FF706300F3FC86 /* 5.gif in Resources */ = {isa = PBXBuildFile; fileRef = 56F8250127FF706300F3FC86 /* 5.gif */; };
 		56F8250427FF843A00F3FC86 /* URLSessionApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F8250327FF843A00F3FC86 /* URLSessionApiClient.swift */; };
+		56FCF8352881DCBE00CFD3BE /* VoteCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FCF8342881DCBE00CFD3BE /* VoteCount.swift */; };
 		64B1C92C73876F3E9A758423 /* Pods_iWykopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7C1A62050E194F85B03CE3 /* Pods_iWykopTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -199,6 +200,7 @@
 		56F824FF27FF6C8100F3FC86 /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
 		56F8250127FF706300F3FC86 /* 5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 5.gif; sourceTree = "<group>"; };
 		56F8250327FF843A00F3FC86 /* URLSessionApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionApiClient.swift; sourceTree = "<group>"; };
+		56FCF8342881DCBE00CFD3BE /* VoteCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCount.swift; sourceTree = "<group>"; };
 		7E7C1A62050E194F85B03CE3 /* Pods_iWykopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWykopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		858CA0CA1B7CAFBD627EA16C /* Pods-iWykopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykopTests.release.xcconfig"; path = "Target Support Files/Pods-iWykopTests/Pods-iWykopTests.release.xcconfig"; sourceTree = "<group>"; };
 		996A85F5A5569CC0126A2D8D /* Pods-iWykop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop.release.xcconfig"; path = "Target Support Files/Pods-iWykop/Pods-iWykop.release.xcconfig"; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				56ECA37427CE6A5300EBCA33 /* Link.swift */,
 				5662048427E1327400A61508 /* Tag.swift */,
 				5624984A27E7573200A7EA10 /* Meta.swift */,
+				56FCF8342881DCBE00CFD3BE /* VoteCount.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -893,6 +896,7 @@
 				56684F2B27C11F3900604432 /* ApiV2Response.swift in Sources */,
 				56ECA3F927D5589C00EBCA33 /* Apiv2Protocols.swift in Sources */,
 				56684F1527BFB78D00604432 /* Registration.swift in Sources */,
+				56FCF8352881DCBE00CFD3BE /* VoteCount.swift in Sources */,
 				568A778927F496BB00DB72C2 /* ContentView.swift in Sources */,
 				56EABFBB284C048C00D8443E /* AppViewModel.swift in Sources */,
 				568A778227EE565A00DB72C2 /* ImageCache.swift in Sources */,

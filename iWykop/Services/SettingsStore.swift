@@ -67,5 +67,17 @@ class SettingsStore : ObservableObject {
     }
 
     
+    var separateUpvotes : Bool {
+        set {
+            UserDefaults.standard.set(newValue, forKey: "separateUpvotes")
+            UserDefaults.standard.synchronize()
+            self.objectWillChange.send();
+        }
+        get {
+            return UserDefaults.standard.bool(forKey: "separateUpvotes")
+        }
+    }
+
+    
     
 }

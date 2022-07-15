@@ -10,8 +10,10 @@ import SwiftUI
 struct AuthorWithDateHeader: View {
     let author : Author
     let date : Date?
-    let voteCount : Int?
-
+    let voteCount : VoteCount?
+    @EnvironmentObject var settings: SettingsStore
+    
+    
     var body: some View {
         HStack{
             CacheAsyncImage(
@@ -32,19 +34,33 @@ struct AuthorWithDateHeader: View {
             VStack(alignment: .leading,spacing: 4) {
                 Text(author.login).strikethrough(author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: WykopColors.shared.currentTheme.authorColors[author.color] ?? WykopColors.shared.currentTheme.textColor))
                 Text(date?.timeAgoDisplay() ?? "").modifier(DateStyle());
-
+                
             }
             
             Spacer()
-            if let voteCount = voteCount {
-                if(voteCount >= 0) {
-                    Text("+\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).font(.countFont())
+            
+            let showSeparated = settings.separateUpvotes && voteCount?.voteCountMinus != nil;
+            VStack {
+                if showSeparated {
+                    HStack {
+                        Text("+\(voteCount?.voteCountPlus ?? 0)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).font(.countFont())
+                        Text("-\(voteCount?.voteCountMinus ?? 0)").foregroundColor(WykopColors.shared.currentTheme.minusRedColor).font(.countFont())
+                    }
                 } else {
-                    Text("\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.minusRedColor).font(.countFont())
-
+                    if let voteCount = voteCount?.upvotes {
+                        if(voteCount >= 0) {
+                            Text("+\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).font(.countFont())
+                        } else {
+                            Text("\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.minusRedColor).font(.countFont())
+                            
+                        }
+                    }
                 }
+            }.onTapGesture {
+                settings.separateUpvotes = !settings.separateUpvotes;
             }
-
+            
+            
             
         }.padding(.bottom, Margins.medium.rawValue)
     }
