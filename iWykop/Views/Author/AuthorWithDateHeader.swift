@@ -11,6 +11,7 @@ struct AuthorWithDateHeader: View {
     let author : Author
     let date : Date?
     let voteCount : VoteCount?
+//    let onLoginTap : (String) -> Void?
     @EnvironmentObject var settings: SettingsStore
     
     
@@ -30,9 +31,13 @@ struct AuthorWithDateHeader: View {
                             .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
                         
                     }
+                }.onTapGesture {
+                    self.openAuthorDetails()
                 }
             VStack(alignment: .leading,spacing: 4) {
-                Text(author.login).strikethrough(author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: WykopColors.shared.currentTheme.authorColors[author.color] ?? WykopColors.shared.currentTheme.textColor))
+                Text(author.login).strikethrough(author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: WykopColors.shared.currentTheme.authorColors[author.color] ?? WykopColors.shared.currentTheme.textColor)).onTapGesture {
+                    self.openAuthorDetails()
+                }
                 Text(date?.timeAgoDisplay() ?? "").modifier(DateStyle());
                 
             }
@@ -63,6 +68,14 @@ struct AuthorWithDateHeader: View {
             
             
         }.padding(.bottom, Margins.medium.rawValue)
+    }
+    
+    
+    func openAuthorDetails()
+    {
+        if let url = URL(string: "iwykop:@\(author.login)") {
+            BasePushableViewModel.urlHandler?.handleUrl(url: url)
+        }
     }
 }
 

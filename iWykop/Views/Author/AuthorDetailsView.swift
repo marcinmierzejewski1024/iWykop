@@ -12,32 +12,54 @@ struct AuthorDetailsView: View {
     let authorVM : AuthorViewModel
     
     var body: some View {
-        HStack{
+        
+        
+        VStack {
             CacheAsyncImage(
-                url: URL(string:authorVM.author.avatar)){ phase in
+                url: URL(string:authorVM.author.background ?? "https://picsum.photos/200/300")){ phase in
                     switch phase {
                     case .success(let image):
                         VStack {
                             image.resizable()
-                                .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
+                                .aspectRatio(contentMode: .fit)
                         }
                         
                     default:
-                        Image("userPlaceholder").resizable()
-                            .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
+                        Text("TLO!")
+//                        EmptyView();
+                        
                         
                     }
                 }
-            VStack(alignment: .leading,spacing: 4) {
-                Text(authorVM.author.login).strikethrough(authorVM.author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: WykopColors.shared.currentTheme.authorColors[authorVM.author.color] ?? WykopColors.shared.currentTheme.textColor))                
-            }
             
-            Spacer()
-            
-            
-            
-            
-        }.padding(.bottom, Margins.medium.rawValue)
+            HStack{
+                CacheAsyncImage(
+                    url: URL(string:authorVM.author.avatar)){ phase in
+                        switch phase {
+                        case .success(let image):
+                            VStack {
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
+                            }
+                            
+                        default:
+                            Image("userPlaceholder").resizable()
+                                .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
+                            
+                        }
+                    }
+                VStack(alignment: .leading,spacing: 4) {
+                    Text(authorVM.author.login).strikethrough(authorVM.author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: WykopColors.shared.currentTheme.authorColors[authorVM.author.color] ?? WykopColors.shared.currentTheme.textColor))
+                }
+                
+                Spacer()
+                
+                
+                
+                
+            }.padding(.bottom, Margins.medium.rawValue)
+        }
+        
     }
 }
 
