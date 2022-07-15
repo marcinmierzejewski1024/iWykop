@@ -94,6 +94,8 @@
 		56F8250227FF706300F3FC86 /* 5.gif in Resources */ = {isa = PBXBuildFile; fileRef = 56F8250127FF706300F3FC86 /* 5.gif */; };
 		56F8250427FF843A00F3FC86 /* URLSessionApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F8250327FF843A00F3FC86 /* URLSessionApiClient.swift */; };
 		56FCF8352881DCBE00CFD3BE /* VoteCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FCF8342881DCBE00CFD3BE /* VoteCount.swift */; };
+		56FCF8372881EA9600CFD3BE /* AuthorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FCF8362881EA9600CFD3BE /* AuthorDetailsView.swift */; };
+		56FCF8392881ED7400CFD3BE /* AuthorServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FCF8382881ED7400CFD3BE /* AuthorServiceImpl.swift */; };
 		64B1C92C73876F3E9A758423 /* Pods_iWykopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7C1A62050E194F85B03CE3 /* Pods_iWykopTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -201,6 +203,8 @@
 		56F8250127FF706300F3FC86 /* 5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 5.gif; sourceTree = "<group>"; };
 		56F8250327FF843A00F3FC86 /* URLSessionApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionApiClient.swift; sourceTree = "<group>"; };
 		56FCF8342881DCBE00CFD3BE /* VoteCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCount.swift; sourceTree = "<group>"; };
+		56FCF8362881EA9600CFD3BE /* AuthorDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailsView.swift; sourceTree = "<group>"; };
+		56FCF8382881ED7400CFD3BE /* AuthorServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorServiceImpl.swift; sourceTree = "<group>"; };
 		7E7C1A62050E194F85B03CE3 /* Pods_iWykopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWykopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		858CA0CA1B7CAFBD627EA16C /* Pods-iWykopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykopTests.release.xcconfig"; path = "Target Support Files/Pods-iWykopTests/Pods-iWykopTests.release.xcconfig"; sourceTree = "<group>"; };
 		996A85F5A5569CC0126A2D8D /* Pods-iWykop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop.release.xcconfig"; path = "Target Support Files/Pods-iWykop/Pods-iWykop.release.xcconfig"; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 				5662048227E12F7000A61508 /* AnythingViewModelProviderImpl.swift */,
 				5687F68D27E25FCF00ECD3BD /* TagServiceImpl.swift */,
 				569C0F432862001E009002C5 /* VotersServiceImpl.swift */,
+				56FCF8382881ED7400CFD3BE /* AuthorServiceImpl.swift */,
 			);
 			path = apiv2;
 			sourceTree = "<group>";
@@ -534,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				56ECA39227CED1A700EBCA33 /* AuthorWithDateHeader.swift */,
+				56FCF8362881EA9600CFD3BE /* AuthorDetailsView.swift */,
 			);
 			path = Author;
 			sourceTree = "<group>";
@@ -894,6 +900,7 @@
 				56684F2327BFC6C400604432 /* Coordinator.swift in Sources */,
 				56554E1527D9636C00BB8DD7 /* LinkServiceImpl.swift in Sources */,
 				56684F2B27C11F3900604432 /* ApiV2Response.swift in Sources */,
+				56FCF8392881ED7400CFD3BE /* AuthorServiceImpl.swift in Sources */,
 				56ECA3F927D5589C00EBCA33 /* Apiv2Protocols.swift in Sources */,
 				56684F1527BFB78D00604432 /* Registration.swift in Sources */,
 				56FCF8352881DCBE00CFD3BE /* VoteCount.swift in Sources */,
@@ -933,6 +940,7 @@
 				56ECA3F727D5559C00EBCA33 /* AuthorViewModel.swift in Sources */,
 				569C0F4628621378009002C5 /* TagsListView.swift in Sources */,
 				5646B88127EE46CB006FCF8C /* Date.swift in Sources */,
+				56FCF8372881EA9600CFD3BE /* AuthorDetailsView.swift in Sources */,
 				56ECA37827CE6EA100EBCA33 /* LinksView.swift in Sources */,
 				56ECA3F127D404EA00EBCA33 /* BodyFormater.swift in Sources */,
 				56250B7027C27F980086AFF5 /* Comment.swift in Sources */,

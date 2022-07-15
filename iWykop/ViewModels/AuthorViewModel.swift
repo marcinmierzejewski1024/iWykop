@@ -9,6 +9,8 @@
 import Foundation
 import Resolver
 import OrderedCollections
+import SwiftUI
+
 
 class AuthorViewModel : BasePushableViewModel
 {
@@ -20,4 +22,8 @@ class AuthorViewModel : BasePushableViewModel
         self.author = author;
     }
 
+    
+    override func prepareView() -> AnyView {
+        return AnyView(AuthorDetailsView(authorVM: self));
+    }
 }

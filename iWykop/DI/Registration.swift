@@ -62,6 +62,10 @@ extension Resolver : ResolverRegistering {
             return VotersServiceImpl()
         }.scope(.graph)
 
+        register(AuthorService.self) { resolver, args in
+            return AuthorServiceImpl()
+        }.scope(.graph)
+
 
         
     }
