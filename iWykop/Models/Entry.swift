@@ -28,7 +28,7 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComment
     let original: String?
     let embed: Embed?
     let url: String
-    let date: String
+    let date: Date
     let voteCount, commentsCount: Int
     let status: Status
     let app: String?
@@ -51,9 +51,6 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComment
 // sourcery:end
     }
     
-    func getDate() -> Date? {
-        return Date.fromString(self.date)
-    }
     
     func hasAdultContent() -> Bool {
         if let embed = embed {

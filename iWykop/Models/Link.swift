@@ -18,7 +18,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
     let original: String?
     let embed: Embed?
     let url: String
-    let date: String
+    let date: Date
     let app: String?
     let voteCount, commentsCount: Int
     let status: String?
@@ -70,9 +70,7 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
         return nil;
     }
     
-    func getDate() -> Date? {
-        return Date.fromString(self.date)
-    }
+
     
     func getFullPreviewImageURL() -> String? {
         let thumbnail = self.preview;

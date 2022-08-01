@@ -21,6 +21,14 @@ class AuthorViewModel : BasePushableViewModel
     init(author : Author) {
         self.author = author;
     }
+    
+    func registeredText() -> String {
+        if let date = author.signupAt {
+            
+        }
+        
+        return "";
+    }
 
     
     override func prepareView() -> AnyView {

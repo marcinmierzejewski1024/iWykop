@@ -73,6 +73,11 @@ class ApiV2Service : Resolving
     {
         
         let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale.current
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
 
         do {
             let respo = try decoder.decode(ApiV2Response<T>.self, from: data)

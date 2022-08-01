@@ -23,12 +23,12 @@ struct AuthorWithDateHeader: View {
                     case .success(let image):
                         VStack {
                             image.resizable()
-                                .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
+                                .aspectRatio(contentMode: .fit).frame(width: MaxSizes.profileThumbsize.rawValue, height: MaxSizes.profileThumbsize.rawValue)
                         }
                         
                     default:
                         Image("userPlaceholder").resizable()
-                            .aspectRatio(contentMode: .fit).frame(width: 36, height: 36)
+                            .aspectRatio(contentMode: .fit).frame(width: MaxSizes.profileThumbsize.rawValue, height: MaxSizes.profileThumbsize.rawValue)
                         
                     }
                 }.onTapGesture {

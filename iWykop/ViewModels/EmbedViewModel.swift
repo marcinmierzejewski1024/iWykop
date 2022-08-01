@@ -65,7 +65,7 @@ class EmbedViewModel : BasePushableViewModel
     }
     
     func embedVideoUrl() -> String {
-        //TODO:
+        
         return "https://www.youtube.com/embed/Za7YYCasDkE";
     }
     

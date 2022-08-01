@@ -46,7 +46,7 @@ extension Comment {
         voteCountPlus = try container.decodeIfPresent(Int.self, forKey: .voteCountPlus)
         voteCountMinus = try container.decodeIfPresent(Int.self, forKey: .voteCountMinus)
         favorite = try container.decodeIfPresent(Bool.self, forKey: .favorite)
-        date = try container.decode(String.self, forKey: .date)
+        date = try container.decode(Date.self, forKey: .date)
         blocked = try container.decodeIfPresent(Bool.self, forKey: .blocked)
         embed = try container.decodeIfPresent(Embed.self, forKey: .embed)
         userVote = try container.decodeIfPresent(Int.self, forKey: .userVote)

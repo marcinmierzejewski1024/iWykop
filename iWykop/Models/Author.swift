@@ -8,11 +8,12 @@
 import Foundation
 
 struct Author: AutoCodable, AutoEquatable, Hashable {
+    
     let avatar: String
     let login: String
     let sex: AuthorSex?
     let background: String?
-    let signupAt: String?
+    let signupAt: Date?
     let color: Int
     
 
@@ -39,6 +40,6 @@ enum AuthorSex : String, AutoCodable{
 
 struct AuthorWithDate: AutoCodable, AutoEquatable, Hashable {
     let author: Author
-    let date: String
+    let date: Date
 
 }

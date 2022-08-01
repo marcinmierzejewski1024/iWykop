@@ -89,6 +89,8 @@ struct OtherTextStyle: ViewModifier {
 
 
 enum Margins : CGFloat {
+    case tiny = 3.0
+
     case small = 6.0
     case medium = 10.0
     case huge = 14.0
@@ -98,7 +100,11 @@ enum Margins : CGFloat {
 enum MaxSizes : CGFloat {
     case previewWidth = 440.0
     case previewHeight = 340.0
+    case profileThumbsize = 38.0
 
 }
+
+
+
 
 

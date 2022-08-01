@@ -14,6 +14,12 @@ extension Date {
         return formatter.localizedString(for: self, relativeTo: Date())
     }
     
+    func timeAgoDisplayShort() -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .short
+        return formatter.localizedString(for: self, relativeTo: Date())
+    }
+    
     
     static func fromString(_ string:String) -> Date? {
         let dateFormatter = DateFormatter()

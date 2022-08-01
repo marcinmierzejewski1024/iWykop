@@ -14,7 +14,7 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
     let parentID: Int?
     let voteCount: Int
     let favorite: Bool?
-    let date: String
+    let date: Date
     let blocked: Bool?
     let embed: Embed?
     let userVote: Int?
@@ -45,9 +45,7 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
 
     }
     
-    func getDate() -> Date? {
-        return Date.fromString(self.date)
-    }
+
     
     func isResponseComment() -> Bool {
         
