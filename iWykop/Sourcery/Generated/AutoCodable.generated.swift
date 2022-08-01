@@ -1,7 +1,9 @@
-// Generated using Sourcery 1.6.1 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 1.8.2 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
+import UIKit
 
-import Foundation
+
+
 
 
 extension AuthorSex {
@@ -49,13 +51,13 @@ extension Comment {
         date = try container.decode(Date.self, forKey: .date)
         blocked = try container.decodeIfPresent(Bool.self, forKey: .blocked)
         embed = try container.decodeIfPresent(Embed.self, forKey: .embed)
+        visibleSpoilers = try container.decodeIfPresent([String].self, forKey: .visibleSpoilers)
+        bodyAttributed = try container.decodeIfPresent(AttributedString.self, forKey: .bodyAttributed)
         userVote = try container.decodeIfPresent(Int.self, forKey: .userVote)
         entryID = try container.decodeIfPresent(Int.self, forKey: .entryID)
         body = try container.decodeIfPresent(String.self, forKey: .body)
         original = try container.decodeIfPresent(String.self, forKey: .original)
         parentID = try container.decodeIfPresent(Int.self, forKey: .parentID)
-        visibleSpoilers = try container.decodeIfPresent([String].self, forKey: .visibleSpoilers)
-        bodyAttributed = try container.decodeIfPresent(AttributedString.self, forKey: .bodyAttributed)
     }
 
     internal func encode(to encoder: Encoder) throws {
@@ -71,13 +73,13 @@ extension Comment {
         try container.encode(date, forKey: .date)
         try container.encodeIfPresent(blocked, forKey: .blocked)
         try container.encodeIfPresent(embed, forKey: .embed)
+        try container.encodeIfPresent(visibleSpoilers, forKey: .visibleSpoilers)
+        try container.encodeIfPresent(bodyAttributed, forKey: .bodyAttributed)
         try container.encodeIfPresent(userVote, forKey: .userVote)
         try container.encodeIfPresent(entryID, forKey: .entryID)
         try container.encodeIfPresent(body, forKey: .body)
         try container.encodeIfPresent(original, forKey: .original)
         try container.encodeIfPresent(parentID, forKey: .parentID)
-        try container.encodeIfPresent(visibleSpoilers, forKey: .visibleSpoilers)
-        try container.encodeIfPresent(bodyAttributed, forKey: .bodyAttributed)
     }
 
 }

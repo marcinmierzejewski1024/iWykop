@@ -1,9 +1,44 @@
 # Sourcery CHANGELOG
 
-## 1.6.1
+## 1.8.2
+## New Features
+- Added `deletingLastComponent` filter to turn `/Path/Class.swift` into `/Path`
+- Added `directory` computed property to `Type`
+
+## 1.8.1
+## New Features
+- Added a new flag `--serialParse` to support parsing the sources in serial, rather than in parallel (the default), which can address stability issues in SwiftSyntax [#1063](https://github.com/krzysztofzablocki/Sourcery/pull/1063)
+
+## Internal Changes
+- Lower project requirements to allow compilation using Swift 5.5/Xcode 13.x [#1049](https://github.com/krzysztofzablocki/Sourcery/pull/1049)
+- Update Stencil to 0.14.2
+- Use `swift build` insead of `xcodebuild` when building binary [#1057](https://github.com/krzysztofzablocki/Sourcery/pull/1057)
+
+## 1.8.0
+## New Features
+- Adds `xcframework` key to `target` object in configuration file to enable processing of `swiftinterface`
+
+## Fixes
+- Fixed issues generating Swift Templates when using Xcode 13.3 [#1040](https://github.com/krzysztofzablocki/Sourcery/issues/1040)
+- Modifications to included files of Swift Templates now correctly invalidate the cache - [#889](https://github.com/krzysztofzablocki/Sourcery/issues/889)
+
+## Internal Changes
+- Swift 5.6 and Xcode 13.3 is now required to build the project
+- `lib_internalSwiftSyntaxParser` is now statically linked enabling better support when installing through SPM and Mint [#1037](https://github.com/krzysztofzablocki/Sourcery/pull/1037)
+
+## 1.7.0
+
+## New Features
+- Adds `fileName` to `Type` and exposes `path` as well
+- Adds support for parsing async methods, closures and variables
 
 ## Fixes
 - correct parsing of rawValue initializer in enum cases, fixes #1010
+- Use name or path parameter to parse groups to avoid duplicated group creation, fixes #904, #906
+
+---
+
+## 1.6.1
 ## New Features
 - Added `CLI-Only` subspec to `Sourcery.podspec` [#997](https://github.com/krzysztofzablocki/Sourcery/pull/997)
 - Added documentation comment parsing for all declarations [#1002](https://github.com/krzysztofzablocki/Sourcery/pull/1002)

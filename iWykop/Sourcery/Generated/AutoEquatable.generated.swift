@@ -1,5 +1,7 @@
-// Generated using Sourcery 1.6.1 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 1.8.2 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
+import UIKit
+
 // swiftlint:disable file_length
 fileprivate func compareOptionals<T>(lhs: T?, rhs: T?, compare: (_ lhs: T, _ rhs: T) -> Bool) -> Bool {
     switch (lhs, rhs) {
@@ -30,8 +32,15 @@ internal func == (lhs: Author, rhs: Author) -> Bool {
     guard lhs.login == rhs.login else { return false }
     guard compareOptionals(lhs: lhs.sex, rhs: rhs.sex, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.background, rhs: rhs.background, compare: ==) else { return false }
-    guard lhs.signupAt == rhs.signupAt else { return false }
+    guard compareOptionals(lhs: lhs.signupAt, rhs: rhs.signupAt, compare: ==) else { return false }
     guard lhs.color == rhs.color else { return false }
+    return true
+}
+// MARK: - AuthorWithDate AutoEquatable
+extension AuthorWithDate: Equatable {}
+internal func == (lhs: AuthorWithDate, rhs: AuthorWithDate) -> Bool {
+    guard lhs.author == rhs.author else { return false }
+    guard lhs.date == rhs.date else { return false }
     return true
 }
 // MARK: - Comment AutoEquatable
@@ -125,6 +134,7 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
     guard compareOptionals(lhs: lhs.preview, rhs: rhs.preview, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.description, rhs: rhs.description, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.title, rhs: rhs.title, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.tags, rhs: rhs.tags, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.visibleSpoilers, rhs: rhs.visibleSpoilers, compare: ==) else { return false }
     return true

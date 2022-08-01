@@ -21,6 +21,7 @@
 		56250B6C27C26FE90086AFF5 /* EntryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6B27C26FE90086AFF5 /* EntryDetailsView.swift */; };
 		56250B6E27C27D1E0086AFF5 /* EntryServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6D27C27D1E0086AFF5 /* EntryServiceImpl.swift */; };
 		56250B7027C27F980086AFF5 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6F27C27F980086AFF5 /* Comment.swift */; };
+		562E29B9289880060004FBBE /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29B8289880060004FBBE /* UIImage.swift */; };
 		56430F002827D96E00333DB5 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56430EFF2827D96E00333DB5 /* Navigation.swift */; };
 		56430F032827F3F700333DB5 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56430F022827F3F700333DB5 /* YouTubePlayerKit */; };
 		5646B88127EE46CB006FCF8C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5646B88027EE46CB006FCF8C /* Date.swift */; };
@@ -130,6 +131,7 @@
 		56250B6B27C26FE90086AFF5 /* EntryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsView.swift; sourceTree = "<group>"; };
 		56250B6D27C27D1E0086AFF5 /* EntryServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryServiceImpl.swift; sourceTree = "<group>"; };
 		56250B6F27C27F980086AFF5 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		562E29B8289880060004FBBE /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		56430EFF2827D96E00333DB5 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		5646B88027EE46CB006FCF8C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		56554E1427D9636C00BB8DD7 /* LinkServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkServiceImpl.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				5646B88027EE46CB006FCF8C /* Date.swift */,
 				568A778127EE565A00DB72C2 /* ImageCache.swift */,
 				56430EFF2827D96E00333DB5 /* Navigation.swift */,
+				562E29B8289880060004FBBE /* UIImage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -837,7 +840,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#echo $PATH\n#$PODS_ROOT/Sourcery/bin/sourcery --config iWykop/Sourcery/.sourcery.yml --verbose\n";
+			shellScript = "#echo $PATH\n$PODS_ROOT/Sourcery/bin/sourcery --config iWykop/Sourcery/.sourcery.yml --verbose\n";
 		};
 		A2C69C00C278DEEA871BC731 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -942,6 +945,7 @@
 				5646B88127EE46CB006FCF8C /* Date.swift in Sources */,
 				56FCF8372881EA9600CFD3BE /* AuthorDetailsView.swift in Sources */,
 				56ECA37827CE6EA100EBCA33 /* LinksView.swift in Sources */,
+				562E29B9289880060004FBBE /* UIImage.swift in Sources */,
 				56ECA3F127D404EA00EBCA33 /* BodyFormater.swift in Sources */,
 				56250B7027C27F980086AFF5 /* Comment.swift in Sources */,
 				5662048327E12F7000A61508 /* AnythingViewModelProviderImpl.swift in Sources */,

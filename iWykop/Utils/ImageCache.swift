@@ -10,7 +10,7 @@ import SwiftUI
 import Resolver
 
 class ImageCache : Resolving {
-    static let cacheSize = 120;
+    static let cacheSize = 100;
     static let sharedInstance = ImageCache()
     
     lazy var networkClient : AFNetworkApiClient = resolver.resolve();
@@ -49,25 +49,28 @@ class ImageCache : Resolving {
         
         if let key = URL(string: url!) {
             
-            synced(ImageCache.sharedInstance) {
                 
-                
-                if(self[key] != nil){
-                    print("stop preloading image already in cache \(String(describing: url))")
-                    return;
-                }
-                if self.inProgress.contains(key) {
-                    print("stop preloading image already in progress \(String(describing: url))")
-                    return;
-                }
-                
-                print("start loading!!! \(String(describing: url))")
+            if(self[key] != nil){
+                print("stop preloading image already in cache \(String(describing: url))")
+                return;
+            }
+            if self.inProgress.contains(key) {
+                print("stop preloading image already in progress \(String(describing: url))")
+                return;
+            }
+            
+            print("start loading!!! \(String(describing: url))")
 
+            synced(ImageCache.sharedInstance) {
                 self.inProgress.append(key);
             }
+            
             networkClient.getFile(from: url!, progress: nil) { data, err in
                 if let data = data {
                     if let image = UIImage(data: data) {
+                        
+                        image.isImageDataMalformed();
+                        
                         let imageToBeCached = Image(uiImage: image)
                         synced(ImageCache.sharedInstance) {
                             self[key] = imageToBeCached;

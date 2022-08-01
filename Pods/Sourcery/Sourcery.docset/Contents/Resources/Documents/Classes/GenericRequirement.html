@@ -17,7 +17,7 @@
     <a title="GenericRequirement Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Sourcery 1.6.0 Docs</a> (88% documented)</p>
+        <p><a href="../index.html">Sourcery 1.8.2 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/krzysztofzablocki/Sourcery"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -70,6 +70,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../codable.html">Codable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Diffable.html">Diffable</a>
               </li>
               <li class="nav-group-task">
                 <a href="../diffable.html">Diffable</a>
@@ -160,7 +163,16 @@
             <a href="../Other%20Classes.html">Other Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/ClosureParameter.html">ClosureParameter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DiffableResult.html">DiffableResult</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/GenericRequirement.html">GenericRequirement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GenericRequirement/Relationship.html">– Relationship</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Import.html">Import</a>
@@ -182,6 +194,9 @@
             <a href="../Other%20Extensions.html">Other Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
@@ -199,10 +214,24 @@
                 <a href="../Protocols/Definition.html">Definition</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Other%20Protocols.html#/s:15SourceryRuntime10DocumentedP">Documented</a>
+                <a href="../Protocols/Documented.html">Documented</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Typed.html">Typed</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Typealiases.html">Other Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Other%20Typealiases.html#/s:15SourceryRuntime11Annotationsa">Annotations</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other%20Typealiases.html#/s:15SourceryRuntime13Documentationa">Documentation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Other%20Typealiases.html#/s:15SourceryRuntime0A8Modifiera">SourceryModifier</a>
               </li>
             </ul>
           </li>
@@ -227,6 +256,85 @@ if a declaration has modifier like <code>private(set)</code> it&rsquo;s name wil
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15SourceryRuntime18GenericRequirementC12RelationshipO"></a>
+                    <a name="//apple_ref/swift/Enum/Relationship" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15SourceryRuntime18GenericRequirementC12RelationshipO">Relationship</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="../Classes/GenericRequirement/Relationship.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Relationship</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)GenericRequirement(py)leftType"></a>
+                    <a name="//apple_ref/swift/Property/leftType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)GenericRequirement(py)leftType">leftType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">leftType</span><span class="p">:</span> <span class="kt"><a href="../Classes/AssociatedType.html">AssociatedType</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SourceryRuntime@objc(cs)GenericRequirement(py)rightType"></a>
+                    <a name="//apple_ref/swift/Property/rightType" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SourceryRuntime@objc(cs)GenericRequirement(py)rightType">rightType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rightType</span><span class="p">:</span> <span class="kt"><a href="../Classes/GenericTypeParameter.html">GenericTypeParameter</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -275,6 +383,32 @@ if a declaration has modifier like <code>private(set)</code> it&rsquo;s name wil
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">relationshipSyntax</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:15SourceryRuntime18GenericRequirementC8leftType05rightF012relationshipAcA010AssociatedF0C_AA0cF9ParameterCAC12RelationshipOtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(leftType:rightType:relationship:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:15SourceryRuntime18GenericRequirementC8leftType05rightF012relationshipAcA010AssociatedF0C_AA0cF9ParameterCAC12RelationshipOtcfc">init(leftType:<wbr>rightType:<wbr>relationship:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">leftType</span><span class="p">:</span> <span class="kt"><a href="../Classes/AssociatedType.html">AssociatedType</a></span><span class="p">,</span> <span class="nv">rightType</span><span class="p">:</span> <span class="kt"><a href="../Classes/GenericTypeParameter.html">GenericTypeParameter</a></span><span class="p">,</span> <span class="nv">relationship</span><span class="p">:</span> <span class="kt"><a href="../Classes/GenericRequirement/Relationship.html">Relationship</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
