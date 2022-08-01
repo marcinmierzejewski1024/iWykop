@@ -10,20 +10,28 @@ import SwiftUI
 import Resolver
 
 class ImageCache : Resolving {
+    static let cacheSize = 120;
     static let sharedInstance = ImageCache()
     
     lazy var networkClient : AFNetworkApiClient = resolver.resolve();
     
-    static private var cache: [URL: Image] = [:]
-    static var inProgress = [URL]();
+    private var cache: [(URL, Image?)] = []
+    
+    var inProgress = [URL]();
     
     
-    static subscript(url: URL) -> Image? {
+    public subscript(url: URL) -> Image? {
         get {
-            ImageCache.cache[url]
+            for cacheEntry in self.cache {
+                if (cacheEntry.0 == url) {
+                    return cacheEntry.1;
+                }
+            }
+            return nil;
         }
         set {
-            ImageCache.cache[url] = newValue
+            self.cache.append((url, newValue));
+            self.cleanOverLimit();
         }
     }
     
@@ -34,7 +42,6 @@ class ImageCache : Resolving {
     
     func preloadImage(url:String?)
     {
-        return;//to be reviewed
         
         guard url != nil else {
             return;
@@ -45,31 +52,31 @@ class ImageCache : Resolving {
             synced(ImageCache.sharedInstance) {
                 
                 
-                if(ImageCache[key] != nil){
-                    print("stop preloading image already in cache \(url)")
+                if(self[key] != nil){
+                    print("stop preloading image already in cache \(String(describing: url))")
                     return;
                 }
-                if ImageCache.inProgress.contains(key) {
-                    print("stop preloading image already in progress \(url)")
+                if self.inProgress.contains(key) {
+                    print("stop preloading image already in progress \(String(describing: url))")
                     return;
                 }
                 
-                print("start loading!!! \(url)")
+                print("start loading!!! \(String(describing: url))")
 
-                ImageCache.inProgress.append(key);
+                self.inProgress.append(key);
             }
             networkClient.getFile(from: url!, progress: nil) { data, err in
                 if let data = data {
                     if let image = UIImage(data: data) {
                         let imageToBeCached = Image(uiImage: image)
                         synced(ImageCache.sharedInstance) {
-                            ImageCache[key] = imageToBeCached;
+                            self[key] = imageToBeCached;
                         }
                     }
                 }
 
                 synced(ImageCache.sharedInstance) {
-                    ImageCache.inProgress.removeAll { inProgress in
+                    self.inProgress.removeAll { inProgress in
                         return key == inProgress;
                     };
                 }
@@ -77,7 +84,16 @@ class ImageCache : Resolving {
             }
         }
     }
+    
+    func cleanOverLimit()
+    {
+        while(self.cache.count > ImageCache.cacheSize) {
+            self.cache.removeFirst()
+        }
+    }
 }
+
+
 
 
 func synced(_ lock: Any, closure: () -> ()) {

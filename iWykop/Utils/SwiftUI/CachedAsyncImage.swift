@@ -29,13 +29,13 @@ struct CacheAsyncImage<Content>: View where Content: View {
     var body: some View {
 
         if let url = url {
-            if let cached = ImageCache[url] {
+            if let cached = ImageCache.sharedInstance[url] {
                 let _ = print("cached \(url.absoluteString)")
                 content(.success(cached))
             } else {
                 let _ = print("request \(url.absoluteString)")
                 let _ = synced(ImageCache.sharedInstance) {
-                    ImageCache.inProgress.append(url);
+                    ImageCache.sharedInstance.inProgress.append(url);
                 }
                 AsyncImage(
                     url: url,
@@ -56,8 +56,8 @@ struct CacheAsyncImage<Content>: View where Content: View {
         if case .success(let image) = phase {
             if let url = url {
                 synced(ImageCache.sharedInstance) {
-                    ImageCache[url] = image
-                    ImageCache.inProgress.removeAll { inProgress in
+                    ImageCache.sharedInstance[url] = image
+                    ImageCache.sharedInstance.inProgress.removeAll { inProgress in
                         return url == inProgress;
                     };
                 }
