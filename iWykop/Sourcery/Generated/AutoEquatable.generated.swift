@@ -48,7 +48,7 @@ extension Comment: Equatable {}
 internal func == (lhs: Comment, rhs: Comment) -> Bool {
     guard lhs.id == rhs.id else { return false }
     guard compareOptionals(lhs: lhs.author, rhs: rhs.author, compare: ==) else { return false }
-    guard lhs.status == rhs.status else { return false }
+    guard compareOptionals(lhs: lhs.status, rhs: rhs.status, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.parentID, rhs: rhs.parentID, compare: ==) else { return false }
     guard lhs.voteCount == rhs.voteCount else { return false }
     guard compareOptionals(lhs: lhs.favorite, rhs: rhs.favorite, compare: ==) else { return false }
@@ -93,7 +93,7 @@ internal func == (lhs: Entry, rhs: Entry) -> Bool {
     guard lhs.date == rhs.date else { return false }
     guard lhs.voteCount == rhs.voteCount else { return false }
     guard lhs.commentsCount == rhs.commentsCount else { return false }
-    guard lhs.status == rhs.status else { return false }
+    guard compareOptionals(lhs: lhs.status, rhs: rhs.status, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.app, rhs: rhs.app, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.comments, rhs: rhs.comments, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.visibleSpoilers, rhs: rhs.visibleSpoilers, compare: ==) else { return false }
@@ -137,6 +137,18 @@ internal func == (lhs: Link, rhs: Link) -> Bool {
     guard compareOptionals(lhs: lhs.tags, rhs: rhs.tags, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.bodyAttributed, rhs: rhs.bodyAttributed, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.visibleSpoilers, rhs: rhs.visibleSpoilers, compare: ==) else { return false }
+    return true
+}
+// MARK: - Meta AutoEquatable
+extension Meta: Equatable {}
+internal func == (lhs: Meta, rhs: Meta) -> Bool {
+    guard lhs.isOwn == rhs.isOwn else { return false }
+    guard lhs.isObserved == rhs.isObserved else { return false }
+    guard compareOptionals(lhs: lhs.owner, rhs: rhs.owner, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.isBlocked, rhs: rhs.isBlocked, compare: ==) else { return false }
+    guard lhs.tag == rhs.tag else { return false }
+    guard compareOptionals(lhs: lhs.description, rhs: rhs.description, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.background, rhs: rhs.background, compare: ==) else { return false }
     return true
 }
 // MARK: - Tag AutoEquatable

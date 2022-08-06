@@ -7,12 +7,12 @@
 
 import Foundation
 
-//sourcery: RealmWrapper
-struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
+// sourcery: AutoInit
+class Comment: AutoCodable, AutoEquatable, BodyFormatable {
     // sourcery: primaryKey
     var id: Int = 0;
     var author: Author?
-    var status: String
+    var status: String?
     var parentID: Int?
     var voteCount: Int = 0;
     var favorite: Bool?
@@ -40,7 +40,6 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
 
         case favorite, date, blocked, embed, visibleSpoilers, bodyAttributed
         case userVote = "user_vote"
-        case app
         case entryID = "entry_id"
         case body, original
         case parentID = "parent_id"
@@ -58,4 +57,66 @@ struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
         
         return false;
     }
+
+
+
+// sourcery:inline:auto:Comment.AutoInit
+
+
+    internal init(id: Int, author: Author?, status: String?, parentID: Int?, voteCount: Int, favorite: Bool?, date: Date, blocked: Bool?, embed: Embed?, userVote: Int?, entryID: Int?, body: String?, original: String?, voteCountPlus: Int?, voteCountMinus: Int?, visibleSpoilers: [String]?, bodyAttributed: AttributedString?) { // swiftlint:disable:this line_length
+
+
+        self.id = id
+
+
+        self.author = author
+
+
+        self.status = status
+
+
+        self.parentID = parentID
+
+
+        self.voteCount = voteCount
+
+
+        self.favorite = favorite
+
+
+        self.date = date
+
+
+        self.blocked = blocked
+
+
+        self.embed = embed
+
+
+        self.userVote = userVote
+
+
+        self.entryID = entryID
+
+
+        self.body = body
+
+
+        self.original = original
+
+
+        self.voteCountPlus = voteCountPlus
+
+
+        self.voteCountMinus = voteCountMinus
+
+
+        self.visibleSpoilers = visibleSpoilers
+
+
+        self.bodyAttributed = bodyAttributed
+
+
+    }
+// sourcery:end
 }

@@ -88,12 +88,12 @@ struct AuthorDetailsView: View {
 
 
 
-struct AuthorDetailsView_Previews: PreviewProvider {
-    
-    
-    static var previews: some View {
-        
-        let vm = AuthorViewModel(author: Author(avatar: "https://picsum.photos/200/300", login: "mock", sex: .male, background: "https://picsum.photos/200/300", signupAt: Date(), color: 0))
-        AuthorDetailsView(authorVM:vm)
-    }
-}
+//struct AuthorDetailsView_Previews: PreviewProvider {
+//    
+//    
+//    static var previews: some View {
+//        
+//        let vm = AuthorViewModel(author: Author(avatar: "https://picsum.photos/200/300", login: "mock", sex: .male, background: "https://picsum.photos/200/300", signupAt: Date(), color: 0))
+//        AuthorDetailsView(authorVM:vm)
+//    }
+//}

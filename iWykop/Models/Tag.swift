@@ -8,10 +8,10 @@
 import Foundation
 
 typealias TagContent = [ItemInTag]
-
 struct Tag: AutoCodable, AutoEquatable {
     var content : TagContent?;
     var meta : Meta?;
+
 }
 
 enum ItemInTagType : String, AutoCodable {
@@ -35,6 +35,11 @@ struct ItemInTag : AutoCodable, AutoEquatable, Hashable {
             return false;
         }
         
+    }
+    
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(link)
+      hasher.combine(entry)
     }
     
 }

@@ -7,8 +7,8 @@
 //
 import Foundation
 
-//sourcery: RealmWrapper
-struct Embed: AutoCodable, AutoEquatable, Hashable {
+// sourcery: AutoInit
+class Embed: AutoCodable, AutoEquatable {
     var source: String = ""
     var plus18: Bool = false
     var preview: String = ""
@@ -90,6 +90,40 @@ struct Embed: AutoCodable, AutoEquatable, Hashable {
         
     }
 
+
+
+// sourcery:inline:auto:Embed.AutoInit
+
+
+    internal init(source: String, plus18: Bool, preview: String, animated: Bool, type: TypeEnum?, ratio: Double, url: String, size: String?) { // swiftlint:disable:this line_length
+
+
+        self.source = source
+
+
+        self.plus18 = plus18
+
+
+        self.preview = preview
+
+
+        self.animated = animated
+
+
+        self.type = type
+
+
+        self.ratio = ratio
+
+
+        self.url = url
+
+
+        self.size = size
+
+
+    }
+// sourcery:end
 }
 
 

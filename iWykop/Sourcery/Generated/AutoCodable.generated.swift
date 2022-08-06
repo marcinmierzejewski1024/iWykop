@@ -5,7 +5,6 @@ import UIKit
 
 
 
-
 extension AuthorSex {
 
     enum CodingKeys: String, CodingKey {
@@ -34,56 +33,6 @@ extension AuthorSex {
     }
 
 }
-
-
-extension Comment {
-
-    internal init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        author = try container.decodeIfPresent(Author.self, forKey: .author)
-        status = try container.decode(String.self, forKey: .status)
-        id = try container.decode(Int.self, forKey: .id)
-        voteCount = try container.decode(Int.self, forKey: .voteCount)
-        voteCountPlus = try container.decodeIfPresent(Int.self, forKey: .voteCountPlus)
-        voteCountMinus = try container.decodeIfPresent(Int.self, forKey: .voteCountMinus)
-        favorite = try container.decodeIfPresent(Bool.self, forKey: .favorite)
-        date = try container.decode(Date.self, forKey: .date)
-        blocked = try container.decodeIfPresent(Bool.self, forKey: .blocked)
-        embed = try container.decodeIfPresent(Embed.self, forKey: .embed)
-        visibleSpoilers = try container.decodeIfPresent([String].self, forKey: .visibleSpoilers)
-        bodyAttributed = try container.decodeIfPresent(AttributedString.self, forKey: .bodyAttributed)
-        userVote = try container.decodeIfPresent(Int.self, forKey: .userVote)
-        entryID = try container.decodeIfPresent(Int.self, forKey: .entryID)
-        body = try container.decodeIfPresent(String.self, forKey: .body)
-        original = try container.decodeIfPresent(String.self, forKey: .original)
-        parentID = try container.decodeIfPresent(Int.self, forKey: .parentID)
-    }
-
-    internal func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        try container.encodeIfPresent(author, forKey: .author)
-        try container.encode(status, forKey: .status)
-        try container.encode(id, forKey: .id)
-        try container.encode(voteCount, forKey: .voteCount)
-        try container.encodeIfPresent(voteCountPlus, forKey: .voteCountPlus)
-        try container.encodeIfPresent(voteCountMinus, forKey: .voteCountMinus)
-        try container.encodeIfPresent(favorite, forKey: .favorite)
-        try container.encode(date, forKey: .date)
-        try container.encodeIfPresent(blocked, forKey: .blocked)
-        try container.encodeIfPresent(embed, forKey: .embed)
-        try container.encodeIfPresent(visibleSpoilers, forKey: .visibleSpoilers)
-        try container.encodeIfPresent(bodyAttributed, forKey: .bodyAttributed)
-        try container.encodeIfPresent(userVote, forKey: .userVote)
-        try container.encodeIfPresent(entryID, forKey: .entryID)
-        try container.encodeIfPresent(body, forKey: .body)
-        try container.encodeIfPresent(original, forKey: .original)
-        try container.encodeIfPresent(parentID, forKey: .parentID)
-    }
-
-}
-
 
 
 
@@ -115,7 +64,6 @@ extension ItemInTagType {
     }
 
 }
-
 
 
 extension Status {

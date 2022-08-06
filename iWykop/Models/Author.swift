@@ -6,8 +6,8 @@
 ////
 //
 import Foundation
-//sourcery: RealmWrapper
-struct Author: AutoCodable, AutoEquatable, Hashable {
+// sourcery: AutoInit
+class Author: AutoCodable, AutoEquatable, Hashable {
     
     var avatar: String = ""
     // sourcery: primaryKey
@@ -32,6 +32,39 @@ struct Author: AutoCodable, AutoEquatable, Hashable {
         return false;
         
     }
+    
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(login)
+    }
+
+
+
+// sourcery:inline:auto:Author.AutoInit
+
+
+    internal init(avatar: String, login: String, sex: AuthorSex?, background: String?, signupAt: Date?, color: Int) { // swiftlint:disable:this line_length
+
+
+        self.avatar = avatar
+
+
+        self.login = login
+
+
+        self.sex = sex
+
+
+        self.background = background
+
+
+        self.signupAt = signupAt
+
+
+        self.color = color
+
+
+    }
+// sourcery:end
 }
 
 enum AuthorSex : String, AutoCodable{
@@ -43,5 +76,10 @@ enum AuthorSex : String, AutoCodable{
 struct AuthorWithDate: AutoCodable, AutoEquatable, Hashable {
     let author: Author
     let date: Date
+    
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(author)
+      hasher.combine(date)
+    }
 
 }

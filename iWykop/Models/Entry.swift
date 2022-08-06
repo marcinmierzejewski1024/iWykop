@@ -12,13 +12,12 @@ protocol AutoEncodable: Encodable {}
 protocol AutoCodable: AutoDecodable, AutoEncodable {}
 
 protocol AutoEquatable {
-    
+
 }
 
 
-
-//sourcery: RealmWrapper
-struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComments{
+// sourcery: AutoInit
+class Entry: AutoCodable, AutoEquatable , BodyFormatable, WithComments, Hashable{
     // sourcery: primaryKey
     var id: Int = 0;
     var body: String?
@@ -32,7 +31,7 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComment
     var date: Date = Date()
     var voteCount: Int = 0;
     var commentsCount: Int = 0;
-    var status: String
+    var status: String?
     var app: String?
     var comments: [Comment]?
     // sourcery: skipPersistance
@@ -65,6 +64,71 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComment
     }
     
     
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(id)
+    }
+    
+
+
+// sourcery:inline:auto:Entry.AutoInit
+
+
+    internal init(id: Int, body: String?, favorite: Bool?, userVote: Int?, blocked: Bool?, author: Author?, original: String?, embed: Embed?, url: String, date: Date, voteCount: Int, commentsCount: Int, status: String?, app: String?, comments: [Comment]?, visibleSpoilers: [String]?, bodyAttributed: AttributedString?) { // swiftlint:disable:this line_length
+
+
+        self.id = id
+
+
+        self.body = body
+
+
+        self.favorite = favorite
+
+
+        self.userVote = userVote
+
+
+        self.blocked = blocked
+
+
+        self.author = author
+
+
+        self.original = original
+
+
+        self.embed = embed
+
+
+        self.url = url
+
+
+        self.date = date
+
+
+        self.voteCount = voteCount
+
+
+        self.commentsCount = commentsCount
+
+
+        self.status = status
+
+
+        self.app = app
+
+
+        self.comments = comments
+
+
+        self.visibleSpoilers = visibleSpoilers
+
+
+        self.bodyAttributed = bodyAttributed
+
+
+    }
+// sourcery:end
 }
 
 

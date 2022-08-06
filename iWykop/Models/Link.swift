@@ -7,8 +7,8 @@
 
 import Foundation
 
-//sourcery: RealmWrapper
-struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments {
+// sourcery: AutoInit
+class Link: AutoCodable, AutoEquatable, BodyFormatable, WithComments, Hashable {
     // sourcery: primaryKey
     var id: Int = 0;
     var body: String?
@@ -92,4 +92,98 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
         
         return nil;
     }
+    
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(id)
+      hasher.combine(body)
+    }
+
+
+
+// sourcery:inline:auto:Link.AutoInit
+
+
+    internal init(id: Int, body: String?, favorite: Bool?, comments: [Comment]?, blocked: Bool?, author: Author?, userVote: Int?, original: String?, embed: Embed?, url: String, date: Date, app: String?, voteCount: Int, commentsCount: Int, status: String?, canComment: Bool?, sourceUrl: String, isHot: Bool, buryCount: Int?, relatedCount: Int?, preview: String?, description: String?, title: String?, tags: String?, bodyAttributed: AttributedString?, visibleSpoilers: [String]?) { // swiftlint:disable:this line_length
+
+
+        self.id = id
+
+
+        self.body = body
+
+
+        self.favorite = favorite
+
+
+        self.comments = comments
+
+
+        self.blocked = blocked
+
+
+        self.author = author
+
+
+        self.userVote = userVote
+
+
+        self.original = original
+
+
+        self.embed = embed
+
+
+        self.url = url
+
+
+        self.date = date
+
+
+        self.app = app
+
+
+        self.voteCount = voteCount
+
+
+        self.commentsCount = commentsCount
+
+
+        self.status = status
+
+
+        self.canComment = canComment
+
+
+        self.sourceUrl = sourceUrl
+
+
+        self.isHot = isHot
+
+
+        self.buryCount = buryCount
+
+
+        self.relatedCount = relatedCount
+
+
+        self.preview = preview
+
+
+        self.description = description
+
+
+        self.title = title
+
+
+        self.tags = tags
+
+
+        self.bodyAttributed = bodyAttributed
+
+
+        self.visibleSpoilers = visibleSpoilers
+
+
+    }
+// sourcery:end
 }

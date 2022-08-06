@@ -56,12 +56,12 @@ class LinksServiceImpl : ApiV2Service, LinksService {
             
             let withAttributedBody = await bodyFormatter.addBodyAttr(es: result.data ?? [])
             
-            let realm = try! Realm()
+//            let realm = try! Realm()
 //            realm.
             // Create a dog in the realm.
-            try! realm.write {
-                realm.add(result.data?.first)
-            }
+//            try! realm.write {
+//                realm.add(result.data?.first)
+//            }
 
             
             return withAttributedBody as? [Link] ?? [];

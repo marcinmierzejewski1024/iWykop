@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Meta: Codable,Hashable {
+// sourcery: AutoInit
+class Meta: Codable,AutoEquatable {
     let isOwn: Bool
     let isObserved: Bool
     let owner: String?
@@ -25,4 +26,36 @@ struct Meta: Codable,Hashable {
         case description = "description"
         case background
     }
+
+
+
+// sourcery:inline:auto:Meta.AutoInit
+
+
+    internal init(isOwn: Bool, isObserved: Bool, owner: String?, isBlocked: Bool?, tag: String, description: String?, background: String?) { // swiftlint:disable:this line_length
+
+
+        self.isOwn = isOwn
+
+
+        self.isObserved = isObserved
+
+
+        self.owner = owner
+
+
+        self.isBlocked = isBlocked
+
+
+        self.tag = tag
+
+
+        self.description = description
+
+
+        self.background = background
+
+
+    }
+// sourcery:end
 }
