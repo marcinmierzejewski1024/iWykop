@@ -9,12 +9,14 @@ import Foundation
 //sourcery: RealmWrapper
 struct Author: AutoCodable, AutoEquatable, Hashable {
     
-    var avatar: String
-    var login: String
+    var avatar: String = ""
+    // sourcery: primaryKey
+    var login: String = ""
+    // sourcery: skipPersistance
     var sex: AuthorSex?
     var background: String?
     var signupAt: Date?
-    var color: Int
+    var color: Int = 0;
     
 
     enum CodingKeys: String, CodingKey {

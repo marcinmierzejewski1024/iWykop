@@ -1,7 +1,8 @@
 // Generated using Sourcery 1.8.2 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
+
 import Foundation
-import Realm
+import RealmSwift
 
 
 
@@ -9,26 +10,29 @@ import Realm
 
 
 
-final class EntryObject: RLMEmbeddedObject {
 
-             dynamic var id : Int = Int();
-             dynamic var body : String? = nil;
-             dynamic var favorite : Bool? = nil;
-             dynamic var userVote : Int? = nil;
-             dynamic var blocked : Bool? = nil;
-             dynamic var author : Author? = nil;
-             dynamic var original : String? = nil;
-             dynamic var embed : Embed? = nil;
-             dynamic var url : String = String();
-             dynamic var date : Date = Date();
-             dynamic var voteCount : Int = Int();
-             dynamic var commentsCount : Int = Int();
-             dynamic var status : Status? = nil;
-             dynamic var app : String? = nil;
-             dynamic var comments : [Comment]? = nil;
 
-    static func primaryKey() -> String? {
+final class EntryObject: Object {
+
+    dynamic var id : Int = Int();
+    dynamic var body : String? = String();
+    dynamic var favorite : Bool? = Bool();
+    dynamic var userVote : Int? = Int();
+    dynamic var blocked : Bool? = Bool();
+    dynamic var author : Author? = Author();
+    dynamic var original : String? = String();
+    dynamic var embed : Embed? = Embed();
+    dynamic var url : String = String();
+    dynamic var date : Date = Date();
+    dynamic var voteCount : Int = Int();
+    dynamic var commentsCount : Int = Int();
+    dynamic var status : String = String();
+    dynamic var app : String? = String();
+    dynamic var comments : [Comment]? = [Comment]();
+
+    override static func primaryKey() -> String? {
         return "id"
+
     }
     override init() {
     }
@@ -39,36 +43,54 @@ final class EntryObject: RLMEmbeddedObject {
 
 extension Entry: Persistable {
 
+
+    typealias ManagedObject = EntryObject
+
     public init(managedObject: EntryObject) {
-    self.id = managedObject.id;
+        self.id = managedObject.id;
 
-    self.body = managedObject.body;
 
-    self.favorite = managedObject.favorite;
+        self.body = managedObject.body;
 
-    self.userVote = managedObject.userVote;
 
-    self.blocked = managedObject.blocked;
+        self.favorite = managedObject.favorite;
 
-    self.author = managedObject.author;
 
-    self.original = managedObject.original;
+        self.userVote = managedObject.userVote;
 
-    self.embed = managedObject.embed;
 
-    self.url = managedObject.url;
+        self.blocked = managedObject.blocked;
 
-    self.date = managedObject.date;
 
-    self.voteCount = managedObject.voteCount;
+        self.author = managedObject.author;
 
-    self.commentsCount = managedObject.commentsCount;
 
-    self.status = managedObject.status;
+        self.original = managedObject.original;
 
-    self.app = managedObject.app;
 
-    self.comments = managedObject.comments;
+        self.embed = managedObject.embed;
+
+
+        self.url = managedObject.url;
+
+
+        self.date = managedObject.date;
+
+
+        self.voteCount = managedObject.voteCount;
+
+
+        self.commentsCount = managedObject.commentsCount;
+
+
+        self.status = managedObject.status;
+
+
+        self.app = managedObject.app;
+
+
+        self.comments = managedObject.comments;
+
 
 
 

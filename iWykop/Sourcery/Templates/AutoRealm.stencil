@@ -1,16 +1,13 @@
 {% for type in types.structs|annotated:"RealmWrapper" %}
 {% set objectForCoding %}{{ type.name|lowerFirstWord }}{% endset %}
 // sourcery:file:Generated/{{ type.name }}+RealmWrapper
+
 import Foundation
-import Realm
+import RealmSwift
 {% macro prepareVars variables %}
     {% for variable in variables where variable.readAccess != "private" and variable.readAccess != "fileprivate" %}
     {% if not variable.annotations.skipPersistance %}
-         {% if not variable.isOptional %}
-             dynamic var {{ variable.name }} : {{ variable.typeName }} = {{ variable.typeName }}();
-         {% else %}
-             dynamic var {{ variable.name }} : {{ variable.typeName }} = nil;
-         {% endif %}
+    dynamic var {{ variable.name }} : {{ variable.typeName |replace:"?","" }} = {{ variable.typeName|replace:"?","" }}();
     {% endif %}
     {% endfor %}
 {% endmacro %}
@@ -21,8 +18,13 @@ import Realm
     
     {% if not variable.annotations.skipPersistance %}
      
-    self.{{ variable.name }} = managedObject.{{ variable.name }};
      
+      {% if not variable.isOptional %}
+        self.{{ variable.name }} = managedObject.{{ variable.name }};
+      {% else %}
+        self.{{ variable.name }} = managedObject.{{ variable.name }};
+      {% endif %}
+
      
     {% endif %}
 
@@ -45,12 +47,16 @@ import Realm
 {% endmacro %}
 
 
-final class {{ type.name }}Object: RLMEmbeddedObject {
+{% macro getPrimaryKey variables %}{% for variable in variables where variable.readAccess != "private" and variable.readAccess != "fileprivate" %}{% if variable.annotations.primaryKey %}"{{ variable.name }}"{% endif %}{% endfor %}{% endmacro %}
+
+
+final class {{ type.name }}Object: Object {
 
     {% call prepareVars type.storedVariables %}
 
-    static func primaryKey() -> String? {
-        return "id"
+    override static func primaryKey() -> String? {
+        return {% call getPrimaryKey type.storedVariables %}
+
     }
     
     override init() {
@@ -62,6 +68,9 @@ final class {{ type.name }}Object: RLMEmbeddedObject {
 
 
 extension {{ type.name }}: Persistable {
+
+
+    typealias ManagedObject = {{ type.name }}Object
 
     public init(managedObject: {{ type.name }}Object) {
         {% call assignFromManagedObject type.storedVariables %}
@@ -78,5 +87,7 @@ extension {{ type.name }}: Persistable {
 }
 
 
+
 // sourcery:end
 {% endfor %}
+

@@ -1,7 +1,8 @@
 // Generated using Sourcery 1.8.2 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
+
 import Foundation
-import Realm
+import RealmSwift
 
 
 
@@ -9,34 +10,37 @@ import Realm
 
 
 
-final class LinkObject: RLMEmbeddedObject {
 
-             dynamic var id : Int = Int();
-             dynamic var body : String? = nil;
-             dynamic var favorite : Bool? = nil;
-             dynamic var comments : [Comment]? = nil;
-             dynamic var blocked : Bool? = nil;
-             dynamic var author : Author? = nil;
-             dynamic var userVote : Int? = nil;
-             dynamic var original : String? = nil;
-             dynamic var embed : Embed? = nil;
-             dynamic var url : String = String();
-             dynamic var date : Date = Date();
-             dynamic var app : String? = nil;
-             dynamic var voteCount : Int = Int();
-             dynamic var commentsCount : Int = Int();
-             dynamic var status : String? = nil;
-             dynamic var canComment : Bool? = nil;
-             dynamic var sourceUrl : String = String();
-             dynamic var isHot : Bool = Bool();
-             dynamic var buryCount : Int? = nil;
-             dynamic var relatedCount : Int? = nil;
-             dynamic var preview : String? = nil;
-             dynamic var title : String? = nil;
-             dynamic var tags : String? = nil;
 
-    static func primaryKey() -> String? {
+final class LinkObject: Object {
+
+    dynamic var id : Int = Int();
+    dynamic var body : String? = String();
+    dynamic var favorite : Bool? = Bool();
+    dynamic var comments : [Comment]? = [Comment]();
+    dynamic var blocked : Bool? = Bool();
+    dynamic var author : Author? = Author();
+    dynamic var userVote : Int? = Int();
+    dynamic var original : String? = String();
+    dynamic var embed : Embed? = Embed();
+    dynamic var url : String = String();
+    dynamic var date : Date = Date();
+    dynamic var app : String? = String();
+    dynamic var voteCount : Int = Int();
+    dynamic var commentsCount : Int = Int();
+    dynamic var status : String? = String();
+    dynamic var canComment : Bool? = Bool();
+    dynamic var sourceUrl : String = String();
+    dynamic var isHot : Bool = Bool();
+    dynamic var buryCount : Int? = Int();
+    dynamic var relatedCount : Int? = Int();
+    dynamic var preview : String? = String();
+    dynamic var title : String? = String();
+    dynamic var tags : String? = String();
+
+    override static func primaryKey() -> String? {
         return "id"
+
     }
     override init() {
     }
@@ -47,53 +51,79 @@ final class LinkObject: RLMEmbeddedObject {
 
 extension Link: Persistable {
 
+
+    typealias ManagedObject = LinkObject
+
     public init(managedObject: LinkObject) {
-    self.id = managedObject.id;
-
-    self.body = managedObject.body;
-
-    self.favorite = managedObject.favorite;
-
-    self.comments = managedObject.comments;
-
-    self.blocked = managedObject.blocked;
-
-    self.author = managedObject.author;
-
-    self.userVote = managedObject.userVote;
-
-    self.original = managedObject.original;
-
-    self.embed = managedObject.embed;
-
-    self.url = managedObject.url;
-
-    self.date = managedObject.date;
-
-    self.app = managedObject.app;
-
-    self.voteCount = managedObject.voteCount;
-
-    self.commentsCount = managedObject.commentsCount;
-
-    self.status = managedObject.status;
-
-    self.canComment = managedObject.canComment;
-
-    self.sourceUrl = managedObject.sourceUrl;
-
-    self.isHot = managedObject.isHot;
-
-    self.buryCount = managedObject.buryCount;
-
-    self.relatedCount = managedObject.relatedCount;
-
-    self.preview = managedObject.preview;
+        self.id = managedObject.id;
 
 
-    self.title = managedObject.title;
+        self.body = managedObject.body;
 
-    self.tags = managedObject.tags;
+
+        self.favorite = managedObject.favorite;
+
+
+        self.comments = managedObject.comments;
+
+
+        self.blocked = managedObject.blocked;
+
+
+        self.author = managedObject.author;
+
+
+        self.userVote = managedObject.userVote;
+
+
+        self.original = managedObject.original;
+
+
+        self.embed = managedObject.embed;
+
+
+        self.url = managedObject.url;
+
+
+        self.date = managedObject.date;
+
+
+        self.app = managedObject.app;
+
+
+        self.voteCount = managedObject.voteCount;
+
+
+        self.commentsCount = managedObject.commentsCount;
+
+
+        self.status = managedObject.status;
+
+
+        self.canComment = managedObject.canComment;
+
+
+        self.sourceUrl = managedObject.sourceUrl;
+
+
+        self.isHot = managedObject.isHot;
+
+
+        self.buryCount = managedObject.buryCount;
+
+
+        self.relatedCount = managedObject.relatedCount;
+
+
+        self.preview = managedObject.preview;
+
+
+
+        self.title = managedObject.title;
+
+
+        self.tags = managedObject.tags;
+
 
 
 

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21CA5B4C59EA5783412FB940 /* Pods_iWykop_iWykopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 291B51B165EAAD7398E2653B /* Pods_iWykop_iWykopUITests.framework */; };
-		52A27DD202A992B9392EFBB9 /* Pods_iWykop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013E72CCABDE54B44BE1E389 /* Pods_iWykop.framework */; };
 		561196A827BE9FDE00605D03 /* apiCreditentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 561196A727BE9FDE00605D03 /* apiCreditentials.plist */; };
 		561196AB27BEA68100605D03 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561196AA27BEA68100605D03 /* ApiClient.swift */; };
 		561196AD27BEA7D800605D03 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561196AC27BEA7D800605D03 /* String.swift */; };
@@ -28,7 +26,6 @@
 		562E29DA289C68300004FBBE /* Link+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29D2289C68300004FBBE /* Link+RealmWrapper.generated.swift */; };
 		562E29DB289C68300004FBBE /* Embed+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29D3289C68300004FBBE /* Embed+RealmWrapper.generated.swift */; };
 		562E29DD289C68300004FBBE /* Author+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29D5289C68300004FBBE /* Author+RealmWrapper.generated.swift */; };
-		562E29DE289C68300004FBBE /* Tag+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29D6289C68300004FBBE /* Tag+RealmWrapper.generated.swift */; };
 		562E29E1289C689A0004FBBE /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29E0289C689A0004FBBE /* Persistance.swift */; };
 		56430F002827D96E00333DB5 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56430EFF2827D96E00333DB5 /* Navigation.swift */; };
 		56430F032827F3F700333DB5 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56430F022827F3F700333DB5 /* YouTubePlayerKit */; };
@@ -78,6 +75,8 @@
 		569C0F4628621378009002C5 /* TagsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C0F4528621378009002C5 /* TagsListView.swift */; };
 		56A3A18C2832E89B00E828C8 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 56A3A18B2832E89B00E828C8 /* BetterSafariView */; };
 		56C556B22809FA4D0020B0C7 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C556B12809FA4D0020B0C7 /* ApiClientTests.swift */; };
+		56CF5F59289EA8C500040669 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 56CF5F58289EA8C500040669 /* Realm */; };
+		56CF5F5B289EA8C500040669 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 56CF5F5A289EA8C500040669 /* RealmSwift */; };
 		56D4738527F8E8B8007896E8 /* ProgressbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738427F8E8B8007896E8 /* ProgressbarView.swift */; };
 		56D4738727F8ED49007896E8 /* EmbedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738627F8ED49007896E8 /* EmbedViewModel.swift */; };
 		56D4738927FB88F3007896E8 /* CommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D4738827FB88F3007896E8 /* CommentViewModel.swift */; };
@@ -105,7 +104,9 @@
 		56FCF8352881DCBE00CFD3BE /* VoteCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FCF8342881DCBE00CFD3BE /* VoteCount.swift */; };
 		56FCF8372881EA9600CFD3BE /* AuthorDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FCF8362881EA9600CFD3BE /* AuthorDetailsView.swift */; };
 		56FCF8392881ED7400CFD3BE /* AuthorServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FCF8382881ED7400CFD3BE /* AuthorServiceImpl.swift */; };
-		64B1C92C73876F3E9A758423 /* Pods_iWykopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7C1A62050E194F85B03CE3 /* Pods_iWykopTests.framework */; };
+		7EA0E27FCB9DC44CBE5614DB /* Pods_iWykop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A096801C5EA8B24E06C94C /* Pods_iWykop.framework */; };
+		CB17172F607263F0BD4CC355 /* Pods_iWykopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9C26BD9B14D46859579514 /* Pods_iWykopTests.framework */; };
+		EB11A2D524CAF714CE2A7BBE /* Pods_iWykop_iWykopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B210CE47B40AB87C0AEEEAE /* Pods_iWykop_iWykopUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,10 +127,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		013E72CCABDE54B44BE1E389 /* Pods_iWykop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWykop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		291B51B165EAAD7398E2653B /* Pods_iWykop_iWykopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWykop_iWykopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4391A6E09846DBBA01BFE38C /* Pods-iWykop-iWykopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop-iWykopUITests.release.xcconfig"; path = "Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests.release.xcconfig"; sourceTree = "<group>"; };
-		55CC7F84DE4397421E64869D /* Pods-iWykopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykopTests.debug.xcconfig"; path = "Target Support Files/Pods-iWykopTests/Pods-iWykopTests.debug.xcconfig"; sourceTree = "<group>"; };
+		099A1D55D52410FAB6CE0054 /* Pods-iWykop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop.release.xcconfig"; path = "Target Support Files/Pods-iWykop/Pods-iWykop.release.xcconfig"; sourceTree = "<group>"; };
+		0D0548EFEB740D4A332185DD /* Pods-iWykopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykopTests.debug.xcconfig"; path = "Target Support Files/Pods-iWykopTests/Pods-iWykopTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0E5ABD8A48A616D091200583 /* Pods-iWykop-iWykopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop-iWykopUITests.release.xcconfig"; path = "Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests.release.xcconfig"; sourceTree = "<group>"; };
 		561196A727BE9FDE00605D03 /* apiCreditentials.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = apiCreditentials.plist; sourceTree = "<group>"; };
 		561196AA27BEA68100605D03 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		561196AC27BEA7D800605D03 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -146,7 +146,6 @@
 		562E29D2289C68300004FBBE /* Link+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Link+RealmWrapper.generated.swift"; path = "Generated/Link+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
 		562E29D3289C68300004FBBE /* Embed+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Embed+RealmWrapper.generated.swift"; path = "Generated/Embed+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
 		562E29D5289C68300004FBBE /* Author+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Author+RealmWrapper.generated.swift"; path = "Generated/Author+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
-		562E29D6289C68300004FBBE /* Tag+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tag+RealmWrapper.generated.swift"; path = "Generated/Tag+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
 		562E29E0289C689A0004FBBE /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
 		56430EFF2827D96E00333DB5 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		5646B88027EE46CB006FCF8C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -223,11 +222,12 @@
 		56FCF8342881DCBE00CFD3BE /* VoteCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCount.swift; sourceTree = "<group>"; };
 		56FCF8362881EA9600CFD3BE /* AuthorDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailsView.swift; sourceTree = "<group>"; };
 		56FCF8382881ED7400CFD3BE /* AuthorServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorServiceImpl.swift; sourceTree = "<group>"; };
-		7E7C1A62050E194F85B03CE3 /* Pods_iWykopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWykopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		858CA0CA1B7CAFBD627EA16C /* Pods-iWykopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykopTests.release.xcconfig"; path = "Target Support Files/Pods-iWykopTests/Pods-iWykopTests.release.xcconfig"; sourceTree = "<group>"; };
-		996A85F5A5569CC0126A2D8D /* Pods-iWykop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop.release.xcconfig"; path = "Target Support Files/Pods-iWykop/Pods-iWykop.release.xcconfig"; sourceTree = "<group>"; };
-		9A19D8374B7568F553AC5F3F /* Pods-iWykop-iWykopUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop-iWykopUITests.debug.xcconfig"; path = "Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		C2A26EF45549C195CEAB2CC6 /* Pods-iWykop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop.debug.xcconfig"; path = "Target Support Files/Pods-iWykop/Pods-iWykop.debug.xcconfig"; sourceTree = "<group>"; };
+		7B210CE47B40AB87C0AEEEAE /* Pods_iWykop_iWykopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWykop_iWykopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		816DBBE884C018A5389B3F1B /* Pods-iWykopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykopTests.release.xcconfig"; path = "Target Support Files/Pods-iWykopTests/Pods-iWykopTests.release.xcconfig"; sourceTree = "<group>"; };
+		96A096801C5EA8B24E06C94C /* Pods_iWykop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWykop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB9C26BD9B14D46859579514 /* Pods_iWykopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iWykopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE141890DCF63CE460760A18 /* Pods-iWykop-iWykopUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop-iWykopUITests.debug.xcconfig"; path = "Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F45B41E8EB01D411DFD14604 /* Pods-iWykop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iWykop.debug.xcconfig"; path = "Target Support Files/Pods-iWykop/Pods-iWykop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,10 +239,12 @@
 				56250B6227C255F10086AFF5 /* Collections in Frameworks */,
 				56430F032827F3F700333DB5 /* YouTubePlayerKit in Frameworks */,
 				56250B6427C255F10086AFF5 /* DequeModule in Frameworks */,
-				52A27DD202A992B9392EFBB9 /* Pods_iWykop.framework in Frameworks */,
 				568E42772821497800AA10C4 /* AxisSegmentedView in Frameworks */,
 				56250B5F27C23B310086AFF5 /* Crypto in Frameworks */,
+				56CF5F59289EA8C500040669 /* Realm in Frameworks */,
 				568A778727F4964200DB72C2 /* XNavigation in Frameworks */,
+				56CF5F5B289EA8C500040669 /* RealmSwift in Frameworks */,
+				7EA0E27FCB9DC44CBE5614DB /* Pods_iWykop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64B1C92C73876F3E9A758423 /* Pods_iWykopTests.framework in Frameworks */,
+				CB17172F607263F0BD4CC355 /* Pods_iWykopTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21CA5B4C59EA5783412FB940 /* Pods_iWykop_iWykopUITests.framework in Frameworks */,
+				EB11A2D524CAF714CE2A7BBE /* Pods_iWykop_iWykopUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +480,6 @@
 				562E29D3289C68300004FBBE /* Embed+RealmWrapper.generated.swift */,
 				562E29D1289C68300004FBBE /* Entry+RealmWrapper.generated.swift */,
 				562E29D2289C68300004FBBE /* Link+RealmWrapper.generated.swift */,
-				562E29D6289C68300004FBBE /* Tag+RealmWrapper.generated.swift */,
 				56684F3727C156FB00604432 /* AutoCodable.generated.swift */,
 				56684F3627C156FB00604432 /* AutoEquatable.generated.swift */,
 			);
@@ -493,7 +494,7 @@
 				5680867B27BE8FB1001E4F43 /* iWykopUITests */,
 				5680865A27BE8FB0001E4F43 /* Products */,
 				BEFAACD0FF21BC63A98A4482 /* Pods */,
-				E66810B83E29830ED89EBE30 /* Frameworks */,
+				EFBAE12807AFF2D805AE423B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -617,22 +618,22 @@
 		BEFAACD0FF21BC63A98A4482 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C2A26EF45549C195CEAB2CC6 /* Pods-iWykop.debug.xcconfig */,
-				996A85F5A5569CC0126A2D8D /* Pods-iWykop.release.xcconfig */,
-				9A19D8374B7568F553AC5F3F /* Pods-iWykop-iWykopUITests.debug.xcconfig */,
-				4391A6E09846DBBA01BFE38C /* Pods-iWykop-iWykopUITests.release.xcconfig */,
-				55CC7F84DE4397421E64869D /* Pods-iWykopTests.debug.xcconfig */,
-				858CA0CA1B7CAFBD627EA16C /* Pods-iWykopTests.release.xcconfig */,
+				F45B41E8EB01D411DFD14604 /* Pods-iWykop.debug.xcconfig */,
+				099A1D55D52410FAB6CE0054 /* Pods-iWykop.release.xcconfig */,
+				BE141890DCF63CE460760A18 /* Pods-iWykop-iWykopUITests.debug.xcconfig */,
+				0E5ABD8A48A616D091200583 /* Pods-iWykop-iWykopUITests.release.xcconfig */,
+				0D0548EFEB740D4A332185DD /* Pods-iWykopTests.debug.xcconfig */,
+				816DBBE884C018A5389B3F1B /* Pods-iWykopTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E66810B83E29830ED89EBE30 /* Frameworks */ = {
+		EFBAE12807AFF2D805AE423B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				013E72CCABDE54B44BE1E389 /* Pods_iWykop.framework */,
-				291B51B165EAAD7398E2653B /* Pods_iWykop_iWykopUITests.framework */,
-				7E7C1A62050E194F85B03CE3 /* Pods_iWykopTests.framework */,
+				96A096801C5EA8B24E06C94C /* Pods_iWykop.framework */,
+				7B210CE47B40AB87C0AEEEAE /* Pods_iWykop_iWykopUITests.framework */,
+				AB9C26BD9B14D46859579514 /* Pods_iWykopTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -644,12 +645,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5680868227BE8FB1001E4F43 /* Build configuration list for PBXNativeTarget "iWykop" */;
 			buildPhases = (
-				330AC8928A47C3912CFB666E /* [CP] Check Pods Manifest.lock */,
+				7D56560A16D2C252C4366994 /* [CP] Check Pods Manifest.lock */,
 				56684F3A27C189C900604432 /* Sourcery */,
 				5680865527BE8FB0001E4F43 /* Sources */,
 				5680865627BE8FB0001E4F43 /* Frameworks */,
 				5680865727BE8FB0001E4F43 /* Resources */,
-				0EB5638EEFC75B6DB9F6870F /* [CP] Embed Pods Frameworks */,
+				8ED3689A8EAE1B25CD063326 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -664,6 +665,8 @@
 				568E42762821497800AA10C4 /* AxisSegmentedView */,
 				56430F022827F3F700333DB5 /* YouTubePlayerKit */,
 				56A3A18B2832E89B00E828C8 /* BetterSafariView */,
+				56CF5F58289EA8C500040669 /* Realm */,
+				56CF5F5A289EA8C500040669 /* RealmSwift */,
 			);
 			productName = iWykop;
 			productReference = 5680865927BE8FB0001E4F43 /* iWykop.app */;
@@ -673,7 +676,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5680868527BE8FB1001E4F43 /* Build configuration list for PBXNativeTarget "iWykopTests" */;
 			buildPhases = (
-				BD9AB56B3FC14581F10CCE0D /* [CP] Check Pods Manifest.lock */,
+				7A3FBEA0086542C55969883C /* [CP] Check Pods Manifest.lock */,
 				5680866A27BE8FB1001E4F43 /* Sources */,
 				5680866B27BE8FB1001E4F43 /* Frameworks */,
 				5680866C27BE8FB1001E4F43 /* Resources */,
@@ -692,11 +695,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5680868827BE8FB1001E4F43 /* Build configuration list for PBXNativeTarget "iWykopUITests" */;
 			buildPhases = (
-				53B9297126C825525CB06703 /* [CP] Check Pods Manifest.lock */,
+				5CEEDFD0B10C88A07D0374FA /* [CP] Check Pods Manifest.lock */,
 				5680867427BE8FB1001E4F43 /* Sources */,
 				5680867527BE8FB1001E4F43 /* Frameworks */,
 				5680867627BE8FB1001E4F43 /* Resources */,
-				A2C69C00C278DEEA871BC731 /* [CP] Embed Pods Frameworks */,
+				7F37196CE2806C24FA281555 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -748,6 +751,7 @@
 				568E42752821497800AA10C4 /* XCRemoteSwiftPackageReference "AxisSegmentedView" */,
 				56430F012827F3F700333DB5 /* XCRemoteSwiftPackageReference "YouTubePlayerKit" */,
 				56A3A18A2832E89B00E828C8 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
+				56CF5F57289EA8C500040669 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 5680865A27BE8FB0001E4F43 /* Products */;
 			projectDirPath = "";
@@ -795,46 +799,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0EB5638EEFC75B6DB9F6870F /* [CP] Embed Pods Frameworks */ = {
+		56684F3A27C189C900604432 /* Sourcery */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iWykop/Pods-iWykop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iWykop/Pods-iWykop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iWykop/Pods-iWykop-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		330AC8928A47C3912CFB666E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = Sourcery;
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-iWykop-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "#echo $PATH\n$PODS_ROOT/Sourcery/bin/sourcery --config iWykop/Sourcery/.sourcery.yml --verbose\n";
 		};
-		53B9297126C825525CB06703 /* [CP] Check Pods Manifest.lock */ = {
+		5CEEDFD0B10C88A07D0374FA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -856,43 +840,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		56684F3A27C189C900604432 /* Sourcery */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Sourcery;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#echo $PATH\n$PODS_ROOT/Sourcery/bin/sourcery --config iWykop/Sourcery/.sourcery.yml --verbose\n";
-		};
-		A2C69C00C278DEEA871BC731 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BD9AB56B3FC14581F10CCE0D /* [CP] Check Pods Manifest.lock */ = {
+		7A3FBEA0086542C55969883C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -912,6 +860,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D56560A16D2C252C4366994 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iWykop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F37196CE2806C24FA281555 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iWykop-iWykopUITests/Pods-iWykop-iWykopUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8ED3689A8EAE1B25CD063326 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iWykop/Pods-iWykop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iWykop/Pods-iWykop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iWykop/Pods-iWykop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -935,7 +939,6 @@
 				56D4738927FB88F3007896E8 /* CommentViewModel.swift in Sources */,
 				562E29DD289C68300004FBBE /* Author+RealmWrapper.generated.swift in Sources */,
 				56684F2327BFC6C400604432 /* Coordinator.swift in Sources */,
-				562E29DE289C68300004FBBE /* Tag+RealmWrapper.generated.swift in Sources */,
 				56554E1527D9636C00BB8DD7 /* LinkServiceImpl.swift in Sources */,
 				56684F2B27C11F3900604432 /* ApiV2Response.swift in Sources */,
 				56FCF8392881ED7400CFD3BE /* AuthorServiceImpl.swift in Sources */,
@@ -1170,7 +1173,7 @@
 		};
 		5680868327BE8FB1001E4F43 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2A26EF45549C195CEAB2CC6 /* Pods-iWykop.debug.xcconfig */;
+			baseConfigurationReference = F45B41E8EB01D411DFD14604 /* Pods-iWykop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1201,7 +1204,7 @@
 		};
 		5680868427BE8FB1001E4F43 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 996A85F5A5569CC0126A2D8D /* Pods-iWykop.release.xcconfig */;
+			baseConfigurationReference = 099A1D55D52410FAB6CE0054 /* Pods-iWykop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1232,7 +1235,7 @@
 		};
 		5680868627BE8FB1001E4F43 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55CC7F84DE4397421E64869D /* Pods-iWykopTests.debug.xcconfig */;
+			baseConfigurationReference = 0D0548EFEB740D4A332185DD /* Pods-iWykopTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1253,7 +1256,7 @@
 		};
 		5680868727BE8FB1001E4F43 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 858CA0CA1B7CAFBD627EA16C /* Pods-iWykopTests.release.xcconfig */;
+			baseConfigurationReference = 816DBBE884C018A5389B3F1B /* Pods-iWykopTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1274,7 +1277,7 @@
 		};
 		5680868927BE8FB1001E4F43 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A19D8374B7568F553AC5F3F /* Pods-iWykop-iWykopUITests.debug.xcconfig */;
+			baseConfigurationReference = BE141890DCF63CE460760A18 /* Pods-iWykop-iWykopUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1293,7 +1296,7 @@
 		};
 		5680868A27BE8FB1001E4F43 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4391A6E09846DBBA01BFE38C /* Pods-iWykop-iWykopUITests.release.xcconfig */;
+			baseConfigurationReference = 0E5ABD8A48A616D091200583 /* Pods-iWykop-iWykopUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1400,6 +1403,14 @@
 				kind = branch;
 			};
 		};
+		56CF5F57289EA8C500040669 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1437,6 +1448,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 56A3A18A2832E89B00E828C8 /* XCRemoteSwiftPackageReference "BetterSafariView" */;
 			productName = BetterSafariView;
+		};
+		56CF5F58289EA8C500040669 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56CF5F57289EA8C500040669 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		56CF5F5A289EA8C500040669 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56CF5F57289EA8C500040669 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

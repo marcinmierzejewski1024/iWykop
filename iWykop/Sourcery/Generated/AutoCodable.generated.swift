@@ -42,7 +42,7 @@ extension Comment {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         author = try container.decodeIfPresent(Author.self, forKey: .author)
-        status = try container.decodeIfPresent(Status.self, forKey: .status)
+        status = try container.decode(String.self, forKey: .status)
         id = try container.decode(Int.self, forKey: .id)
         voteCount = try container.decode(Int.self, forKey: .voteCount)
         voteCountPlus = try container.decodeIfPresent(Int.self, forKey: .voteCountPlus)
@@ -64,7 +64,7 @@ extension Comment {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encodeIfPresent(author, forKey: .author)
-        try container.encodeIfPresent(status, forKey: .status)
+        try container.encode(status, forKey: .status)
         try container.encode(id, forKey: .id)
         try container.encode(voteCount, forKey: .voteCount)
         try container.encodeIfPresent(voteCountPlus, forKey: .voteCountPlus)
@@ -115,7 +115,6 @@ extension ItemInTagType {
     }
 
 }
-
 
 
 

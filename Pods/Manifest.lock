@@ -2,9 +2,6 @@ PODS:
   - Alamofire (5.5.0)
   - DBDebugToolkit (0.7.0)
   - KSToastView (0.5.7)
-  - Realm (10.28.4):
-    - Realm/Headers (= 10.28.4)
-  - Realm/Headers (10.28.4)
   - Resolver (1.5.0)
   - Sourcery (1.8.2):
     - Sourcery/CLI-Only (= 1.8.2)
@@ -15,7 +12,6 @@ DEPENDENCIES:
   - Alamofire
   - DBDebugToolkit
   - KSToastView (from `https://github.com/marcinmierzejewski1024/KSToastView.git`)
-  - Realm (~> 10.28)
   - Resolver
   - Sourcery
   - SwiftyGif
@@ -24,7 +20,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - DBDebugToolkit
-    - Realm
     - Resolver
     - Sourcery
     - SwiftyGif
@@ -42,11 +37,10 @@ SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   DBDebugToolkit: ae299ea98eeef649c05ea3229f952fef817e7604
   KSToastView: aeb0ca50b44e9568b6f95b2d1ec53a3f016b50fc
-  Realm: 8ab5176275b4123e84383b33385d47f09507acac
   Resolver: 68984624572763018fd8ec7b8e3e8df0e3b6bba5
   Sourcery: ad4aba88367fbaf0c1ae6ec4ba3282db1b571624
   SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
 
-PODFILE CHECKSUM: 31933764cfb32222b4bdb517ceb8191eaa8ecaf2
+PODFILE CHECKSUM: 53ef906b297ee4d63a692b5943db7ef276e6e976
 
 COCOAPODS: 1.11.2

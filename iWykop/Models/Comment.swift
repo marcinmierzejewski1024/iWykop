@@ -9,13 +9,14 @@ import Foundation
 
 //sourcery: RealmWrapper
 struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
+    // sourcery: primaryKey
+    var id: Int = 0;
     var author: Author?
-    var status: Status?
-    var id: Int
+    var status: String
     var parentID: Int?
-    var voteCount: Int
+    var voteCount: Int = 0;
     var favorite: Bool?
-    var date: Date
+    var date: Date = Date()
     var blocked: Bool?
     var embed: Embed?
     var userVote: Int?

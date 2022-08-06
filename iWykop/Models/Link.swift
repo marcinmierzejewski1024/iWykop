@@ -9,7 +9,8 @@ import Foundation
 
 //sourcery: RealmWrapper
 struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments {
-    var id: Int
+    // sourcery: primaryKey
+    var id: Int = 0;
     var body: String?
     var favorite: Bool?
     var comments: [Comment]?
@@ -18,15 +19,15 @@ struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments 
     var userVote: Int?
     var original: String?
     var embed: Embed?
-    var url: String
-    var date: Date
+    var url: String = ""
+    var date: Date = Date()
     var app: String?
-    var voteCount: Int
-    var commentsCount: Int
+    var voteCount: Int = 0;
+    var commentsCount: Int = 0;
     var status: String?
     var canComment: Bool?
-    var sourceUrl: String
-    var isHot : Bool
+    var sourceUrl: String = ""
+    var isHot : Bool = false
     var buryCount: Int?
     var relatedCount: Int?
     var preview: String?

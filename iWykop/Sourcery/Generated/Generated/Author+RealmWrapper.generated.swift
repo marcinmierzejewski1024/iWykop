@@ -1,7 +1,8 @@
 // Generated using Sourcery 1.8.2 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
+
 import Foundation
-import Realm
+import RealmSwift
 
 
 
@@ -9,17 +10,19 @@ import Realm
 
 
 
-final class AuthorObject: RLMEmbeddedObject {
 
-             dynamic var avatar : String = String();
-             dynamic var login : String = String();
-             dynamic var sex : AuthorSex? = nil;
-             dynamic var background : String? = nil;
-             dynamic var signupAt : Date? = nil;
-             dynamic var color : Int = Int();
 
-    static func primaryKey() -> String? {
-        return "id"
+final class AuthorObject: Object {
+
+    dynamic var avatar : String = String();
+    dynamic var login : String = String();
+    dynamic var background : String? = String();
+    dynamic var signupAt : Date? = Date();
+    dynamic var color : Int = Int();
+
+    override static func primaryKey() -> String? {
+        return "login"
+
     }
     override init() {
     }
@@ -30,18 +33,25 @@ final class AuthorObject: RLMEmbeddedObject {
 
 extension Author: Persistable {
 
+
+    typealias ManagedObject = AuthorObject
+
     public init(managedObject: AuthorObject) {
-    self.avatar = managedObject.avatar;
+        self.avatar = managedObject.avatar;
 
-    self.login = managedObject.login;
 
-    self.sex = managedObject.sex;
+        self.login = managedObject.login;
 
-    self.background = managedObject.background;
 
-    self.signupAt = managedObject.signupAt;
 
-    self.color = managedObject.color;
+        self.background = managedObject.background;
+
+
+        self.signupAt = managedObject.signupAt;
+
+
+        self.color = managedObject.color;
+
 
 
 
@@ -52,7 +62,6 @@ extension Author: Persistable {
 
     managed.login = self.login;
 
-    managed.sex = self.sex;
 
     managed.background = self.background;
 

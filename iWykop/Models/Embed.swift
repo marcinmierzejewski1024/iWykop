@@ -9,13 +9,15 @@ import Foundation
 
 //sourcery: RealmWrapper
 struct Embed: AutoCodable, AutoEquatable, Hashable {
-    var source: String
-    var plus18: Bool
-    var preview: String
-    var animated: Bool
+    var source: String = ""
+    var plus18: Bool = false
+    var preview: String = ""
+    var animated: Bool = false
+    // sourcery: skipPersistance
     var type: TypeEnum?
-    var ratio: Double
-    var url: String
+    var ratio: Double = 0.0
+    // sourcery: primaryKey
+    var url: String = ""
     var size: String?
     
     
@@ -92,6 +94,8 @@ struct Embed: AutoCodable, AutoEquatable, Hashable {
 
 
 enum TypeEnum: String, Codable {
+    
+    
     case image = "image"
     case video = "video"
 }

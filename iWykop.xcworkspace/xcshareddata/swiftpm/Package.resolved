@@ -6,7 +6,7 @@
       "location" : "https://github.com/jasudev/AxisSegmentedView",
       "state" : {
         "branch" : "main",
-        "revision" : "4a9a9c6c5b32b51e5d2fd4c30e8c475658853131"
+        "revision" : "e27af81aca102f26d7b33ae9d32ab1c322e682e2"
       }
     },
     {
@@ -16,6 +16,24 @@
       "state" : {
         "branch" : "main",
         "revision" : "9c051d20dbb50fa61d014d87b4ab6c5504408a73"
+      }
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core",
+      "state" : {
+        "revision" : "ab2b4947cd559746c775a3024972c5a9a09c47ba",
+        "version" : "12.4.0"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "c7c2f5f37379250855c9232ae9a5fdcdf5fa5658"
       }
     },
     {
@@ -32,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-crypto.git",
       "state" : {
-        "revision" : "a8911e0fadc25aef1071d582355bd1037a176060",
-        "version" : "2.0.4"
+        "revision" : "d9825fa541df64b1a7b182178d61b9a82730d01f",
+        "version" : "2.1.0"
       }
     },
     {
@@ -50,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SvenTiigi/YouTubePlayerKit.git",
       "state" : {
-        "revision" : "96b831c0132ad194c568a924d6bf8a4a26f3a517",
-        "version" : "1.1.11"
+        "revision" : "6ecaaeb9409152ddda5807835d557cbf5ba5ead6",
+        "version" : "1.2.0"
       }
     }
   ],

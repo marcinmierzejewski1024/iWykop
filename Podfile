@@ -11,7 +11,7 @@ target 'iWykop' do
   pod "DBDebugToolkit"
   pod "Sourcery"
   pod "KSToastView", :git => 'https://github.com/marcinmierzejewski1024/KSToastView.git'
-  pod 'Realm', '~> 10.28'
+ 
 
   target 'iWykopTests' do
     inherit! :search_paths

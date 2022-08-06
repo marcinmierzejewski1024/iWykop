@@ -19,7 +19,8 @@ protocol AutoEquatable {
 
 //sourcery: RealmWrapper
 struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComments{
-    var id: Int
+    // sourcery: primaryKey
+    var id: Int = 0;
     var body: String?
     var favorite: Bool?
     var userVote: Int?
@@ -27,11 +28,11 @@ struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComment
     var author: Author?
     var original: String?
     var embed: Embed?
-    var url: String
-    var date: Date
-    var voteCount: Int
-    var commentsCount: Int
-    var status: Status?
+    var url: String = ""
+    var date: Date = Date()
+    var voteCount: Int = 0;
+    var commentsCount: Int = 0;
+    var status: String
     var app: String?
     var comments: [Comment]?
     // sourcery: skipPersistance

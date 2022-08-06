@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import Realm
-
+import RealmSwift
 
 public protocol Persistable {
-    associatedtype ManagedObject: RLMEmbeddedObject
+    associatedtype ManagedObject: Object
     init(managedObject: ManagedObject)
     func managedObject() -> ManagedObject
 }

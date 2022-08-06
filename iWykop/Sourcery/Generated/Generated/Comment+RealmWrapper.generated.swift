@@ -1,7 +1,8 @@
 // Generated using Sourcery 1.8.2 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
+
 import Foundation
-import Realm
+import RealmSwift
 
 
 
@@ -9,26 +10,29 @@ import Realm
 
 
 
-final class CommentObject: RLMEmbeddedObject {
 
-             dynamic var author : Author? = nil;
-             dynamic var status : Status? = nil;
-             dynamic var id : Int = Int();
-             dynamic var parentID : Int? = nil;
-             dynamic var voteCount : Int = Int();
-             dynamic var favorite : Bool? = nil;
-             dynamic var date : Date = Date();
-             dynamic var blocked : Bool? = nil;
-             dynamic var embed : Embed? = nil;
-             dynamic var userVote : Int? = nil;
-             dynamic var entryID : Int? = nil;
-             dynamic var body : String? = nil;
-             dynamic var original : String? = nil;
-             dynamic var voteCountPlus : Int? = nil;
-             dynamic var voteCountMinus : Int? = nil;
 
-    static func primaryKey() -> String? {
+final class CommentObject: Object {
+
+    dynamic var id : Int = Int();
+    dynamic var author : Author? = Author();
+    dynamic var status : String = String();
+    dynamic var parentID : Int? = Int();
+    dynamic var voteCount : Int = Int();
+    dynamic var favorite : Bool? = Bool();
+    dynamic var date : Date = Date();
+    dynamic var blocked : Bool? = Bool();
+    dynamic var embed : Embed? = Embed();
+    dynamic var userVote : Int? = Int();
+    dynamic var entryID : Int? = Int();
+    dynamic var body : String? = String();
+    dynamic var original : String? = String();
+    dynamic var voteCountPlus : Int? = Int();
+    dynamic var voteCountMinus : Int? = Int();
+
+    override static func primaryKey() -> String? {
         return "id"
+
     }
     override init() {
     }
@@ -39,36 +43,54 @@ final class CommentObject: RLMEmbeddedObject {
 
 extension Comment: Persistable {
 
+
+    typealias ManagedObject = CommentObject
+
     public init(managedObject: CommentObject) {
-    self.author = managedObject.author;
+        self.id = managedObject.id;
 
-    self.status = managedObject.status;
 
-    self.id = managedObject.id;
+        self.author = managedObject.author;
 
-    self.parentID = managedObject.parentID;
 
-    self.voteCount = managedObject.voteCount;
+        self.status = managedObject.status;
 
-    self.favorite = managedObject.favorite;
 
-    self.date = managedObject.date;
+        self.parentID = managedObject.parentID;
 
-    self.blocked = managedObject.blocked;
 
-    self.embed = managedObject.embed;
+        self.voteCount = managedObject.voteCount;
 
-    self.userVote = managedObject.userVote;
 
-    self.entryID = managedObject.entryID;
+        self.favorite = managedObject.favorite;
 
-    self.body = managedObject.body;
 
-    self.original = managedObject.original;
+        self.date = managedObject.date;
 
-    self.voteCountPlus = managedObject.voteCountPlus;
 
-    self.voteCountMinus = managedObject.voteCountMinus;
+        self.blocked = managedObject.blocked;
+
+
+        self.embed = managedObject.embed;
+
+
+        self.userVote = managedObject.userVote;
+
+
+        self.entryID = managedObject.entryID;
+
+
+        self.body = managedObject.body;
+
+
+        self.original = managedObject.original;
+
+
+        self.voteCountPlus = managedObject.voteCountPlus;
+
+
+        self.voteCountMinus = managedObject.voteCountMinus;
+
 
 
 
@@ -77,11 +99,11 @@ extension Comment: Persistable {
     }
     public func managedObject() -> CommentObject {
         let managed = CommentObject()
+    managed.id = self.id;
+
     managed.author = self.author;
 
     managed.status = self.status;
-
-    managed.id = self.id;
 
     managed.parentID = self.parentID;
 

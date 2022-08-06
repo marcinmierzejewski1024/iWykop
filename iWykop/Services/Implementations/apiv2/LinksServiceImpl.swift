@@ -7,6 +7,7 @@
 
 
 import Foundation
+import RealmSwift
 
 
 class LinksServiceImpl : ApiV2Service, LinksService {
@@ -52,7 +53,16 @@ class LinksServiceImpl : ApiV2Service, LinksService {
         
         if let result = self.mapDataToEntities([Link].self, data:data) {
             
+            
             let withAttributedBody = await bodyFormatter.addBodyAttr(es: result.data ?? [])
+            
+            let realm = try! Realm()
+//            realm.
+            // Create a dog in the realm.
+            try! realm.write {
+                realm.add(result.data?.first)
+            }
+
             
             return withAttributedBody as? [Link] ?? [];
         } else {

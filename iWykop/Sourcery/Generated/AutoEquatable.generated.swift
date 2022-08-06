@@ -46,9 +46,9 @@ internal func == (lhs: AuthorWithDate, rhs: AuthorWithDate) -> Bool {
 // MARK: - Comment AutoEquatable
 extension Comment: Equatable {}
 internal func == (lhs: Comment, rhs: Comment) -> Bool {
-    guard compareOptionals(lhs: lhs.author, rhs: rhs.author, compare: ==) else { return false }
-    guard compareOptionals(lhs: lhs.status, rhs: rhs.status, compare: ==) else { return false }
     guard lhs.id == rhs.id else { return false }
+    guard compareOptionals(lhs: lhs.author, rhs: rhs.author, compare: ==) else { return false }
+    guard lhs.status == rhs.status else { return false }
     guard compareOptionals(lhs: lhs.parentID, rhs: rhs.parentID, compare: ==) else { return false }
     guard lhs.voteCount == rhs.voteCount else { return false }
     guard compareOptionals(lhs: lhs.favorite, rhs: rhs.favorite, compare: ==) else { return false }
@@ -93,7 +93,7 @@ internal func == (lhs: Entry, rhs: Entry) -> Bool {
     guard lhs.date == rhs.date else { return false }
     guard lhs.voteCount == rhs.voteCount else { return false }
     guard lhs.commentsCount == rhs.commentsCount else { return false }
-    guard compareOptionals(lhs: lhs.status, rhs: rhs.status, compare: ==) else { return false }
+    guard lhs.status == rhs.status else { return false }
     guard compareOptionals(lhs: lhs.app, rhs: rhs.app, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.comments, rhs: rhs.comments, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.visibleSpoilers, rhs: rhs.visibleSpoilers, compare: ==) else { return false }

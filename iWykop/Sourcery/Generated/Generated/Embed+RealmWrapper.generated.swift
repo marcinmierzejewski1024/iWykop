@@ -1,7 +1,8 @@
 // Generated using Sourcery 1.8.2 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
+
 import Foundation
-import Realm
+import RealmSwift
 
 
 
@@ -9,19 +10,21 @@ import Realm
 
 
 
-final class EmbedObject: RLMEmbeddedObject {
 
-             dynamic var source : String = String();
-             dynamic var plus18 : Bool = Bool();
-             dynamic var preview : String = String();
-             dynamic var animated : Bool = Bool();
-             dynamic var type : TypeEnum? = nil;
-             dynamic var ratio : Double = Double();
-             dynamic var url : String = String();
-             dynamic var size : String? = nil;
 
-    static func primaryKey() -> String? {
-        return "id"
+final class EmbedObject: Object {
+
+    dynamic var source : String = String();
+    dynamic var plus18 : Bool = Bool();
+    dynamic var preview : String = String();
+    dynamic var animated : Bool = Bool();
+    dynamic var ratio : Double = Double();
+    dynamic var url : String = String();
+    dynamic var size : String? = String();
+
+    override static func primaryKey() -> String? {
+        return "url"
+
     }
     override init() {
     }
@@ -32,22 +35,31 @@ final class EmbedObject: RLMEmbeddedObject {
 
 extension Embed: Persistable {
 
+
+    typealias ManagedObject = EmbedObject
+
     public init(managedObject: EmbedObject) {
-    self.source = managedObject.source;
+        self.source = managedObject.source;
 
-    self.plus18 = managedObject.plus18;
 
-    self.preview = managedObject.preview;
+        self.plus18 = managedObject.plus18;
 
-    self.animated = managedObject.animated;
 
-    self.type = managedObject.type;
+        self.preview = managedObject.preview;
 
-    self.ratio = managedObject.ratio;
 
-    self.url = managedObject.url;
+        self.animated = managedObject.animated;
 
-    self.size = managedObject.size;
+
+
+        self.ratio = managedObject.ratio;
+
+
+        self.url = managedObject.url;
+
+
+        self.size = managedObject.size;
+
 
 
 
@@ -62,7 +74,6 @@ extension Embed: Persistable {
 
     managed.animated = self.animated;
 
-    managed.type = self.type;
 
     managed.ratio = self.ratio;
 
