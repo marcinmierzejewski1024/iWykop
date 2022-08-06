@@ -17,23 +17,26 @@ protocol AutoEquatable {
 
 
 
-
+//sourcery: RealmWrapper
 struct Entry: AutoCodable, AutoEquatable, Hashable , BodyFormatable, WithComments{
-    let id: Int
-    let body: String?
-    let favorite: Bool?
-    let userVote: Int?
-    let blocked: Bool?
-    let author: Author
-    let original: String?
-    let embed: Embed?
-    let url: String
-    let date: Date
-    let voteCount, commentsCount: Int
-    let status: Status
-    let app: String?
+    var id: Int
+    var body: String?
+    var favorite: Bool?
+    var userVote: Int?
+    var blocked: Bool?
+    var author: Author?
+    var original: String?
+    var embed: Embed?
+    var url: String
+    var date: Date
+    var voteCount: Int
+    var commentsCount: Int
+    var status: Status?
+    var app: String?
     var comments: [Comment]?
+    // sourcery: skipPersistance
     var visibleSpoilers: [String]?
+    // sourcery: skipPersistance
     var bodyAttributed : AttributedString?
 
     enum CodingKeys: String, CodingKey {

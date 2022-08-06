@@ -7,25 +7,27 @@
 
 import Foundation
 
+//sourcery: RealmWrapper
 struct Comment: AutoCodable, AutoEquatable, Hashable, BodyFormatable {
-    let author: Author
-    let status: Status?
-    let id: Int
-    let parentID: Int?
-    let voteCount: Int
-    let favorite: Bool?
-    let date: Date
-    let blocked: Bool?
-    let embed: Embed?
-    let userVote: Int?
-//    let app: App?
-    let entryID: Int?
-    let body: String?
-    let original: String?
-    let voteCountPlus: Int?
-    let voteCountMinus: Int?
+    var author: Author?
+    var status: Status?
+    var id: Int
+    var parentID: Int?
+    var voteCount: Int
+    var favorite: Bool?
+    var date: Date
+    var blocked: Bool?
+    var embed: Embed?
+    var userVote: Int?
+    var entryID: Int?
+    var body: String?
+    var original: String?
+    var voteCountPlus: Int?
+    var voteCountMinus: Int?
 
+    // sourcery: skipPersistance
     var visibleSpoilers: [String]?
+    // sourcery: skipPersistance
     var bodyAttributed : AttributedString?
 
 

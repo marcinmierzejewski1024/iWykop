@@ -7,32 +7,38 @@
 
 import Foundation
 
+//sourcery: RealmWrapper
 struct Link: AutoCodable, AutoEquatable, Hashable, BodyFormatable, WithComments {
-    let id: Int
-    let body: String?
-    let favorite: Bool?
+    var id: Int
+    var body: String?
+    var favorite: Bool?
     var comments: [Comment]?
-    let blocked: Bool?
-    let author: Author
-    let userVote: Int?
-    let original: String?
-    let embed: Embed?
-    let url: String
-    let date: Date
-    let app: String?
-    let voteCount, commentsCount: Int
-    let status: String?
-    let canComment: Bool?
-    let sourceUrl: String
-    let isHot : Bool
-    let buryCount: Int?
-    let relatedCount: Int?
-    let preview: String?
-    let description: String?
-    let title: String?
-    let tags: String?
+    var blocked: Bool?
+    var author: Author?
+    var userVote: Int?
+    var original: String?
+    var embed: Embed?
+    var url: String
+    var date: Date
+    var app: String?
+    var voteCount: Int
+    var commentsCount: Int
+    var status: String?
+    var canComment: Bool?
+    var sourceUrl: String
+    var isHot : Bool
+    var buryCount: Int?
+    var relatedCount: Int?
+    var preview: String?
     
+    // sourcery: skipPersistance
+    var description: String?//TODO:
+    var title: String?
+    var tags: String?
+    
+    // sourcery: skipPersistance
     var bodyAttributed : AttributedString?
+    // sourcery: skipPersistance
     var visibleSpoilers: [String]?
 
 

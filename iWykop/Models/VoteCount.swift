@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 struct VoteCount
 {
     let voteCountPlus : Int?;

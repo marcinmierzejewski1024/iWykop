@@ -77,7 +77,7 @@ struct CommentView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            AuthorWithDateHeader(author: commentVM.comment.author, date: commentVM.comment.date, voteCount: VoteCount.from(comment: commentVM.comment))
+            AuthorWithDateHeader(author: commentVM.comment.author!, date: commentVM.comment.date, voteCount: VoteCount.from(comment: commentVM.comment))
             Text(commentVM.comment.bodyAttributed ?? "").fixedSize(horizontal: false, vertical: true)
             if let embed = self.commentVM.comment.embed {
                 EmbedViewModel(embed: embed).prepareView().onTapGesture {

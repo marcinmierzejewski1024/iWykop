@@ -7,15 +7,16 @@
 //
 import Foundation
 
+//sourcery: RealmWrapper
 struct Embed: AutoCodable, AutoEquatable, Hashable {
-    let source: String
-    let plus18: Bool
-    let preview: String
-    let animated: Bool
-    let type: TypeEnum
-    let ratio: Double
-    let url: String
-    let size: String?
+    var source: String
+    var plus18: Bool
+    var preview: String
+    var animated: Bool
+    var type: TypeEnum?
+    var ratio: Double
+    var url: String
+    var size: String?
     
     
     func getThumbnailImageURL() -> String? {

@@ -22,6 +22,14 @@
 		56250B6E27C27D1E0086AFF5 /* EntryServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6D27C27D1E0086AFF5 /* EntryServiceImpl.swift */; };
 		56250B7027C27F980086AFF5 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56250B6F27C27F980086AFF5 /* Comment.swift */; };
 		562E29B9289880060004FBBE /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29B8289880060004FBBE /* UIImage.swift */; };
+		562E29BC289C648D0004FBBE /* AutoRealm.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 562E29BB289C648C0004FBBE /* AutoRealm.stencil */; };
+		562E29D7289C68300004FBBE /* Comment+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29CF289C68300004FBBE /* Comment+RealmWrapper.generated.swift */; };
+		562E29D9289C68300004FBBE /* Entry+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29D1289C68300004FBBE /* Entry+RealmWrapper.generated.swift */; };
+		562E29DA289C68300004FBBE /* Link+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29D2289C68300004FBBE /* Link+RealmWrapper.generated.swift */; };
+		562E29DB289C68300004FBBE /* Embed+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29D3289C68300004FBBE /* Embed+RealmWrapper.generated.swift */; };
+		562E29DD289C68300004FBBE /* Author+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29D5289C68300004FBBE /* Author+RealmWrapper.generated.swift */; };
+		562E29DE289C68300004FBBE /* Tag+RealmWrapper.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29D6289C68300004FBBE /* Tag+RealmWrapper.generated.swift */; };
+		562E29E1289C689A0004FBBE /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562E29E0289C689A0004FBBE /* Persistance.swift */; };
 		56430F002827D96E00333DB5 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56430EFF2827D96E00333DB5 /* Navigation.swift */; };
 		56430F032827F3F700333DB5 /* YouTubePlayerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56430F022827F3F700333DB5 /* YouTubePlayerKit */; };
 		5646B88127EE46CB006FCF8C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5646B88027EE46CB006FCF8C /* Date.swift */; };
@@ -132,6 +140,14 @@
 		56250B6D27C27D1E0086AFF5 /* EntryServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryServiceImpl.swift; sourceTree = "<group>"; };
 		56250B6F27C27F980086AFF5 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		562E29B8289880060004FBBE /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		562E29BB289C648C0004FBBE /* AutoRealm.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoRealm.stencil; sourceTree = "<group>"; };
+		562E29CF289C68300004FBBE /* Comment+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Comment+RealmWrapper.generated.swift"; path = "Generated/Comment+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
+		562E29D1289C68300004FBBE /* Entry+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Entry+RealmWrapper.generated.swift"; path = "Generated/Entry+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
+		562E29D2289C68300004FBBE /* Link+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Link+RealmWrapper.generated.swift"; path = "Generated/Link+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
+		562E29D3289C68300004FBBE /* Embed+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Embed+RealmWrapper.generated.swift"; path = "Generated/Embed+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
+		562E29D5289C68300004FBBE /* Author+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Author+RealmWrapper.generated.swift"; path = "Generated/Author+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
+		562E29D6289C68300004FBBE /* Tag+RealmWrapper.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tag+RealmWrapper.generated.swift"; path = "Generated/Tag+RealmWrapper.generated.swift"; sourceTree = "<group>"; };
+		562E29E0289C689A0004FBBE /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
 		56430EFF2827D96E00333DB5 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		5646B88027EE46CB006FCF8C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		56554E1427D9636C00BB8DD7 /* LinkServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkServiceImpl.swift; sourceTree = "<group>"; };
@@ -285,6 +301,7 @@
 		561196A427BE9F5E00605D03 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				562E29DF289C68890004FBBE /* Realm */,
 				561196AF27BEECBC00605D03 /* Implementations */,
 				561196AE27BEECA600605D03 /* Prototypes */,
 				56ECA37E27CEC07300EBCA33 /* SettingsStore.swift */,
@@ -349,6 +366,14 @@
 				569C0F412861D350009002C5 /* LoadingView.swift */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		562E29DF289C68890004FBBE /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				562E29E0289C689A0004FBBE /* Persistance.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		5662047827E1253E00A61508 /* ViewModels */ = {
@@ -440,6 +465,7 @@
 			children = (
 				56684F2C27C13BCD00604432 /* AutoCodable.swifttemplate */,
 				56684F3427C14F3400604432 /* AutoEquatable.stencil */,
+				562E29BB289C648C0004FBBE /* AutoRealm.stencil */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -447,6 +473,12 @@
 		56684F3327C1430500604432 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				562E29D5289C68300004FBBE /* Author+RealmWrapper.generated.swift */,
+				562E29CF289C68300004FBBE /* Comment+RealmWrapper.generated.swift */,
+				562E29D3289C68300004FBBE /* Embed+RealmWrapper.generated.swift */,
+				562E29D1289C68300004FBBE /* Entry+RealmWrapper.generated.swift */,
+				562E29D2289C68300004FBBE /* Link+RealmWrapper.generated.swift */,
+				562E29D6289C68300004FBBE /* Tag+RealmWrapper.generated.swift */,
 				56684F3727C156FB00604432 /* AutoCodable.generated.swift */,
 				56684F3627C156FB00604432 /* AutoEquatable.generated.swift */,
 			);
@@ -740,6 +772,7 @@
 				56ECA38527CEC61400EBCA33 /* Localizable.strings in Resources */,
 				5680866127BE8FB1001E4F43 /* Assets.xcassets in Resources */,
 				56684F2D27C13BCD00604432 /* AutoCodable.swifttemplate in Resources */,
+				562E29BC289C648D0004FBBE /* AutoRealm.stencil in Resources */,
 				56ECA38827CEC61B00EBCA33 /* Localizable.strings in Resources */,
 				56684F3027C13F5F00604432 /* .sourcery.yml in Resources */,
 			);
@@ -900,7 +933,9 @@
 				56684F3827C156FB00604432 /* AutoEquatable.generated.swift in Sources */,
 				56ECA37327CE67DE00EBCA33 /* LinksViewModel.swift in Sources */,
 				56D4738927FB88F3007896E8 /* CommentViewModel.swift in Sources */,
+				562E29DD289C68300004FBBE /* Author+RealmWrapper.generated.swift in Sources */,
 				56684F2327BFC6C400604432 /* Coordinator.swift in Sources */,
+				562E29DE289C68300004FBBE /* Tag+RealmWrapper.generated.swift in Sources */,
 				56554E1527D9636C00BB8DD7 /* LinkServiceImpl.swift in Sources */,
 				56684F2B27C11F3900604432 /* ApiV2Response.swift in Sources */,
 				56FCF8392881ED7400CFD3BE /* AuthorServiceImpl.swift in Sources */,
@@ -931,7 +966,9 @@
 				56ECA37027CE66F200EBCA33 /* LinksServiceImpl.swift in Sources */,
 				5662047F27E1298E00A61508 /* TagView.swift in Sources */,
 				56250B5C27C192390086AFF5 /* HtmlStringView.swift in Sources */,
+				562E29DB289C68300004FBBE /* Embed+RealmWrapper.generated.swift in Sources */,
 				56684F1927BFBF2D00604432 /* EntriesServiceImpl.swift in Sources */,
+				562E29E1289C689A0004FBBE /* Persistance.swift in Sources */,
 				56ECA37F27CEC07300EBCA33 /* SettingsStore.swift in Sources */,
 				5662047D27E1294C00A61508 /* TagViewModel.swift in Sources */,
 				56684F2927C058BE00604432 /* Embed.swift in Sources */,
@@ -940,11 +977,14 @@
 				56D4738727F8ED49007896E8 /* EmbedViewModel.swift in Sources */,
 				56ECA39127CECEDA00EBCA33 /* WykopColors.swift in Sources */,
 				56ECA37D27CEB26C00EBCA33 /* SettingsView.swift in Sources */,
+				562E29D7289C68300004FBBE /* Comment+RealmWrapper.generated.swift in Sources */,
 				56ECA3F727D5559C00EBCA33 /* AuthorViewModel.swift in Sources */,
+				562E29D9289C68300004FBBE /* Entry+RealmWrapper.generated.swift in Sources */,
 				569C0F4628621378009002C5 /* TagsListView.swift in Sources */,
 				5646B88127EE46CB006FCF8C /* Date.swift in Sources */,
 				56FCF8372881EA9600CFD3BE /* AuthorDetailsView.swift in Sources */,
 				56ECA37827CE6EA100EBCA33 /* LinksView.swift in Sources */,
+				562E29DA289C68300004FBBE /* Link+RealmWrapper.generated.swift in Sources */,
 				562E29B9289880060004FBBE /* UIImage.swift in Sources */,
 				56ECA3F127D404EA00EBCA33 /* BodyFormater.swift in Sources */,
 				56250B7027C27F980086AFF5 /* Comment.swift in Sources */,

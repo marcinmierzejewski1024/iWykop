@@ -6,15 +6,15 @@
 ////
 //
 import Foundation
-
+//sourcery: RealmWrapper
 struct Author: AutoCodable, AutoEquatable, Hashable {
     
-    let avatar: String
-    let login: String
-    let sex: AuthorSex?
-    let background: String?
-    let signupAt: Date?
-    let color: Int
+    var avatar: String
+    var login: String
+    var sex: AuthorSex?
+    var background: String?
+    var signupAt: Date?
+    var color: Int
     
 
     enum CodingKeys: String, CodingKey {

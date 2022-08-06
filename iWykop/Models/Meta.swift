@@ -8,7 +8,8 @@
 import Foundation
 
 struct Meta: Codable,Hashable {
-    let isOwn, isObserved: Bool
+    let isOwn: Bool
+    let isObserved: Bool
     let owner: String?
     let isBlocked: Bool?
     let tag: String
