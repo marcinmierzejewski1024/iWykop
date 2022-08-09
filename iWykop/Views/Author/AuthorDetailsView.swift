@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct AuthorDetailsView: View {
+    @EnvironmentObject var theme : WykopColors
+
     let authorVM : AuthorViewModel
     
     func backgroundHeight() -> CGFloat {
@@ -63,9 +65,9 @@ struct AuthorDetailsView: View {
                             }
                         }
                     VStack(alignment: .leading,spacing: 4) {
-                        Text(authorVM.author.login).strikethrough(authorVM.author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: WykopColors.shared.currentTheme.authorColors[authorVM.author.color] ?? WykopColors.shared.currentTheme.textColor))
+                        Text(authorVM.author.login).strikethrough(authorVM.author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: theme.currentTheme.authorColors[authorVM.author.color] ?? theme.currentTheme.textColor))
                         if let signUp = authorVM.author.signupAt {
-                            Text(NSLocalizedString("Since:", comment: "") + signUp.timeAgoDisplayShort()).foregroundColor(WykopColors.shared.currentTheme.textColor)
+                            Text(NSLocalizedString("Since:", comment: "") + signUp.timeAgoDisplayShort()).foregroundColor(theme.currentTheme.textColor)
                         }
                     }
                     
@@ -74,7 +76,7 @@ struct AuthorDetailsView: View {
                     
                     
                     
-                }.padding(Margins.medium.rawValue).background(WykopColors.shared.currentTheme.backgroundColor).cornerRadius(4.0)
+                }.padding(Margins.medium.rawValue).background(theme.currentTheme.backgroundColor).cornerRadius(4.0)
                 
                 
                 

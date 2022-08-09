@@ -11,6 +11,8 @@ struct AuthorWithDateHeader: View {
     let author : Author
     let date : Date?
     let voteCount : VoteCount?
+    @EnvironmentObject var theme : WykopColors
+
 //    let onLoginTap : (String) -> Void?
     @EnvironmentObject var settings: SettingsStore
     
@@ -35,7 +37,7 @@ struct AuthorWithDateHeader: View {
                     self.openAuthorDetails()
                 }
             VStack(alignment: .leading,spacing: 4) {
-                Text(author.login).strikethrough(author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: WykopColors.shared.currentTheme.authorColors[author.color] ?? WykopColors.shared.currentTheme.textColor)).onTapGesture {
+                Text(author.login).strikethrough(author.isBanned(), color: nil).bold().modifier(LoginStyle(loginColor: theme.currentTheme.authorColors[author.color] ?? theme.currentTheme.textColor)).onTapGesture {
                     self.openAuthorDetails()
                 }
                 Text(date?.timeAgoDisplay() ?? "").modifier(DateStyle());
@@ -48,15 +50,15 @@ struct AuthorWithDateHeader: View {
             VStack {
                 if showSeparated {
                     HStack {
-                        Text("+\(voteCount?.voteCountPlus ?? 0)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).font(.countFont())
-                        Text("-\(voteCount?.voteCountMinus ?? 0)").foregroundColor(WykopColors.shared.currentTheme.minusRedColor).font(.countFont())
+                        Text("+\(voteCount?.voteCountPlus ?? 0)").foregroundColor(theme.currentTheme.plusGreenColor).font(.countFont())
+                        Text("-\(voteCount?.voteCountMinus ?? 0)").foregroundColor(theme.currentTheme.minusRedColor).font(.countFont())
                     }
                 } else {
                     if let voteCount = voteCount?.upvotes {
                         if(voteCount >= 0) {
-                            Text("+\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.plusGreenColor).font(.countFont())
+                            Text("+\(voteCount)").foregroundColor(theme.currentTheme.plusGreenColor).font(.countFont())
                         } else {
-                            Text("\(voteCount)").foregroundColor(WykopColors.shared.currentTheme.minusRedColor).font(.countFont())
+                            Text("\(voteCount)").foregroundColor(theme.currentTheme.minusRedColor).font(.countFont())
                             
                         }
                     }

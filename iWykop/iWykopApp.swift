@@ -15,6 +15,7 @@ struct iWykopApp: App {
     
     var navigation : Navigation?;
     var appViewModel = AppViewModel();
+    var theme = WykopColors.shared;
     
     private var window: UIWindow? {
         guard let scene = UIApplication.shared.connectedScenes.first,
@@ -49,7 +50,7 @@ struct iWykopApp: App {
                 if let navigation = Navigation(window: window!) {
                     
                     appViewModel.prepareView()
-                        .environmentObject(navigation).background(WykopColors.shared.currentTheme.backgroundColor).ignoresSafeArea()
+                        .environmentObject(navigation).background(WykopColors.shared.currentTheme.backgroundColor).ignoresSafeArea().environmentObject(theme)
                 }
 
             }

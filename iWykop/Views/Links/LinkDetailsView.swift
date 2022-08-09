@@ -20,6 +20,8 @@ struct LinkDetailsView: View {
     @State var selected = 0;
     @State var link : Link;
     @ObservedObject var linkVM : LinkViewModel;
+    @EnvironmentObject var theme : WykopColors
+
     
     func selectedTab() -> LinkDetailsTabs {
         return LinkDetailsTabs.allCases[selected];
@@ -42,7 +44,7 @@ struct LinkDetailsView: View {
             
             LinkViewCellHeader(link: link).listRowSeparator(.hidden).listRowInsets(EdgeInsets())
             
-            WykopColors.shared.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+            theme.currentTheme.backgroundColor.frame( height: 20, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
             
             
             Tabs(tabs: .constant(LinkDetailsTabs.allCases.map({ tab in
@@ -99,7 +101,8 @@ struct LinkDetailsView: View {
 
 struct LinkWithCommentsView: View {
     var link:Link
-    
+    @EnvironmentObject var theme : WykopColors
+
     var body: some View {
         
         
@@ -109,7 +112,7 @@ struct LinkWithCommentsView: View {
                 ForEach(comments, id: \.id) { item in
                     
                     if (!item.isResponseComment()) {
-                        WykopColors.shared.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
+                        theme.currentTheme.backgroundColor.frame( height: 10, alignment: .center).listRowInsets(EdgeInsets()).listRowSeparator(.hidden)
                     }
                     
                     VStack(alignment: .leading) {

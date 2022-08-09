@@ -8,59 +8,73 @@
 import SwiftUI
 
 struct TitleStyle: ViewModifier {
+    @EnvironmentObject var theme : WykopColors
+
+    
     func body(content: Content) -> some View {
         content
             .font(Font.titleFont())
-            .foregroundColor(WykopColors.shared.currentTheme.textColor)
+            .foregroundColor(theme.currentTheme.textColor)
     }
 }
 
 struct CardStyle: ViewModifier {
+    @EnvironmentObject var theme : WykopColors
+
     func body(content: Content) -> some View {
         content
-            .background(WykopColors.shared.currentTheme.cardColor)
+            .background(theme.currentTheme.cardColor)
 //            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
 struct BackgroundStyle: ViewModifier {
+    @EnvironmentObject var theme : WykopColors
+
     func body(content: Content) -> some View {
         content
-            .background(WykopColors.shared.currentTheme.backgroundColor).ignoresSafeArea()
+            .background(theme.currentTheme.backgroundColor).ignoresSafeArea()
     }
 }
 
 
 struct BodyStyle: ViewModifier {
+    @EnvironmentObject var theme : WykopColors
+
     func body(content: Content) -> some View {
         content
             .font(Font.bodyFont())
-            .foregroundColor(WykopColors.shared.currentTheme.textColor)
+            .foregroundColor(theme.currentTheme.textColor)
     }
 }
 
 
 
 struct CountStyle: ViewModifier {
+    @EnvironmentObject var theme : WykopColors
+
     func body(content: Content) -> some View {
         content
             .font(Font.countFont())
-            .foregroundColor(WykopColors.shared.currentTheme.textColor)
+            .foregroundColor(theme.currentTheme.textColor)
     }
 }
 
 
 
 struct CommentStyle: ViewModifier {
+    @EnvironmentObject var theme : WykopColors
+
     func body(content: Content) -> some View {
         content
             .font(Font.commentFont())
-            .foregroundColor(WykopColors.shared.currentTheme.textColor)
+            .foregroundColor(theme.currentTheme.textColor)
     }
 }
 
 
 struct LoginStyle: ViewModifier {
+
     let loginColor : Color;
     func body(content: Content) -> some View {
         content
@@ -69,19 +83,23 @@ struct LoginStyle: ViewModifier {
 }
 
 struct DateStyle: ViewModifier {
+    @EnvironmentObject var theme : WykopColors
+
     func body(content: Content) -> some View {
         content
             .font(Font.dateFont())
-            .foregroundColor(WykopColors.shared.currentTheme.secondaryTextColor)
+            .foregroundColor(theme.currentTheme.secondaryTextColor)
 
     }
 }
 
 struct OtherTextStyle: ViewModifier {
+    @EnvironmentObject var theme : WykopColors
+
     func body(content: Content) -> some View {
         content
             .font(Font.settingsFont())
-            .foregroundColor(WykopColors.shared.currentTheme.textColor)
+            .foregroundColor(theme.currentTheme.textColor)
     }
 }
 

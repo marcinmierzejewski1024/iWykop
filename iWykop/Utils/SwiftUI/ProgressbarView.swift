@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct ProgressbarView: View {
+    @EnvironmentObject var theme : WykopColors
+
     @State var value : Double;
     
     var body: some View {
@@ -16,10 +18,10 @@ struct ProgressbarView: View {
             ZStack(alignment: .leading) {
                 Rectangle().frame(width: geometry.size.width , height: geometry.size.height)
                     .opacity(0.3)
-                    .foregroundColor(WykopColors.shared.currentTheme.progressBarForeground)
+                    .foregroundColor(theme.currentTheme.progressBarForeground)
                 
                 Rectangle().frame(width: min(CGFloat(self.value)*geometry.size.width, geometry.size.width), height: geometry.size.height)
-                    .foregroundColor(WykopColors.shared.currentTheme.progressBarBackground)
+                    .foregroundColor(theme.currentTheme.progressBarBackground)
             }.cornerRadius(15.0)
         }
     }

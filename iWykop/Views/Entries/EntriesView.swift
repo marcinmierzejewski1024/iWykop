@@ -10,6 +10,7 @@ import KSToastView
 import AxisSegmentedView
 
 struct EntriesView: View {
+    @EnvironmentObject var theme : WykopColors
     @ObservedObject var entriesVM : EntriesViewModel;
     @State var selectedPeriod = 6;
     @ViewBuilder
@@ -36,7 +37,7 @@ struct EntriesView: View {
                         Text("24h").font(.title3).bold()
                     }
             } style: {
-                ASScaleStyle(backgroundColor: .clear, foregroundColor: WykopColors.shared.currentTheme.accentColor.opacity(0.4))
+                ASScaleStyle(backgroundColor: .clear, foregroundColor: theme.currentTheme.accentColor.opacity(0.4))
                 
             } onTapReceive: { selectionTap in
                 Task {
@@ -57,7 +58,7 @@ struct EntriesView: View {
     
     
     struct EntriesListView: View {
-        
+        @EnvironmentObject var theme : WykopColors
         @ObservedObject var entriesVM : EntriesViewModel;
         
         
@@ -89,7 +90,7 @@ struct EntriesView: View {
                         }
                         
                         
-                    }.listRowBackground(WykopColors.shared.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
+                    }.listRowBackground(theme.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
                     
                     
                     

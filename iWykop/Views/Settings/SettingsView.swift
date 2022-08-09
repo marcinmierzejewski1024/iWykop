@@ -11,6 +11,8 @@ import AxisSegmentedView
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var theme : WykopColors
+
 
     
     var body: some View {
@@ -51,7 +53,7 @@ struct SettingsView: View {
                                     Text("OLED").bold()
                                 }
                         } style: {
-                            ASScaleStyle(backgroundColor: .clear, foregroundColor: WykopColors.shared.currentTheme.accentColor.opacity(0.4), cornerRadius: 4.0)
+                            ASScaleStyle(backgroundColor: .clear, foregroundColor: theme.currentTheme.accentColor.opacity(0.4), cornerRadius: 4.0)
                             
                         } onTapReceive: { selectionTap in
                             settings.selectedTheme = selectionTap;

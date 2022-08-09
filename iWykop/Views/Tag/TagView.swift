@@ -14,7 +14,7 @@ import SwiftUI
 struct TagView : View {
 
     @ObservedObject var tagVM : TagViewModel;
-    
+    @EnvironmentObject var theme : WykopColors
     
     var body: some View {
         
@@ -29,7 +29,7 @@ struct TagView : View {
                             
                             ItemInTagView(item: item)
                         }
-                    }.listRowBackground(WykopColors.shared.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
+                    }.listRowBackground(theme.currentTheme.backgroundColor.ignoresSafeArea()).listRowInsets(EdgeInsets()).listRowSeparator(.hidden).padding(.bottom, Margins.medium.rawValue)
                     
                 }
             }.listStyle(PlainListStyle()).refreshable {

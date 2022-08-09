@@ -36,6 +36,8 @@ struct EntryDetailsView: View {
 
 
 struct EntryWithCommentsView: View {
+    @EnvironmentObject var theme : WykopColors
+
     var entry:Entry
     var embedViewModel : EmbedViewModel?;
     
@@ -56,7 +58,7 @@ struct EntryWithCommentsView: View {
                     
                     ForEach(comments, id: \.id) { item in
                         
-                        CommentViewModel(comment: item).prepareView().listRowBackground(WykopColors.shared.currentTheme.cardColor.ignoresSafeArea())
+                        CommentViewModel(comment: item).prepareView().listRowBackground(theme.currentTheme.cardColor.ignoresSafeArea())
                         
                         
                     }
