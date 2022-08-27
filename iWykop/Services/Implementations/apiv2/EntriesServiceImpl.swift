@@ -33,7 +33,7 @@ class EntriesServiceImpl : ApiV2Service, EntriesService  {
 
         self.requestedPeriod = period;
         self.requestedPage = page;
-        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+        let request = ApiRequest.get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         

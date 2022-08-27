@@ -21,7 +21,7 @@ class AuthorServiceImpl : ApiV2Service, AuthorService {
     func getAuthor(name: String) async throws -> Author? {
         
         self.requestedLogin = name;
-        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+        let request = ApiRequest.get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         

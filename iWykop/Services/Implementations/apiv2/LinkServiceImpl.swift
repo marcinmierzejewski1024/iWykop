@@ -29,7 +29,7 @@ class LinkServiceImpl : ApiV2Service, LinkService  {
     func getLink(id:Int) async throws -> Link? {
 
         self.requestedId = id;
-        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+        let request = ApiRequest.get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         
@@ -49,7 +49,7 @@ class LinkServiceImpl : ApiV2Service, LinkService  {
     
     func getLinkVoters(id: Int) async throws -> Link? {
         self.requestedId = id;
-        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+        let request = ApiRequest.get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         

@@ -38,7 +38,7 @@ class VotersServiceImpl : ApiV2Service, VotersService  {
         self.id = id;
         self.downvotes = downvotes;
         
-        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+        let request = ApiRequest.get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         
@@ -59,7 +59,7 @@ class VotersServiceImpl : ApiV2Service, VotersService  {
         self.getLinkVoters = false;
         self.id = id;
         
-        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+        let request = ApiRequest.get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         

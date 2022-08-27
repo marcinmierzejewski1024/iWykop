@@ -30,7 +30,7 @@ class TagServiceImpl : ApiV2Service, TagService  {
         self.requestedTag = tag;
         self.requestedTag = "gif";//TODO:skasowac
         
-        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+        let request = ApiRequest.get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         

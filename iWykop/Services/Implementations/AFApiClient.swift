@@ -28,12 +28,6 @@ public class AFNetworkApiClient : ApiClient {
         }).downloadProgress { p in
             progress?(p.fractionCompleted);
         };
-
-
-        
-        
-
-    
     }
     
     
@@ -49,25 +43,19 @@ public class AFNetworkApiClient : ApiClient {
         switch (request){
 
             
-        case .Get(url: let url, headers: let headers):
+        case .get(url: let url, headers: let headers):
             method = .get;
             requestUrl = url;
             requestHeaders = self.headersFrom(headers)
             
-        case .Post(url: let url, body: let body, headers: let headers):
+        case .post(url: let url, body: let body, headers: let headers):
             method = .post;
             requestUrl = url;
             requestHeaders = self.headersFrom(headers)
             requestBody = body;
 
-        case .Patch(url: let url, body: let body, headers: let headers):
-            method = .patch;
-            requestUrl = url;
-            requestHeaders = self.headersFrom(headers)
-            requestBody = body;
 
-
-        case .Delete(url: let url, body: let body, headers: let headers):
+        case .delete(url: let url, body: let body, headers: let headers):
             method = .delete;
             requestUrl = url;
             requestHeaders = self.headersFrom(headers)

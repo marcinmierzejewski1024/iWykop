@@ -43,7 +43,7 @@ class LinksServiceImpl : ApiV2Service, LinksService {
         
         self.requestedPage = page;
         self.requestedCollection = collection;
-        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+        let request = ApiRequest.get(url:self.getUrl(), headers: self.headers());
         
         let data = try await self.apiClient.httpRequestAsync(request)
         

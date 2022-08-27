@@ -29,7 +29,7 @@ class EntryServiceImpl : ApiV2Service, EntryService  {
     func getEntry(id:Int) async throws -> Entry? {
 
         self.requestedId = id;
-        let request = ApiRequest.Get(url:self.getUrl(), headers: self.headers());
+        let request = ApiRequest.get(url:self.getUrl(), headers: self.headers());
 
         let data = try await self.apiClient.httpRequestAsync(request)
         
