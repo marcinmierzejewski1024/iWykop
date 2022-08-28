@@ -7,15 +7,55 @@
 
 import Foundation
 
-public class URLSessionApiClient : ApiClient {
+public class DownloadTaskHandler : Hashable {
+    
+    var completion: ((Data?, Error?) -> Void)?
+    var task : URLSessionDownloadTask?
+    
+    public static func == (lhs: DownloadTaskHandler, rhs: DownloadTaskHandler) -> Bool {
+        return lhs.task == rhs.task
+    }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(task)
+    }
+}
+
+public class URLSessionApiClient : NSObject, ApiClient, URLSessionDelegate {
+    
+    var handlers = [DownloadTaskHandler]()
+    var observation :NSKeyValueObservation?
+    lazy var session:URLSession = {
+        return URLSession(configuration:URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+    }()
+    
+    
     public func getFile(from url: String, progress: ((Double) -> Void)?, completion: @escaping (Data?, Error?) -> Void) {
+        
+        guard let url = URL(string: url) else {
+            completion(nil, "invalid URL")
+            return
+        }
+        let urlRequest = URLRequest(url: url)
+        let handler = DownloadTaskHandler()
+        handler.completion = completion
+        
+        handlers.append(handler)
+        
+        let downloadTask = session.downloadTask(with: urlRequest)
+        handler.task = downloadTask
+        
+        self.observation = downloadTask.progress.observe(\.fractionCompleted) { downloadingProgress, _ in
+            print("\(downloadingProgress.fractionCompleted) ---+")
+            progress?(downloadingProgress.fractionCompleted)
+        }
+        
+        downloadTask.resume()
+        
+        
         
     }
     
     
-    lazy var session:URLSession = {
-        return URLSession(configuration:URLSessionConfiguration.default)
-    }()
     
     public func httpRequest(_ request: ApiRequest, completion: (@escaping (Data?, Error?) -> Void)) {
         
@@ -62,5 +102,29 @@ public class URLSessionApiClient : ApiClient {
         }
         
     }
+    
+}
+
+
+
+extension URLSessionApiClient : URLSessionDownloadDelegate {
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        let handler = handlers.first { handler in
+            handler.task == downloadTask
+        }
+        defer {
+            handlers.removeAll { candidate in
+                candidate == handler
+            }
+        }
+        
+        do {
+            let rawData = try Data(contentsOf: location)
+            handler?.completion?(rawData, nil)
+        } catch {
+            handler?.completion?(nil, error)
+        }
+    }
+    
     
 }
